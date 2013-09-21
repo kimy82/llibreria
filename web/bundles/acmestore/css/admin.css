@@ -1,0 +1,12 @@
+	.inline_menu{
+			float: top;
+			width: 60px;
+		}
+	.inline_menun_interior{
+			float: left;
+			width: 90px;
+		}
+	.form_date{
+			color: blue;
+			background-color: red;
+	}
