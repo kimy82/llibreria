@@ -1,0 +1,197 @@
+acme_store_homepage:
+    pattern:  /admin/secured/menu
+    defaults: { _controller: AcmeStoreBundle:Default:index }  
+     
+acme_noticia:
+    pattern:  /admin/secured/noticia
+    defaults: { _controller: AcmeStoreBundle:Noticia:index }
+acme_pre_store_noticia:
+    pattern:  /admin/secured/noticia/noticia_save
+    defaults: { _controller: AcmeStoreBundle:Noticia:precreate }
+store_new_noticia:
+    pattern:  /admin/secured/noticia/noticia_new_save
+    defaults: { _controller: AcmeStoreBundle:Noticia:saveNoticia }
+llistat_store_noticia:
+    pattern:  /admin/secured/noticia/noticia_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Noticia:list }
+edit_noticia:
+    pattern:  /admin/secured/noticia/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Noticia:edit }
+update_noticia:
+     pattern:  /admin/secured/noticia/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Noticia:updateNoticia }
+delete_noticia:
+     pattern:  /admin/secured/noticia/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Noticia:deleteNoticia }
+
+acme_slider:
+    pattern:  /admin/secured/slider
+    defaults: { _controller: AcmeStoreBundle:Slider:index }
+acme_pre_store_slider:
+    pattern:  /admin/secured/slider/slider_save
+    defaults: { _controller: AcmeStoreBundle:Slider:precreate }
+store_new_slider:
+    pattern:  /admin/secured/slider/slider_new_save
+    defaults: { _controller: AcmeStoreBundle:Slider:saveSlider }
+llistat_store_slider:
+    pattern:  /admin/secured/slider/slider_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Slider:list }
+edit_slider:
+    pattern:  /admin/secured/slider/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Slider:edit }
+update_slider:
+     pattern:  /admin/secured/slider/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Slider:updateSlider }
+delete_slider:
+     pattern:  /admin/secured/slider/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Slider:deleteSlider }
+
+acme_llibre:
+    pattern:  /admin/secured/llibre
+    defaults: { _controller: AcmeStoreBundle:Llibre:index }
+acme_pre_store_llibre:
+    pattern:  /admin/secured/llibre/llibre_save
+    defaults: { _controller: AcmeStoreBundle:Llibre:precreate }
+llistat_store_llibre:
+    pattern:  /admin/secured/llibre/llibre_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Llibre:list }
+store_new_llibre:
+    pattern:  /admin/secured/llibre/llibre_new_save
+    defaults: { _controller: AcmeStoreBundle:Llibre:saveLlibre }
+edit_llibre:
+    pattern:  /admin/secured/llibre/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Llibre:edit }
+update_llibre:
+     pattern:  /admin/secured/llibre/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Llibre:updateLlibre }
+delete_llibre:
+     pattern:  /admin/secured/llibre/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Llibre:deleteLlibre }
+     
+acme_agenda:
+    pattern:  /admin/secured/agenda
+    defaults: { _controller: AcmeStoreBundle:Agenda:index }
+acme_pre_store_agenda:
+    pattern:  /admin/secured/agenda/agenda_save
+    defaults: { _controller: AcmeStoreBundle:Agenda:precreate }
+store_new_agenda:
+    pattern:  /admin/secured/agenda/agenda_new_save
+    defaults: { _controller: AcmeStoreBundle:Agenda:saveAgenda }
+llistat_store_agenda:
+    pattern:  /admin/secured/agenda/agenda_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Agenda:list }
+edit_agenda:
+    pattern:  /admin/secured/agenda/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Agenda:edit }
+update_agenda:
+     pattern:  /admin/secured/agenda/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Agenda:updateAgenda }
+delete_agenda:
+     pattern:  /admin/secured/agenda/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Agenda:deleteAgenda }
+
+acme_presentacio:
+    pattern:  /admin/secured/presentacio
+    defaults: { _controller: AcmeStoreBundle:Presentacio:index }
+acme_pre_store_presentacio:
+    pattern:  /admin/secured/presentacio/presentacio_save
+    defaults: { _controller: AcmeStoreBundle:Presentacio:precreate }
+store_new_presentacio:
+    pattern:  /admin/secured/presentacio/presentacio_new_save
+    defaults: { _controller: AcmeStoreBundle:Presentacio:savePresentacio }
+llistat_store_presentacio:
+    pattern:  /admin/secured/presentacio/presentacio_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Presentacio:list }
+edit_presentacio:
+    pattern:  /admin/secured/presentacio/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Presentacio:edit }
+update_presentacio:
+     pattern:  /admin/secured/presentacio/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Presentacio:updatePresentacio }
+delete_presentacio:
+     pattern:  /admin/secured/presentacio/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Presentacio:deletePresentacio }
+     
+acme_galeria:
+    pattern:  /admin/secured/galeria
+    defaults: { _controller: AcmeStoreBundle:Galeria:index }
+acme_pre_store_galeria:
+    pattern:  /admin/secured/galeria/galeria_save
+    defaults: { _controller: AcmeStoreBundle:Galeria:precreate }
+store_new_galeria:
+    pattern:  /admin/secured/galeria/galeria_new_save
+    defaults: { _controller: AcmeStoreBundle:Galeria:saveGaleria }
+llistat_store_galeria:
+    pattern:  /admin/secured/galeria/galeria_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Galeria:list }
+edit_galeria:
+    pattern:  /admin/secured/galeria/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Galeria:edit }
+update_galeria:
+     pattern:  /admin/secured/galeria/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Galeria:updateGaleria }
+delete_galeria:
+     pattern:  /admin/secured/galeria/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Galeria:deleteGaleria }
+
+acme_encarrecs:
+     pattern:  /admin/secured/encarrecs/list
+     defaults: { _controller: AcmeStoreBundle:Encarrecs:index }
+acme_encarrecs_delete:
+     pattern:  /admin/secured/encarrec/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Encarrecs:delete }
+acme_encarrecs_envia:
+     pattern:  /admin/secured/encarrec/envia/{id}
+     defaults: { _controller: AcmeStoreBundle:Encarrecs:envia }     
+     
+acme_pre_puja_txt:
+     pattern:  /admin/secured/preupload
+     defaults: { _controller: AcmeStoreBundle:Upload:index } 
+acme_puja_txt:
+     pattern:  /admin/secured/upload
+     defaults: { _controller: AcmeStoreBundle:Upload:upload } 
+     
+
+acme_llibreria22:
+    pattern:  /llibreria22
+    defaults: { _controller: AcmeStoreBundle:Llibreria:index }
+ 
+acme_fotos_galeria:
+    pattern:  /llibreria22/galeria/{year}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:galeria }
+ 
+acme_bloq:
+    pattern:  /llibreria22/bloq
+    defaults: { _controller: AcmeStoreBundle:Llibreria:bloq }
+acme_portada:
+    pattern:  /llibreria22/portada
+    defaults: { _controller: AcmeStoreBundle:Llibreria:portada }
+acme_noticias:
+    pattern:  /llibreria22/noticia
+    defaults: { _controller: AcmeStoreBundle:Llibreria:noticia }
+acme_busca_llibre:
+    pattern:  /llibreria22/buscaLlibre/{name}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:buscaLlibre }
+acme_demana_llibre:
+    pattern:  /llibreria22/demanaLlibre/{id}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:demanaLlibre }
+acme_save_demana:
+    pattern:  /llibreria22/savedemana
+    defaults: { _controller: AcmeStoreBundle:Llibreria:saveDemana }
+acme_suggeriments:
+    pattern:  /llibreria22/suggeriments
+    defaults: { _controller: AcmeStoreBundle:Llibreria:suggeriments }
+acme_semua_search:
+    pattern:  /llibreria22/semuaSearch/{search}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:semuaSearch }	
+acme_presentacions:
+    pattern:  /llibreria22/presentacio
+    defaults: { _controller: AcmeStoreBundle:Llibreria:presentacio }
+acme_establiments:
+    pattern:  /llibreria22/establiments
+    defaults: { _controller: AcmeStoreBundle:Llibreria:establiments }
+acme_llibreria22:
+    pattern:  /llibreria22/{_locale}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:index, _locale: en }
+    requirements:
+        _locale: en|fr|es

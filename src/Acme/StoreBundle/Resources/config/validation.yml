@@ -1,0 +1,65 @@
+# Acme/TaskBundle/Resources/config/validation.yml
+Acme\StoreBundle\Entity\LlibreForm:
+    properties:
+        name:
+            - NotBlank: ~
+        date:
+            - NotBlank: ~
+            - Type: \DateTime          
+        descripcio:
+            - NotBlank: ~
+        descriptio2:
+            - NotBlank: ~
+        price:
+             - Range:
+                min: 120
+                max: 180
+                minMessage: You must be at least 120cm tall to enter
+                maxMessage: You cannot be taller than 180cm to enter
+        attachment:
+            - File:
+                maxSize: 1024k
+                mimeTypes: [image/jpeg, image/png]
+                mimeTypesMessage: Please upload a valid Image
+                
+Acme\StoreBundle\Entity\NoticiaForm:
+    properties:
+        data_entrada:
+            - NotBlank: ~
+            - Type: \DateTime 
+        titol:
+            - NotBlank: ~       
+        subtitol:
+            - NotBlank: ~
+        description:
+            - NotBlank: ~
+        novetat:
+            - NotBlank: ~
+        portada:
+            - NotBlank: ~
+        data_fi:
+            - NotBlank: ~
+            - Type: \DateTime 
+        attachment:
+            - File:
+                maxSize: 1024k
+                mimeTypes: [image/jpeg, image/png]
+                mimeTypesMessage: Please upload a valid Image
+
+Acme\StoreBundle\Entity\DemanaForm:
+     properties:
+         name:
+           - NotBlank: ~   
+         poblacio:
+           - NotBlank: ~   
+         adreca:
+           - NotBlank: ~   
+         codi:
+           - NotBlank: ~   
+         email:
+           - NotBlank: ~   
+         tel:
+           - NotBlank: ~   
+         llibre:
+           - NotBlank: ~   
+           
