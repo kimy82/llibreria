@@ -1,0 +1,20 @@
+{% extends 'AcmeStoreBundle::layout.html.twig' %}
+
+{% block title %}Llibreria 22@{% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+    <h1 class="title">{% trans %}menu_admin_slider{% endtrans %}</h1>
+    	<div class="inline_menun_interior" ><a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a></div>
+    	<div class="inline_menun_interior" ><a href="{{ path('acme_pre_store_slider', {}) }}" >{% trans %}enter_slider{% endtrans %}</a></div>
+    	<div class="inline_menun_interior" ><a href="{{ path('llistat_store_slider', {orderBy:'1=1 order by n.id asc'}) }}" >{% trans %}slider_list_page{% endtrans %}</a></div>
+    
+    	
+        {% if app.environment == 'dev' %}
+           DEV
+        {% endif %}
+       
+{% endblock %}

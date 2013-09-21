@@ -1,0 +1,60 @@
+<div id="sup">
+			<div id="consup">
+				<div id="logo">
+				//logo
+				</div>
+				<div id="slider">
+					<div id="coin-slider" style="height: 100px;">
+						{% if slider|length >0 %}
+							{% for sld in slider %}
+								<a href="#" target="_blank">
+									
+							        	<img src='{{pathSlider}}slider/{{ sld.attachment}}' />
+							        		
+							       		<span style="position: absolute; bottom: 0pt; left: 0pt; z-index: 1000; opacity: 0.7;">
+							       			{{sld.description}}
+							       		</span>							        			 		
+							    </a>							    							  
+							{% endfor %}
+						{% endif %}					
+				    </div>				  
+				</div>
+			</div>
+		</div>
+		<!--endSup-->
+		<div id="menu">
+			<div id="conmenu">
+				<div id="menu_left">
+					<ul class="me">
+					<li id="bloqli" ><a href="{{ path('acme_bloq', {}) }}" >{% trans %}f_bloq_menu{% endtrans %}</a></li> | 
+					<li id="portadali" class="active"><a href="{{ path('acme_portada', {}) }}" >{% trans %}f_portada_menu{% endtrans %}</a></li> | 
+					<li id="noticiali" ><a href="{{ path('acme_noticias', {}) }}" >{% trans %}f_noticia_menu{% endtrans %}</a></li> | 
+					<li id="presentacioli" ><a href="{{ path('acme_presentacions', {}) }}">{% trans %}f_presentacio_menu{% endtrans %}</a></li> | 
+					<li id="suggerimentsli"><a href="{{ path('acme_suggeriments', {}) }}">{% trans %}f_suggeriments_menu{% endtrans %}</a></li> | 
+					<li id="buscallibreli"><a href="{{ path('acme_busca_llibre', {name:'any'}) }}">{% trans %}f_busca_llibre{% endtrans %}</a></li> | 
+					<li id="establimentsli" ><a href="{{ path('acme_establiments', {}) }}">{% trans %}f_establiments_menu{% endtrans %}</a></li> | 
+					<li id="galeriali" ><a href="{{ path('acme_fotos_galeria', {year:'2013'}) }}" >{% trans %}f_galeria_menu{% endtrans %}</a></li>
+					</ul>
+				</div>
+				<div id="menu_right">
+					<div id="search_bar">
+						<input class="inputs" id="sesuatu" type="text">
+					</div>
+					<div id="b_search">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$( "#b_search" ).click(function() {
+				var path="{{pathlocal}}";
+				var sesuatu = document.getElementById("sesuatu").value;
+				window.localStorage.setItem('sesuatu',sesuatu);
+			
+				window.location.href=path+"/llibreria22/semuaSearch/"+sesuatu;
+  				
+			});
+			
+			$('#coin-slider').coinslider({ width: 630,height: 210});
+		</script>
+		<!--endmenu-->

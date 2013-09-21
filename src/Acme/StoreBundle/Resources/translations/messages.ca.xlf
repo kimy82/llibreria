@@ -1,0 +1,347 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>noticia_list_page</source>
+                <target>Llistat de noticies</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>enter_noticia</source>
+                <target>nova noticia</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>delete_noticia</source>
+                <target>Esborra noticia</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>edit_noticia</source>
+                <target>Edita noticia</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>menu_admin</source>
+                <target>Menú</target>
+            </trans-unit>
+             <trans-unit id="6">
+                <source>new_book</source>
+                <target>nou Llibre</target>
+            </trans-unit>
+             <trans-unit id="7">
+                <source>list_book</source>
+                <target>Llistat</target>
+            </trans-unit>
+           <trans-unit id="8">
+                <source>edit_book</source>
+                <target>Edita llibre</target>
+            </trans-unit>
+             <trans-unit id="9">
+                <source>delete_book</source>
+                <target>Borra llibre</target>
+            </trans-unit>
+             <trans-unit id="10">
+                <source>list_book_page_title</source>
+                <target>Llistat de llibres</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>form_llibre</source>
+                <target>Entra/Modifica llibres</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>menu_admin_llibre</source>
+                <target>Menú llibres</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>form_noticia</source>
+                <target>Entra/Modifica noticies</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>menu_admin_noticia</source>
+                <target>Menú Noticies</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>llibre_list_page</source>
+                <target>Llistat llibres</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>enter_llibre</source>
+                <target>Nou llibre</target>
+            </trans-unit>                        
+            <trans-unit id="17">
+                <source>agenda_list_page</source>
+                <target>Llistat de agenda</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>enter_agenda</source>
+                <target>nova agenda</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>delete_agenda</source>
+                <target>Esborra agenda</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>edit_agenda</source>
+                <target>Edita agenda</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>form_agenda</source>
+                <target>Entra/Modifica agenda</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>menu_admin_agenda</source>
+                <target>Menú agenda</target>
+            </trans-unit>          
+      <trans-unit id="23">
+                <source>presentacio_list_page</source>
+                <target>Llistat de presentació</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>enter_presentacio</source>
+                <target>nova presentació</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>delete_presentacio</source>
+                <target>Esborra presentació</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>edit_presentacio</source>
+                <target>Edita presentació</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>form_presentacio</source>
+                <target>Entra/Modifica presentació</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>menu_admin_presentacio</source>
+                <target>Menú presentació</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>galeria_list_page</source>
+                <target>Llistat de galeria</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>enter_galeria</source>
+                <target>nova galeria</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>delete_galeria</source>
+                <target>Esborra galeria</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>edit_galeria</source>
+                <target>Edita galeria</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>form_galeria</source>
+                <target>Entra/Modifica galeria</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>menu_admin_galeria</source>
+                <target>Menú galeria</target>
+            </trans-unit>  
+            <trans-unit id="35">
+                <source>f_galeria_title</source>
+                <target>Galeria</target>
+            </trans-unit> 
+			<trans-unit id="36">
+                <source>f_galeria_botton_cerrar</source>
+                <target>TANCAR</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>f_galeria_menu</source>
+                <target>Àlbum</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>f_bloq_menu</source>
+                <target>Bloq</target>
+            </trans-unit> 
+            <trans-unit id="39">
+                <source>f_portada_menu</source>
+                <target>Portada</target>
+            </trans-unit>                           
+            <trans-unit id="40">
+                <source>f_noticia_title</source>
+                <target>Notícies</target>
+            </trans-unit> 
+            <trans-unit id="41">
+                <source>f_no_things</source>
+                <target>No hi ha entrades</target>
+            </trans-unit>
+           	<trans-unit id="42">
+                <source>f_publicat_el</source>
+                <target>Publicat el </target>
+            </trans-unit>    
+             <trans-unit id="43">
+                <source>f_noticia_menu</source>
+                <target>Notícies</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>f_busca_llibre</source>
+                <target>Recerca de llibres</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>f_busca_llibre_title</source>
+                <target>Recerca de llibres</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>f_busca_llibre_desc</source>
+                <target>Aquests són els llibres que actualment disposem en estoc a la nostra llibreria. Si el vostre llibre no apareix, consulti'ns la disponibilitat, gràcies</target>
+            </trans-unit>
+             <trans-unit id="47">
+                <source>f_mots_acerca</source>
+                <target>Mots a cercar</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>f_busca_llibre_desc_2</source>
+                <target>Intrudueix un(s) mot(s) significatiu(s) al quadret de recerca (per exemple el nom d'un autor o d'un llibre) i escull, si vols, el gènere i/o l'ordre dels resultats i clica "Cercar".</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>f_busca_llibre_clic</source>
+                <target>Fent clic al botó Demana’l podràs demanar que et portin el llibre a casa teva pagant-lo contra reemborsament.</target>
+            </trans-unit>
+             <trans-unit id="50">
+                <source>f_busca_llibre_resultats</source>
+                <target>Resultats per la cerca </target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>f_busca_llibre_resultats_2</source>
+                <target>, amb un total de</target>
+            </trans-unit>
+             <trans-unit id="52">
+                <source>f_busca_llibre_resultats_3</source>
+                <target>resultats</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>f_busca_llibre_titol</source>
+                <target>Títol</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>f_busca_llibre_autor</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>f_busca_llibre_editorial</source>
+                <target>Editorial</target>
+            </trans-unit>
+             <trans-unit id="56">
+                <source>f_busca_llibre_preu</source>
+                <target>Preu</target>
+            </trans-unit>    
+            <trans-unit id="57">
+                <source>f_busca_llibre_demana</source>
+                <target>Demane'l</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>f_demana_llibre_title</source>
+                <target>Encarrega llibres contra reembolsament</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>f_llibre_demanat</source>
+                <target>Llibre demanat</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>f_demana_llibre_preu_desc</source>
+                <target>El preu no inclou despeses de transport</target>
+            </trans-unit>      
+            
+            <trans-unit id="61">
+                <source>f_busca_llibre_nom_client</source>
+                <target>Nom</target>
+            </trans-unit>       
+              <trans-unit id="62">
+                <source>f_busca_llibre_poble_client</source>
+                <target>Poblacio</target>
+            </trans-unit>   
+            <trans-unit id="63">
+                <source>f_busca_llibre_adreca_client</source>
+                <target>Adreça</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>f_busca_llibre_codipostal_client</source>
+                <target>Codi postal</target>
+            </trans-unit>  
+              <trans-unit id="65">
+                <source>f_busca_llibre_email_client</source>
+                <target>Email</target>
+            </trans-unit>  
+            <trans-unit id="66">
+                <source>f_busca_llibre_tel_client</source>
+                <target>Tel.</target>
+            </trans-unit>                   
+            <trans-unit id="67">
+                <source>f_suggeriment_title</source>
+                <target>Suggerèncias</target>
+            </trans-unit> 
+            <trans-unit id="68">
+                <source>f_suggeriment_desc</source>
+                <target>Aquí pots veure la selecció de llibres que la 22 ha triat per tu</target>
+            </trans-unit>  
+            <trans-unit id="69">
+                <source>f_suggeriment_llibre</source>
+                <target>Llibres</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>f_suggeriment_butxaca</source>
+                <target>Butxaca</target>
+            </trans-unit> 
+            <trans-unit id="71">
+                <source>f_suggeriment_comic</source>
+                <target>Comics</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>f_suggeriment_infantil</source>
+                <target>Llibres Infantils</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>menu_admin_pujada</source>
+                <target>Pujar Fitxer</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>f_presentacio_menu</source>
+                <target>Presentacions</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>f_presentacio_title</source>
+                <target>Presentacions</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>f_establiments_menu</source>
+                <target>Establiments</target>
+            </trans-unit>
+             <trans-unit id="77">
+                <source>f_suggeriments_menu</source>
+                <target>Suggeriments</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>f_establiments_title</source>
+                <target>Establiments</target>
+            </trans-unit>
+            
+            
+             <trans-unit id="79">
+                <source>slider_list_page</source>
+                <target>Llistat de slider</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>enter_slider</source>
+                <target>nou slider</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>delete_slider</source>
+                <target>Esborra noticia</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>edit_slider</source>
+                <target>Edita slider</target>
+            </trans-unit>
+              <trans-unit id="83">
+                <source>form_slider</source>
+                <target>Entra/Modifica noticies</target>
+            </trans-unit>
+            <trans-unit id="84">
+                <source>menu_admin_slider</source>
+                <target>Menú Slider</target>
+            </trans-unit>
+            
+        </body>
+    </file>
+</xliff>

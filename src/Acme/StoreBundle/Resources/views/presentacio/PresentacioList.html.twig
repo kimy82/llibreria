@@ -1,0 +1,46 @@
+{% extends 'AcmeStoreBundle::layout.html.twig' %}
+
+{% block title %}MANAGE LIST  PRESENTACIO{% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+	
+    <h1 class="title">Noticia  {% trans %}presentacio_list_page{% endtrans %}</h1>
+    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
+    	<a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a>
+    	{% if pagination|length >0 %}
+    		<ul>
+    			<li>Titol: <input type="text" value="" id="titol" onblur="search(this.id,this.value)" />&nbsp; Subtitol: <input type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></li>
+    		{% for presentacio in pagination %}
+    			<li>{{ presentacio.titol}} {{ presentacio.subtitol}}  {{ presentacio.description}} {{ presentacio.novetat}} {{ presentacio.portada}} {{ presentacio.dataFi|date('Y-m-d')}} {{ presentacio.dataEntrada|date('Y-m-d')}} <img src="{{path}}{{ presentacio.attachment}}" /> 	<a href="{{ path('edit_presentacio', {'id' : presentacio.id}) }}" >{% trans %}edit_presentacio{% endtrans %}</a> <a href="{{ path('delete_presentacio', {'id' : presentacio.id}) }}" >{% trans %}delete_presentacio{% endtrans %}</a></li> 
+    		{% endfor %}
+    		</ul>
+    		<div class="pagerfanta" >
+    			{{knp_pagination_render(pagination)}}
+    		</div>
+    	{% else %}
+    	 <p>- There are no things </p>
+    	{% endif %}
+    
+        {% if app.environment == 'dev' %}
+           DEV
+        {% endif %}
+       <script>
+function search(col,val){
+	var path="{{pathlocal}}";
+	window.localStorage.setItem('val_'+col,val);
+	window.location.href=path+"/admin/secured/presentacio/presentacio_llistat/n."+col+" like .."+val+".,";
+}
+var titolval=window.localStorage.getItem('val_titol');
+var subtitolval=window.localStorage.getItem('val_subtitol');
+if(titolval!=null){
+	document.getElementById('titol').value=titolval;
+}
+
+if(subtitolval!=null){
+	document.getElementById('subtitol').value=subtitolval;
+}
+</script>
+{% endblock %}

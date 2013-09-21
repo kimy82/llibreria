@@ -1,0 +1,124 @@
+{% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
+
+{% block title %}Llibreria 22@{% endblock %}
+
+{% block content_header '' %}
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+		<div class="contentnot">
+			<div class="tit_fixS">
+				{% trans %}f_suggeriment_title{% endtrans %}<br>
+				<span class="sub_sug">{% trans %}f_suggeriment_desc{% endtrans %}	</span>
+			</div>
+			<section class="tabs">
+	            <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1 opts" checked="checked" />
+		        <label for="tab-1" class="tab-label-1 labe">{% trans %}f_suggeriment_llibre{% endtrans %}</label>		
+	            <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2 opts" />
+		        <label for="tab-2" class="tab-label-2 labe">{% trans %}f_suggeriment_butxaca{% endtrans %}</label>		
+	            <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3 opts" />
+		        <label for="tab-3" class="tab-label-3 labe">{% trans %}f_suggeriment_comic{% endtrans %}</label>
+		         <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4 opts" />
+		        <label for="tab-4" class="tab-label-4 labe">{% trans %}f_suggeriment_infantil{% endtrans %}</label>		
+			    <div class="clear-shadow"></div>				
+		        <div class="contente">
+			         <div class="contente-1">
+						<div class="not_el">
+						
+								{% if paginationllibre|length >0 %}
+									{% for llibre in paginationllibre %}
+										<div class="total">
+										<img  src="{{path}}{{ llibre.attachment}}" width="100px" />
+											<div class="content">
+												<div class="titol">
+													{{ llibre.name}}
+												</div>
+												<div class="texte">
+													{{ llibre.description}}
+												</div>											
+											</div>
+										</div>																																										
+									{% endfor %}
+							
+						    	{% else %}
+						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+						    	{% endif %}
+							
+							
+				</div>
+					 </div>
+			        <div class="contente-2">
+						<div class="not_el">
+								{% if paginationbutxaca|length >0 %}
+									{% for llibre in paginationbutxaca %}
+										<div class="total">
+										<img  src="{{path}}{{ llibre.attachment}}" width="100px" />
+											<div class="content">
+												<div class="titol">
+													{{ llibre.name}}
+												</div>
+												<div class="texte">
+													{{ llibre.description}}
+												</div>											
+											</div>
+										</div>																																										
+									{% endfor %}
+							
+						    	{% else %}
+						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+						    	{% endif %}
+						</div>                
+                    </div>
+			        <div class="contente-3">
+						<div class="not_el">
+								{% if paginationcomic|length >0 %}
+									{% for llibre in paginationcomic %}
+										<div class="total">
+										<img  src="{{path}}{{ llibre.attachment}}" width="100px" />
+											<div class="content">
+												<div class="titol">
+													{{ llibre.name}}
+												</div>
+												<div class="texte">
+													{{ llibre.description}}
+												</div>											
+											</div>
+										</div>																																										
+									{% endfor %}
+							
+						    	{% else %}
+						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+						    	{% endif %}
+						</div>
+					</div>   
+					<div class="contente-4">
+						<div class="not_el">
+								{% if paginationinfantil|length >0 %}
+									{% for llibre in paginationinfantil %}
+										<div class="total">
+										<img  src="{{path}}{{ llibre.attachment}}" width="100px" />
+											<div class="content">
+												<div class="titol">
+													{{ llibre.name}}
+												</div>
+												<div class="texte">
+													{{ llibre.description}}
+												</div>											
+											</div>
+										</div>																																										
+									{% endfor %}
+							
+						    	{% else %}
+						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+						    	{% endif %}
+						</div>
+					</div>                             
+                        </div>
+		        </div>
+</section>
+ </div>
+ <script>
+		    		  $('li').removeClass('active');
+		    		  $('#suggerimentsli').addClass('active');
+</script>
+{% endblock %}

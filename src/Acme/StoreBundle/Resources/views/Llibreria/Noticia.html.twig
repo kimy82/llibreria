@@ -1,0 +1,44 @@
+{% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
+
+{% block title %}Llibreria 22@{% endblock %}
+
+{% block content_header '' %}
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+		<div class="contentnot">
+			<div class="tit_fixN">
+				{% trans %}f_noticia_title{% endtrans %}
+			</div>
+			
+			{% if pagination|length >0 %}
+				{% for noticia in pagination %}
+					<div class="not_el">
+					<div class="not_int">
+						<span class="tit_not">
+							{{ noticia.titol}}
+						</span><br>
+						<span class="sub_tit">
+							{{ noticia.subtitol}}
+						</span><br>
+						<p>{{ noticia.description}} 	</p>
+						<p><img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" width="100px" /></p>
+						<div class="not_fet">
+							{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('Y F jS')}}
+						</div>
+					
+					</div>
+					</div>
+				{% endfor %}
+				
+	    		<div class="pagerfanta" >
+	    			{{knp_pagination_render(pagination)}}
+	    		</div>
+		    	{% else %}
+		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+		    	{% endif %}
+		    	<script>
+		    		  $('li').removeClass('active');
+		    		  $('#noticiali').addClass('active');
+		    	</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "TwigBundle::layout.html.twig" %}
+
+{% block head %}
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmestore/css/frontend.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmestore/css/global.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmestore/css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmestore/css/coin-slider-styles.css') }}" />
+    <script type="text/javascript" src="{{ asset('bundles/acmestore/js/jquery.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmestore/js/global.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmestore/js/coin-slider.min.js') }}" ></script>
+{% endblock %}
+
+{% block title 'Llibreria22' %}
+{% block header %}
+		{% include 'AcmeStoreBundle:includes:top.html.twig' %}	
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+	{% include 'AcmeStoreBundle:includes:footer.html.twig' %}
+{% endblock %}
