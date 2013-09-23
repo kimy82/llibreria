@@ -77,7 +77,7 @@ class UploadController extends Controller
 			      	
 			      	$numTotal=$numTotal+1;
 			      	list($name, $autor, $editorial, $category, $desc, $price) = explode("|||", $line);
-			      
+			       
 			      	$llibre = new Llibre();
 			     
 			      	$llibre->setName($name);

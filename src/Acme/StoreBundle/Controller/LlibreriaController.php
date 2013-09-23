@@ -203,18 +203,18 @@ class LlibreriaController extends Controller
   		
   		$email = $this->get('translator')->trans('f_busca_llibre_email_client');
   		$formDemana->setEmail($email);
-  		
+  		 
   		$tel = $this->get('translator')->trans('f_busca_llibre_tel_client');
   		$formDemana->setTel($tel);
   		
   		$formDemana->setLlibre($id);
   		
-  		
+  		 
 		$form = $this->createFormBuilder($formDemana)
        	 	->setAction($this->generateUrl('acme_save_demana'))
        	 	->setMethod('POST')
             ->add('name', 'text')
-            ->add('poblacio', 'text')
+            ->add('poblacio', 'text') 
             ->add('adreca', 'text')
             ->add('codi', 'text')
             ->add('email', 'text')
@@ -247,14 +247,14 @@ class LlibreriaController extends Controller
             ->add('llibre', 'text')
             ->add('save', 'submit')
             ->getForm();
-    	
+    	        
 		$form->handleRequest($request);
 	
 	    if ($form->isValid()) {
 	    	$encarrec = new Encarrecs();
 	        $em = $this->getDoctrine()->getManager();
-	         
-	      	$encarrec->setName($form['name']->getData());
+	          
+	      	$encarrec->setName($form['name']->getData()); 
 	        $encarrec->setPoblacio($form['poblacio']->getData());
 	        $encarrec->setAdreca($form['adreca']->getData());
 	        $encarrec->setCodi($form['codi']->getData());
@@ -271,7 +271,7 @@ class LlibreriaController extends Controller
 	      	
 
 	   		 $em->persist($encarrec);
-	    	 $em->flush();
+	    	 $em->flush();  
 	    	 $pathServer= $this->get('kernel')->getServerPath();
 	    	 $slider = $this->getSlider();
 	    	 $pathSlider = $this->get('kernel')->getImagesPathAlone();
@@ -281,7 +281,7 @@ class LlibreriaController extends Controller
 	    }							
     }
 	public function suggerimentsAction()
-    {
+    { 
     	
      	$em = $this->getDoctrine()->getManager();
      	

@@ -98,8 +98,8 @@ class LlibreController extends Controller
             ->add('attachment', 'file')
             ->add('save', 'submit')
             ->getForm();
-            
-        return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array(
+            $pathImg= $this->get('kernel')->getImagesPathAlone();
+        return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
             'form' => $formToRender->createView(),'update' =>false,'body'=>'adminllibre'
         ));	   
 	}
@@ -143,6 +143,7 @@ class LlibreController extends Controller
        	$llibreform->setEditorial($llibre->getEditorial());
        	$llibreform->setSuggerir($llibre->getSuggerir());
        	
+       	$pathImg= $this->get('kernel')->getImagesPathAlone();
        	$path = $this->get('kernel')->getServerPath();
        	 $formToRender = $this->createFormBuilder($llibreform)
        	 	->setAction($path.'/admin/secured/llibre/update/'.$id)
@@ -159,7 +160,7 @@ class LlibreController extends Controller
             ->add('save', 'submit')
             ->getForm();
             
-        return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array(
+        return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
             'form' => $formToRender->createView(),'update' =>true,'body'=>'adminllibre'
         ));	   
 	}
