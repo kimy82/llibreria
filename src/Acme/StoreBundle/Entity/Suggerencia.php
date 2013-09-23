@@ -61,11 +61,7 @@ class Suggerencia
      * @ORM\Column(type="text")
      */
     protected $attachment;
-	
-    /**
-     * @ORM\OneToMany(targetEntity="Encarrecs", mappedBy="llibre")
-     */
-    protected $encarrecs;
+
      
     /**
 	 * @ORM\Column(type="integer")
@@ -288,46 +284,6 @@ class Suggerencia
     public function getEditorial()
     {
         return $this->editorial;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->encarrecs = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add encarrecs
-     *
-     * @param \Acme\StoreBundle\Entity\Encarrecs $encarrecs
-     * @return Llibre
-     */
-    public function addEncarrec(\Acme\StoreBundle\Entity\Encarrecs $encarrecs)
-    {
-        $this->encarrecs[] = $encarrecs;
-    
-        return $this;
-    }
-
-    /**
-     * Remove encarrecs
-     *
-     * @param \Acme\StoreBundle\Entity\Encarrecs $encarrecs
-     */
-    public function removeEncarrec(\Acme\StoreBundle\Entity\Encarrecs $encarrecs)
-    {
-        $this->encarrecs->removeElement($encarrecs);
-    }
-
-    /**
-     * Get encarrecs
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEncarrecs()
-    {
-        return $this->encarrecs;
     }
 
     /**

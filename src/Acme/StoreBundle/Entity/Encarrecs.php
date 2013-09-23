@@ -53,12 +53,10 @@ class Encarrecs
      */
     protected $enviat;
 	
-	/** 
-	 * @ORM\ManyToOne(targetEntity="Llibre", inversedBy="encarrecs") 
-	 * @ORM\JoinColumn(name="llibre", referencedColumnName="id") 
-	 */
-	protected $llibre;
-	
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    protected $llibre;
 	
 
     /**
@@ -209,29 +207,7 @@ class Encarrecs
         return $this->tel;
     }
 
-    /**
-     * Set llibre
-     *
-     * @param \Acme\StoreBundle\Entity\Llibre $llibre
-     * @return Encarrecs
-     */
-    public function setLlibre(\Acme\StoreBundle\Entity\Llibre $llibre = null)
-    {
-        $this->llibre = $llibre;
-    
-        return $this;
-    }
-
-    /**
-     * Get llibre
-     *
-     * @return \Acme\StoreBundle\Entity\Llibre 
-     */
-    public function getLlibre()
-    {
-        return $this->llibre;
-    }
-
+   
     /**
      * Set enviat
      *
@@ -253,5 +229,28 @@ class Encarrecs
     public function getEnviat()
     {
         return $this->enviat;
+    }
+
+    /**
+     * Set llibre
+     *
+     * @param string $llibre
+     * @return Encarrecs
+     */
+    public function setLlibre($llibre)
+    {
+        $this->llibre = $llibre;
+    
+        return $this;
+    }
+
+    /**
+     * Get llibre
+     *
+     * @return string 
+     */
+    public function getLlibre()
+    {
+        return $this->llibre;
     }
 }

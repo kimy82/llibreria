@@ -50,6 +50,13 @@ class UploadController extends Controller
         $form->handleRequest($request);
 	
 	    if ($form->isValid()) {
+	    	
+	    	$em = $this->getDoctrine()->getManager();
+	
+		
+			$query = $em->createQuery('DELETE from AcmeStoreBundle:Llibre n where 1=1 ');
+			$query->execute();
+		
 	       
 	    	$path= $this->get('kernel')->getImagesRootDir();
 	      	$separator = $form['separator']->getData();

@@ -261,12 +261,13 @@ class LlibreriaController extends Controller
 	        $encarrec->setEmail($form['email']->getData());
 	        $encarrec->setTel($form['tel']->getData());
 	        $encarrec->setEnviat(0);
+	        
 	        $query = $em->createQueryBuilder();
 			$llibre = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
   					   ->where( 'n.id='.$form['llibre']->getData() )
   					   ->getQuery()->getSingleResult();
   		 	
-  		     $encarrec->setLlibre($llibre);	
+  		     $encarrec->setLlibre($llibre->getName());	
 	      	
 
 	   		 $em->persist($encarrec);
