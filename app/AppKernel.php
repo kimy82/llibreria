@@ -42,17 +42,17 @@ class AppKernel extends Kernel
     
   	public function getImagesPath($place)
     {
-        return 'http://localhost/Symfony/downloads/'.$place.'/';
+        return 'http://localhost/llibreria.git/downloads/'.$place.'/';
     }
     
 	public function getImagesPathAlone()
     {
-        return 'http://localhost/Symfony/downloads/';
+        return 'http://localhost/llibreria.git/downloads/';
     }
     
 	public function getServerPath()
     {
-        return 'http://localhost/Symfony/web/app_dev.php';
+        return 'http://localhost/llibreria.git/web/app_dev.php';
     }
     
     

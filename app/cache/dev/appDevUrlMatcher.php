@@ -262,6 +262,47 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+            if (0 === strpos($pathinfo, '/admin/secured/suggerencia')) {
+                // acme_suggerencia
+                if ($pathinfo === '/admin/secured/suggerencia') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::indexAction',  '_route' => 'acme_suggerencia',);
+                }
+
+                if (0 === strpos($pathinfo, '/admin/secured/suggerencia/suggerencia_')) {
+                    // acme_pre_store_suggerencia
+                    if ($pathinfo === '/admin/secured/suggerencia/suggerencia_save') {
+                        return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::precreateAction',  '_route' => 'acme_pre_store_suggerencia',);
+                    }
+
+                    // llistat_store_suggerencia
+                    if (0 === strpos($pathinfo, '/admin/secured/suggerencia/suggerencia_llistat') && preg_match('#^/admin/secured/suggerencia/suggerencia_llistat/(?P<orderBy>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_suggerencia')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::listAction',));
+                    }
+
+                    // store_new_suggerencia
+                    if ($pathinfo === '/admin/secured/suggerencia/suggerencia_new_save') {
+                        return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::saveSuggerenciaAction',  '_route' => 'store_new_suggerencia',);
+                    }
+
+                }
+
+                // edit_suggerencia
+                if (0 === strpos($pathinfo, '/admin/secured/suggerencia/edit') && preg_match('#^/admin/secured/suggerencia/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_suggerencia')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::editAction',));
+                }
+
+                // update_suggerencia
+                if (0 === strpos($pathinfo, '/admin/secured/suggerencia/update') && preg_match('#^/admin/secured/suggerencia/update/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_suggerencia')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::updateSuggerenciaAction',));
+                }
+
+                // delete_suggerencia
+                if (0 === strpos($pathinfo, '/admin/secured/suggerencia/delete') && preg_match('#^/admin/secured/suggerencia/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_suggerencia')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::deleteSuggerenciaAction',));
+                }
+
+            }
+
             if (0 === strpos($pathinfo, '/admin/secured/agenda')) {
                 // acme_agenda
                 if ($pathinfo === '/admin/secured/agenda') {

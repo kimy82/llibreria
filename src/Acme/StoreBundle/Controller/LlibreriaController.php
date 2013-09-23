@@ -285,14 +285,14 @@ class LlibreriaController extends Controller
      	$em = $this->getDoctrine()->getManager();
      	
 		
-		$queryllibre = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n where n.suggerir= :sug and n.category = :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','llibre')->getResult();
-		$querybutxaca = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','butxaca')->getResult();
-		$queryinfantil = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','infantil')->getResult();
-		$querycomic = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','comic')->getResult();
+		$queryllibre = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category = :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','suggerencia')->getResult();
+		$querybutxaca = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','butxaca')->getResult();
+		$queryinfantil = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','suggerenciaInfaltil')->getResult();
+		$querycomic = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','comic')->getResult();
 		
 		
 		
-		$path= $this->get('kernel')->getImagesPath('llibre');
+		$path= $this->get('kernel')->getImagesPath('suggerencia');
 		$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();

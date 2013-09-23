@@ -338,6 +338,42 @@
                 <source>menu_admin_slider</source>
                 <target>Menú Slider</target>
             </trans-unit>
+             <trans-unit id="85">
+                <source>new_sugg</source>
+                <target>Nove suggerència</target>
+            </trans-unit>
+			 <trans-unit id="86">
+                <source>list_sugg</source>
+                <target>Llistat</target>
+            </trans-unit>
+           <trans-unit id="87">
+                <source>edit_sugg</source>
+                <target>Edita Suggerència</target>
+            </trans-unit>
+             <trans-unit id="88">
+                <source>delete_sugg</source>
+                <target>Borra Suggerència</target>
+            </trans-unit>
+             <trans-unit id="89">
+                <source>list_sugg_page_title</source>
+                <target>Llistat de Suggerències</target>
+            </trans-unit>
+            <trans-unit id="90">
+                <source>form_sugg</source>
+                <target>Entra/Modifica Suggerència</target>
+            </trans-unit>
+            <trans-unit id="91">
+                <source>menu_admin_suggerencia</source>
+                <target>Menú Suggerències</target>
+            </trans-unit>
+            <trans-unit id="92">
+                <source>suggerencia_list_page</source>
+                <target>Llistat Suggerències</target>
+            </trans-unit>
+            <trans-unit id="93">
+                <source>enter_suggerencia</source>
+                <target>Nova suggerència</target>
+            </trans-unit>                   
         </body>
     </file>
 </xliff>

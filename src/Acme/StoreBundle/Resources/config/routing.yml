@@ -68,6 +68,28 @@ delete_llibre:
      pattern:  /admin/secured/llibre/delete/{id}
      defaults: { _controller: AcmeStoreBundle:Llibre:deleteLlibre }
      
+acme_suggerencia:
+    pattern:  /admin/secured/suggerencia
+    defaults: { _controller: AcmeStoreBundle:Suggerencia:index }
+acme_pre_store_suggerencia:
+    pattern:  /admin/secured/suggerencia/suggerencia_save
+    defaults: { _controller: AcmeStoreBundle:Suggerencia:precreate }
+llistat_store_suggerencia:
+    pattern:  /admin/secured/suggerencia/suggerencia_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Suggerencia:list }
+store_new_suggerencia:
+    pattern:  /admin/secured/suggerencia/suggerencia_new_save
+    defaults: { _controller: AcmeStoreBundle:Suggerencia:saveSuggerencia }
+edit_suggerencia:
+    pattern:  /admin/secured/suggerencia/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Suggerencia:edit }
+update_suggerencia:
+     pattern:  /admin/secured/suggerencia/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Suggerencia:updateSuggerencia }
+delete_suggerencia:
+     pattern:  /admin/secured/suggerencia/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Suggerencia:deleteSuggerencia }
+     
 acme_agenda:
     pattern:  /admin/secured/agenda
     defaults: { _controller: AcmeStoreBundle:Agenda:index }
