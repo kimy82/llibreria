@@ -5,7 +5,7 @@
 {% block content_header '' %}
 
 {% block content %}
- <script type="text/javascript" src="{{ asset('bundles/acmestore/js/htmlbox.min.js') }}" ></script>
+ <script type="text/javascript" src="http://tinymce.cachefly.net/4.0/tinymce.min.js" ></script>
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
     ació
@@ -35,15 +35,7 @@
     	 
     	  $(document).ready(function(){
     	  		
-				var save_tool = {
-						icon:"mail.png",tooltip:"Save",command:function(){send();}
-						};
-				var toolbar_1 =[save_tool,"separator","bold","italic","underline","fontsize","fontfamily","fontcolor","highlight","separator","undo","redo","left","right","center","justify","separator","image"];	
-				var hb = $("#mytextbox").htmlbox({
-					skin:"blue",
-					toolbars:[toolbar_1],
-					idir:"{{pathimg}}"
-				});
+				 tinymce.init({selector:'textarea'});
 				
 			});
     	</script>
