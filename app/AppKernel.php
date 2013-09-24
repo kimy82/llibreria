@@ -42,17 +42,17 @@ class AppKernel extends Kernel
     
   	public function getImagesPath($place)
     {
-        return 'http://localhost/llibreria.git/downloads/'.$place.'/';
+        return 'http://localhost/llibr/downloads/'.$place.'/';
     }
     
 	public function getImagesPathAlone()
     {
-        return 'http://localhost/llibreria.git/downloads/';
+        return 'http://localhost/llibr/downloads/';
     }
     
 	public function getServerPath()
     {
-        return 'http://localhost/llibreria.git/web/app_dev.php';
+        return 'http://localhost/llibr/web/app_dev.php';
     }
     
     

@@ -23,18 +23,19 @@
 			    <div class="clear-shadow"></div>				
 		        <div class="contente">
 			         <div class="contente-1">
-						<div class="not_el">
+						<div class="not_el sugg">
 						
 								{% if paginationllibre|length >0 %}
 									{% for llibre in paginationllibre %}
 										<div class="total">
+										
 										<img  src="{{path}}{{ llibre.attachment}}" width="100px" />
-											<div class="content">
+											<div>
 												<div class="titol">
 													{{ llibre.name}}
 												</div>
 												<div class="texte">
-													{{ llibre.description}}
+													<p>{{ llibre.description}}</p>
 												</div>											
 											</div>
 										</div>																																										
