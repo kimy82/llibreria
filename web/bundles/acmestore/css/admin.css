@@ -18,10 +18,8 @@ margin: auto;
 #content {
     background-color: white;
     border-bottom: 3px solid #FCEA10;
-    height: 500px;
-   
-   
     width: 100%;
+    float: left;
 }
 .content {
    
@@ -68,8 +66,94 @@ margin: auto;
     border-bottom: 1px solid #C3C3C3;
     float: left;
     float:left;
-    padding: 16px;
 }
+.table_admin tr{
+   border: 1px solid #d8edf1;
+   background-color: #f5f5f5;
+   padding: 10px;
+}
+.table_admin td, .table_admin th{
+   
+   padding: 10px;
+}
+.table_admin {
+    border-collapse: collapse;
+    font-family: arial,Sans-Serif;
+    font-size: 12px;
+   
+    text-align: left;
+    width: 100%;
+    float: left;
+    padding: 10px;
+    vertical-align: middle;
+    position: relative;
+}
+.super{
+    padding: 20px;
+    margin: 20px;
+    float: left;
+}
+.filter{
+    height: 30px;
+
+}
+.pagerfanta{
+    padding: 20px;
+}
+#form{
+    float: left;
+    width: 100%;
+}
+#formol div{
+   padding:20px 0px 0px 20px;
+  
+}
+#formol label{
+   width: 100%
+   float: left;
+}
+#formol input{
+   width: 310px;
+   height: 30px
+}
+#formol textarea{
+   width: 310px;
+   height: 400px
+}
+#formol select{
+  
+   height: 30px
+}
+#formol{
+    float: left;
+    width: 100%;
+     background-color: #f5f5f5;
+}
+#form_date_entrada{
+    float: left;
+    padding: 0px!important;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#form_data_fi{
+
+    float: left;
+    padding: 0px!important;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#form_save{
+    margin-bottom: 40px;
+}
+#left_for{
+    width: 700px;
+    float: left;
+}
+#rigth_for{
+   width: 300px;
+    float: left; 
+}
+
 
 
 

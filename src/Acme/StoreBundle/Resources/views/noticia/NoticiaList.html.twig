@@ -14,17 +14,17 @@
 	<div id="content">
    	<div id='cssmenu'>
 	<ul>
-	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >NotÃ­cies</a>
 	      <ul>
 		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
 	      </ul>
 	   </li>
-	   <li class='has-sub'><a href="{{ path('llistat_store_suggerencia', {orderBy:'1=1 order by n.id asc'}) }}" >Suggerències</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_suggerencia', {orderBy:'1=1 order by n.id asc'}) }}" >SuggerÃ¨ncies</a>
 	    <ul>
 		<li class='last'><a href="{{ path('acme_pre_store_suggerencia', {}) }}" >{% trans %}new_sugg{% endtrans %}</a></li>
 	    </ul>
 	   </li>
-	   <li class='has-sub'><a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >Presentació</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >PresentaciÃ³</a>
 	   <ul>
 		<li class='last'><a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a></li>
 	   </ul>
@@ -50,22 +50,65 @@
 	</ul>
 	</div>
 	
-    <h1 class="title">Noticia  {% trans %}noticia_list_page{% endtrans %}</h1>
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a>
+	<div class="con_int">
+	<span class="super">	
+    LLISTAT DE NOTICIES
+	</span>
+    <br>
+
     	{% if pagination|length >0 %}
-    		<ul>
-    			<li>Titol: <input type="text" value="" id="titol" onblur="search(this.id,this.value)" />&nbsp; Subtitol: <input type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></li>
-    		{% for noticia in pagination %}
-    			<li>{{ noticia.titol}} {{ noticia.subtitol}}  {{ noticia.description}} {{ noticia.novetat}} {{ noticia.portada}} {{ noticia.dataFi|date('Y-m-d')}} {{ noticia.dataEntrada|date('Y-m-d')}} <img src="{{path}}{{ noticia.attachment}}" /> 	<a href="{{ path('edit_noticia', {'id' : noticia.id}) }}" >{% trans %}edit_noticia{% endtrans %}</a> <a href="{{ path('delete_noticia', {'id' : noticia.id}) }}" >{% trans %}delete_noticia{% endtrans %}</a></li> 
+    		
+    		<table class="table_admin">
+			<tr>
+				<th>Filtrar per: </th>
+				<th><input class="filter" type="text" value="" placeholder="titol" id="titol" onblur="search(this.id,this.value)" /></th>
+				<th><input class="filter" type="text" id="subtitol" placeholder="subtitol" value="" onblur="search(this.id,this.value)" /></th>
+				
+			</tr>
+		{% for noticia in pagination %}
+			<tr>
+			<!--<td>
+			<img width="100px" src="{{path}}{{ noticia.attachment}}" /> 	
+			</td-->
+			<td width=100px;>
+			{{ noticia.dataEntrada|date('Y-m-d')}}	
+			</td>
+			<td width=300px;>
+			{{ noticia.titol}}	
+			</td>
+			<td width=300px;>
+			{{ noticia.subtitol}}	
+			</td>
+			<td>
+			{{ noticia.novetat}}	
+			</td>
+			<td  width=900px;>
+			{{ noticia.portada}}	
+			</td>
+			<td width=30px;>
+			<a href="{{ path('edit_noticia', {'id' : noticia.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+			</td>
+			<td>
+			<a href="{{ path('delete_noticia', {'id' : noticia.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+			</td>
+			</tr>
+    			
     		{% endfor %}
-    		</ul>
+		
+		
+		
+		<tr>
+    		<td>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>
+		</td>
+		</tr>
+		</table>
     	{% else %}
     	 <p>- There are no things </p>
     	{% endif %}
+	</div>
 	</div>
         {% if app.environment == 'dev' %}
            DEV

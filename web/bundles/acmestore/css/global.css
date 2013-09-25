@@ -109,7 +109,13 @@ margin-top: 36px;
 .contentnot{
 	margin: auto;
 	width: 960px;
-	height: 966px;
+	
+	padding-top: 12px;
+}
+.contentnota{
+	margin: auto;
+	width: 960px;
+	height: 60px;
 	padding-top: 12px;
 }
 #footer{
@@ -626,6 +632,34 @@ width: 120px;
     width: 304px;
 }
 #noticies .tit_fixN{
+	width: 960px;
+	height: 60px;
+	font-weight: bold;
+	color: #575756;
+	float: left;
+	font-size: 30px;
+	line-height: 2;
+	margin-right: 12px;
+	margin-bottom: 12px;
+	margin-left: 20px;
+	float: left;
+	
+}
+.item { width: 25%; }
+#co{
+    margin-left: -7px;
+}
+#presentacio .contentnot{
+    width: 990px;
+}
+#presentacio .not_el {
+    background-color: #FFFFFF;
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 304px;
+}
+#presentacio .tit_fixN{
 	width: 960px;
 	height: 60px;
 	font-weight: bold;

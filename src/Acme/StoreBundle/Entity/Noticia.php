@@ -20,7 +20,7 @@ class Noticia
 	 /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $tablePath='noticia';
+	 protected $tablePath='noticia';
     
 	/**
 	 * @ORM\Column(type="date")

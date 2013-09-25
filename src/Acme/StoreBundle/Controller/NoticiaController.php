@@ -28,7 +28,7 @@ class NoticiaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
 			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
@@ -90,7 +90,7 @@ class NoticiaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
 			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
@@ -148,7 +148,7 @@ class NoticiaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
 			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
@@ -173,7 +173,7 @@ class NoticiaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
 			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),

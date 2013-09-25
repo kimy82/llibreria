@@ -6,16 +6,19 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-		<div class="contentnot">
+		<div class="contentnota">
 			<div class="tit_fixN">
 				{% trans %}f_presentacio_title{% endtrans %}
 			</div>
-			
+			</div>
+		<div class="contentnot">
+			<div id="co" class="js-masonry"  data-masonry-options='{ "columnWidth": 10, "itemSelector": ".item" }'>
 			{% if pagination|length >0 %}
 				{% for presentacio in pagination %}
 					<div class="not_el">
 					<div class="not_int">
 						<span class="tit_not">
+							{{ presentacio.dataEntrada|date('j F Y')}}
 							{{ presentacio.titol}}
 						</span><br>
 						<span class="sub_tit">
@@ -29,8 +32,10 @@
 					
 					</div>
 					</div>
+					
 				{% endfor %}
-				
+			</div>
+		</div>
 	    		<div class="pagerfanta" >
 	    			{{knp_pagination_render(pagination)}}
 	    		</div>
