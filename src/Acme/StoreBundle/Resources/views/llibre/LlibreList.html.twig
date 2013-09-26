@@ -6,7 +6,7 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    <div class="content">
+   <div class="content">
 	<div class="tit">
    		LLIBRERIA 22 
 		</div>
@@ -14,7 +14,7 @@
 	<div id="content">
    	<div id='cssmenu'>
 	<ul>
-	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
 	      <ul>
 		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
 	      </ul>
@@ -49,29 +49,55 @@
 	   </li>
 	</ul>
 	</div>
-		
 	
 	<div class="con_int">
-	LLISTAT DE NOTICIES
-	<BR>
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_llibre', {}) }}" >{% trans %}new_book{% endtrans %}</a>
+	<span class="super">	
+    LLISTAT DE LLIBRES
+	</span>
+    <br>
     	{% if pagination|length >0 %}
-    		<ul>
-    			<li>Name: <input type="text" value="" id="name" onblur="search(this.id,this.value)" />&nbsp;
+	    <table class="table_admin">
+			<tr>
+				<th>Filtrar per: </th>
+				<th><input placeholder="Nom" class="filter" type="text" value="" id="name" onblur="search(this.id,this.value)" /></th>
+				
+			</tr>
     		{% for llibre in pagination %}
-    			<li>{{ llibre.dateEntrada|date('Y-m-d')}} {{ llibre.name}}  {{ llibre.description}} {{ llibre.price}}
-    			 {% if llibre.suggerir == 0 %}
-           			NO
-        		 {% else %}
-        		 	SI
-        		 {% endif %}
-    			  <img width="100px" src="{{path}}{{ llibre.attachment}}" /> 	<a href="{{ path('edit_llibre', {'id' : llibre.id}) }}" >{% trans %}edit_book{% endtrans %}</a> <a href="{{ path('delete_llibre', {'id' : llibre.id}) }}" >{% trans %}delete_book{% endtrans %}</a></li> 
-    		{% endfor %}
-    		</ul>
+			<tr>
+			<td>
+			<img width="100px" src="{{path}}{{ llibre.attachment}}" />
+			</td>
+			<td width=100px;>
+			{{ llibre.dateEntrada|date('Y-m-d')}}	
+			</td>
+			<td width=300px;>
+			{{ llibre.name}}	
+			</td>
+			<td width=300px;>
+			{{ llibre.description}}
+			</td>
+			<td>
+			{{ llibre.price}}	
+			</td>
+			<td width=30px;>
+			<a href="{{ path('edit_llibre', {'id' : llibre.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+			</td>
+			<td>
+			<a href="{{ path('delete_llibre', {'id' : llibre.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+			</td>
+			</tr>
+		{% endfor %}
+    		<tr>
+    		<td>
+    		
+		</td>
+		<td>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>
+		</td>
+		</tr>
+		</table>
     	{% else %}
     	 <p>- There are no things </p>
     	{% endif %}

@@ -6,7 +6,7 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-
+holá acció
     <h1 class="title">{% trans %}form_slider{% endtrans %}</h1>
     	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
     	<a href="{{ path('acme_pre_store_slider', {}) }}" >{% trans %}enter_slider{% endtrans %}</a>

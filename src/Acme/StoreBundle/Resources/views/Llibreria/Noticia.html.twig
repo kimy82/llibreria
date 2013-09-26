@@ -24,8 +24,8 @@
 						<span class="sub_tit">
 							{{ noticia.subtitol}}
 						</span><br>
-						<p>{{ noticia.description}} 	</p>
-						<p><img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" width="100px" /></p>
+						{{ noticia.description}}
+						<img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" width="100px" />
 						<div class="not_fet">
 							{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('Y F jS')}}
 						</div>

@@ -5,6 +5,30 @@
 {% block content_header '' %}
 
 {% block content %}
+  
+  <script type="text/javascript" src="{{ asset('bundles/acmestore/js/tinymce.min.js') }}" ></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
+  
+  
+  
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 <div class="content">
 	<div class="tit">
@@ -14,7 +38,7 @@
 	<div id="content">
    	<div id='cssmenu'>
 	<ul>
-	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
 	      <ul>
 		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
 	      </ul>
@@ -114,6 +138,14 @@
     	</script>
     	{% endif %}
 	</div></div></div>
+	<script>
+    	 
+    	  $(document).ready(function(){
+    	  		
+				 tinymce.init({selector:'textarea'});
+				
+			});
+    	</script>
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}

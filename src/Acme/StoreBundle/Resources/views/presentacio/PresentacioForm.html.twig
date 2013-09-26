@@ -6,20 +6,122 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="content">
+	<div class="tit">
+   		LLIBRERIA 22 
+		</div>
+	</div>
+	<div id="content">
+   	<div id='cssmenu'>
+	<ul>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	      <ul>
+		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
+	      </ul>
+	   </li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_suggerencia', {orderBy:'1=1 order by n.id asc'}) }}" >Suggerències</a>
+	    <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_suggerencia', {}) }}" >{% trans %}new_sugg{% endtrans %}</a></li>
+	    </ul>
+	   </li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >Presentació</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a></li>
+	   </ul>
+	   
+	   </li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_galeria', {orderBy:'1=1 order by n.id asc'}) }}" >Galeria</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_galeria', {}) }}" >{% trans %}enter_galeria{% endtrans %}</a></li>
+	   </ul>
+	   </li>
+	   <li><a href="{{ path('acme_encarrecs', {}) }}" >Encarrecs</a></li>
+	   <li><a href="{{ path('acme_pre_puja_txt', {}) }}" >Upload</a></li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_slider', {orderBy:'1=1 order by n.id asc'}) }}" >Slider</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_slider', {}) }}" >{% trans %}enter_slider{% endtrans %}</a></li>
+	   </ul>
+	   </li>
+	   <li class='has-sub active'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >LLibres</a>
+	   <ul>
+		<li><a href="{{ path('acme_pre_store_llibre', {}) }}" >{% trans %}enter_llibre{% endtrans %}</a></li>
+	   </ul>
+	   </li>
+	</ul>
+	</div>
+	
+	<div class="con_int">
 
-    <h1 class="title">{% trans %}form_presentacio{% endtrans %}</h1>
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a>
-    	<a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >{% trans %}presentacio_list_page{% endtrans %}</a>
-    
-    	{{ form(form) }}
+    <span class="super">	
+    CREAR NOVA PRESENTACIÓ
+	</span><br>
+    	{{ form_start(form) }} 
+        {{ form_errors(form) }}
+    			<div id="formol">
+	<div id="left_for">
+	    <div>
+	     Titol<br>
+	      {{ form_errors(form.titol) }} 
+	      {{ form_widget(form.titol, {}) }}
+	    </div>
+	    <div>
+	      Subtitol<br>
+	      {{ form_errors(form.subtitol) }} 
+	      {{ form_widget(form.subtitol, {}) }}
+	    </div>
+	    <div>
+	      Descripció<br>
+	      {{ form_errors(form.description) }} 
+	      {{ form_widget(form.description, {}) }}
+	    </div>
+	    <div>
+	     Intervindran<br>
+	      {{ form_errors(form.intervindran) }} 
+	      {{ form_widget(form.intervindran, {}) }}
+	    </div>
+	    <div>
+	     Lloc<br>
+	      {{ form_errors(form.lloc) }} 
+	      {{ form_widget(form.lloc, {}) }}
+	    </div>
+	    
+	</div>
+	<div id="rigth_for">
+	  <div>
+	      Data entrada<br>
+	    {{ form_errors(form.date_entrada) }} 
+	    {{ form_widget(form.date_entrada, {}) }}
+	    </div>
+	   <div>
+	     
+	      {{ form_errors(form.data_fi) }} 
+	      {{ form_widget(form.data_fi, {}) }}
+	    </div>
+	    <div>
+	       Portada<br>
+	      {{ form_errors(form.portada) }} 
+	      {{ form_widget(form.portada, {}) }}
+	    </div>
+	    <div>
+	      Novetat<br>
+	      {{ form_errors(form.novetat) }} 
+	      {{ form_widget(form.novetat, {}) }}
+	    </div>
+	    <div>
+	      {{ form_errors(form.attachment) }} 
+	      {{ form_widget(form.attachment, {}) }}
+	    </div>
+	    {{ form_end(form) }}
+	    </div>
+	  
+	</div>
     	
     	{% if update == 1 %}
     	<script>
     	  document.getElementById("form_attachment").required="";
     	</script>
     	{% endif %}
-    	
+    	</div></div></div>
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}

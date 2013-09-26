@@ -6,7 +6,7 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-	<div class="content">
+<div class="content">
 	<div class="tit">
    		LLIBRERIA 22 
 		</div>
@@ -14,17 +14,17 @@
 	<div id="content">
    	<div id='cssmenu'>
 	<ul>
-	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >NotÃ­cies</a>
 	      <ul>
 		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
 	      </ul>
 	   </li>
-	   <li class='has-sub'><a href="{{ path('llistat_store_suggerencia', {orderBy:'1=1 order by n.id asc'}) }}" >Suggerències</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_suggerencia', {orderBy:'1=1 order by n.id asc'}) }}" >SuggerÃ¨ncies</a>
 	    <ul>
 		<li class='last'><a href="{{ path('acme_pre_store_suggerencia', {}) }}" >{% trans %}new_sugg{% endtrans %}</a></li>
 	    </ul>
 	   </li>
-	   <li class='has-sub'><a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >Presentació</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >PresentaciÃ³</a>
 	   <ul>
 		<li class='last'><a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a></li>
 	   </ul>
@@ -49,27 +49,80 @@
 	   </li>
 	</ul>
 	</div>
-    <h1 class="title">Noticia  {% trans %}presentacio_list_page{% endtrans %}</h1>
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a>
+	
+	<div class="con_int">
+	<span class="super">	
+    LLISTAT DE PRESENTACIONS
+	</span>
+    <br>
     	{% if pagination|length >0 %}
-    		<ul>
-    			<li>Titol: <input type="text" value="" id="titol" onblur="search(this.id,this.value)" />&nbsp; Subtitol: <input type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></li>
+		
+		<table class="table_admin">
+			<tr>
+				<th>Filtrar per: </th>
+				<th><input class="filter" type="text" placeholder="Titol" value="" id="titol" onblur="search(this.id,this.value)" /></th>
+				<th><input class="filter" type="text" placeholder="Subtitol" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
+				
+			</tr>
     		{% for presentacio in pagination %}
-    			<li>{{ presentacio.titol}} {{ presentacio.subtitol}}  {{ presentacio.description}} {{ presentacio.novetat}} {{ presentacio.portada}} {{ presentacio.dataFi|date('Y-m-d')}} {{ presentacio.dataEntrada|date('Y-m-d')}} <img src="{{path}}{{ presentacio.attachment}}" /> 	<a href="{{ path('edit_presentacio', {'id' : presentacio.id}) }}" >{% trans %}edit_presentacio{% endtrans %}</a> <a href="{{ path('delete_presentacio', {'id' : presentacio.id}) }}" >{% trans %}delete_presentacio{% endtrans %}</a></li> 
-    		{% endfor %}
-    		</ul>
+		<tr>
+			<td>
+			<img width="50px"src="{{path}}{{ presentacio.attachment}}" />	
+			</td>
+			<td width=100px;>
+			{{ presentacio.dataEntrada|date('Y-m-d')}}	
+			</td>
+			<td width=300px;>
+			{{ presentacio.titol}}	
+			</td>
+			<td width=300px;>
+			{{ presentacio.subtitol}} 	
+			</td>
+			<td>
+			{{ presentacio.description}}	
+			</td>
+			<td  width=900px;>
+			{{ presentacio.novetat}}	
+			</td>
+			<td  width=900px;>
+			{{ presentacio.portada}}	
+			</td>
+			<td  width=900px;>
+			{{ presentacio.dataFi|date('Y-m-d')}}
+			</td>
+			<td  width=900px;>
+			{{ presentacio.novetat}}	
+			</td>
+			<td width=30px;>
+			<a href="{{ path('edit_presentacio', {'id' : presentacio.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+			</td>
+			<td>
+			<a href="{{ path('delete_presentacio', {'id' : presentacio.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+			</td>
+			</tr>
+		
+		{% endfor %}
+    		<tr>
+    		<td>
+    		
+		</td>
+		<td>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>
+		</td>
+		</tr>
+		</table>
+		
     	{% else %}
     	 <p>- There are no things </p>
     	{% endif %}
 	</div>
-        {% if app.environment == 'dev' %}
+	</div>
+	{% if app.environment == 'dev' %}
            DEV
         {% endif %}
-       <script>
+	 <script>
 function search(col,val){
 	var path="{{pathlocal}}";
 	window.localStorage.setItem('val_'+col,val);

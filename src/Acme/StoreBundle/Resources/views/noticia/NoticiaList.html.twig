@@ -14,7 +14,7 @@
 	<div id="content">
    	<div id='cssmenu'>
 	<ul>
-	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
 	      <ul>
 		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
 	      </ul>
@@ -67,9 +67,9 @@
 			</tr>
 		{% for noticia in pagination %}
 			<tr>
-			<!--<td>
-			<img width="100px" src="{{path}}{{ noticia.attachment}}" /> 	
-			</td-->
+			<td>
+			<img width="50px" src="{{path}}{{ noticia.attachment}}" /> 	
+			</td>
 			<td width=100px;>
 			{{ noticia.dataEntrada|date('Y-m-d')}}	
 			</td>
@@ -99,6 +99,9 @@
 		
 		<tr>
     		<td>
+    		
+		</td>
+		<td>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>

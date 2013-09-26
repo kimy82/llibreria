@@ -6,7 +6,7 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-	 <div class="content">
+<div class="content">
 	<div class="tit">
    		LLIBRERIA 22 
 		</div>
@@ -14,7 +14,7 @@
 	<div id="content">
    	<div id='cssmenu'>
 	<ul>
-	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
 	      <ul>
 		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
 	      </ul>
@@ -49,32 +49,63 @@
 	   </li>
 	</ul>
 	</div>
-		
 	
 	<div class="con_int">
-	
-	
-	
-   LLISTAT DE SUGGERÈNCIES
-   <BR>
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_suggerencia', {}) }}" >{% trans %}new_sugg{% endtrans %}</a>
+	<span class="super">	
+    LLISTAT DE SUGGERENCIES
+	</span>
+    <br>
     	{% if pagination|length >0 %}
-    		<ul>
-    			<li>Name: <input type="text" value="" id="name" onblur="search(this.id,this.value)" />&nbsp;
+		
+		<table class="table_admin">
+			<tr>
+				<th>Filtrar per:</th>
+				<th><input class="filter" type="text" value="" id="name" onblur="search(this.id,this.value)" /></th>
+			</tr>
     		{% for suggerencia in pagination %}
-    			<li>{{ suggerencia.dateEntrada|date('Y-m-d')}} {{ suggerencia.name}}  {{ suggerencia.description}} {{ suggerencia.price}}
-    			 {% if suggerencia.suggerir == 0 %}
+		<tr>
+			<td>
+			<img width="50px" src="{{path}}{{ suggerencia.attachment}}" />  	
+			</td>
+			<td width=100px;>
+			{{ suggerencia.dateEntrada|date('Y-m-d')}}	
+			</td>
+			<td width=300px;>
+			 {{ suggerencia.name}}	
+			</td>
+			<td width=300px;>
+			{{ suggerencia.description}}
+			</td>
+			<td>
+			{{ suggerencia.price}}	
+			</td>
+			<td  width=900px;>
+			{% if suggerencia.suggerir == 0 %}
            			NO
         		 {% else %}
         		 	SI
-        		 {% endif %}
-    			  <img src="{{path}}{{ suggerencia.attachment}}" /> 	<a href="{{ path('edit_suggerencia', {'id' : suggerencia.id}) }}" >{% trans %}edit_sugg{% endtrans %}</a> <a href="{{ path('delete_suggerencia', {'id' : suggerencia.id}) }}" >{% trans %}delete_sugg{% endtrans %}</a></li> 
-    		{% endfor %}
-    		</ul>
+        		 {% endif %}	
+			</td>
+			<td width=30px;>
+			<a href="{{ path('edit_suggerencia', {'id' : suggerencia.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+			</td>
+			<td>
+			<a href="{{ path('delete_suggerencia', {'id' : suggerencia.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+			</td>
+			</tr>
+		
+		{% endfor %}
+    		<tr>
+    		<td>
+    		
+		</td>
+		<td>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>
+		</td>
+		</tr>
+		</table>
     	{% else %}
     	 <p>- There are no things </p>
     	{% endif %}
