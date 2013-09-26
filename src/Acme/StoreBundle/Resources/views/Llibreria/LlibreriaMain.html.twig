@@ -16,10 +16,21 @@
 		{% endfor %}-->
 		
     	<div class="leftdiv">
-    		{% if portada|length >0 %}
+    		{% if agenda|length >0 %}
 	    		<ul>	    			
-	    		{% for port in portada %}
-	    			<li>{{ port.titol}} <img  width="300px" src="{{path}}{{ port.tablePath}}/{{ port.attachment}}" /></li> 
+	    		{% for agn in agenda %}
+	    			<li>{{ agn.titol}} <img  width="300px" src="{{path}}{{ agn.tablePath}}/{{ agn.attachment}}" /></li> 
+	    		{% endfor %}
+	    		</ul>
+	    	{% else %}
+	    	 <p>- There are no things </p>
+	    	{% endif %}
+    	</div>
+    	<div class="centerdiv">
+    		{% if noticia|length >0 %}
+	    		<ul>	    			
+	    		{% for noti in noticia %}
+	    			<li>{{ noti.titol}} <img  width="300px" src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" /></li> 
 	    		{% endfor %}
 	    		</ul>
 	    	{% else %}

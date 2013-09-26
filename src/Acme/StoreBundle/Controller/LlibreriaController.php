@@ -26,34 +26,47 @@ class LlibreriaController extends Controller
     	$dates = array($previousyear-4,$previousyear-3,$previousyear-2,$previousyear-1,$previousyear);
  		
     	$em = $this->getDoctrine()->getManager();
+    	
+    	$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'));
+    	$counter = count($query->getResult());
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi > :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(10);		
-		$paginator= $this->get('knp_paginator');
-		$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+    	if($counter>=7){
+			$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(20);		
+			$paginator= $this->get('knp_paginator');
+			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
+    	}else{
+    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where 1=1 ');		
+			$paginator= $this->get('knp_paginator');
+			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
+    	}
 		
-		$rsm = new ResultSetMapping;
-		$rsm->addEntityResult('Acme\StoreBundle\Entity\Presentacio', 'p');
-		$rsm->addFieldResult('p', 'id', 'id'); // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('p', 'tablePath', 'tablePath'); // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('p', 'titol', 'titol'); // // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('p', 'attachment', 'attachment'); 
-		$rsm->addEntityResult('Acme\StoreBundle\Entity\Noticia', 'n');
-		$rsm->addFieldResult('n', 'id', 'id'); // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('n', 'tablePath', 'tablePath');
-		$rsm->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('n', 'attachment', 'attachment');
+		$rsm = new ResultSetMapping;				
 		$rsm->addEntityResult('Acme\StoreBundle\Entity\Agenda', 'a');
 		$rsm->addFieldResult('a', 'id', 'id'); // ($alias, $columnName, $fieldName)
 		$rsm->addFieldResult('a', 'tablePath', 'tablePath');
 		$rsm->addFieldResult('a', 'titol', 'titol'); // // ($alias, $columnName, $fieldName)
 		$rsm->addFieldResult('a', 'attachment', 'attachment');  
 		
-		$queryw = $em->createNativeQuery('SELECT id, tablePath, titol, attachment FROM presentacio WHERE portada != ? union SELECT id, tablePath, titol, attachment FROM noticia WHERE portada != ? union SELECT id, tablePath, titol, attachment FROM noticia WHERE portada != ? ', $rsm);
+		$queryw = $em->createNativeQuery('SELECT id, tablePath, titol, attachment FROM  agenda WHERE portada != ? ', $rsm);
 		$queryw->setParameter(1, 'no');
-		$queryw->setParameter(2, 'no');
-		$queryw->setParameter(3, 'no');
 		
-		$portada = $queryw->getResult();
+		
+		$agenda = $queryw->getResult();
+		
+		
+		$rsmn = new ResultSetMapping; 
+		$rsmn->addEntityResult('Acme\StoreBundle\Entity\Noticia', 'n');
+		$rsmn->addFieldResult('n', 'id', 'id'); // ($alias, $columnName, $fieldName)
+		$rsmn->addFieldResult('n', 'tablePath', 'tablePath');
+		$rsmn->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName)
+		$rsmn->addFieldResult('n', 'attachment', 'attachment');
+		
+		
+		$queryn = $em->createNativeQuery('SELECT id, tablePath, titol, attachment FROM  noticia WHERE portada != ? ', $rsmn);
+		$queryn->setParameter(1, 'no');
+		
+		
+		$noticia = $queryn->getResult();
 		
 		
 		$path= $this->get('kernel')->getImagesPathAlone();
@@ -64,7 +77,7 @@ class LlibreriaController extends Controller
 		$slider = $this->getSlider();
 		
     	
-        return $this->render('AcmeStoreBundle:llibreria:LlibreriaMain.html.twig', array('pathSlider'=>$pathSlider,'slider'=>$slider,'dates'=>$dates, 'paginationPresentacio' => $paginationPresentacio,'path' =>  $path,'pathlocal'=>$pathServer,'portada'=>$portada,'body'=>'index'));
+        return $this->render('AcmeStoreBundle:llibreria:LlibreriaMain.html.twig', array('pathSlider'=>$pathSlider,'slider'=>$slider,'dates'=>$dates, 'paginationPresentacio' => $paginationPresentacio,'path' =>  $path,'pathlocal'=>$pathServer,'agenda'=>$agenda,'noticia'=>$noticia,'body'=>'index'));
     }
     
  	public function galeriaAction($year)
