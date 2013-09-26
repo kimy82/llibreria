@@ -18,7 +18,7 @@ class EncarrecsController extends Controller
     	$em = $this->getDoctrine()->getManager();
 		
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Encarrecs n where n.enviat=:enviat order by n.id DESC')->setParameter('enviat',0);
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Encarrecs n where 1=1 order by n.id DESC');
 		
 		
 		
@@ -58,7 +58,7 @@ class EncarrecsController extends Controller
 		
 		$encarrec->setEnviat(1);
 	  	 $em = $this->getDoctrine()->getManager();
-	  	   $em->persist($encarrec);
+	  	 $em->persist($encarrec);
 	   	 $em->flush();
 			
 	        return $this->redirect($this->generateUrl('acme_encarrecs'));
