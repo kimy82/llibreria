@@ -21,36 +21,45 @@
 			
     	{% if pagination|length >0 %}
     		{% for encarrec in pagination %}
-		<tr>
-			
-			<td width=300px;>
-			{{ encarrec.name}}	
-			</td>
-			<td width=300px;>
-			{{ encarrec.poblacio}}	
-			</td>
-			<td>
-			{{ encarrec.codi}}	
-			</td>
-			<td  width=900px;>
-			{{encarrec.adreca}}	
-			</td>
-			<td  width=900px;>
-			{{encarrec.email}}	
-			</td>
-			<td  width=900px;>
-			{{encarrec.tel}}	
-			</td>
-			<td  width=900px;>
-			{{encarrec.llibre}}	
-			</td>
-			<td width=30px;>
-			<a href="#" onclick="enviaEncarrec({{encarrec.id}})">ENVIAT</a></li>	
-			</td>
-			<td>
-			<a href="#" onclick="deleteEncarrec({{encarrec.id}})"><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
-			</td>
-			</tr>
+    			{% if encarrec.enviat==1 %}
+					<tr class="enviat" >
+				{% else %}
+    	 			<tr>
+    			{% endif %}
+						
+						<td width=300px;>
+						{{ encarrec.name}}	
+						</td>
+						<td width=300px;>
+						{{ encarrec.poblacio}}	
+						</td>
+						<td>
+						{{ encarrec.codi}}	
+						</td>
+						<td  width=900px;>
+						{{encarrec.adreca}}	
+						</td>
+						<td  width=900px;>
+						{{encarrec.email}}	
+						</td>
+						<td  width=900px;>
+						{{encarrec.tel}}	
+						</td>
+						<td  width=900px;>
+						{{encarrec.llibre}}	
+						</td>
+						<td width=30px;>
+							{% if encarrec.enviat==1 %}
+								ENVIAT
+							{% else %}
+    	 						<a href="#" onclick="enviaEncarrec({{encarrec.id}})">ENVIA</a></li>	
+    						{% endif %}
+						
+						</td>
+						<td>
+						<a href="#" onclick="deleteEncarrec({{encarrec.id}})"><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+						</td>
+					</tr>
 		
 		{% endfor %}
     		<tr>
