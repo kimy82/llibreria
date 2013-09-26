@@ -6,12 +6,14 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-holá acció
-    <h1 class="title">{% trans %}form_slider{% endtrans %}</h1>
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_slider', {}) }}" >{% trans %}enter_slider{% endtrans %}</a>
-    	<a href="{{ path('llistat_store_slider', {orderBy:'1=1 order by n.id asc'}) }}" >{% trans %}slider_list_page{% endtrans %}</a>
-    
+
+   <div class="con_int">
+
+    <span class="super">	
+    CREAR NOVA NOTÍCIA
+	</span><br>
+    <div id="formol">
+	<div id="left_for">
     	{{ form(form) }}
     	
     	{% if update == 1 %}
@@ -19,7 +21,7 @@ holá acció
     	  document.getElementById("form_attachment").required="";
     	</script>
     	{% endif %}
-    	
+   </div></div></div>
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}
