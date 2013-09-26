@@ -183,7 +183,7 @@ class LlibreriaController extends Controller
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
 		return $this->render('AcmeStoreBundle:llibreria:BuscaLlibre.html.twig', array(
-            'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'noticies','cerca'=>$cerca,'numresultats'=>$resultats
+            'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'busca','cerca'=>$cerca,'numresultats'=>$resultats
         ));
     }
     
