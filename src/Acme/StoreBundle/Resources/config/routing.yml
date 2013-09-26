@@ -214,6 +214,6 @@ acme_establiments:
     defaults: { _controller: AcmeStoreBundle:Llibreria:establiments }
 acme_llibreria22:
     pattern:  /llibreria22/{_locale}
-    defaults: { _controller: AcmeStoreBundle:Llibreria:index, _locale: en }
+    defaults: { _controller: AcmeStoreBundle:Llibreria:index, _locale: ca }
     requirements:
         _locale: en|fr|es
