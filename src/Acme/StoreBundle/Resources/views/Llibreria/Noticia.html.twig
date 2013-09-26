@@ -24,7 +24,13 @@
 						<span class="sub_tit">
 							{{ noticia.subtitol}}
 						</span><br>
-						{{ noticia.description}}
+						<label id="not_desc_{{noticia.id}}">
+							{{noticia.description}}
+						</label>
+						<script>
+							var text = $("#not_desc_{{noticia.id}}").text();
+							$("#not_desc_{{noticia.id}}").html(text);
+						</script>
 						<img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" width="100px" />
 						<div class="not_fet">
 							{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('Y F jS')}}
