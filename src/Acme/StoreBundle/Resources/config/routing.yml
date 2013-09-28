@@ -111,7 +111,44 @@ update_agenda:
 delete_agenda:
      pattern:  /admin/secured/agenda/delete/{id}
      defaults: { _controller: AcmeStoreBundle:Agenda:deleteAgenda }
+     
+     
+acme_establiments:
+    pattern:  /admin/secured/establiments
+    defaults: { _controller: AcmeStoreBundle:Establiments:index }
+acme_pre_store_establiments:
+    pattern:  /admin/secured/establiments/establiments_save
+    defaults: { _controller: AcmeStoreBundle:Establiments:precreate }
+store_new_establiments:
+    pattern:  /admin/secured/establiments/establiments_new_save
+    defaults: { _controller: AcmeStoreBundle:Establiments:saveEstabliments }
+llistat_store_establiments:
+    pattern:  /admin/secured/establiments/establiments_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:establiments:list }
+edit_establiments:
+    pattern:  /admin/secured/establiments/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Establiments:edit }
+update_establiments:
+     pattern:  /admin/secured/establiments/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Establiments:updateEstabliments }
+delete_establiments:
+     pattern:  /admin/secured/establiments/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Establiments:deleteEstabliments }     
+     
+store_new_foto:
+    pattern:  /admin/secured/establiments/foto_new_save
+    defaults: { _controller: AcmeStoreBundle:Establiments:saveFoto }
 
+edit_foto:
+    pattern:  /admin/secured/foto/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Establiments:edito }
+update_foto:
+     pattern:  /admin/secured/foto/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Establiments:updateEstablimentso }
+delete_foto:
+     pattern:  /admin/secured/foto/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Establiments:deleteEstablimentso }    
+   
 acme_presentacio:
     pattern:  /admin/secured/presentacio
     defaults: { _controller: AcmeStoreBundle:Presentacio:index }

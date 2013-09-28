@@ -1,0 +1,64 @@
+<div class="content">
+	<div class="tit">
+   		LLIBRERIA 22 
+		</div>
+	</div>
+	<div id="content">
+   	<div id='cssmenu'>
+	<ul>
+	   <li class='has-sub'><a href="{{ path('llistat_store_noticia', {orderBy:'1=1 order by n.id asc'}) }}" >Notícies</a>
+	      <ul>
+		 <li class='last'><a href="{{ path('acme_pre_store_noticia', {}) }}" >{% trans %}enter_noticia{% endtrans %}</a></li>
+	      </ul>
+	   </li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_suggerencia', {orderBy:'1=1 order by n.id asc'}) }}" >Suggerències</a>
+	    <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_suggerencia', {}) }}" >{% trans %}new_sugg{% endtrans %}</a></li>
+	    </ul>
+	   </li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_presentacio', {orderBy:'1=1 order by n.id asc'}) }}" >Presentació</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_presentacio', {}) }}" >{% trans %}enter_presentacio{% endtrans %}</a></li>
+	   </ul>
+	   
+	   </li>
+	   
+	   <li class='has-sub'><a href="{{ path('llistat_store_agenda', {orderBy:'1=1 order by n.id asc'}) }}" >{% trans %}agenda_list_page{% endtrans %}</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_agenda', {}) }}" >{% trans %}enter_agenda{% endtrans %}</a></li>
+	   </ul>
+	   
+	   </li>
+	   
+	   
+	   <li class='has-sub'><a href="{{ path('llistat_store_establiments', {orderBy:'1=1 order by n.id asc'}) }}" >establiments</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_establiments', {}) }}" >establimentss</a></li>
+	   </ul>
+	   
+	   </li>
+	   
+	   
+	   
+	   
+	   <li class='has-sub'><a href="{{ path('llistat_store_galeria', {orderBy:'1=1 order by n.id asc'}) }}" >Galeria</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_galeria', {}) }}" >{% trans %}enter_galeria{% endtrans %}</a></li>
+	   </ul>
+	   </li>
+	   <li><a href="{{ path('acme_encarrecs', {}) }}" >Encarrecs</a></li>
+	   <li><a href="{{ path('acme_pre_puja_txt', {}) }}" >Upload</a></li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_slider', {orderBy:'1=1 order by n.id asc'}) }}" >Slider</a>
+	   <ul>
+		<li class='last'><a href="{{ path('acme_pre_store_slider', {}) }}" >{% trans %}enter_slider{% endtrans %}</a></li>
+	   </ul>
+	   </li>
+	   <li class='has-sub'><a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >LLibres</a>
+	   <ul>
+		<li><a href="{{ path('acme_pre_store_llibre', {}) }}" >{% trans %}enter_llibre{% endtrans %}</a></li>
+	   </ul>
+	   </li>
+	</ul>
+	</div>
+	
+	

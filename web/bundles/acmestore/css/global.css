@@ -673,3 +673,18 @@ width: 120px;
 	float: left;
 	
 }
+.leftdiv{
+   float: left;
+   width: 300px;
+    background-color: blue;
+}
+.centerdiv{
+    float: left;
+    width: 300px;
+     background-color: yellow;
+}
+.rightdiv{
+    float: right;
+    width: 300px;
+     background-color: red;
+}

@@ -32,12 +32,5 @@
 		    position: relative;
 		    margin: 0;
 		}
-		.leftdiv{
-			float: left;
-			width: 75%;
-		}
-		.rightdiv{
-			float: left;
-			width: 25%;
-		}
+		
 	

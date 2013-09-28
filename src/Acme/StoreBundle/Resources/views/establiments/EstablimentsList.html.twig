@@ -1,0 +1,53 @@
+{% extends 'AcmeStoreBundle::layout.html.twig' %}
+
+{% block title %}MANAGE LIST  AGENDA{% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+	
+   <div class="con_int">
+	<span class="super">	
+    LLISTAT DE NOTICIES
+	</span>
+    <br>
+	
+    	{% if pagination|length >0 %}
+    		<table class="table_admin">
+			
+			
+    		{% for foto in pagination %}
+
+    			<tr>
+			<td>
+			<img width="50px" src="{{path}}{{ foto.attachment}}" /> 	
+			</td>
+			
+			
+			<td>
+			{{ foto.description}}	
+			</td>
+			
+			<td width=30px;>
+			<a href="{{ path('edit_foto', {'id' : foto.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+			</td>
+			<td>
+			<a href="{{ path('delete_foto', {'id' : foto.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+			</td>
+			</tr>
+		{% endfor %}
+    		</ul>
+    		<div class="pagerfanta" >
+    			{{knp_pagination_render(pagination)}}
+    		</div>
+    	{% else %}
+    	 <p>- There are no things </p>
+    	{% endif %}
+	
+    </div></div></div>
+        {% if app.environment == 'dev' %}
+           DEV
+        {% endif %}
+       
+{% endblock %}
