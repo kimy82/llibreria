@@ -142,7 +142,7 @@ class LlibreriaController extends Controller
      	$em = $this->getDoctrine()->getManager();
      	
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.dataEntrada DESC');
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
