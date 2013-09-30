@@ -12,6 +12,46 @@
 			</div>
 			
 			
+			{% if pagination|length >0 %}
+				{% for establiments in pagination %}
+					
+					<div class="not_el item">
+					<div class="not_int">
+						
+					
+							{{establiments.description|raw}}						
+						
+
+					
+					</div>
+					</div>
+					
+				{% endfor %}
+				
+				
+				
+				
+				
+				
+			</div>
+			
+			<div class="pagerfanta" >
+	    			{{knp_pagination_render(pagination)}}
+	    		</div>
+		</div>
+	    		
+		    	{% else %}
+		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+		    	{% endif %}
+			
+			
+					
+					<div class="not_el item">
+				
+					
+				
+			
+			
 		    	<script>
 		    		  $('li').removeClass('active');
 		    		  $('#establimentsli').addClass('active');

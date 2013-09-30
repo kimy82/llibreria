@@ -7,29 +7,37 @@
 	<script type="text/javascript" src="{{ asset('bundles/acmestore/js/frontendGaleria.js') }}" ></script>
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    <h1 class="title">{% trans %}f_galeria_title{% endtrans %}</h1>
+   <div class="contentnota">
+			<div class="tit_fixN">
+				Galeria de fotos
+			</div>
+		</div>
+		<div class="contentnot">
     	
     	
     	{% if pagination|length >0 %}
-    		<div class="menu_years_galeria">
-    		<ul>
+    		<div id="men_le" class="menu_years_galeria">
+			<ul>
    			<li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
    			<li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
    			<li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
    			<li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
    			<li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
    			</ul>
-   			</div>
-   			<div style="float:left;">
-   			<ul>
+		</div>
+		<div id="con_gal">
+   		<div>
+   			
+				
     		{% for galeria in pagination %}
-    			<script>
-    				galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
-    			</script>
-    			<li id="{{ galeria.id}}"> <a href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}})"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="100px" /></a> </li> 
+		<script>
+		galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
+		</script>
+		<a href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}})"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="140px" /></a>
     		{% endfor %}
-    		</ul>
+    		
     		</div>
+		</div>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>
@@ -45,7 +53,7 @@
    			</div>
     	 	<p>- There are no things </p>
     	{% endif %}
-    	
+    	</div>
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}
@@ -70,17 +78,26 @@
 		</script>
 		<!-- pagina per els dialogs -->
 
-		<div  id="divCargando" class="divCargando">
+		<div href="#" onclick="inicio()" id="divCargando" class="divCargando">
 		</div>
 		<div id="divCargandoImg" class="divCargandoImg">
-		  <a href="#" onclick="inicio()" >{% trans %}f_galeria_botton_cerrar{% endtrans %}</a>
-		  <label id="titol_foto" ></label>
-		  <label id="subtitol_foto" ></label>
-		  <a href="#" onclick="galeriaManagerObj.previous()" ><</a>
-		  <img  id ="img_id" src="" />
-		  <a href="#" onclick="galeriaManagerObj.next()" >></a>
-		  <label id="desc_foto" ></label>
+			<div id="int_div">
+		  <div id="left_but">
+	          <a href="#" onclick="galeriaManagerObj.previous()" ><img src="{{ asset('bundles/acmestore/img/left.png') }}" /></a>
+		  </div>
+		  <div id="center_but">
+		  <img width="642px" id ="img_id" src="" />
+		  <div id="text_di">
+		  <label class="tit_not" id="titol_foto" ></label><br>
+		  <label class="sub_tit" id="subtitol_foto" ></label><br>
+		  <label class="desi" id="desc_foto" ></label>
+		  </div>
+		  </div>
+		  <div id="right_but">
+		   <a href="#" onclick="galeriaManagerObj.next()" ><img src="{{ asset('bundles/acmestore/img/right.png') }}" /></a>
+		   </div>
 		</div>
+			</div>
 		 <script>
 			inicio();
 		</script>

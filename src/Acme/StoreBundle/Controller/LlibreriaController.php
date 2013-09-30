@@ -4,6 +4,8 @@ namespace Acme\StoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\StoreBundle\Entity\Agenda;
+use Acme\StoreBundle\Entity\Foto;
+
 use Acme\StoreBundle\Entity\Encarrecs;
 use Acme\StoreBundle\Entity\Llibre;
 use Acme\StoreBundle\Forms\Search;
@@ -44,10 +46,9 @@ class LlibreriaController extends Controller
 		$rsm->addEntityResult('Acme\StoreBundle\Entity\Agenda', 'a');
 		$rsm->addFieldResult('a', 'id', 'id'); // ($alias, $columnName, $fieldName)
 		$rsm->addFieldResult('a', 'tablePath', 'tablePath');
-		$rsm->addFieldResult('a', 'titol', 'titol'); // // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('a', 'attachment', 'attachment');  
+		$rsm->addFieldResult('a', 'description', 'description'); // // ($alias, $columnName, $fieldName)  
 		
-		$queryw = $em->createNativeQuery('SELECT id, tablePath, titol, attachment FROM  agenda WHERE portada != ? ', $rsm);
+		$queryw = $em->createNativeQuery('SELECT id, tablePath, description FROM agenda WHERE portada != ? ', $rsm);
 		$queryw->setParameter(1, 'no');
 		
 		
@@ -58,11 +59,13 @@ class LlibreriaController extends Controller
 		$rsmn->addEntityResult('Acme\StoreBundle\Entity\Noticia', 'n');
 		$rsmn->addFieldResult('n', 'id', 'id'); // ($alias, $columnName, $fieldName)
 		$rsmn->addFieldResult('n', 'tablePath', 'tablePath');
-		$rsmn->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName)
+		$rsmn->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName
+		$rsmn->addFieldResult('n', 'subtitol', 'subtitol'); // // ($alias, $columnName, $fieldName)
+		$rsmn->addFieldResult('n', 'description', 'description'); // // ($alias, $columnName, $fieldName)
 		$rsmn->addFieldResult('n', 'attachment', 'attachment');
 		
 		
-		$queryn = $em->createNativeQuery('SELECT id, tablePath, titol, attachment FROM  noticia WHERE portada != ? ', $rsmn);
+		$queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, description, attachment FROM noticia WHERE portada != ? ', $rsmn);
 		$queryn->setParameter(1, 'no');
 		
 		
@@ -95,7 +98,7 @@ class LlibreriaController extends Controller
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
 		$path= $this->get('kernel')->getImagesPath('galeria');
 		$pathServer= $this->get('kernel')->getServerPath();
 		
@@ -145,7 +148,7 @@ class LlibreriaController extends Controller
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),13);
 		$path= $this->get('kernel')->getImagesPath('noticia');
 		$pathServer= $this->get('kernel')->getServerPath();
 		
@@ -155,6 +158,33 @@ class LlibreriaController extends Controller
             'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'noticies'
         ));
     }
+    
+    
+    public function agendaAction()
+    {
+    	
+     	$em = $this->getDoctrine()->getManager();
+     	
+		
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:agenda n order by n.id DESC');
+		
+		$paginator= $this->get('knp_paginator');
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+		$path= $this->get('kernel')->getImagesPath('agenda');
+		$pathServer= $this->get('kernel')->getServerPath();
+		
+		$slider = $this->getSlider();
+		$pathSlider = $this->get('kernel')->getImagesPathAlone();
+		return $this->render('AcmeStoreBundle:llibreria:Agenda.html.twig', array(
+            'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'agenda'
+        ));
+    }
+    
+   
+    
+    
+    
+    
     
 	public function buscaLlibreAction($name)
     {
@@ -447,15 +477,33 @@ class LlibreriaController extends Controller
     
 	public function establimentsAction()
     {
-    	
-     	$pathServer= $this->get('kernel')->getServerPath();
+    	$em = $this->getDoctrine()->getManager();
+     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:establiments n order by n.id DESC');
+
+	
+	$paginator= $this->get('knp_paginator');
+	$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+     	$path= $this->get('kernel')->getImagesPath('foto');
+	
+	$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
+		
+		$foto = $this->fotoAction();
+		$pathfoto = $this->get('kernel')->getImagesPathAlone();
+		
 		return $this->render('AcmeStoreBundle:llibreria:Establiments.html.twig', array(
-           'pathSlider'=>$pathSlider,'slider'=>$slider,'pathlocal'=>$pathServer,'body'=>'establiments'
+           'pathSlider'=>$pathSlider,'pathfoto'=>$pathfoto,'slider'=>$slider, 'foto'=>$foto, 'pagination' => $pagination, 'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'establiments'
         ));
     }
     
+    public function fotoAction()
+    {
+    		$em = $this->getDoctrine()->getManager();     			
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:foto n ');
+		$foto = $query->getResult();
+		return $foto;
+    }
     
     private function getSlider(){
     	

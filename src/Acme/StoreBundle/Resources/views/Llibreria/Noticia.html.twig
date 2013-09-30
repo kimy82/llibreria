@@ -12,7 +12,8 @@
 			</div>
 		</div>
 		<div class="contentnot">
-			<div id="co" data-masonry-options='{ "columnWidth": 10, "itemSelector": ".item" }'>
+			
+			<div id="co" class="js-masonry">
 			{% if pagination|length >0 %}
 				{% for noticia in pagination %}
 					
@@ -27,7 +28,7 @@
 					
 							{{noticia.description|raw}}						
 						
-						<img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" width="100px" />
+						<img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" />
 						<div class="not_fet">
 							{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('Y F jS')}}
 						</div>
@@ -37,10 +38,12 @@
 					
 				{% endfor %}
 			</div>
-		</div>
-	    		<div class="pagerfanta" >
+			
+			<div class="pagerfanta" >
 	    			{{knp_pagination_render(pagination)}}
 	    		</div>
+		</div>
+	    		
 		    	{% else %}
 		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
 		    	{% endif %}
@@ -48,10 +51,14 @@
 		    		  $('li').removeClass('active');
 		    		  $('#noticiali').addClass('active');     
 				
-				$(document).ready(function(){
-					
-					$('#co').addClass('js-masonry');
-					});
+				var $container = $('#co');
+				// initialize
+				$container.masonry({
+				 columnWidth: 200,
+				 gutter: '.grid-sizer',
+				 gutter: 10,
+				itemSelector: '.item'
+				});
 		    	</script>
 			
 		

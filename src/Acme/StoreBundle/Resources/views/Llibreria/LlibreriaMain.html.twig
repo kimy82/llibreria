@@ -6,6 +6,9 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+  <script type="text/javascript" src="{{ asset('bundles/acmestore/js/far.js') }}" ></script>
+
+
 
     
     <div class="contentnota">
@@ -20,43 +23,101 @@
 	
     	<div class="leftdiv">
     		{% if agenda|length >0 %}
-	    		<ul>	    			
+	    			    			
 	    		{% for agn in agenda %}
-	    			<li>{{ agn.titol}} <img  width="300px" src="{{path}}{{ agn.tablePath}}/{{ agn.attachment}}" /></li> 
+			<div class="elem_main">
+			{{ agn.description|raw}}
+			
+			
+			</div>
 	    		{% endfor %}
-	    		</ul>
+	    		
 	    	{% else %}
 	    	 <p>- There are no things </p>
 	    	{% endif %}
     	</div>
     	<div class="centerdiv">
     		{% if noticia|length >0 %}
-	    		<ul>	    			
+	    		    			
 	    		{% for noti in noticia %}
-	    			<li>{{ noti.titol}} <img  width="300px" src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" /></li> 
+			<div class="elem_main">
+	    	        <span class="tit_not">
+			{{ noti.titol}}
+			</span><br>
+			<span class="sub_tit">
+			{{ noti.subtitol}}
+			</span><br>
+			<img src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" />
+			{{ noti.description}}
+			
+			
+			
+			
+			</div>
 	    		{% endfor %}
-	    		</ul>
+	    		
 	    	{% else %}
 	    	 <p>- There are no things </p>
 	    	{% endif %}
     	</div>
+	
+
     	<div class="rightdiv">
+		<div id="scrollbar1">
+		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+		<div class="viewport">
+			 <div class="overview">
+		
     	   {% if paginationPresentacio|length >0 %}
-	    		<ul>	    			
+	    		    			
 	    		{% for presentacio in paginationPresentacio %}
-	    			<li>{{ presentacio.titol}} {{ presentacio.subtitol}}  {{ presentacio.description}} {{ presentacio.novetat}} {{ presentacio.portada}}  {{ presentacio.intervindran}}  {{ presentacio.lloc}} {{ presentacio.dataFi|date('Y-m-d')}} {{ presentacio.dataEntrada|date('Y-m-d')}} <img width="200px" src="{{path}}presentacio/{{ presentacio.attachment}}" /></li> 
+			<div class="ender">
+			
+			<div class="farl wit">
+			{{ presentacio.dataEntrada|date('Y-m-d')}}
+			</div>
+			<div class="farl">
+			{{ presentacio.lloc}}
+			</div>
+			<div class="farl titolmain">
+	    		{{ presentacio.titol}}
+			</div>
+			<div class="farl">
+			{{ presentacio.subtitol}}
+			</div>
+			<div class="farl des">
+			{{ presentacio.description}}
+			</div>
+			<img  src="{{path}}presentacio/{{ presentacio.attachment}}" />
+			<div class="farl des">
+			{{ presentacio.intervindran}}
+			</div>
+			
+			</div>
 	    		{% endfor %}
-	    		</ul>
+	    		</div>
+	</div></div>
+		</div></div></div>
 	    		<div class="pagerfanta" >
 	    			{{knp_pagination_render(paginationPresentacio)}}
 	    		</div>
 	    	{% else %}
 	    	 <p>- There are no things </p>
 	    	{% endif %}
-    	</div>
-	</div></div></div>
+    	
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}
+	
+	<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#scrollbar1').tinyscrollbar();
+
+    });
+</script>
+	
+	 
+      
        
 {% endblock %}
