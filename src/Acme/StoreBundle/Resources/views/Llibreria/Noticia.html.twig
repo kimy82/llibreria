@@ -13,23 +13,26 @@
 		</div>
 		<div class="contentnot">
 			
-			<div id="co" class="js-masonry">
+			<div id="co" class="columns">
 			{% if pagination|length >0 %}
 				{% for noticia in pagination %}
 					
-					<div class="not_el item">
-					<div class="not_int">
-						<span class="tit_not">
-							{{ noticia.titol}}
-						</span><br>
-						<span class="sub_tit">
-							{{ noticia.subtitol}}
-						</span><br>
-					
-							{{noticia.description|raw}}						
+					<div class="pin">
+					<div class="">
+					<div id="ies">
+					{{ noticia.titol}}
+					</div>
+					<div id="ies">	
+					{{ noticia.subtitol}}
+					</div>
+					<div id="ies">	
+					{{noticia.description|raw}}
+					</div>
+					<div id="ies">
 						
-						<img id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" />
-						<div class="not_fet">
+					<img  width="304px" height="auto" id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" />
+					</div>
+					<div class="">
 							{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('Y F jS')}}
 						</div>
 					
@@ -51,15 +54,10 @@
 		    		  $('li').removeClass('active');
 		    		  $('#noticiali').addClass('active');     
 				
-				var $container = $('#co');
-				// initialize
-				$container.masonry({
-				 columnWidth: 200,
-				 gutter: '.grid-sizer',
-				 gutter: 10,
-				itemSelector: '.item'
-				});
+				
 		    	</script>
+			
+			
 			
 		
 {% endblock %}

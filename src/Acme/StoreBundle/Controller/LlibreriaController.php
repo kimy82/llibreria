@@ -148,7 +148,7 @@ class LlibreriaController extends Controller
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),13);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),12);
 		$path= $this->get('kernel')->getImagesPath('noticia');
 		$pathServer= $this->get('kernel')->getServerPath();
 		
@@ -478,7 +478,7 @@ class LlibreriaController extends Controller
 	public function establimentsAction()
     {
     	$em = $this->getDoctrine()->getManager();
-     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:establiments n order by n.id DESC');
+     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:foto n order by n.id DESC');
 
 	
 	$paginator= $this->get('knp_paginator');

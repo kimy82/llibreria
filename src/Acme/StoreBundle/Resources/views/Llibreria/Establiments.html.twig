@@ -13,14 +13,14 @@
 			
 			
 			{% if pagination|length >0 %}
-				{% for establiments in pagination %}
+				{% for foto in pagination %}
 					
 					<div class="not_el item">
 					<div class="not_int">
 						
 					
-							{{establiments.description|raw}}						
-						
+							{{foto.description|raw}}						
+						<img src='{{pathfoto}}foto/{{ foto.attachment}}' />
 
 					
 					</div>
@@ -45,11 +45,6 @@
 		    	{% endif %}
 			
 			
-					
-					<div class="not_el item">
-				
-					
-				
 			
 			
 		    	<script>
