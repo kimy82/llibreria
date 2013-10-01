@@ -17,24 +17,25 @@
 			{% if pagination|length >0 %}
 				{% for noticia in pagination %}
 					
-					<div class="pin">
+					<div class="item masonry-brick">
 					<div class="">
-					<div id="ies">
+					<div id="ies" class="tit_not tit_top">
 					{{ noticia.titol}}
 					</div>
-					<div id="ies">	
+					<div id="ies" class="sub_tit">	
 					{{ noticia.subtitol}}
 					</div>
-					<div id="ies">	
+					<div id="ies_img">
+						
+					<img  width="310px" height="auto" id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" />
+					</div>
+					<div id="ies" class="comon">	
 					{{noticia.description|raw}}
 					</div>
-					<div id="ies">
-						
-					<img  width="304px" height="auto" id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" />
+					
+					<div id="ies" class="bol">
+					{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('j F Y')}}
 					</div>
-					<div class="">
-							{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('Y F jS')}}
-						</div>
 					
 					</div>
 					</div>
@@ -56,8 +57,18 @@
 				
 				
 		    	</script>
-			
-			
+			<script type="text/javascript">
+ 	
+$(window).load(function() {
+     $('#co').masonry({
+      // options
+      
+      itemSelector : '.item'
+    });
+});	
+
+</script>
+				
 			
 		
 {% endblock %}

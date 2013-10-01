@@ -1,7 +1,7 @@
 <div id="sup">
 			<div id="consup">
 				<div id="logo">
-				//logo
+				<img src="{{ asset('bundles/acmestore/img/logo.jpg') }}" />
 				</div>
 				<div id="slider">
 					<div id="coin-slider" style="height: 100px;">
@@ -11,9 +11,15 @@
 									
 							        	<img src='{{pathSlider}}slider/{{ sld.attachment}}' />
 							        		
-							       		<span style="position: absolute; bottom: 0pt; left: 0pt; z-index: 1000; opacity: 0.7;">
-							       			{{sld.description}}
-							       		</span>							        			 		
+							       		<span style="position: absolute; bottom: 80px!important; left: 0pt; z-index: 1000; opacity: 0.9!important;">
+							       			<div id="sli">
+										{{sld.description}}<br>
+										</div>
+										<div id="sli2">
+										{{sld.descriptioner}}
+										</div>
+							       		</span>
+									
 							    </a>							    							  
 							{% endfor %}
 						{% endif %}					
@@ -41,6 +47,7 @@
 						<input class="inputs" id="sesuatu" type="text">
 					</div>
 					<div id="b_search">
+						<img src="{{ asset('bundles/acmestore/img/search.png') }}" />
 					</div>
 				</div>
 			</div>

@@ -28,6 +28,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')
             ->add('attachment', 'file')
             ->add('description', 'text')
+	    ->add('descriptioner', 'text')
             ->add('save', 'submit')
             ->getForm();
             
@@ -38,6 +39,7 @@ class SliderController extends Controller
 	        $slider = new Slider();	      
 	      	
 	        $slider->setDescription($form['description']->getData());
+		$slider->setDescriptioner($form['descriptioner']->getData());
 	        $slider->setAttachment("aaa");
 	    	
 	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
@@ -67,6 +69,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')           
             ->add('attachment', 'file')
             ->add('description', 'text')
+	    ->add('descriptioner', 'text')
             ->add('save', 'submit')
             ->getForm();
             
@@ -102,6 +105,7 @@ class SliderController extends Controller
 		$file = new File($path.'downloads/slider/'.$slider->getAttachment(), true);
 	    
 	    $sliderform->setDescription($slider->getDescription());
+	    $sliderform->setDescriptioner($slider->getDescriptioner());
        	$sliderform->setAttachment($file);
        	
        	$path = $this->get('kernel')->getServerPath();
@@ -110,6 +114,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')           
             ->add('attachment', 'file')
             ->add('description', 'text')
+	     ->add('descriptioner', 'text')
             ->add('save', 'submit')
             ->getForm();
             
@@ -126,6 +131,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')           
             ->add('attachment', 'file')
             ->add('description', 'text')
+	     ->add('descriptioner', 'text')
             ->add('save', 'submit')
             ->getForm();
             
@@ -139,6 +145,7 @@ class SliderController extends Controller
 	        $dades =$form->getData();
 	      	      
 	        $slider->setDescription($form['description']->getData());
+		 $slider->setDescriptioner($form['descriptioner']->getData());
 	    	
 	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
 	         $em = $this->getDoctrine()->getManager();

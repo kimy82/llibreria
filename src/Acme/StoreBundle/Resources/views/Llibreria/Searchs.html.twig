@@ -7,20 +7,23 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    <h1 class="title"></h1>
-    
-    	<!--{% for locale in ['en', 'fr', 'es'] %}
-		    <li {% if locale == app.request.locale %}class="active"{% endif %}>
-		        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale }}</a>
-		    </li>
-		{% endfor %}-->
-		
-    	
-    	<div class="rightdiv">
-    		
+  <div class="contentnota">
+			<div class="tit_fixN">
+				Resultats
+			</div>
+		</div>
+		<div class="contentnot">
+			
+			<div id="co" class="columns">
+			
     	   {% if pagination|length >0 %}
-	    		<ul>	    			
+	    			    			
 	    		{% for search in pagination %}
+			   <div id="sea_con">
+			      <div class="sea_img">
+				<img width="200px" src="{{search.path}}{{search.attachment}}" />
+				</div>
+			        <div class="sea sub_tit tit_top">
 	    			{% if search.category == 'llibre' %}
 	    				Llibre
 	    			{% endif %}
@@ -30,16 +33,34 @@
 	    			{% if search.category == 'presentacio' %}
 	    				Presentacio
 	    			{% endif %}
-	    			<li>{{ search.titol}} {{ search.description}}  <img width="200px" src="{{search.path}}{{search.attachment}}" /></li> 
-	    		{% endfor %}
-	    		</ul>
+				</div>
+				<div class="sea sea_tit tit_not">
+	    			{{ search.titol}}
+				</div>
+				<div  class="sea comon">
+				{{ search.description|raw}}
+				</div>
+				
+				</div>
+	    		
+			{% endfor %}
+	    		
+			
+			
+			
+			
+			
+			
 	    		<div class="pagerfanta" >
 	    			{{knp_pagination_render(pagination)}}
 	    		</div>
+			</div>
+		
+			</div>
 	    	{% else %}
 	    	 <p>- There are no things </p>
 	    	{% endif %}
-    	</div>
+    	</div></div>
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}

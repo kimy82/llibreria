@@ -32,6 +32,10 @@ class Slider
 	 */
 	protected $description;
 	
+	/**
+	 * @ORM\Column(type="string", length=100)
+	 */
+	protected $descriptioner;
 	
 	
 	
@@ -110,6 +114,18 @@ class Slider
         return $this;
     }
 
+     /**
+     * Set description
+     *
+     * @param string $description
+     * @return Slider
+     */
+    public function setDescriptioner($descriptioner)
+    {
+        $this->descriptioner = $descriptioner;
+    
+        return $this;
+    }
     /**
      * Get description
      *
@@ -119,4 +135,14 @@ class Slider
     {
         return $this->description;
     }
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescriptioner()
+    {
+        return $this->descriptioner;
+    }
+    
 }

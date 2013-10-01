@@ -11,57 +11,104 @@
 				{% trans %}f_demana_llibre_title{% endtrans %}
 			</div>
 			
-			<div class="res_el">
-				<div class="recer_int">
+			<div class="res_el_lli">
+				<div class="recer_int_lli">
 				{% if pagination|length >0 %}
 				{% for llibre in pagination %}
-					{% trans %}f_llibre_demanat{% endtrans %}<br>
-					<ul>
-						<li>{% trans %}f_busca_llibre_titol{% endtrans %}   <br>{{ llibre.name}}</li>
-						<li>{% trans %}f_busca_llibre_autor{% endtrans %}   <br>{{ llibre.autor}}</li>
-						<li>{% trans %}f_busca_llibre_editorial{% endtrans %}   <br>{{ llibre.editorial}}</li>
-						<li>{% trans %}f_busca_llibre_preu{% endtrans %}   <br>{{ llibre.price}} &euro;</li>
-						<li>{% trans %}f_demana_llibre_preu_desc{% endtrans %}</li>
-					</ul>
+					<div class="tit_lli">
+					{% trans %}f_llibre_demanat{% endtrans %}
+					</div>
+					<div class="ti">
+					{% trans %}f_busca_llibre_titol{% endtrans %}
+					</div>
+					<div class="pi">
+					{{ llibre.name}}
+					</div>
+					<div class="ti">
+					{% trans %}f_busca_llibre_autor{% endtrans %}
+					</div>
+					<div class="pi">
+					{{ llibre.autor}}
+					</div>
+					<div class="ti">
+					{% trans %}f_busca_llibre_editorial{% endtrans %}
+					</div>
+					<div class="pi">
+					{{ llibre.editorial}}
+					</div>
+					<div class="ti">
+					{% trans %}f_busca_llibre_preu{% endtrans %}
+					</div>
+					<div class="pi">
+					{{ llibre.price}} &euro;
+					</div>
+					<div class="ti">
+					{% trans %}f_demana_llibre_preu_desc{% endtrans %}
+					</div>
+					
 				{% endfor %}
 				{% endif %}
 				</div>
 			</div>
-			<div class="pres_el_res">
-				<div class="recer_int">
-				{% trans %}f_mots_acerca{% endtrans %}<br>
-				<div id="search_bar">
-					<input class="inputs_cer" id="cercainput" type="text">
-				</div>
-					<div id="b_search" onclick="search()">
-				</div>
-				<span class="ce">{% trans %}f_busca_llibre_clic{% endtrans %}</span>
+			<div class="pres_el_res_lli">
+				<div class="formu">
+				
 				<div>
 				{{ form_start(form) }} 
     				{{ form_errors(form) }}
-		    			<div> {% trans %}f_busca_llibre_nom_client{% endtrans %}{{ form_label(form.name,' ') }} 
+		    			<div>
+						<div class="lebe">
+					      {% trans %}f_busca_llibre_nom_client{% endtrans %}{{ form_label(form.name,' ') }}
+						</div>
+						<div class="inpu">
 		    			      {{ form_errors(form.name) }} 
 		    			      {{ form_widget(form.name, {}) }}
+					      </div>
 		    			</div>
-		    			<div> {% trans %}f_busca_llibre_poble_client{% endtrans %}{{ form_label(form.poblacio,' ') }} 
+		    			<div>
+						<div class="lebe">
+					      {% trans %}f_busca_llibre_poble_client{% endtrans %}{{ form_label(form.poblacio,' ') }}
+					      </div>
+						<div class="inpu">
 		    			      {{ form_errors(form.poblacio) }} 
 		    			      {{ form_widget(form.poblacio, {}) }}
+					      </div>
 		    			</div>
-		    			<div> {% trans %}f_busca_llibre_adreca_client{% endtrans %}{{ form_label(form.adreca,' ') }} 
+		    			<div>
+						<div class="lebe">
+						{% trans %}f_busca_llibre_adreca_client{% endtrans %}{{ form_label(form.adreca,' ') }}
+						</div>
+						<div class="inpu">
 		    			      {{ form_errors(form.adreca) }} 
 		    			      {{ form_widget(form.adreca, {}) }}
+					      </div>
 		    			</div>
-		    			<div> {% trans %}f_busca_llibre_codipostal_client{% endtrans %}{{ form_label(form.codi,' ') }} 
+		    			<div>
+						<div class="lebe">
+						{% trans %}f_busca_llibre_codipostal_client{% endtrans %}{{ form_label(form.codi,' ') }}
+						</div>
+						<div class="inpu">
 		    			      {{ form_errors(form.codi) }} 
 		    			      {{ form_widget(form.codi, {}) }}
+					      </div>
 		    			</div>
-		    			<div> {% trans %}f_busca_llibre_email_client{% endtrans %}{{ form_label(form.email,' ') }} 
+		    			<div>
+						<div class="lebe">
+						{% trans %}f_busca_llibre_email_client{% endtrans %}{{ form_label(form.email,' ') }}
+						</div>
+						<div class="inpu">
 		    			      {{ form_errors(form.email) }} 
 		    			      {{ form_widget(form.email, {}) }}
+					      </div>
 		    			</div>
-		    			<div> {% trans %}f_busca_llibre_tel_client{% endtrans %}{{ form_label(form.tel,' ') }} 
+		    			<div>
+						<div class="lebe">
+						{% trans %}f_busca_llibre_tel_client{% endtrans %}{{ form_label(form.tel,' ') }}
+						</div>
+						<div class="inpu">
 		    			      {{ form_errors(form.tel) }} 
 		    			      {{ form_widget(form.tel, {}) }}
+					      </div>
 		    			</div>
 		    			<div style="visibility: hidden;"> {{ form_label(form.llibre,' ') }} 
 		    			      {{ form_errors(form.llibre) }} 

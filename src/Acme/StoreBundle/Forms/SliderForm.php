@@ -10,6 +10,7 @@ class SliderForm
 	protected $attachment;
 	
 	protected $description;
+	protected $descriptioner;
 
 	
 	
@@ -39,6 +40,18 @@ class SliderForm
         return $this->description;
     }
 
+    
+     public function setDescriptioner($descriptioner)
+    {
+        $this->descriptioner = $descriptioner;
+    
+        return $this;
+    }
+
+    public function getDescriptioner()
+    {
+        return $this->descriptioner;
+    }
 
    
 }

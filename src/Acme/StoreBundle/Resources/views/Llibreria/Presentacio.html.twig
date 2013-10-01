@@ -10,35 +10,47 @@
 			<div class="tit_fixN">
 				{% trans %}f_presentacio_title{% endtrans %}
 			</div>
-			</div>
+		</div>
 		<div class="contentnot">
-			<div id="co" class="js-masonry"  data-masonry-options='{ "columnWidth": 10, "itemSelector": ".item" }'>
+			
+			<div id="co" class="columns">
 			{% if pagination|length >0 %}
 				{% for presentacio in pagination %}
-					<div class="not_el">
-					<div class="not_int">
-						<span class="tit_not">
-							{{ presentacio.dataEntrada|date('j F Y')}}
-							{{ presentacio.titol}}
-						</span><br>
-						<span class="sub_tit">
-							{{ presentacio.subtitol}}
-						</span><br>
-						<p>{{ presentacio.description}} 	</p>
-						<p><img id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" width="100px" /></p>
-						<div class="not_fet">
-							{% trans %}f_publicat_el{% endtrans %}{{ presentacio.dataEntrada|date('Y F jS')}}
-						</div>
+					
+					
+					<div class="item masonry-brick">
+					<div class="">
+					<div id="ies" class="bola">
+					{% trans %}f_publicat_el{% endtrans %}{{ presentacio.dataEntrada|date('j F Y')}}
+					</div>
+					<div id="ies" class="tit_not tit_top">
+					{{ presentacio.titol}}
+					</div>
+					<div id="ies" class="sub_tit">	
+					{{ presentacio.subtitol}}
+					</div>
+					<div id="ies_img">
+						
+					<img  width="310px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />
+					</div>
+					<div id="ies" class="comon">	
+					{{presentacio.description|raw}}
+					</div>
+					
+					
 					
 					</div>
 					</div>
+					
 					
 				{% endfor %}
 			</div>
-		</div>
-	    		<div class="pagerfanta" >
+			
+			<div class="pagerfanta" >
 	    			{{knp_pagination_render(pagination)}}
 	    		</div>
+		</div>
+	    		
 		    	{% else %}
 		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
 		    	{% endif %}
@@ -46,4 +58,13 @@
 		    		  $('li').removeClass('active');
 		    		  $('#presentacioli').addClass('active');
 		    	</script>
+				<script type="text/javascript">
+ 	
+$(window).load(function() {
+     $('#co').masonry({
+      // options
+      itemSelector : '.item'
+    });
+});	
+</script>
 {% endblock %}

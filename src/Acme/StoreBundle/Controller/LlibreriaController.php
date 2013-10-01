@@ -46,7 +46,7 @@ class LlibreriaController extends Controller
 		$rsm->addEntityResult('Acme\StoreBundle\Entity\Agenda', 'a');
 		$rsm->addFieldResult('a', 'id', 'id'); // ($alias, $columnName, $fieldName)
 		$rsm->addFieldResult('a', 'tablePath', 'tablePath');
-		$rsm->addFieldResult('a', 'description', 'description'); // // ($alias, $columnName, $fieldName)  
+		$rsm->addFieldResult('a', 'description', 'description'); // ($alias, $columnName, $fieldName)  
 		
 		$queryw = $em->createNativeQuery('SELECT id, tablePath, description FROM agenda WHERE portada != ? ', $rsm);
 		$queryw->setParameter(1, 'no');
@@ -404,7 +404,9 @@ class LlibreriaController extends Controller
     	$query = $em->createQueryBuilder();
 		$query = $query->select('n')->from('AcmeStoreBundle:Noticia', 'n')
   			->where( $query->expr()->like('n.titol', $query->expr()->literal('%' . $search . '%')) )
-  			->orwhere( $query->expr()->like('n.subtitol', $query->expr()->literal('%' . $search . '%')) )
+  			->orwhere( $query->expr()->like('n.description', $query->expr()->literal('%' . $search . '%')) )
+			->orwhere( $query->expr()->like('n.subtitol', $query->expr()->literal('%' . $search . '%')) )
+			->orwhere( $query->expr()->like('n.dataEntrada', $query->expr()->literal('%' . $search . '%')) )
   			->getQuery();  
   					     		    	     	
 		$resultatsNoticia=$query->getResult();    
@@ -414,6 +416,7 @@ class LlibreriaController extends Controller
     	  $searched = new Search();
     	  $noticia = $resultatsNoticia[$i];
   		  $searched->setTitol($noticia->getTitol());
+		 
   		  $searched->setDescription($noticia->getSubtitol().', '.$noticia->getDescription());
   		  $searched->setCategory('noticia');
   		  $searched->setPath($pathnoticia);
@@ -428,6 +431,7 @@ class LlibreriaController extends Controller
 		$query = $query->select('n')->from('AcmeStoreBundle:Agenda', 'n')
   			->where( $query->expr()->like('n.titol', $query->expr()->literal('%' . $search . '%')) )
   			->orwhere( $query->expr()->like('n.subtitol', $query->expr()->literal('%' . $search . '%')) )
+			
   			->getQuery();  
   					     		    	     	
 		$resultatsAgenda=$query->getResult();    
