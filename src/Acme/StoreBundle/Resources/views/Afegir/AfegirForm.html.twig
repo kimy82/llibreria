@@ -1,0 +1,58 @@
+{% extends 'AcmeStoreBundle::layout.html.twig' %}
+
+{% block title %}Llibreria 22@{% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+	
+	<div class="con_int">
+
+    <span class="super">	
+    CREAR NOVA SUGGERÈNCIA a BUSCAR LLIBRE
+	</span><br>
+    	{{ form_start(form) }} 
+        {{ form_errors(form) }}
+    			<div id="formol">
+	<div id="left_for">
+	    <div>
+	      Nom<br>
+	      {{ form_errors(form.name) }} 
+	      {{ form_widget(form.name, {}) }}
+	    </div>
+	    <div>
+	     Descripció<br>
+	      {{ form_errors(form.descripcio) }} 
+	      {{ form_widget(form.descripcio, {}) }}
+	    </div>
+	    
+	</div>
+	<div id="rigth_for">
+	  <div>
+	      Data entrada<br>
+	    {{ form_errors(form.date) }} 
+	    {{ form_widget(form.date, {}) }}
+	    </div>
+	    <div>
+	      {{ form_errors(form.attachment) }} 
+	      {{ form_widget(form.attachment, {}) }}
+	    </div>
+	    {{ form_end(form) }}
+	    </div>
+	  
+	</div>
+    	
+    	{% if update == 1 %}
+    	<script>
+    	  document.getElementById("form_attachment").required="";
+    	</script>
+    	{% endif %}
+    	</div></div></div>
+    	
+        {% if app.environment == 'dev' %}
+           DEV
+        {% endif %}
+       
+{% endblock %}

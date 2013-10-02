@@ -61,8 +61,8 @@ class UploadController extends Controller
 	    	$path= $this->get('kernel')->getImagesRootDir();
 	      	$separator = $form['separator']->getData();
 	      	$file = $form['attachment']->getData();
-	       	$extension = $file->guessExtension();
-	       	$pathRel= rand(1, 99999).'lastUpload.'.$extension;
+	       	//extension = $file->guessExtension();
+	       	$pathRel= rand(1, 99999).'lastUpload.txt';
 	      	$form['attachment']->getData()->move($path.'/downloads/uploads/',$pathRel);
 	      	ini_set('auto_detect_line_endings', TRUE); 
 	      	$handle = fopen($path.'/downloads/uploads/'.$pathRel, "r");
@@ -76,7 +76,7 @@ class UploadController extends Controller
 			      try{
 			      	
 			      	$numTotal=$numTotal+1;
-			      	list($name, $autor, $editorial, $category, $desc, $price) = explode("|||", $line);
+			      	list($name, $autor, $editorial, $category, $desc, $price) = explode("¦¦¦", $line);
 			       
 			      	$llibre = new Llibre();
 			     

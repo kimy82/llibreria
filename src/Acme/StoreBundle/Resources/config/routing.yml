@@ -170,6 +170,28 @@ update_presentacio:
 delete_presentacio:
      pattern:  /admin/secured/presentacio/delete/{id}
      defaults: { _controller: AcmeStoreBundle:Presentacio:deletePresentacio }
+
+acme_afegir:
+    pattern:  /admin/secured/afegir
+    defaults: { _controller: AcmeStoreBundle:Afegir:index }
+acme_pre_store_afegir:
+    pattern:  /admin/secured/afegir/afegir_save
+    defaults: { _controller: AcmeStoreBundle:Afegir:precreate }
+store_new_afegir:
+    pattern:  /admin/secured/afegir/afegir_new_save
+    defaults: { _controller: AcmeStoreBundle:Afegir:saveAfegir }
+llistat_store_afegir:
+    pattern:  /admin/secured/afegir/afegir_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Afegir:list }
+edit_afegir:
+    pattern:  /admin/secured/afegir/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Afegir:edit }
+update_presentacio:
+     pattern:  /admin/secured/afegir/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Afegir:updateAfegir }
+delete_afegir:
+     pattern:  /admin/secured/afegir/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Afegir:deleteAfegir }
      
 acme_galeria:
     pattern:  /admin/secured/galeria

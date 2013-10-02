@@ -193,7 +193,7 @@ class LlibreriaController extends Controller
     	$cerca=$name;
     	if($name=='any'){
     		$cerca="";
-    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n order by n.dateEntrada DESC');
+    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n 1=0');
     	}else{    		
     		$query = $em->createQueryBuilder();
 			$query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
@@ -489,6 +489,9 @@ class LlibreriaController extends Controller
 	$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
      	$path= $this->get('kernel')->getImagesPath('foto');
 	
+	$result = $em->createQuery('SELECT n from AcmeStoreBundle:establiments n ')->setMaxResults(1)->getResult();
+	
+	//echo print_r($result);
 	$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
@@ -497,7 +500,7 @@ class LlibreriaController extends Controller
 		$pathfoto = $this->get('kernel')->getImagesPathAlone();
 		
 		return $this->render('AcmeStoreBundle:llibreria:Establiments.html.twig', array(
-           'pathSlider'=>$pathSlider,'pathfoto'=>$pathfoto,'slider'=>$slider, 'foto'=>$foto, 'pagination' => $pagination, 'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'establiments'
+           'pathSlider'=>$pathSlider,'pathfoto'=>$pathfoto,'slider'=>$slider, 'foto'=>$foto, 'pagination' => $pagination,'establiment' => $result, 'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'establiments'
         ));
     }
     

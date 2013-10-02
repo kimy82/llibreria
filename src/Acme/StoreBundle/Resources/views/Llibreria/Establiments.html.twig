@@ -10,7 +10,8 @@
 			<div class="tit_fixN">
 				{% trans %}f_establiments_title{% endtrans %}
 			</div>
-			
+			{{establiment[0].titol}}
+			{{establiment[0].description}}
 			
 			{% if pagination|length >0 %}
 				{% for foto in pagination %}

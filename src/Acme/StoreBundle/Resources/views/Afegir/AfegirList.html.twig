@@ -1,0 +1,64 @@
+{% extends 'AcmeStoreBundle::layout.html.twig' %}
+
+{% block title %}Llibreria 22@{% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+	
+	<div class="con_int">
+	<span class="super">	
+    LLISTAT DE SUGGERENCIES
+	</span>
+    <br>
+    	{% if pagination|length >0 %}
+		
+		<table class="table_admin">
+			
+    		{% for afegir in pagination %}
+		<tr>
+			<td>
+			<img width="50px" src="{{path}}{{ afegir.attachment}}" />  	
+			</td>
+			<td width=100px;>
+			{{ afegir.dateEntrada|date('Y-m-d')}}	
+			</td>
+			<td width=300px;>
+			 {{ afegir.name}}	
+			</td>
+			<td width=300px;>
+			{{ afegir.description}}
+			</td>
+			<td width=30px;>
+			<a href="{{ path('edit_afegir', {'id' : afegir.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+			</td>
+			<td>
+			<a href="{{ path('delete_afegir', {'id' : afegir.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+			</td>
+			</tr>
+		
+		{% endfor %}
+    		<tr>
+    		<td>
+    		
+		</td>
+		<td>
+    		<div class="pagerfanta" >
+    			{{knp_pagination_render(pagination)}}
+    		</div>
+		</td>
+		</tr>
+		</table>
+    	{% else %}
+    	 <p>- There are no things </p>
+    	{% endif %}
+	</div>
+	</div>
+        {% if app.environment == 'dev' %}
+           DEV
+        {% endif %}
+        
+       
+{% endblock %}
