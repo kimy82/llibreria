@@ -28,7 +28,7 @@ Acme\StoreBundle\Entity\NoticiaForm:
             - NotBlank: ~
             - Type: \DateTime 
         titol:
-            - NotBlank: ~       
+            - Blank: ~       
         subtitol:
             - NotBlank: ~
         description:

@@ -23,6 +23,7 @@
 					<input class="inputs_cer" id="cercainput" type="text">
 				</div>
 					<div id="b_search" onclick="search()">
+						
 						<img src="{{ asset('bundles/acmestore/img/search2.png') }}" />
 				</div>
 				<p>{% trans %}f_busca_llibre_desc_2{% endtrans %}</p>
@@ -61,6 +62,7 @@
 				{% endfor %}
 				</table>
 				
+				
 			
 	    		<div class="pagerfanta" >
 	    			{{knp_pagination_render(pagination)}}
@@ -70,6 +72,59 @@
 		    	{% else %}
 		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
 		    	{% endif %}
+			
+			<div class="not_el sugg">
+			{% if paginationafegir|length >0 %}
+				{% for coca in paginationafegir %}
+					<div class="total">
+					{% if  coca.attachment!='aaa' %}
+						<table border="1">
+						<tr>
+						<th><img id="coco" class="buscador" src="{{path}}{{ coca.attachment}}"/></th>
+						</tr>
+						</table>
+					{% endif %}
+						<div>
+						<div class="titol">
+							{{ coca.name}}
+						</div>
+						<div class="texte">
+							<p>{{ coca.description}}</p>
+						</div>											
+						</div>
+					</div>
+					<script type="text/javascript">
+						$( document ).ready(function() {
+					  // Handler for .ready() called.
+					
+					     var imgWidth = $(".buscador").width();
+					     var imgheight = $(".buscador").height();
+					     
+					     
+					     if (imgWidth>imgheight) {
+						$(".buscador").addClass("coco");
+						 
+					     } else{
+						$(".buscador").addClass("nitro");
+					     }
+					});	
+					</script>	
+						
+				{% endfor %}
+				</table>
+				
+				
+			
+	    		<div class="pagerfanta" >
+	    			{{knp_pagination_render(paginationafegir)}}
+	    		</div>
+	    		</div>
+				</div>
+		    	{% else %}
+		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+		    	{% endif %}
+			</div>
+			
 		    	<script>
 		    	$('li').removeClass('active');
 		    	$('#buscallibreli').addClass('active');

@@ -20,8 +20,11 @@
 					<div class="not_int">
 						
 					
-							{{foto.description|raw}}						
-						<img src='{{pathfoto}}foto/{{ foto.attachment}}' />
+						{{foto.description|raw}}
+						{% if  foto.attachment!='aaa' %}
+							<img src='{{pathfoto}}foto/{{ foto.attachment}}' />      
+						{% endif %}
+						
 
 					
 					</div>

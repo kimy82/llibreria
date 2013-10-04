@@ -20,19 +20,18 @@ class AfegirController extends Controller
     
 
 	public function saveAfegirAction(Request $request){
-		$form = new AfegirForm();
+	    $form = new AfegirForm();
 		
-		$form = $this->createFormBuilder($form)
-       	 	->setAction($this->generateUrl('store_new_afegir'))
-       	 	->setMethod('POST')
-             ->add('date', 'date')
+	    $form = $this->createFormBuilder($form)
+       	    ->setAction($this->generateUrl('store_new_afegir'))
+       	    ->setMethod('POST')
+            ->add('date', 'date')
             ->add('name', 'text')
             ->add('descripcio', 'text')
-	     ->add('attachment', 'file')
+	    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
-            
-		$form->handleRequest($request);
+	    $form->handleRequest($request);
 	
 	    if ($form->isValid()) {
 	        // perform some action, such as saving the task to the database
@@ -44,17 +43,22 @@ class AfegirController extends Controller
 	        $afegir->setAttachment("aaa");
 	    
 	        
+		
+		
+		
 	    	
 	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
-	         $em = $this->getDoctrine()->getManager();
-	   		 $em->persist($afegir);
-	    	 $em->flush();
-	         $path= $this->get('kernel')->getImagesRootDir();
-			 $file = $form['attachment']->getData()->move($path.'/downloads/afegir/','sug_'.$afegir->getId().'.jpg');
-			 
-			  $afegir->setAttachment('sug_'.$afegir->getId().'.jpg');
-			  $em->persist($afegir);
-	    	  $em->flush();
+	        $em = $this->getDoctrine()->getManager();
+	   	$em->persist($afegir);
+	    	$em->flush();
+	        $path= $this->get('kernel')->getImagesRootDir();
+		if ($form['attachment']->getData()!=null){
+		
+		$file = $form['attachment']->getData()->move($path.'/downloads/afegir/','sug_'.$afegir->getId().'.jpg');
+		$afegir->setAttachment('sug_'.$afegir->getId().'.jpg');
+		}
+		$em->persist($afegir);
+	    	$em->flush();
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_afegir'));
 	    }
@@ -65,26 +69,21 @@ class AfegirController extends Controller
 	public function precreateAction(Request $request)
 	{	 
 		$afegirform = new AfegirForm();			
-	
-	    
-	    $afegirform->setDate(new \DateTime('tomorrow'));
-       $afegirform->setName("Name");
-       	$afegirform->setDescripcio("descripcio");
-       	
-      
-       	
-       	 $formToRender = $this->createFormBuilder($afegirform)
+		$afegirform->setDate(new \DateTime('tomorrow'));
+		$afegirform->setName("Name");
+	    	$afegirform->setDescripcio("descripcio");
+		$formToRender = $this->createFormBuilder($afegirform)
        	 	->setAction($this->generateUrl('store_new_afegir'))
        	 	->setMethod('POST')
-            ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('descripcio', 'text')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+		->add('date', 'date')
+		->add('name', 'text')
+		->add('descripcio', 'text')
+		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		->add('save', 'submit')
+		->getForm();
             
-        return $this->render('AcmeStoreBundle:afegir:AfegirForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>false,'body'=>'adminafegir'
+		return $this->render('AcmeStoreBundle:afegir:AfegirForm.html.twig', array(
+		'form' => $formToRender->createView(),'update' =>false,'body'=>'adminafegir'
         ));	   
 	}
 	
@@ -104,7 +103,7 @@ class AfegirController extends Controller
 		$path= $this->get('kernel')->getImagesPath('afegir');
 		$pathServer= $this->get('kernel')->getServerPath();
 		return $this->render('AcmeStoreBundle:afegir:AfegirList.html.twig', array(
-            'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'adminafegir'
+		'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'adminafegir'
         ));
 	}
 	
@@ -112,30 +111,36 @@ class AfegirController extends Controller
 	{	
 		
 		$afegir = $this->getDoctrine()->getRepository('AcmeStoreBundle:Afegir')->find($id);
-		$afegirform = new AfegriForm();			
+		$afegirform = new AfegirForm();
 		
+		
+		$afegirform->setName($afegir->getName());
+		$afegirform->setDate($afegir->getDateEntrada());
+		$afegirform->setDescripcio($afegir->getDescription());
 		$path = $this->get('kernel')->getImagesRootDir();
-		$file = new File($path.'downloads/afegir/'.$afegir->getAttachment(), true);
+		
+		if ( $afegir->getAttachment()!='aaa'){
+		    $file = new File($path.'downloads/afegir/'.$afegir->getAttachment(), true);
+		    $afegirform->setAttachment($file);
+		}
 	    
-	 $afegirform->setDate($afegir->getDateEntrada());
-       	 $afegirform->setName($afegir->getName());
-       	 $afegirform->setDescripcio($afegir->getDescription());
-       	 $afegirform->setAttachment($file);
+		
+		
 
        	
-       	$path = $this->get('kernel')->getServerPath();
-       	 $formToRender = $this->createFormBuilder($afegirform)
+		$path = $this->get('kernel')->getServerPath();
+		$formToRender = $this->createFormBuilder($afegirform)
        	 	->setAction($path.'/admin/secured/afegir/update/'.$id)
        	 	->setMethod('POST')
-            ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('descripcio', 'text')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+		->add('date', 'date')
+		->add('name', 'text')
+		->add('descripcio', 'text')
+		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		->add('save', 'submit')
+		->getForm();
             
-        return $this->render('AcmeStoreBundle:afegir:AfegriForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>true,'body'=>'adminafegir'
+		return $this->render('AcmeStoreBundle:afegir:AfegirForm.html.twig', array(
+		    'form' => $formToRender->createView(),'update' =>true,'body'=>'adminafegir'
         ));	   
 	}
 	
@@ -145,12 +150,12 @@ class AfegirController extends Controller
 		$form = $this->createFormBuilder($form)
        	 	->setAction($this->generateUrl('store_new_afegir'))
        	 	->setMethod('POST')
-            ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('descripcio', 'text')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+		->add('date', 'date')
+		->add('name', 'text')
+		->add('descripcio', 'text')
+		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		->add('save', 'submit')
+		->getForm();
             
 		$form->handleRequest($request);
 	
@@ -190,10 +195,9 @@ class AfegirController extends Controller
 	
 	
 		$afegir = $this->getDoctrine()->getRepository('AcmeStoreBundle:Afegir')->find($id);
-		
-	  	 $em = $this->getDoctrine()->getManager();
-	   	 $em->remove($afegir);
-	   	 $em->flush();
+		$em = $this->getDoctrine()->getManager();
+	   	$em->remove($afegir);
+	   	$em->flush();
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_afegir'));
 	    }

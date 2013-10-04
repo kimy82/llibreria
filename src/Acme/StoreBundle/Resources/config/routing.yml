@@ -129,7 +129,7 @@ edit_establiments:
     pattern:  /admin/secured/establiments/edit/{id}
     defaults: { _controller: AcmeStoreBundle:Establiments:edit }
 update_establiments:
-     pattern:  /admin/secured/establiments/update/{id}
+     pattern:  /admin/secured/establiments/update
      defaults: { _controller: AcmeStoreBundle:Establiments:updateEstabliments }
 delete_establiments:
      pattern:  /admin/secured/establiments/delete/{id}
@@ -144,10 +144,10 @@ edit_foto:
     defaults: { _controller: AcmeStoreBundle:Establiments:edito }
 update_foto:
      pattern:  /admin/secured/foto/update/{id}
-     defaults: { _controller: AcmeStoreBundle:Establiments:updateEstablimentso }
+     defaults: { _controller: AcmeStoreBundle:Establiments:updateFoto }
 delete_foto:
      pattern:  /admin/secured/foto/delete/{id}
-     defaults: { _controller: AcmeStoreBundle:Establiments:deleteEstablimentso }    
+     defaults: { _controller: AcmeStoreBundle:Establiments:deleteEstablimentso }
    
 acme_presentacio:
     pattern:  /admin/secured/presentacio
@@ -186,7 +186,7 @@ llistat_store_afegir:
 edit_afegir:
     pattern:  /admin/secured/afegir/edit/{id}
     defaults: { _controller: AcmeStoreBundle:Afegir:edit }
-update_presentacio:
+update_afegir:
      pattern:  /admin/secured/afegir/update/{id}
      defaults: { _controller: AcmeStoreBundle:Afegir:updateAfegir }
 delete_afegir:

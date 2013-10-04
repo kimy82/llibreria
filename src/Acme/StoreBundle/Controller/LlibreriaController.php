@@ -5,7 +5,7 @@ namespace Acme\StoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\StoreBundle\Entity\Agenda;
 use Acme\StoreBundle\Entity\Foto;
-
+use Acme\StoreBundle\Entity\Afegir;
 use Acme\StoreBundle\Entity\Encarrecs;
 use Acme\StoreBundle\Entity\Llibre;
 use Acme\StoreBundle\Forms\Search;
@@ -191,9 +191,26 @@ class LlibreriaController extends Controller
     	
     	$em = $this->getDoctrine()->getManager();
     	$cerca=$name;
+	
+		
+			
+	
+	
+     	
+		
+		$buscaafegir = $em->createQuery('SELECT n from AcmeStoreBundle:afegir n order by n.id DESC');
+		$paginatorafegir= $this->get('knp_paginator');
+		$pagename2 = 'page2'; 
+		$paginationafegir= $paginatorafegir->paginate($buscaafegir,$this->get('request')->query->get($pagename2,1),6, array('pageParameterName' => $pagename2));
+		$path= $this->get('kernel')->getImagesPath('afegir');
+		$pathServer= $this->get('kernel')->getServerPath();
+	
+	
+	
+	
     	if($name=='any'){
     		$cerca="";
-    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n 1=0');
+    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n order by n.dateEntrada DESC ');
     	}else{    		
     		$query = $em->createQueryBuilder();
 			$query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
@@ -207,14 +224,15 @@ class LlibreriaController extends Controller
 		$resultats=count($query->getResult());       					
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
-		$path= $this->get('kernel')->getImagesPath('llibre');
+		$pagename1 = 'page1'; 
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get($pagename1,1),30, array('pageParameterName' => $pagename1));
+		$path= $this->get('kernel')->getImagesPath('afegir');
 		$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
 		return $this->render('AcmeStoreBundle:llibreria:BuscaLlibre.html.twig', array(
-            'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'busca','cerca'=>$cerca,'numresultats'=>$resultats
-        ));
+            'pathSlider'=>$pathSlider,'slider'=>$slider,'paginationafegir' => $paginationafegir,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'busca','cerca'=>$cerca,'numresultats'=>$resultats
+	    ));
     }
     
 	public function demanaLlibreAction($id)
@@ -223,10 +241,9 @@ class LlibreriaController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	
     	$path= $this->get('kernel')->getImagesPath('llibre');
-		$pathServer= $this->get('kernel')->getServerPath();
-    	    		
+	$pathServer= $this->get('kernel')->getServerPath();	
     	$query = $em->createQueryBuilder();
-		$resultats = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
+	$resultats = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
   					   ->where( 'n.id='.$id )
   					   ->getQuery()->getResult();
 
@@ -272,6 +289,8 @@ class LlibreriaController extends Controller
             'form' => $form->createView(),
         ));
     }
+    
+
     
 	public function saveDemanaAction(Request $request)
     {
@@ -340,11 +359,13 @@ class LlibreriaController extends Controller
 		$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
+		
 		return $this->render('AcmeStoreBundle:llibreria:Suggeriments.html.twig', array(
             'pathSlider'=>$pathSlider,'slider'=>$slider,'paginationllibre' => $queryllibre,'paginationbutxaca' => $querybutxaca,
             'paginationcomic' => $querycomic,'paginationinfantil' => $queryinfantil,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'suggeriments'
         ));
     }
+    
     
 	public function semuaSearchAction($search)
     {
@@ -493,24 +514,17 @@ class LlibreriaController extends Controller
 	
 	//echo print_r($result);
 	$pathServer= $this->get('kernel')->getServerPath();
-		$slider = $this->getSlider();
-		$pathSlider = $this->get('kernel')->getImagesPathAlone();
+	$slider = $this->getSlider();
+	$pathSlider = $this->get('kernel')->getImagesPathAlone();
 		
-		$foto = $this->fotoAction();
-		$pathfoto = $this->get('kernel')->getImagesPathAlone();
+		
+		
 		
 		return $this->render('AcmeStoreBundle:llibreria:Establiments.html.twig', array(
-           'pathSlider'=>$pathSlider,'pathfoto'=>$pathfoto,'slider'=>$slider, 'foto'=>$foto, 'pagination' => $pagination,'establiment' => $result, 'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'establiments'
+           'pathSlider'=>$pathSlider,'pathfoto'=>$pathSlider,'slider'=>$slider, 'pagination' => $pagination,'establiment' => $result, 'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'establiments'
         ));
     }
-    
-    public function fotoAction()
-    {
-    		$em = $this->getDoctrine()->getManager();     			
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:foto n ');
-		$foto = $query->getResult();
-		return $foto;
-    }
+
     
     private function getSlider(){
     	
@@ -520,5 +534,6 @@ class LlibreriaController extends Controller
 		return $sliders;
 		
     }
+    
     
 }

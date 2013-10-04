@@ -30,8 +30,10 @@
 					{{ presentacio.subtitol}}
 					</div>
 					<div id="ies_img">
-						
-					<img  width="310px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />
+					 {% if  presentacio.attachment!='aaa' %}
+                         <img  width="310px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />      
+                       {% endif %}	
+					
 					</div>
 					<div id="ies" class="comon">	
 					{{presentacio.description|raw}}

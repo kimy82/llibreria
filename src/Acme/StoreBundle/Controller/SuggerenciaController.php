@@ -33,7 +33,7 @@ class SuggerenciaController extends Controller
             ->add('editorial', 'text')
             ->add('descripcio', 'text')
             ->add('price','money')            
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -61,9 +61,12 @@ class SuggerenciaController extends Controller
 	   		 $em->persist($suggerencia);
 	    	 $em->flush();
 	         $path= $this->get('kernel')->getImagesRootDir();
-			 $file = $form['attachment']->getData()->move($path.'/downloads/suggerencia/','sug_'.$suggerencia->getId().'.jpg');
-			 
-			  $suggerencia->setAttachment('sug_'.$suggerencia->getId().'.jpg');
+		 if ($form['attachment']->getData()!=null){
+		    
+		    $file = $form['attachment']->getData()->move($path.'/downloads/suggerencia/','sug_'.$suggerencia->getId().'.jpg');
+		    $suggerencia->setAttachment('sug_'.$suggerencia->getId().'.jpg');
+	    	 }
+	    
 			  $em->persist($suggerencia);
 	    	  $em->flush();
 			
@@ -95,7 +98,7 @@ class SuggerenciaController extends Controller
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
             ->add('price','money')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -131,13 +134,18 @@ class SuggerenciaController extends Controller
 		$suggerenciaform = new SuggerenciaForm();			
 		
 		$path = $this->get('kernel')->getImagesRootDir();
-		$file = new File($path.'downloads/suggerencia/'.$suggerencia->getAttachment(), true);
+		if ( $noticia->getAttachment()!='aaa'){
+		    $file = new File($path.'downloads/suggerencia/'.$suggerencia->getAttachment(), true);
+		    $suggerenciaform->setAttachment($file);
+		}
+		
+		
 	    
 	    $suggerenciaform->setDate($suggerencia->getDateEntrada());
        	$suggerenciaform->setName($suggerencia->getName());
        	$suggerenciaform->setDescripcio($suggerencia->getDescription());
        	$suggerenciaform->setPrice($suggerencia->getPrice());
-       	$suggerenciaform->setAttachment($file);
+       	
        	$suggerenciaform->setAutor($suggerencia->getAutor());
        	$suggerenciaform->setCategory($suggerencia->getCategory());
        	$suggerenciaform->setEditorial($suggerencia->getEditorial());
@@ -155,7 +163,7 @@ class SuggerenciaController extends Controller
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
             ->add('price','money')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -178,7 +186,7 @@ class SuggerenciaController extends Controller
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
             ->add('price','money')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             

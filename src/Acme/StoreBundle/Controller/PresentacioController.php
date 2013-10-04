@@ -37,7 +37,7 @@ class PresentacioController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -64,10 +64,16 @@ class PresentacioController extends Controller
 	   		 $em->persist($presentacio);
 	    	 $em->flush();
 	         $path= $this->get('kernel')->getImagesRootDir();
-			 $file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacio->getId().'.jpg');
-			 
-			  $presentacio->setAttachment('pre_'.$presentacio->getId().'.jpg');
-			  $em->persist($presentacio);
+		 
+		 if ($form['attachment']->getData()!=null){
+			
+			$file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacio->getId().'.jpg');
+			$presentacio->setAttachment('pre_'.$presentacio->getId().'.jpg');
+		 }
+		 
+		 
+		
+		  $em->persist($presentacio);
 	    	  $em->flush();
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_presentacio'));
@@ -105,7 +111,7 @@ class PresentacioController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -138,38 +144,43 @@ class PresentacioController extends Controller
 		$presentacioform = new PresentacioForm();			
 		
 		$path = $this->get('kernel')->getImagesRootDir();
-		$file = new File($path.'downloads/presentacio/'.$presentacio->getAttachment(), true);
+		
+		
+		
 	    
-	    $presentacioform->setDateEntrada($presentacio->getDataEntrada());
-       	$presentacioform->setTitol($presentacio->getTitol());
-       	$presentacioform->setSubtitol($presentacio->getSubtitol());
-       	$presentacioform->setDescription($presentacio->getDescription());
-       	$presentacioform->setNovetat($presentacio->getNovetat());
-       	$presentacioform->setPortada($presentacio->getPortada());
-       	$presentacioform->setDataFi($presentacio->getDataFi());
-       	$presentacioform->setLloc($presentacio->getLloc());
-	    $presentacioform->setIntervindran($presentacio->getIntervindran());
-       	$presentacioform->setAttachment($file);
+		$presentacioform->setDateEntrada($presentacio->getDataEntrada());
+		$presentacioform->setTitol($presentacio->getTitol());
+		$presentacioform->setSubtitol($presentacio->getSubtitol());
+		$presentacioform->setDescription($presentacio->getDescription());
+		$presentacioform->setNovetat($presentacio->getNovetat());
+		$presentacioform->setPortada($presentacio->getPortada());
+		$presentacioform->setDataFi($presentacio->getDataFi());
+		$presentacioform->setLloc($presentacio->getLloc());
+		$presentacioform->setIntervindran($presentacio->getIntervindran());
+		if ( $presentacio->getAttachment()!='aaa'){
+		    $file = new File($path.'downloads/presentacio/'.$presentacio->getAttachment(), true);
+		    $presentacioform->setAttachment($file);
+		}
        	
-       	$path = $this->get('kernel')->getServerPath();
-       	 $formToRender = $this->createFormBuilder($presentacioform)
-       	 	->setAction($path.'/admin/secured/presentacio/update/'.$id)
-       	 	->setMethod('POST')
-            ->add('date_entrada', 'date')
-            ->add('titol', 'text')
-            ->add('subtitol', 'text')
-            ->add('description', 'text')
-            ->add('intervindran', 'text')
-            ->add('lloc', 'text')
-            ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
-            ->add('portada',  'choice', array(
-			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
-			    'required'  => false,
-			))
-            ->add('data_fi','date')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+		$path = $this->get('kernel')->getServerPath();
+		$formToRender = $this->createFormBuilder($presentacioform)
+		    ->setAction($path.'/admin/secured/presentacio/update/'.$id)
+		    ->setMethod('POST')
+		    ->add('date_entrada', 'date')
+		    ->add('titol', 'text')
+		    ->add('subtitol', 'text')
+		    ->add('description', 'text')
+		    ->add('intervindran', 'text')
+		    ->add('lloc', 'text')
+		    ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
+		    ->add('portada',  'choice', array(
+				    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+				    'required'  => false,
+				))
+		    ->add('data_fi','date')
+		     ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		    ->add('save', 'submit')
+		    ->getForm();
             
         return $this->render('AcmeStoreBundle:presentacio:PresentacioForm.html.twig', array(
             'form' => $formToRender->createView(),'update' =>true,
@@ -194,7 +205,7 @@ class PresentacioController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             

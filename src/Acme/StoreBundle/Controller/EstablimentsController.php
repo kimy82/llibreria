@@ -27,16 +27,17 @@ class EstablimentsController extends Controller
 		$form = $this->createFormBuilder($form)
        	 	->setAction($this->generateUrl('store_new_establiments'))
        	 	->setMethod('POST')
-            ->add('titol', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit')
-            ->getForm();
+		->add('titol', 'text')
+		->add('description', 'text')
+		->add('save', 'submit')
+		->getForm();
             
 		$form->handleRequest($request);
-	
+		
+		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);	
 	    if ($form->isValid()) {
 	        // perform some action, such as saving the task to the database
-	        $establiments = new Establiments();
+	        
 	        $dades =$form->getData();
 	        $establiments->setTitol($form['titol']->getData());
 	        $establiments->setDescription($form['description']->getData());    
@@ -58,34 +59,38 @@ class EstablimentsController extends Controller
                 $fotoform = new FotoForm();
 	
 	    
-	
-       	$establimentsform->setTitol("Titol");
-       	$establimentsform->setDescription("descripcio");
-        $fotoform->setDescription("descripcio");
+		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);			
+		
+    
+		$establimentsform->setDescription($establiments->getDescription());
+		$establimentsform->setTitol($establiments->getTitol());
+		
+		
+		$fotoform->setDescription("descripcio");
        	
-       	 $formToRender = $this->createFormBuilder($establimentsform)
-       	 	->setAction($this->generateUrl('store_new_establiments'))
-       	 	->setMethod('POST')
-            ->add('titol', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit')
-            ->getForm();
+		$formToRender = $this->createFormBuilder($establimentsform)
+		       ->setAction($this->generateUrl('store_new_establiments'))
+		       ->setMethod('POST')
+		       ->add('titol', 'text')
+		       ->add('description', 'text')
+		       ->add('save', 'submit')
+		       ->getForm();
+		   
+			$formfotoToRender = $this->createFormBuilder($fotoform)
+		       ->setAction($this->generateUrl('store_new_foto'))
+		       ->setMethod('POST')
+		       ->add('description', 'text')
+		       ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		       ->add('save', 'submit')
+		       ->getForm();    
             
-        	 $formfotoToRender = $this->createFormBuilder($fotoform)
-       	 	->setAction($this->generateUrl('store_new_foto'))
-       	 	->setMethod('POST')
-            ->add('description', 'text')
-             ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();    
-            
-        return $this->render('AcmeStoreBundle:establiments:EstablimentsForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>false,
-            'formater' => $formfotoToRender->createView(),'attachment'=>'',
-        ));	   
+	    return $this->render('AcmeStoreBundle:establiments:EstablimentsForm.html.twig', array(
+		'form' => $formToRender->createView(),'update' =>false,
+		'formater' => $formfotoToRender->createView(),'attachment'=>'',
+	    ));	   
 	}
 	
-		public function listAction(Request $request, $orderBy)
+	public function listAction(Request $request, $orderBy)
 	{	 
 		$em = $this->getDoctrine()->getManager();
 		$orderBy = str_replace("..", "'%", $orderBy);
@@ -98,73 +103,78 @@ class EstablimentsController extends Controller
 		$pathServer= $this->get('kernel')->getServerPath();
 		
 		return $this->render('AcmeStoreBundle:establiments:EstablimentsList.html.twig', array(
-            'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,
-        ));
+		    'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,
+		));
 	}
 	
-		public function editoAction($id)
+	public function editoAction($id)
 	{	
 		
 		$foto = $this->getDoctrine()->getRepository('AcmeStoreBundle:Foto')->find($id);
 		$fotoform = new FotoForm();			
 		
 	    
-    $path= $this->get('kernel')->getImagesRootDir();
-       	$fotoform->setDescription($foto->getDescription());
-         $pathImg = $this->get('kernel')->getImagesPath("foto").$foto->getAttachment();
-        $file = new File($path.'downloads/foto/'.$foto->getAttachment(), true);
-       	$fotoform->setAttachment($file);
-       	
-       	 $formToRender = $this->createFormBuilder($fotoform)
-       	 	->setAction($path.'/admin/secured/establiments/update/'.$id)
-       	 	->setMethod('POST')
-           
-            ->add('description', 'text')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+		$path= $this->get('kernel')->getImagesRootDir();
+		
+		if ( $noticia->getAttachment()!='aaa'){
+		   $file = new File($path.'downloads/foto/'.$foto->getAttachment(), true);
+		    $fotoform->setAttachment($file);
+		}
+		
+		$fotoform->setDescription($foto->getDescription());
+		$pathImg = $this->get('kernel')->getImagesPath("foto").$foto->getAttachment();
+		
+		
+		$pathUrl = $this->get('kernel')->getServerPath();
+		$formToRender = $this->createFormBuilder($fotoform)
+		    ->setAction($pathUrl.'/admin/secured/foto/update/'.$id)
+		    ->setMethod('POST')
+		    ->add('description', 'text')
+		    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		    ->add('save', 'submit')
+		    ->getForm();
             
             
-            $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
-	    $establimentsform = new EstablimentsForm();			
+		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
+		$establimentsform = new EstablimentsForm();			
 		
 	    
     
-       	$establimentsform->setDescription($establiments->getDescription());
-        $establimentsform->setTitol($establiments->getTitol());
+		$establimentsform->setDescription($establiments->getDescription());
+		$establimentsform->setTitol($establiments->getTitol());
       
+		
        
-       
-       	 $formToRenderEstabliments = $this->createFormBuilder($establimentsform)
-       	 	->setAction($path.'/admin/secured/establiments/update/'.$id)
-       	 	->setMethod('POST')
-           
-            ->add('description', 'text')
-           ->add('titol', 'text')
-            ->add('save', 'submit')
-            ->getForm();
+		$formToRenderEstabliments = $this->createFormBuilder($establimentsform)
+		    ->setAction($pathUrl.'/admin/secured/establiments/update')
+		    ->setMethod('POST')
+		    ->add('description', 'text')
+		    ->add('titol', 'text')
+		    ->add('save', 'submit')
+		    ->getForm();
             
-            $path= $this->get('kernel')->getImagesRootDir();
-        return $this->render('AcmeStoreBundle:establiments:EstablimentsForm.html.twig', array(
-            'form' => $formToRenderEstabliments->createView(),'update' =>true,
-            'formater' => $formToRender->createView(),'update' =>true,'attachment'=>$pathImg,
-        ));	   
+		    
+		    
+	    return $this->render('AcmeStoreBundle:establiments:EstablimentsForm.html.twig', array(
+		'form' => $formToRenderEstabliments->createView(),'update' =>true,
+		'formater' => $formToRender->createView(),'update' =>true,'attachment'=>$pathImg,
+	    ));	   
 	}
 	
-	public function updateEstablimentsAction(Request $request,$id){
+	public function updateEstablimentsAction(Request $request){
 		$form = new EstablimentsForm();
 		
 		$form = $this->createFormBuilder($form)
-       	 	->setAction($this->generateUrl('store_new_Establiments'))
+       	 	->setAction($this->generateUrl('update_establiments'))
        	 	->setMethod('POST')
-            ->add('titol', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit')
-            ->getForm();
+		->add('titol', 'text')
+		->add('description', 'text')
+		->add('save', 'submit')
+		->getForm();
             
 		$form->handleRequest($request);
 	
-		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find($id);
+		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
 		
 	    if ($form->isValid()) {
 	        // perform some action, such as saving the task to the database
@@ -177,7 +187,7 @@ class EstablimentsController extends Controller
 	    	
 	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
 	         $em = $this->getDoctrine()->getManager();
-	   		 $em->persist($establiments);
+		 $em->persist($establiments);
 	    	 $em->flush();
 			 
 	    
@@ -189,7 +199,45 @@ class EstablimentsController extends Controller
 	    
 	}
 	
-	public function deleteoAction(Request $request,$id){
+	public function updateFotoAction(Request $request, $id){
+		$form = new FotoForm();
+		$pathUrl = $this->get('kernel')->getServerPath();
+		
+		$form = $this->createFormBuilder($form)
+		    ->setAction($pathUrl.'/admin/secured/foto/update/'.$id)
+		    ->setMethod('POST')
+		    ->add('description', 'text')
+		    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		    ->add('save', 'submit')
+		    ->getForm();
+		
+		$form->handleRequest($request);
+	
+		$fotoToUpdate = $this->getDoctrine()->getRepository('AcmeStoreBundle:Foto')->find($id);
+		
+	    if ($form->isValid()) {
+	        // perform some action, such as saving the task to the database
+	       
+	        $dades =$form->getData();
+	      
+	        
+	        $fotoToUpdate->setDescription($form['description']->getData());
+	       
+		$path= $this->get('kernel')->getImagesRootDir();
+	         if ($form['attachment']->getData()!=null){
+			  $file = $form['attachment']->getData()->move($path.'/downloads/foto/','gal_'.$fotoToUpdate->getId().'.jpg');
+	         }
+	        $em = $this->getDoctrine()->getManager();
+		$em->persist($fotoToUpdate);
+	    	$em->flush();
+			 
+	    
+	        return $this->redirect($this->generateUrl('acme_pre_store_establiments'));
+	    }
+	    
+	}
+	
+	public function deleteEstablimentsoAction(Request $request,$id){
 	
 	
 		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Foto')->find($id);
@@ -198,7 +246,7 @@ class EstablimentsController extends Controller
 	   	 $em->remove($establiments);
 	   	 $em->flush();
 			
-	        return $this->redirect($this->generateUrl('acme_pre_store_establiments'));
+	        return $this->redirect($this->generateUrl('acme_pre_store_establimentso'));
 	    }
             
         public function saveFotoAction(Request $request){
@@ -207,35 +255,38 @@ class EstablimentsController extends Controller
 		$form = $this->createFormBuilder($form)
        	 	->setAction($this->generateUrl('store_new_foto'))
        	 	->setMethod('POST')
-            ->add('description', 'text')
-             ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+		->add('description', 'text')
+		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+		->add('save', 'submit')
+		->getForm();
             
 		$form->handleRequest($request);
 	
-	    if ($form->isValid()) {
-	        // perform some action, such as saving the task to the database
-	        $establiments = new Foto();
-	        $dades =$form->getData();
-	        $establiments->setDescription($form['description']->getData());    
-	    	
-	        $establiments->setAttachment("aaa");
-	    	
-	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
-	         $em = $this->getDoctrine()->getManager();
-	   		 $em->persist($establiments);
-	    	 $em->flush();
-	         $path= $this->get('kernel')->getImagesRootDir();
-			 $file = $form['attachment']->getData()->move($path.'/downloads/foto/','gal_'.$establiments->getId().'.jpg');
-			 
-			  $establiments->setAttachment('gal_'.$establiments->getId().'.jpg');
-                $em->persist($establiments);
-	    	$em->flush();
-	        
+		if ($form->isValid()) {
+		    // perform some action, such as saving the task to the database
+		    $establiments = new Foto();
+		    $dades =$form->getData();
+		    $establiments->setDescription($form['description']->getData());    
+		    
+		    $establiments->setAttachment("aaa");
+		    
+		 //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
+		    $em = $this->getDoctrine()->getManager();
+		    $em->persist($establiments);
+		    $em->flush();
+		    $path= $this->get('kernel')->getImagesRootDir();
+		    if ($form['attachment']->getData()!=null){
 			
-	        return $this->redirect($this->generateUrl('acme_pre_store_establiments'));
-	    }
+			$file = $form['attachment']->getData()->move($path.'/downloads/foto/','gal_'.$establiments->getId().'.jpg');
+			 $establiments->setAttachment('gal_'.$establiments->getId().'.jpg');
+		    }
+    
+		    $em->persist($establiments);
+		    $em->flush();
+		    
+			    
+		    return $this->redirect($this->generateUrl('acme_pre_store_establiments'));
+		}
 	    
 	}
 	    

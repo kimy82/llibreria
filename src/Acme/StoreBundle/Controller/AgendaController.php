@@ -35,7 +35,7 @@ class AgendaController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -60,11 +60,15 @@ class AgendaController extends Controller
 	   		 $em->persist($agenda);
 	    	 $em->flush();
 	         $path= $this->get('kernel')->getImagesRootDir();
-			 $file = $form['attachment']->getData()->move($path.'/downloads/agenda/','age_'.$agenda->getId().'.jpg');
-			 
-			  $agenda->setAttachment('age_'.$agenda->getId().'.jpg');
-			  $em->persist($agenda);
-	    	  $em->flush();
+		 if ($form['attachment']->getData()!=null){
+		    echo print_r($prova);
+		    
+		    $file = $form['attachment']->getData()->move($path.'/downloads/agenda/','age_'.$agenda->getId().'.jpg');
+		    $agenda->setAttachment('age_'.$agenda->getId().'.jpg');
+		 }
+		 	 
+		$em->persist($agenda);
+	    	$em->flush();
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_agenda'));
 	    }
@@ -97,7 +101,7 @@ class AgendaController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -130,7 +134,12 @@ class AgendaController extends Controller
 		$agendaform = new AgendaForm();			
 		
 		$path = $this->get('kernel')->getImagesRootDir();
-		$file = new File($path.'downloads/agenda/'.$agenda->getAttachment(), true);
+		
+		if ( $noticia->getAttachment()!='aaa'){
+		    $file = new File($path.'downloads/agenda/'.$agenda->getAttachment(), true);
+		    $agendaform->setAttachment($file);
+		}
+		
 	    
 	    $agendaform->setDateEntrada($agenda->getDataEntrada());
        	$agendaform->setTitol($agenda->getTitol());
@@ -139,7 +148,7 @@ class AgendaController extends Controller
        	$agendaform->setNovetat($agenda->getNovetat());
        	$agendaform->setPortada($agenda->getPortada());
        	$agendaform->setDataFi($agenda->getDataFi());
-       	$agendaform->setAttachment($file);
+       	
        	
        	$path = $this->get('kernel')->getServerPath();
        	 $formToRender = $this->createFormBuilder($agendaform)
@@ -155,7 +164,7 @@ class AgendaController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -180,7 +189,7 @@ class AgendaController extends Controller
 			    'required'  => false,
 			))
             ->add('data_fi','date')
-            ->add('attachment', 'file')
+           ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
             

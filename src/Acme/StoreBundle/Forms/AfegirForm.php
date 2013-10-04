@@ -40,10 +40,11 @@ class AfegirForm
         $this->date = $date;
     }
     
- 	public function getAttachment()
+    public function getAttachment()
     {
         return $this->attachment;
     }
+    
     public function setAttachment($attachment)
     {
         $this->attachment = $attachment;

@@ -47,7 +47,10 @@
 			<span class="sub_tit">
 			{{ noti.subtitol}}
 			</span><br>
-			<img src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" />
+			{% if  noti.attachment!='aaa' %}
+							<img src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" />   
+			{% endif %}
+			
 			{{ noti.description}}
 			
 			
@@ -88,7 +91,10 @@
 			<div class="farl des">
 			{{ presentacio.description}}
 			</div>
-			<img  src="{{path}}presentacio/{{ presentacio.attachment}}" />
+			{% if  presentacio.attachment!='aaa' %}
+							<img  src="{{path}}presentacio/{{ presentacio.attachment}}" />      
+			{% endif %}
+			
 			<div class="farl des">
 			{{ presentacio.intervindran}}
 			</div>

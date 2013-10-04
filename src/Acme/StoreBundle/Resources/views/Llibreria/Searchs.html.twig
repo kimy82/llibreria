@@ -21,7 +21,10 @@
 	    		{% for search in pagination %}
 			   <div id="sea_con">
 			      <div class="sea_img">
-				<img width="200px" src="{{search.path}}{{search.attachment}}" />
+				 {% if  search.attachment!='aaa' %}
+						<img width="200px" src="{{search.path}}{{search.attachment}}" />
+				       {% endif %}
+				
 				</div>
 			        <div class="sea sub_tit tit_top">
 	    			{% if search.category == 'llibre' %}
