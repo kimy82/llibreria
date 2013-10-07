@@ -61,8 +61,6 @@ class AgendaController extends Controller
 	    	 $em->flush();
 	         $path= $this->get('kernel')->getImagesRootDir();
 		 if ($form['attachment']->getData()!=null){
-		    echo print_r($prova);
-		    
 		    $file = $form['attachment']->getData()->move($path.'/downloads/agenda/','age_'.$agenda->getId().'.jpg');
 		    $agenda->setAttachment('age_'.$agenda->getId().'.jpg');
 		 }

@@ -66,7 +66,8 @@ class GaleriaController extends Controller
 		$galeriaform = new GaleriaForm();			
 	
 	    
-	    $galeriaform->setDateEntrada(new \DateTime('tomorrow'));
+	$galeriaform->setDateEntrada(new \DateTime('tomorrow'));
+            //$galeriaform->setDateEntrada(new \'years' => range(1,31);
        	$galeriaform->setTitol("Titol");
        	$galeriaform->setSubtitol("Sub Titol");
        	$galeriaform->setDescription("descripcio");
@@ -74,7 +75,10 @@ class GaleriaController extends Controller
        	 $formToRender = $this->createFormBuilder($galeriaform)
        	 	->setAction($this->generateUrl('store_new_galeria'))
        	 	->setMethod('POST')
-            ->add('date_entrada', 'date')
+            //->add('date_entrada', 'date')
+                  //->add('date_entrada', 'date' array)
+             ->add('date_entrada', 'date', array('years' => range(2001, 2018)))
+         
             ->add('titol', 'text')
             ->add('subtitol', 'text')
             ->add('description', 'text')
@@ -82,6 +86,8 @@ class GaleriaController extends Controller
             ->add('save', 'submit')
             ->getForm();
             
+         
+         
         return $this->render('AcmeStoreBundle:galeria:GaleriaForm.html.twig', array(
             'form' => $formToRender->createView(),'update' =>false,
         ));	   

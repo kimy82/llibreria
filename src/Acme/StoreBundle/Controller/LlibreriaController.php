@@ -92,7 +92,7 @@ class LlibreriaController extends Controller
      	$year2=$year.'-12-30';
      	$year=$year.'-01-01';
      	
-     	
+     	 
      	
 		
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);

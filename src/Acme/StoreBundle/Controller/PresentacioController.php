@@ -28,7 +28,7 @@ class PresentacioController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('intervindran', 'text')
             ->add('lloc', 'text')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
@@ -61,18 +61,21 @@ class PresentacioController extends Controller
 	    	
 	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
 	         $em = $this->getDoctrine()->getManager();
-	   		 $em->persist($presentacio);
+                 $em->persist($presentacio);
 	    	 $em->flush();
 	         $path= $this->get('kernel')->getImagesRootDir();
-		 
-		 if ($form['attachment']->getData()!=null){
-			
-			$file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacio->getId().'.jpg');
+		  $prova = $form['attachment']->getData();
+                   // if ( $presentacio->getAttachment()==='aaa'){		 
+                    if ($form['attachment']->getData()!=null){
+			echo print_r($prova);
+                       
+			$file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacion->getId().'.jpg');
 			$presentacio->setAttachment('pre_'.$presentacio->getId().'.jpg');
 		 }
-		 
-		 
-		
+		  
+		  echo print_r($prova);
+		$file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacion->getId().'.jpg');
+               
 		  $em->persist($presentacio);
 	    	  $em->flush();
 			
@@ -102,7 +105,7 @@ class PresentacioController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('intervindran', 'text')
             ->add('lloc', 'text')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
@@ -142,7 +145,7 @@ class PresentacioController extends Controller
 		
 		$presentacio = $this->getDoctrine()->getRepository('AcmeStoreBundle:Presentacio')->find($id);
 		$presentacioform = new PresentacioForm();			
-		
+		  
 		$path = $this->get('kernel')->getImagesRootDir();
 		
 		
@@ -157,7 +160,11 @@ class PresentacioController extends Controller
 		$presentacioform->setDataFi($presentacio->getDataFi());
 		$presentacioform->setLloc($presentacio->getLloc());
 		$presentacioform->setIntervindran($presentacio->getIntervindran());
-		if ( $presentacio->getAttachment()!='aaa'){
+                $presentacioform->setAttachment($presentacio->getAttachment());
+                
+		if (  $presentacioform['attachment']->getData()!=null){
+                    
+                   
 		    $file = new File($path.'downloads/presentacio/'.$presentacio->getAttachment(), true);
 		    $presentacioform->setAttachment($file);
 		}
@@ -169,7 +176,7 @@ class PresentacioController extends Controller
 		    ->add('date_entrada', 'date')
 		    ->add('titol', 'text')
 		    ->add('subtitol', 'text')
-		    ->add('description', 'text')
+		    ->add('description', 'textarea')
 		    ->add('intervindran', 'text')
 		    ->add('lloc', 'text')
 		    ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
@@ -196,7 +203,7 @@ class PresentacioController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
-            ->add('description', 'text')
+            ->add('description', 'textarea')
             ->add('intervindran', 'text')
             ->add('lloc', 'text')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))

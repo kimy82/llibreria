@@ -89,7 +89,7 @@
 			{{ presentacio.subtitol}}
 			</div>
 			<div class="farl des">
-			{{ presentacio.description}}
+			{{ presentacio.description|raw}}
 			</div>
 			{% if  presentacio.attachment!='aaa' %}
 							<img  src="{{path}}presentacio/{{ presentacio.attachment}}" />      

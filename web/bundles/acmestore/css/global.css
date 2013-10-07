@@ -9,7 +9,6 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     background-color: #EDEDED;
 }
-
 #container{
 	width: 100%;
 	margin: auto;
@@ -838,7 +837,7 @@ width: 200px;
 #scrollbar1 .thumb .end,
 #scrollbar1 .thumb { background-color: #777; }
 #scrollbar1 .scrollbar { position: relative; float: right; width: 15px; }
-#scrollbar1 .track { background-color: ##575756; height: 100%; width:14px; position: relative; }
+#scrollbar1 .track { background-color: #575756; height: 100%; width:14px; position: relative; }
 #scrollbar1 .thumb { height: 20px; width: 14px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
 #scrollbar1 .thumb .end { overflow: hidden; height: 5px; width: 13px; }
 #scrollbar1 .disable{ display: none; }
@@ -990,4 +989,8 @@ padding-top: 10px;
 }
 .c5, #b_search{
     cursor: pointer;
+}
+#presentacio .contentnot table p{
+    width: 250px;
+    
 }
