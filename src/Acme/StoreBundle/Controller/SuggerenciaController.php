@@ -218,11 +218,12 @@ class SuggerenciaController extends Controller
 	         $path= $this->get('kernel')->getImagesRootDir();
 	         if ($form['attachment']->getData()!=null){
 			 	$file = $form['attachment']->getData()->move($path.'/downloads/suggerencia/','sug_'.$suggerencia->getId().'.jpg');
-	         }
-			 
-			  $suggerencia->setAttachment('sug_'.$suggerencia->getId().'.jpg');
+                                $suggerencia->setAttachment('sug_'.$suggerencia->getId().'.jpg');
 			  $em->persist($suggerencia);
 	    	  $em->flush();
+	         }
+			 
+			  
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_suggerencia'));
 	    }

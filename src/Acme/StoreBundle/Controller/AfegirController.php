@@ -179,12 +179,13 @@ class AfegirController extends Controller
 	    	 $em->flush();
 	         $path= $this->get('kernel')->getImagesRootDir();
 	         if ($form['attachment']->getData()!=null){
-			 	$file = $form['attachment']->getData()->move($path.'/downloads/afegir/','sug_'.$afegir->getId().'.jpg');
+			 $file = $form['attachment']->getData()->move($path.'/downloads/afegir/','sug_'.$afegir->getId().'.jpg');
+                         $afegir->setAttachment('sug_'.$afegir->getId().'.jpg');
+			 $em->persist($afegir);
+                         $em->flush();
 	         }
 			 
-			  $afegir->setAttachment('sug_'.$afegir->getId().'.jpg');
-			  $em->persist($afegir);
-	    	  $em->flush();
+			  
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_afegir'));
 	    }

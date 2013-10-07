@@ -244,11 +244,12 @@ class PresentacioController extends Controller
 	         $path= $this->get('kernel')->getImagesRootDir();
 	         if ($form['attachment']->getData()!=null){
 			 	$file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacio->getId().'.jpg');
-	         }
-			 
-			  $presentacio->setAttachment('pre_'.$presentacio->getId().'.jpg');
+                                $presentacio->setAttachment('pre_'.$presentacio->getId().'.jpg');
 			  $em->persist($presentacio);
 	    	  $em->flush();
+	         }
+			 
+			  
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_presentacio'));
 	    }

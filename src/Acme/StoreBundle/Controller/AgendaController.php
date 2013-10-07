@@ -215,12 +215,13 @@ public function editAction($id)
                          $em->flush();
                          $path= $this->get('kernel')->getImagesRootDir();
                          if ($form['attachment']->getData()!=null){
-                                        $file = $form['attachment']->getData()->move($path.'/downloads/agenda/','age_'.$agenda->getId().'.jpg');
-                         }
-
+                                  $file = $form['attachment']->getData()->move($path.'/downloads/agenda/','age_'.$agenda->getId().'.jpg');
                                   $agenda->setAttachment('age_'.$agenda->getId().'.jpg');
                                   $em->persist($agenda);
-                          $em->flush();
+                                  $em->flush();
+                         }
+
+                                  
 
                         return $this->redirect($this->generateUrl('acme_pre_store_agenda'));
                     }

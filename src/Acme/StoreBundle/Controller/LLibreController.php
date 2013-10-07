@@ -218,11 +218,12 @@ class LlibreController extends Controller
 	         $path= $this->get('kernel')->getImagesRootDir();
 	         if ($form['attachment']->getData()!=null){
 			 	$file = $form['attachment']->getData()->move($path.'/downloads/llibre/','llib_'.$llibre->getId().'.jpg');
+                                $llibre->setAttachment('llib_'.$llibre->getId().'.jpg');
+                                $em->persist($llibre);
+                                $em->flush();
 	         }
 			 
-			  $llibre->setAttachment('llib_'.$llibre->getId().'.jpg');
-			  $em->persist($llibre);
-	    	  $em->flush();
+			  
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_llibre'));
 	    }
