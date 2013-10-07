@@ -176,25 +176,25 @@ class NoticiaController extends Controller
 	    $form = new NoticiaForm();
 		
 	    $form = $this->createFormBuilder($form)
-       	    ->setAction($this->generateUrl('store_new_noticia'))
-       	    ->setMethod('POST')
-            ->add('date_entrada', 'date')
-            ->add('titol', 'text')
-            ->add('subtitol', 'text')
-            ->add('description', 'textarea')
-            ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
-            ->add('portada',  'choice', array(
-			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
-			    'required'  => false,
-			))
-            ->add('data_fi','date')
-            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
-            ->getForm();
+                ->setAction($this->generateUrl('store_new_noticia'))
+                ->setMethod('POST')
+                ->add('date_entrada', 'date')
+                ->add('titol', 'text')
+                ->add('subtitol', 'text')
+                ->add('description', 'textarea')
+                ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
+                ->add('portada',  'choice', array(
+                                'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+                                'required'  => false,
+                            ))
+                ->add('data_fi','date')
+                ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+                ->add('save', 'submit')
+                ->getForm();
             
-	    $form->handleRequest($request);
+                $form->handleRequest($request);
 	
-	    $noticia = $this->getDoctrine()->getRepository('AcmeStoreBundle:Noticia')->find($id);
+                $noticia = $this->getDoctrine()->getRepository('AcmeStoreBundle:Noticia')->find($id);
 		
 	    if ($form->isValid()) {
 	        // perform some action, such as saving the task to the database
@@ -216,12 +216,13 @@ class NoticiaController extends Controller
 	    	$em->flush();
 	        $path= $this->get('kernel')->getImagesRootDir();
 	        if ($form['attachment']->getData()!=null){
-		$file = $form['attachment']->getData()->move($path.'/downloads/noticia/','not_'.$noticia->getId().'.jpg');
+                    $file = $form['attachment']->getData()->move($path.'/downloads/noticia/','not_'.$noticia->getId().'.jpg');
+                    $noticia->setAttachment('not_'.$noticia->getId().'.jpg');
+                    $em->persist($noticia);
+                    $em->flush();
 	        }
 			 
-		$noticia->setAttachment('not_'.$noticia->getId().'.jpg');
-		$em->persist($noticia);
-	    	$em->flush();
+		
 			
 	        return $this->redirect($this->generateUrl('acme_pre_store_noticia'));
 	    }
