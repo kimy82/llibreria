@@ -143,7 +143,8 @@ class NoticiaController extends Controller
 	    $noticiaform->setDataFi($noticia->getDataFi());
 	    
 	    if ( $noticia->getAttachment()!='aaa'){
-		    $file = new File($path.'downloads/noticia/'.$noticiaform->getAttachment(), true);
+                echo $path.'downloads/noticia/'.$noticiaform->getAttachment();
+		    $file = new File($path.'downloads/noticia/'.$noticia->getAttachment(), true);
 		    $noticiaform->setAttachment($file);
 		}
        	

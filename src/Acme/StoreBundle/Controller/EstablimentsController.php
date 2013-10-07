@@ -107,7 +107,7 @@ class EstablimentsController extends Controller
 		));
 	}
 	
-	public function editoAction($id)
+	public function editFotoAction($id)
 	{	
 		
 		$foto = $this->getDoctrine()->getRepository('AcmeStoreBundle:Foto')->find($id);
@@ -116,7 +116,7 @@ class EstablimentsController extends Controller
 	    
 		$path= $this->get('kernel')->getImagesRootDir();
 		
-		if ( $noticia->getAttachment()!='aaa'){
+		if ( $foto->getAttachment()!='aaa'){
 		   $file = new File($path.'downloads/foto/'.$foto->getAttachment(), true);
 		    $fotoform->setAttachment($file);
 		}

@@ -127,14 +127,14 @@ class SuggerenciaController extends Controller
         ));
 	}
 	
-		public function editAction($id)
+		public function editSugAction($id)
 	{	
 		
 		$suggerencia = $this->getDoctrine()->getRepository('AcmeStoreBundle:Suggerencia')->find($id);
 		$suggerenciaform = new SuggerenciaForm();			
 		
 		$path = $this->get('kernel')->getImagesRootDir();
-		if ( $noticia->getAttachment()!='aaa'){
+		if ( $suggerencia->getAttachment()!='aaa'){
 		    $file = new File($path.'downloads/suggerencia/'.$suggerencia->getAttachment(), true);
 		    $suggerenciaform->setAttachment($file);
 		}

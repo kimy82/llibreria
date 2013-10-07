@@ -1,5 +1,4 @@
 <?php
-// src/Acme/StoreBundle/Forms/LlibreForm.php
 namespace Acme\StoreBundle\Forms;
 
 class UploadForm

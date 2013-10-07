@@ -12,8 +12,8 @@ use Symfony\Component\HttpFoundation\File\File;
 
 
 class LlibreController extends Controller
-{
-    public function indexAction()
+{ 
+    public function indexAction() 
     {
         return $this->render('AcmeStoreBundle:llibre:LlibreMain.html.twig', array());
     }
@@ -23,52 +23,55 @@ class LlibreController extends Controller
 		$form = new LlibreForm();
 		
 		$form = $this->createFormBuilder($form)
-       	 	->setAction($this->generateUrl('store_new_llibre'))
-       	 	->setMethod('POST')
-             ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('llibre'=> 'Llibre', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'llibreInfaltil' =>'Llibre Infantil')))
-            ->add('suggerir', 'choice', array('choices' => array('0'=> 'NO', '1' =>'SI')))
-            ->add('editorial', 'text')
-            ->add('descripcio', 'text')
-            ->add('price','money')            
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+                    ->setAction($this->generateUrl('store_new_llibre'))
+                    ->setMethod('POST')
+                    ->add('date', 'date')
+                    ->add('name', 'text')
+                    ->add('autor', 'text')
+                    ->add('category', 'choice', array('choices' => array('llibre'=> 'Llibre', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'llibreInfaltil' =>'Llibre Infantil')))
+                    ->add('suggerir', 'choice', array('choices' => array('0'=> 'NO', '1' =>'SI')))
+                    ->add('editorial', 'text')
+                    ->add('descripcio', 'text')
+                    ->add('price','money')            
+                    ->add('attachment', 'file')
+                    ->add('save', 'submit')
+                    ->getForm();
             
-		$form->handleRequest($request);
+                    $form->handleRequest($request);
 	
-	    if ($form->isValid()) {
-	        // perform some action, such as saving the task to the database
-	        $llibre = new Llibre();
-	        $dades =$form->getData();
-	      	$llibre->setName($form['name']->getData());
-	        $llibre->setPrice($form['price']->getData());
-	        $llibre->setDescription($form['descripcio']->getData());
-	        $llibre->setDateEntrada($form['date']->getData());	
-	        $llibre->setCategory($form['category']->getData());
-	        $llibre->setAutor($form['autor']->getData());
-            $llibre->setEditorial($form['editorial']->getData());           
-	        $llibre->setTablePath("llibre");     
-	        $llibre->setAttachment("aaa");
-	        $llibre->setSuggerir($form['suggerir']->getData());
-	    
+                    if ($form->isValid()) {
+                        // perform some action, such as saving the task to the database
+                        $llibre = new Llibre();
+                        $dades =$form->getData();
+                        $llibre->setName($form['name']->getData());
+                        $llibre->setPrice($form['price']->getData());
+                        $llibre->setDescription($form['descripcio']->getData());
+                        $llibre->setDateEntrada($form['date']->getData());	
+                        $llibre->setCategory($form['category']->getData());
+                        $llibre->setAutor($form['autor']->getData());
+                        $llibre->setEditorial($form['editorial']->getData());           
+                        $llibre->setTablePath("llibre");     
+                        $llibre->setAttachment("aaa");
+                        $llibre->setSuggerir($form['suggerir']->getData());
+
 	        
 	    	
-	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
-	         $em = $this->getDoctrine()->getManager();
+                         //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
+                         $em = $this->getDoctrine()->getManager();
 	   		 $em->persist($llibre);
-	    	 $em->flush();
-	         $path= $this->get('kernel')->getImagesRootDir();
-			 $file = $form['attachment']->getData()->move($path.'/downloads/llibre/','llib_'.$llibre->getId().'.jpg');
-			 
-			  $llibre->setAttachment('llib_'.$llibre->getId().'.jpg');
-			  $em->persist($llibre);
-	    	  $em->flush();
-			
-	        return $this->redirect($this->generateUrl('acme_pre_store_llibre'));
-	    }
+                         $em->flush();
+                         $path= $this->get('kernel')->getImagesRootDir();
+                         if ($form['attachment']->getData()!=null){
+                             
+                            $file = $form['attachment']->getData()->move($path.'/downloads/llibre/','llib_'.$llibre->getId().'.jpg');
+                              $llibre->setAttachment('llib_'.$llibre->getId().'.jpg');
+                              $em->persist($llibre);
+                              $em->flush();
+                         }
+                       
+
+                       return $this->redirect($this->generateUrl('acme_pre_store_llibre'));
+                   }
 	    
 	}
 	
@@ -77,31 +80,32 @@ class LlibreController extends Controller
 		$llibreform = new LlibreForm();			
 	
 	    
-	    $llibreform->setDate(new \DateTime('tomorrow'));
-       	$llibreform->setName("Name");
-       	$llibreform->setDescripcio("descripcio");
-       	$llibreform->setPrice(0.0);
-       	$llibreform->setSuggerir(0);
-      
+                $llibreform->setDate(new \DateTime('tomorrow'));
+                $llibreform->setName("Name");
+                $llibreform->setDescripcio("descripcio");
+                $llibreform->setPrice(0.0);
+                $llibreform->setSuggerir(0);
+
        	
-       	 $formToRender = $this->createFormBuilder($llibreform)
-       	 	->setAction($this->generateUrl('store_new_llibre'))
-       	 	->setMethod('POST')
-            ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('descripcio', 'text')
-            ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('llibre'=> 'Llibre', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'llibreInfaltil' =>'Llibre Infantil')))
-            ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
-            ->add('editorial', 'text')
-            ->add('price','money')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
-            $pathImg= $this->get('kernel')->getImagesPathAlone();
-        return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
-            'form' => $formToRender->createView(),'update' =>false,'body'=>'adminllibre'
-        ));	   
+                $formToRender = $this->createFormBuilder($llibreform)
+                    ->setAction($this->generateUrl('store_new_llibre'))
+                    ->setMethod('POST')
+                    ->add('date', 'date')
+                    ->add('name', 'text')
+                    ->add('descripcio', 'text')
+                    ->add('autor', 'text')
+                    ->add('category', 'choice', array('choices' => array('llibre'=> 'Llibre', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'llibreInfaltil' =>'Llibre Infantil')))
+                    ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
+                    ->add('editorial', 'text')
+                    ->add('price','money')
+                    ->add('attachment', 'file')
+                    ->add('save', 'submit')
+                    ->getForm();
+                
+                $pathImg= $this->get('kernel')->getImagesPathAlone();
+            return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
+                'form' => $formToRender->createView(),'update' =>false,'body'=>'adminllibre'
+            ));	   
 	}
 	
 		public function listAction(Request $request, $orderBy)
@@ -120,8 +124,8 @@ class LlibreController extends Controller
 		$path= $this->get('kernel')->getImagesPath('llibre');
 		$pathServer= $this->get('kernel')->getServerPath();
 		return $this->render('AcmeStoreBundle:llibre:LlibreList.html.twig', array(
-            'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'adminllibre'
-        ));
+                    'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'adminllibre'
+                ));
 	}
 	
 		public function editAction($id)
@@ -131,38 +135,41 @@ class LlibreController extends Controller
 		$llibreform = new LlibreForm();			
 		
 		$path = $this->get('kernel')->getImagesRootDir();
-		$file = new File($path.'downloads/llibre/'.$llibre->getAttachment(), true);
-	    
-	    $llibreform->setDate($llibre->getDateEntrada());
-       	$llibreform->setName($llibre->getName());
-       	$llibreform->setDescripcio($llibre->getDescription());
-       	$llibreform->setPrice($llibre->getPrice());
-       	$llibreform->setAttachment($file);
-       	$llibreform->setAutor($llibre->getAutor());
-       	$llibreform->setCategory($llibre->getCategory());
-       	$llibreform->setEditorial($llibre->getEditorial());
-       	$llibreform->setSuggerir($llibre->getSuggerir());
-       	
-       	$pathImg= $this->get('kernel')->getImagesPathAlone();
-       	$path = $this->get('kernel')->getServerPath();
-       	 $formToRender = $this->createFormBuilder($llibreform)
-       	 	->setAction($path.'/admin/secured/llibre/update/'.$id)
-       	 	->setMethod('POST')
-            ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('descripcio', 'text')
-            ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('llibre'=> 'Llibre', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'llibreInfaltil' =>'Llibre Infantil')))
-            ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
-            ->add('editorial', 'text')
-            ->add('price','money')
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+                
+                if($llibre->getAttachment()!='aaa'){
+                    $file = new File($path.'downloads/llibre/'.$llibre->getAttachment(), true);
+                    $llibreform->setAttachment($file);
+                }
+                
+                $llibreform->setDate($llibre->getDateEntrada());
+                $llibreform->setName($llibre->getName());
+                $llibreform->setDescripcio($llibre->getDescription());
+                $llibreform->setPrice($llibre->getPrice());             
+                $llibreform->setAutor($llibre->getAutor());
+                $llibreform->setCategory($llibre->getCategory());
+                $llibreform->setEditorial($llibre->getEditorial());
+                $llibreform->setSuggerir($llibre->getSuggerir());
+
+                $pathImg= $this->get('kernel')->getImagesPathAlone();
+                $path = $this->get('kernel')->getServerPath();
+                $formToRender = $this->createFormBuilder($llibreform)
+                    ->setAction($path.'/admin/secured/llibre/update/'.$id)
+                    ->setMethod('POST')
+                    ->add('date', 'date')
+                    ->add('name', 'text')
+                    ->add('descripcio', 'text')
+                    ->add('autor', 'text')
+                    ->add('category', 'choice', array('choices' => array('llibre'=> 'Llibre', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'llibreInfaltil' =>'Llibre Infantil')))
+                    ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
+                    ->add('editorial', 'text')
+                    ->add('price','money')
+                    ->add('attachment', 'file')
+                    ->add('save', 'submit')
+                    ->getForm();
             
-        return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
-            'form' => $formToRender->createView(),'update' =>true,'body'=>'adminllibre'
-        ));	   
+            return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
+                'form' => $formToRender->createView(),'update' =>true,'body'=>'adminllibre'
+            ));	   
 	}
 	
 	public function updateLlibreAction(Request $request,$id){

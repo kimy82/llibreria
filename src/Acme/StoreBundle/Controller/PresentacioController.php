@@ -160,9 +160,9 @@ class PresentacioController extends Controller
 		$presentacioform->setDataFi($presentacio->getDataFi());
 		$presentacioform->setLloc($presentacio->getLloc());
 		$presentacioform->setIntervindran($presentacio->getIntervindran());
-                $presentacioform->setAttachment($presentacio->getAttachment());
+            
                 
-		if (  $presentacioform['attachment']->getData()!=null){
+		if (  $presentacio->getAttachment()!='aaa'){
                     
                    
 		    $file = new File($path.'downloads/presentacio/'.$presentacio->getAttachment(), true);

@@ -1,7 +1,15 @@
 acme_store_homepage:
     pattern:  /admin/secured/menu
     defaults: { _controller: AcmeStoreBundle:Default:index }  
+
+acme_pre_puja_txt:
+     pattern: /admin/secured/preupload
+     defaults: {_controller: AcmeStoreBundle:Upload:index }
      
+acme_pujar_txt:
+     pattern: /admin/secured/upload
+     defaults: {_controller: AcmeStoreBundle:Upload:up}
+          
 acme_noticia:
     pattern:  /admin/secured/noticia
     defaults: { _controller: AcmeStoreBundle:Noticia:index }
@@ -82,7 +90,7 @@ store_new_suggerencia:
     defaults: { _controller: AcmeStoreBundle:Suggerencia:saveSuggerencia }
 edit_suggerencia:
     pattern:  /admin/secured/suggerencia/edit/{id}
-    defaults: { _controller: AcmeStoreBundle:Suggerencia:edit }
+    defaults: { _controller: AcmeStoreBundle:Suggerencia:editSug }
 update_suggerencia:
      pattern:  /admin/secured/suggerencia/update/{id}
      defaults: { _controller: AcmeStoreBundle:Suggerencia:updateSuggerencia }
@@ -141,7 +149,7 @@ store_new_foto:
 
 edit_foto:
     pattern:  /admin/secured/foto/edit/{id}
-    defaults: { _controller: AcmeStoreBundle:Establiments:edito }
+    defaults: { _controller: AcmeStoreBundle:Establiments:editFoto }
 update_foto:
      pattern:  /admin/secured/foto/update/{id}
      defaults: { _controller: AcmeStoreBundle:Establiments:updateFoto }
@@ -225,18 +233,6 @@ acme_encarrecs_envia:
      pattern:  /admin/secured/encarrec/envia/{id}
      defaults: { _controller: AcmeStoreBundle:Encarrecs:envia }     
      
-acme_pre_puja_txt:
-     pattern:  /admin/secured/preupload
-     defaults: { _controller: AcmeStoreBundle:Upload:index } 
-acme_puja_txt:
-     pattern:  /admin/secured/upload
-     defaults: { _controller: AcmeStoreBundle:Upload:upload } 
-     
-
-acme_llibreria22:
-    pattern:  /llibreria22
-    defaults: { _controller: AcmeStoreBundle:Llibreria:index }
- 
 acme_fotos_galeria:
     pattern:  /llibreria22/galeria/{year}
     defaults: { _controller: AcmeStoreBundle:Llibreria:galeria }

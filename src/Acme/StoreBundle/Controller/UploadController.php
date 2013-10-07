@@ -19,11 +19,11 @@ class UploadController extends Controller
 	
 	    
 	    $uploadform->setSeparator('|||');
-       
-       	
+              
+       	  
        	 $formToRender = $this->createFormBuilder($uploadform)
-       	 	->setAction($this->generateUrl('acme_puja_txt'))
-       	 	->setMethod('POST')
+       	 	->setAction($this->generateUrl('acme_pujar_txt'))
+       	 	->setMethod('POST') 
             ->add('separator', 'text')        
             ->add('attachment', 'file')
             ->add('save', 'submit')
@@ -33,14 +33,14 @@ class UploadController extends Controller
     }
     
 
-	public function uploadAction(Request $request){
+	public function upAction(Request $request){
 		
 			
 	
 		 $form = new UploadForm();			
 		    	                  	
        	 $form = $this->createFormBuilder($form)
-       	 	->setAction($this->generateUrl('acme_puja_txt'))
+       	 	->setAction($this->generateUrl('acme_pujar_txt'))
        	 	->setMethod('POST')
             ->add('separator', 'text')        
             ->add('attachment', 'file')
@@ -60,6 +60,7 @@ class UploadController extends Controller
 	       
 	    	$path= $this->get('kernel')->getImagesRootDir();
 	      	$separator = $form['separator']->getData();
+	      	echo $form['attachment']->getData();
 	      	$file = $form['attachment']->getData();
 	       	//extension = $file->guessExtension();
 	       	$pathRel= rand(1, 99999).'lastUpload.txt';
@@ -108,6 +109,7 @@ class UploadController extends Controller
 			
 	   		return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal,'numfet'=>$numFets));
 	    }
+	    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array());
 			
 			
 	}
