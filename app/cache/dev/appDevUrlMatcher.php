@@ -139,6 +139,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\DefaultController::indexAction',  '_route' => 'acme_store_homepage',);
             }
 
+            // acme_pre_puja_txt
+            if ($pathinfo === '/admin/secured/preupload') {
+                return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::indexAction',  '_route' => 'acme_pre_puja_txt',);
+            }
+
+            // acme_pujar_txt
+            if ($pathinfo === '/admin/secured/upload') {
+                return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::upAction',  '_route' => 'acme_pujar_txt',);
+            }
+
             if (0 === strpos($pathinfo, '/admin/secured/noticia')) {
                 // acme_noticia
                 if ($pathinfo === '/admin/secured/noticia') {
@@ -288,7 +298,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
                 // edit_suggerencia
                 if (0 === strpos($pathinfo, '/admin/secured/suggerencia/edit') && preg_match('#^/admin/secured/suggerencia/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_suggerencia')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::editAction',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_suggerencia')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SuggerenciaController::editSugAction',));
                 }
 
                 // update_suggerencia
@@ -344,6 +354,76 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+        }
+
+        // acme_establiments
+        if ($pathinfo === '/llibreria22/establiments') {
+            return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::establimentsAction',  '_route' => 'acme_establiments',);
+        }
+
+        if (0 === strpos($pathinfo, '/admin/secured')) {
+            if (0 === strpos($pathinfo, '/admin/secured/establiments')) {
+                if (0 === strpos($pathinfo, '/admin/secured/establiments/e')) {
+                    if (0 === strpos($pathinfo, '/admin/secured/establiments/establiments_')) {
+                        // acme_pre_store_establiments
+                        if ($pathinfo === '/admin/secured/establiments/establiments_save') {
+                            return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::precreateAction',  '_route' => 'acme_pre_store_establiments',);
+                        }
+
+                        // store_new_establiments
+                        if ($pathinfo === '/admin/secured/establiments/establiments_new_save') {
+                            return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::saveEstablimentsAction',  '_route' => 'store_new_establiments',);
+                        }
+
+                        // llistat_store_establiments
+                        if (0 === strpos($pathinfo, '/admin/secured/establiments/establiments_llistat') && preg_match('#^/admin/secured/establiments/establiments_llistat/(?P<orderBy>[^/]++)$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_establiments')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\establimentsController::listAction',));
+                        }
+
+                    }
+
+                    // edit_establiments
+                    if (0 === strpos($pathinfo, '/admin/secured/establiments/edit') && preg_match('#^/admin/secured/establiments/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_establiments')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::editAction',));
+                    }
+
+                }
+
+                // update_establiments
+                if ($pathinfo === '/admin/secured/establiments/update') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::updateEstablimentsAction',  '_route' => 'update_establiments',);
+                }
+
+                // delete_establiments
+                if (0 === strpos($pathinfo, '/admin/secured/establiments/delete') && preg_match('#^/admin/secured/establiments/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_establiments')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::deleteEstablimentsAction',));
+                }
+
+                // store_new_foto
+                if ($pathinfo === '/admin/secured/establiments/foto_new_save') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::saveFotoAction',  '_route' => 'store_new_foto',);
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/secured/foto')) {
+                // edit_foto
+                if (0 === strpos($pathinfo, '/admin/secured/foto/edit') && preg_match('#^/admin/secured/foto/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_foto')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::editFotoAction',));
+                }
+
+                // update_foto
+                if (0 === strpos($pathinfo, '/admin/secured/foto/update') && preg_match('#^/admin/secured/foto/update/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_foto')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::updateFotoAction',));
+                }
+
+                // delete_foto
+                if (0 === strpos($pathinfo, '/admin/secured/foto/delete') && preg_match('#^/admin/secured/foto/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_foto')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::deleteEstablimentsoAction',));
+                }
+
+            }
+
             if (0 === strpos($pathinfo, '/admin/secured/presentacio')) {
                 // acme_presentacio
                 if ($pathinfo === '/admin/secured/presentacio') {
@@ -381,6 +461,47 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 // delete_presentacio
                 if (0 === strpos($pathinfo, '/admin/secured/presentacio/delete') && preg_match('#^/admin/secured/presentacio/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_presentacio')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\PresentacioController::deletePresentacioAction',));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/secured/afegir')) {
+                // acme_afegir
+                if ($pathinfo === '/admin/secured/afegir') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::indexAction',  '_route' => 'acme_afegir',);
+                }
+
+                if (0 === strpos($pathinfo, '/admin/secured/afegir/afegir_')) {
+                    // acme_pre_store_afegir
+                    if ($pathinfo === '/admin/secured/afegir/afegir_save') {
+                        return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::precreateAction',  '_route' => 'acme_pre_store_afegir',);
+                    }
+
+                    // store_new_afegir
+                    if ($pathinfo === '/admin/secured/afegir/afegir_new_save') {
+                        return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::saveAfegirAction',  '_route' => 'store_new_afegir',);
+                    }
+
+                    // llistat_store_afegir
+                    if (0 === strpos($pathinfo, '/admin/secured/afegir/afegir_llistat') && preg_match('#^/admin/secured/afegir/afegir_llistat/(?P<orderBy>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_afegir')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::listAction',));
+                    }
+
+                }
+
+                // edit_afegir
+                if (0 === strpos($pathinfo, '/admin/secured/afegir/edit') && preg_match('#^/admin/secured/afegir/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_afegir')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::editAction',));
+                }
+
+                // update_afegir
+                if (0 === strpos($pathinfo, '/admin/secured/afegir/update') && preg_match('#^/admin/secured/afegir/update/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_afegir')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::updateAfegirAction',));
+                }
+
+                // delete_afegir
+                if (0 === strpos($pathinfo, '/admin/secured/afegir/delete') && preg_match('#^/admin/secured/afegir/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_afegir')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AfegirController::deleteAfegirAction',));
                 }
 
             }
@@ -444,24 +565,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            // acme_pre_puja_txt
-            if ($pathinfo === '/admin/secured/preupload') {
-                return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::indexAction',  '_route' => 'acme_pre_puja_txt',);
-            }
-
-            // acme_puja_txt
-            if ($pathinfo === '/admin/secured/upload') {
-                return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::uploadAction',  '_route' => 'acme_puja_txt',);
-            }
-
         }
 
         if (0 === strpos($pathinfo, '/llibreria22')) {
-            // acme_llibreria22
-            if (preg_match('#^/llibreria22(?:/(?P<_locale>en|fr|es))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_llibreria22')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::indexAction',  '_locale' => 'en',));
-            }
-
             // acme_fotos_galeria
             if (0 === strpos($pathinfo, '/llibreria22/galeria') && preg_match('#^/llibreria22/galeria/(?P<year>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_fotos_galeria')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::galeriaAction',));
@@ -515,9 +621,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::presentacioAction',  '_route' => 'acme_presentacions',);
             }
 
-            // acme_establiments
-            if ($pathinfo === '/llibreria22/establiments') {
-                return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::establimentsAction',  '_route' => 'acme_establiments',);
+            // acme_llibreria22
+            if (preg_match('#^/llibreria22(?:/(?P<_locale>en|fr|es))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_llibreria22')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::indexAction',  '_locale' => 'ca',));
             }
 
         }

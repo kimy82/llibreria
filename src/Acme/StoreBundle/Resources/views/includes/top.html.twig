@@ -61,6 +61,19 @@
 				window.location.href=path+"/llibreria22/semuaSearch/"+sesuatu;
   				
 			});
+                        $("#sesuatu").on("keyup", function(e) {
+                            if (e.which == 13) {
+                                var path="{{pathlocal}}";
+				var sesuatu = document.getElementById("sesuatu").value;
+				window.localStorage.setItem('sesuatu',sesuatu);
+			
+				window.location.href=path+"/llibreria22/semuaSearch/"+sesuatu;
+                               return false;
+                                
+                                
+                                
+                            }
+                        });
 			
 			$('#coin-slider').coinslider({ width: 630,height: 210});
 		</script>

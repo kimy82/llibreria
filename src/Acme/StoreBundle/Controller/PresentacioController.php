@@ -73,8 +73,7 @@ class PresentacioController extends Controller
 			$presentacio->setAttachment('pre_'.$presentacio->getId().'.jpg');
 		 }
 		  
-		  echo print_r($prova);
-		$file = $form['attachment']->getData()->move($path.'/downloads/presentacio/','pre_'.$presentacion->getId().'.jpg');
+		 
                
 		  $em->persist($presentacio);
 	    	  $em->flush();

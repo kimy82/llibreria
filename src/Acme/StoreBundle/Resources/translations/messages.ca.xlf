@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
+    <file source-language="ca" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="1">
+             <trans-unit id="1">
                 <source>noticia_list_page</source>
                 <target>Llistat de noticies</target>
             </trans-unit>
@@ -375,7 +375,55 @@
             <trans-unit id="93">
                 <source>enter_suggerencia</source>
                 <target>Nova suggerència</target>
-            </trans-unit>                   
+            </trans-unit> 
+            <trans-unit id="94">
+                <source>January</source>
+                <target>Gener</target>
+            </trans-unit>
+             <trans-unit id="95">
+                <source>February</source>
+                <target>Febrer</target>
+            </trans-unit>
+             <trans-unit id="96">
+                <source>March</source>
+                <target>Març</target>
+            </trans-unit>
+             <trans-unit id="97">
+                <source>April</source>
+                <target>Abril</target>
+            </trans-unit>
+             <trans-unit id="98">
+                <source>May</source>
+                <target>Maig</target>
+            </trans-unit>
+             <trans-unit id="99">
+                <source>June</source>
+                <target>Juny</target>
+            </trans-unit>
+             <trans-unit id="100">
+                <source>July</source>
+                <target>Juliol</target>
+            </trans-unit>
+             <trans-unit id="101">
+                <source>August</source>
+                <target>Agost</target>
+            </trans-unit>
+             <trans-unit id="102">
+                <source>September</source>
+                <target>Setembre</target>
+            </trans-unit>
+             <trans-unit id="103">
+                <source>october</source>
+                <target>Octubre</target>
+            </trans-unit>
+             <trans-unit id="104">
+                <source>November</source>
+                <target>Novembre</target>
+            </trans-unit>
+             <trans-unit id="105">
+                <source>December</source>
+                <target>Desembre</target>
+            </trans-unit>                
         </body>
     </file>
 </xliff>

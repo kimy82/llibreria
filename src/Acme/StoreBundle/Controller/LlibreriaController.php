@@ -37,7 +37,7 @@ class LlibreriaController extends Controller
 			$paginator= $this->get('knp_paginator');
 			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}else{
-    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where 1=1 ');		
+    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ');		
 			$paginator= $this->get('knp_paginator');
 			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}
@@ -139,11 +139,24 @@ class LlibreriaController extends Controller
     	return $this->redirect($this->generateUrl('acme_llibreria22'));
     }
     
+   
+    
+    
 	public function noticiaAction()
     {
     	
      	$em = $this->getDoctrine()->getManager();
      	
+                
+ 
+                
+              
+
+               // echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+//Salida: Viernes 24 de Febrero del 2012
+ 
+
+        
 		
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
 		
@@ -155,7 +168,7 @@ class LlibreriaController extends Controller
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
 		return $this->render('AcmeStoreBundle:llibreria:Noticia.html.twig', array(
-            'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'noticies'
+           'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path, 'pathlocal'=>$pathServer,'body'=>'noticies'
         ));
     }
     
@@ -192,18 +205,12 @@ class LlibreriaController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$cerca=$name;
 	
-		
-			
-	
-	
-     	
-		
-		$buscaafegir = $em->createQuery('SELECT n from AcmeStoreBundle:afegir n order by n.id DESC');
-		$paginatorafegir= $this->get('knp_paginator');
-		$pagename2 = 'page2'; 
-		$paginationafegir= $paginatorafegir->paginate($buscaafegir,$this->get('request')->query->get($pagename2,1),6, array('pageParameterName' => $pagename2));
-		$path= $this->get('kernel')->getImagesPath('afegir');
-		$pathServer= $this->get('kernel')->getServerPath();
+        $buscaafegir = $em->createQuery('SELECT n from AcmeStoreBundle:afegir n order by n.id DESC');
+        $paginatorafegir= $this->get('knp_paginator');
+        $pagename2 = 'page2'; 
+        $paginationafegir= $paginatorafegir->paginate($buscaafegir,$this->get('request')->query->get($pagename2,1),6, array('pageParameterName' => $pagename2));
+        $path= $this->get('kernel')->getImagesPath('afegir');
+        $pathServer= $this->get('kernel')->getServerPath();
 	
 	
 	
@@ -377,6 +384,7 @@ class LlibreriaController extends Controller
      	$query = $em->createQueryBuilder();
 		$query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
   			->where( $query->expr()->like('n.name', $query->expr()->literal('%' . $search . '%')) )
+                        
   			->orwhere( $query->expr()->like('n.autor', $query->expr()->literal('%' . $search . '%')) )
   			->orwhere( $query->expr()->like('n.editorial', $query->expr()->literal('%' . $search . '%')) )
   			->getQuery();  
@@ -403,6 +411,8 @@ class LlibreriaController extends Controller
 		$queryPresentacio = $queryPresentacio->select('n')->from('AcmeStoreBundle:Presentacio', 'n')
   			->where( $queryPresentacio->expr()->like('n.titol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
   			->orwhere( $queryPresentacio->expr()->like('n.subtitol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                        ->orwhere( $queryPresentacio->expr()->like('n.dataEntrada', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                        
   			->getQuery();  
   					     		    	     	
 		$resultatsPresentacio=$queryPresentacio->getResult();    
@@ -411,6 +421,8 @@ class LlibreriaController extends Controller
     	for($i = 0; $i < count($resultatsPresentacio); ++$i) {
     	  $searched = new Search();
     	  $presentacio = $resultatsPresentacio[$i];
+                  $searched->setDataEntrada($presentacio->DataEntrada());
+                 // $searched->setDataEntrada($presentacio['date_entrada']->getData());
   		  $searched->setTitol($presentacio->getTitol());
   		  $searched->setDescription($presentacio->getSubtitol().', '.$presentacio->getDescription());
   		  $searched->setCategory('presentacio');

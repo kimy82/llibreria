@@ -29,14 +29,27 @@
 					{% if  noticia.attachment!='aaa' %}
 						<img  width="310px" height="auto" id="img_{{ noticia.id}}" src="{{path}}{{ noticia.attachment}}" />
 					{% endif %}
-					
 					</div>
 					<div id="ies" class="comon">	
 					{{noticia.description|raw}}
 					</div>
 					
 					<div id="ies" class="bol">
-					{% trans %}f_publicat_el{% endtrans %}{{ noticia.dataEntrada|date('j F Y')}}
+					
+                                        {% set month = noticia.dataEntrada|date('F') %}
+                                        {% set day  = noticia.dataEntrada|date('j') %}
+                                           
+                                       
+                                          
+                                        {{ '%s'|format(day|trans) }} 
+                                        {{ '%s'|format( month|trans) }}
+                                        {{ month }}
+                                        {{ '%s'|format(day) }}
+                                        {{'%s'|format( month|trans) }}
+                                           
+                                      
+                                       
+					
 					</div>
 					
 					</div>
