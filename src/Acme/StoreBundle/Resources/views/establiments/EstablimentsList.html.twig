@@ -1,21 +1,19 @@
 {% extends 'AcmeStoreBundle::layout.html.twig' %}
-
 {% block title %}MANAGE LIST  AGENDA{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-	
-   <div class="con_int">
-	<span class="super">	
-    LLISTAT DE NOTICIES
-	</span>
-    <br>
-	
-    	{% if pagination|length >0 %}
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="con_int">
+<span class="super">	
+    LLISTAT D'ESTABLIMENTS
+</span>
+<br>
+{% if pagination|length >0 %}
     		<table class="table_admin">
-			
+		 <tr>
+                    <th>Foto</th>
+                    <th>Descripció</th>
+                </tr>
 			
     		{% for foto in pagination %}
 

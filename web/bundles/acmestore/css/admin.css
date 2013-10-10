@@ -349,3 +349,6 @@ color: #999;
     margin-top: 20px;
     font-weight: bold;
 }
+tr.enviat {
+    background-color: #0F0!important;
+}

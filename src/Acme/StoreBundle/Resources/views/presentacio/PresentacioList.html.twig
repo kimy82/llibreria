@@ -1,102 +1,91 @@
 {% extends 'AcmeStoreBundle::layout.html.twig' %}
-
 {% block title %}MANAGE LIST  PRESENTACIO{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-
-	
-	<div class="con_int">
-	<span class="super">	
-    LLISTAT DE PRESENTACIONS
-	</span>
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="con_int">
+    <span class="super">	
+        LLISTAT DE PRESENTACIONS
+    </span>
     <br>
-    	{% if pagination|length >0 %}
+    {% if pagination|length >0 %}
+    <table class="table_admin">
+    <tr>
+            <th>Filtrar per: </th>
+            <th><input class="filter" type="text" placeholder="Titol" value="" id="titol" onblur="search(this.id,this.value)" /></th>
+            <th><input class="filter" type="text" placeholder="Subtitol" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
+    </tr>
+     <tr>
+            <th>Foto</th>
+            <th>Data entrada</th>
+            <th>Titol</th>
+            <th>Subtitol</th>
+            <th>Portada i columna</th>
+            <th>Data fi</th>
+    </tr>
+    {% for presentacio in pagination %}
+    <tr>		
+    <td>
+    {% if  presentacio.attachment!='aaa' %}
+       <img width="50px"src="{{path}}{{ presentacio.attachment}}" />	
+    {% endif %}
+    </td>
+    <td width=100px;>
+    {{ presentacio.dataEntrada|date('Y-m-d')}}	
+    </td>
+    <td width=300px;>
+    {{ presentacio.titol}}	
+    </td>
+    <td width=300px;>
+    {{ presentacio.subtitol}} 	
+    </td>
+    <td  width=900px;>
+    {{ presentacio.portada}}	
+    </td>
+    <td  width=900px;>
+    {{ presentacio.dataFi|date('Y-m-d')}}
+    </td>
+    <td width=30px;>
+    <a href="{{ path('edit_presentacio', {'id' : presentacio.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
+    </td>
+    <td>
+    <a href="{{ path('delete_presentacio', {'id' : presentacio.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+    </td>
+    </tr>	
+    {% endfor %}
+    <tr>
+    <td>
+    </td>
+    <td>
+    <div class="pagerfanta" >
+            {{knp_pagination_render(pagination)}}
+    </div>
+    </td>
+    </tr>
+    </table>
 		
-		<table class="table_admin">
-			<tr>
-				<th>Filtrar per: </th>
-				<th><input class="filter" type="text" placeholder="Titol" value="" id="titol" onblur="search(this.id,this.value)" /></th>
-				<th><input class="filter" type="text" placeholder="Subtitol" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
-				
-			</tr>
-    		{% for presentacio in pagination %}
-		<tr>
-			
-                        <td>
-			{% if  presentacio.attachment!='aaa' %}
-                           <img width="50px"src="{{path}}{{ presentacio.attachment}}" />	
-                        {% endif %}
-			</td>
-			<td width=100px;>
-			{{ presentacio.dataEntrada|date('Y-m-d')}}	
-			</td>
-			<td width=300px;>
-			{{ presentacio.titol}}	
-			</td>
-			<td width=300px;>
-			{{ presentacio.subtitol}} 	
-			</td>
-			<td>
-			{{ presentacio.description}}	
-			</td>
-			<td  width=900px;>
-			{{ presentacio.novetat}}	
-			</td>
-			<td  width=900px;>
-			{{ presentacio.portada}}	
-			</td>
-			<td  width=900px;>
-			{{ presentacio.dataFi|date('Y-m-d')}}
-			</td>
-			<td  width=900px;>
-			{{ presentacio.novetat}}	
-			</td>
-			<td width=30px;>
-			<a href="{{ path('edit_presentacio', {'id' : presentacio.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/edit.png') }}" /> </a>	
-			</td>
-			<td>
-			<a href="{{ path('delete_presentacio', {'id' : presentacio.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
-			</td>
-			</tr>
-		
-		{% endfor %}
-    		<tr>
-    		<td>
-    		
-		</td>
-		<td>
-    		<div class="pagerfanta" >
-    			{{knp_pagination_render(pagination)}}
-    		</div>
-		</td>
-		</tr>
-		</table>
-		
-    	{% else %}
-    	 <p>- There are no things </p>
-    	{% endif %}
-	</div>
-	</div>
-	{% if app.environment == 'dev' %}
-           DEV
-        {% endif %}
-	 <script>
-function search(col,val){
-	var path="{{pathlocal}}";
-	window.localStorage.setItem('val_'+col,val);
-	window.location.href=path+"/admin/secured/presentacio/presentacio_llistat/n."+col+" like .."+val+".,";
-}
-var titolval=window.localStorage.getItem('val_titol');
-var subtitolval=window.localStorage.getItem('val_subtitol');
-if(titolval!=null){
-	document.getElementById('titol').value=titolval;
-}
+    {% else %}
+     <p>- There are no things </p>
+    {% endif %}
+    </div>
+    </div>
+    {% if app.environment == 'dev' %}
+       DEV
+    {% endif %}
+<script>
+    function search(col,val){
+    var path="{{pathlocal}}";
+    window.localStorage.setItem('val_'+col,val);
+    window.location.href=path+"/admin/secured/presentacio/presentacio_llistat/n."+col+" like .."+val+".,";
+    }
+    var titolval=window.localStorage.getItem('val_titol');
+    var subtitolval=window.localStorage.getItem('val_subtitol');
+    if(titolval!=null){
+    document.getElementById('titol').value=titolval;
+    }
 
-if(subtitolval!=null){
-	document.getElementById('subtitol').value=subtitolval;
-}
+    if(subtitolval!=null){
+    document.getElementById('subtitol').value=subtitolval;
+    }
 </script>
 {% endblock %}

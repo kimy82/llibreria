@@ -1,65 +1,70 @@
 {% extends 'AcmeStoreBundle::layout.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-	
-	<div class="con_int">
-	<span class="super">	
-    LLISTAT DE ENCARREGS
-	</span>
-    <br>
-    	<table class="table_admin">
-			<tr>
-				<th>Filtrar per: </th>
-				<th><input class="filter" placeholder="Nom" type="text" value="" id="name" onblur="search(this.id,this.value)" /></th>
-			</tr>
-			
+<div class="con_int">
+<span class="super">	
+LLISTAT DE ENCARREGS
+</span>
+ <br>
+<table class="table_admin">
+        <tr>
+                <th>Filtrar per: </th>
+                <th><input class="filter" placeholder="Nom" type="text" value="" id="name" onblur="search(this.id,this.value)" /></th>
+        </tr>
+        <tr>
+                <th>Nom</th>
+                <th>Població</th>
+                <th>Codi postal</th>
+                <th>Adreça</th>
+                <th>Email</th>
+                <th>Tel</th>
+                <th>Titol LLibre</th>
+                <th>Enviat?</th>
+                
+        </tr>	
     	{% if pagination|length >0 %}
     		{% for encarrec in pagination %}
     			{% if encarrec.enviat==1 %}
-					<tr class="enviat" >
-				{% else %}
+                                <tr class="enviat" >
+                        {% else %}
     	 			<tr>
-    			{% endif %}
-						
-						<td width=300px;>
-						{{ encarrec.name}}	
-						</td>
-						<td width=300px;>
-						{{ encarrec.poblacio}}	
-						</td>
-						<td>
-						{{ encarrec.codi}}	
-						</td>
-						<td  width=900px;>
-						{{encarrec.adreca}}	
-						</td>
-						<td  width=900px;>
-						{{encarrec.email}}	
-						</td>
-						<td  width=900px;>
-						{{encarrec.tel}}	
-						</td>
-						<td  width=900px;>
-						{{encarrec.llibre}}	
-						</td>
-						<td width=30px;>
-							{% if encarrec.enviat==1 %}
-								ENVIAT
-							{% else %}
-    	 						<a href="#" onclick="enviaEncarrec({{encarrec.id}})">ENVIA</a></li>	
-    						{% endif %}
-						
-						</td>
-						<td>
-						<a href="#" onclick="deleteEncarrec({{encarrec.id}})"><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
-						</td>
-					</tr>
+    			{% endif %}		
+                        <td width=100px;>
+                        {{ encarrec.name}}	
+                        </td>
+                        <td width=200px;>
+                        {{ encarrec.poblacio}}	
+                        </td>
+                        <td>
+                        {{ encarrec.codi}}	
+                        </td>
+                        <td  width=900px;>
+                        {{encarrec.adreca}}	
+                        </td>
+                        <td  width=900px;>
+                        {{encarrec.email}}	
+                        </td>
+                        <td  width=900px;>
+                        {{encarrec.tel}}	
+                        </td>
+                        <td  width=900px;>
+                        {{encarrec.llibre}}	
+                        </td>
+                        <td width=30px;>
+                                {% if encarrec.enviat==1 %}
+                                        ENVIAT
+                                {% else %}
+                                <a href="#" onclick="enviaEncarrec({{encarrec.id}})">ENVIA</a></li>	
+                        {% endif %}
+
+                        </td>
+                        <td>
+                        <a href="#" onclick="deleteEncarrec({{encarrec.id}})"><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
+                        </td>
+                </tr>
 		
 		{% endfor %}
     		<tr>

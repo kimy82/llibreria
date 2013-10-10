@@ -1,17 +1,13 @@
 {% extends 'AcmeStoreBundle::layout.html.twig' %}
-
 {% block title %}MANAGE LIST  AGENDA{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-
-	<div class="con_int">
-	<span class="super">	
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="con_int">
+<span class="super">	
     LLISTAT DE GALERIA
-	</span>
-    <br>
+</span>
+<br>
     	{% if pagination|length >0 %}
 		<table class="table_admin">
 			<tr>
@@ -20,6 +16,13 @@
 				<th><input class="filter" placeholder="Subtitol" type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
 				
 			</tr>
+                         <tr>
+                            <th>Foto</th>
+                            <th>Data entrada</th>
+                            <th>Titol</th>
+                            <th>Subtitol</th>
+                            <th>Descripció</th>
+                         </tr>
 
     		{% for galeria in pagination %}
     

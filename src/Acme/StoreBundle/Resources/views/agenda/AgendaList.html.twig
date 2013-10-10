@@ -15,6 +15,14 @@
             <th><input class="filter" placeholder="titol" type="text" value="" id="titol" onblur="search(this.id,this.value)" /></th>
             <th><input class="filter" placeholder="Subtitol" type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
         </tr>
+         <tr>
+            <th>Foto</th>
+            <th>Data entrada</th>
+            <th>Titol</th>
+            <th>Subtitol</th>
+            <th>Portada columna</th>
+            <th>Data fi</th>
+        </tr>
 	{% for agenda in pagination %}
     			<tr>
 			<td>
@@ -30,12 +38,6 @@
 			</td>
 			<td width=300px;>
 			{{ agenda.subtitol}}	
-			</td>
-			<td>
-			{{ agenda.novetat}}
-			</td>
-			<td>
-			{{ agenda.description}}	
 			</td>
 			<td  width=900px;>
 			 {{ agenda.portada}}	
@@ -55,27 +57,29 @@
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}
     		</div>
+</div>
+
     	{% else %}
     	 <p>- There are no things </p>
     	{% endif %}
-    </div></div></div>
+    
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}
        <script>
-function search(col,val){
-	var path="{{pathlocal}}";
-	window.localStorage.setItem('val_'+col,val);
-	window.location.href=path+"/admin/secured/agenda/agenda_llistat/n."+col+" like .."+val+".,";
-}
-var titolval=window.localStorage.getItem('val_titol');
-var subtitolval=window.localStorage.getItem('val_subtitol');
-if(titolval!=null){
-	document.getElementById('titol').value=titolval;
-}
+        function search(col,val){
+                var path="{{pathlocal}}";
+                window.localStorage.setItem('val_'+col,val);
+                window.location.href=path+"/admin/secured/agenda/agenda_llistat/n."+col+" like .."+val+".,";
+        }
+        var titolval=window.localStorage.getItem('val_titol');
+        var subtitolval=window.localStorage.getItem('val_subtitol');
+        if(titolval!=null){
+                document.getElementById('titol').value=titolval;
+        }
 
-if(subtitolval!=null){
-	document.getElementById('subtitol').value=subtitolval;
-}
-</script>
+        if(subtitolval!=null){
+                        document.getElementById('subtitol').value=subtitolval;
+        }
+        </script>
 {% endblock %}
