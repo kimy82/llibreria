@@ -146,7 +146,6 @@ delete_establiments:
 store_new_foto:
     pattern:  /admin/secured/establiments/foto_new_save
     defaults: { _controller: AcmeStoreBundle:Establiments:saveFoto }
-
 edit_foto:
     pattern:  /admin/secured/foto/edit/{id}
     defaults: { _controller: AcmeStoreBundle:Establiments:editFoto }

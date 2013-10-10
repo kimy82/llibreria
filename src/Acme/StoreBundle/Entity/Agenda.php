@@ -20,7 +20,7 @@ class Agenda
 	 /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $tablePath='agenda';
+        protected $tablePath='agenda';
 
 	/**
 	 * @ORM\Column(type="date")

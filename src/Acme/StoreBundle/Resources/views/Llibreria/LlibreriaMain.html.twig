@@ -1,35 +1,27 @@
 {% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-  <script type="text/javascript" src="{{ asset('bundles/acmestore/js/far.js') }}" ></script>
-
-
-
-    
-    <div class="contentnota">
-			
-		<div class="contentnot">
-    
-    	<!--{% for locale in ['en', 'fr', 'es'] %}
-		    <li {% if locale == app.request.locale %}class="active"{% endif %}>
-		        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale }}</a>
-		    </li>
-		{% endfor %}-->
-	
-    	<div class="leftdiv">
-    		{% if agenda|length >0 %}
-	    			    			
-	    		{% for agn in agenda %}
-			<div class="elem_main">
-			{{ agn.description|raw}}
-			
-			
-			</div>
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+ <script type="text/javascript" src="{{ asset('bundles/acmestore/js/far.js') }}" ></script>
+<div class="contentnota">
+    <div class="contentnot">
+<!--{% for locale in ['en', 'fr', 'es'] %}
+            <li {% if locale == app.request.locale %}class="active"{% endif %}>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale }}</a>
+            </li>
+    {% endfor %}-->
+    <div class="leftdiv">
+        {% if agenda|length >0 %}
+	    	{% for agn in agenda %}
+                    <div class="elem_main">
+                         {{ agn.titol|raw}}
+                         {{ agn.subtitol}}
+			 {{ agn.description|raw}}
+                         {% if  agn.attachment!='aaa' %}
+                            <img src="{{path}}{{agn.tablePath}}/{{ agn.attachment}}" />   
+                         {% endif %}
+                    </div>
 	    		{% endfor %}
 	    		
 	    	{% else %}

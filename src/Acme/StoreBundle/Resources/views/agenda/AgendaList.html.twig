@@ -1,32 +1,26 @@
 {% extends 'AcmeStoreBundle::layout.html.twig' %}
-
 {% block title %}MANAGE LIST  AGENDA{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-	
-   <div class="con_int">
-	<span class="super">	
-    LLISTAT DE NOTICIES
-	</span>
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="con_int">
+    <span class="super">	
+        LLISTAT D'AGENDA
+    </span>
     <br>
-	
-    	{% if pagination|length >0 %}
-    		<table class="table_admin">
-			<tr>
-				<th>Filtrar per: </th>
-				<th><input class="filter" placeholder="titol" type="text" value="" id="titol" onblur="search(this.id,this.value)" /></th>
-				<th><input class="filter" placeholder="Subtitol" type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
-				
-			</tr>
-			
-    		{% for agenda in pagination %}
-
+    {% if pagination|length >0 %}
+    <table class="table_admin">
+        <tr>
+            <th>Filtrar per: </th>
+            <th><input class="filter" placeholder="titol" type="text" value="" id="titol" onblur="search(this.id,this.value)" /></th>
+            <th><input class="filter" placeholder="Subtitol" type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
+        </tr>
+	{% for agenda in pagination %}
     			<tr>
 			<td>
-			<img width="50px" src="{{path}}{{ agenda.attachment}}" /> 	
+                        {% if  agenda.attachment!='aaa' %}
+                             <img width="50px" src="{{path}}{{ agenda.attachment}}" /> 
+                       {% endif %}	
 			</td>
 			<td width=100px;>
 			{{ agenda.dataEntrada|date('Y-m-d')}}	
@@ -56,26 +50,7 @@
 			<a href="{{ path('delete_agenda', {'id' : agenda.id}) }}" ><img width="26px" src="{{ asset('bundles/acmestore/img/delete.png') }}" /></a>	
 			</td>
 			</tr>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		s{% endfor %}
+		{% endfor %}
     		</ul>
     		<div class="pagerfanta" >
     			{{knp_pagination_render(pagination)}}

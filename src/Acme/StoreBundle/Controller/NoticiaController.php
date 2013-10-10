@@ -61,7 +61,6 @@ class NoticiaController extends Controller
 	    $prova = $form['attachment']->getData();
 	    $path= $this->get('kernel')->getImagesRootDir();
 	    if ($form['attachment']->getData()!=null){		
-		
 		$file = $form['attachment']->getData()->move($path.'/downloads/noticia/','not_'.$noticia->getId().'.jpg');
 		$noticia->setAttachment('not_'.$noticia->getId().'.jpg');
 	    }

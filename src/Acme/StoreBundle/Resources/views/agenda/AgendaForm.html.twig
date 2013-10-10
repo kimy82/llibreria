@@ -27,11 +27,10 @@ tinymce.init({
 });
 </script>
  
-	<div class="con_int">
-
-    <span class="super">	
+<div class="con_int">
+   <span class="super">	
     CREAR NOVA AGENDA
-	</span><br>
+   </span><br>
     
     	{{ form_start(form) }} 
     	{{ form_errors(form) }}
@@ -86,11 +85,9 @@ tinymce.init({
 	</div>
 	
     	{% if update == 1 %}
-    	<script>
-    	  document.getElementById("form_attachment").required="";
-    	</script>
+   
     	{% endif %}
-	</div></div></div>
+	</div>
     	
         {% if app.environment == 'dev' %}
            DEV

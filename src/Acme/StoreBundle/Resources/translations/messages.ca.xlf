@@ -152,7 +152,7 @@
             </trans-unit>
             <trans-unit id="38">
                 <source>f_bloq_menu</source>
-                <target>Bloq</target>
+                <target>Blog</target>
             </trans-unit> 
             <trans-unit id="39">
                 <source>f_portada_menu</source>
@@ -249,7 +249,7 @@
             </trans-unit>       
               <trans-unit id="62">
                 <source>f_busca_llibre_poble_client</source>
-                <target>Poblacio</target>
+                <target>Població</target>
             </trans-unit>   
             <trans-unit id="63">
                 <source>f_busca_llibre_adreca_client</source>
@@ -269,11 +269,11 @@
             </trans-unit>                   
             <trans-unit id="67">
                 <source>f_suggeriment_title</source>
-                <target>Suggerèncias</target>
+                <target>Suggerències</target>
             </trans-unit> 
             <trans-unit id="68">
                 <source>f_suggeriment_desc</source>
-                <target>Aquí pots veure la selecció de llibres que la 22 ha triat per tu</target>
+                <target>Aquí pots veure la selecció de llibres que la 22 ha triat per tu.</target>
             </trans-unit>  
             <trans-unit id="69">
                 <source>f_suggeriment_llibre</source>
@@ -413,7 +413,7 @@
                 <target>Setembre</target>
             </trans-unit>
              <trans-unit id="103">
-                <source>october</source>
+                <source>October</source>
                 <target>Octubre</target>
             </trans-unit>
              <trans-unit id="104">

@@ -589,7 +589,8 @@ width: 120px;
 .total{
     width: 156px;
     float: left;
-    height: 196px;
+    height: 226px;
+    margin-bottom: 30px;
 }
 .texte {
     float: left;
@@ -643,6 +644,7 @@ width: 120px;
     margin-left: 16px;
     margin-bottom: 16px;
 }
+
 #co{
     
 }
@@ -759,46 +761,59 @@ margin-top: 50px;
     width: 154px;
     background-color: white;
     float: left;
+    padding-bottom: 14px;
 }
 #con_gal{
     width: 800px;
     float: right;
 }
 #con_gal img{
-    padding-left: 16px;
-    padding-bottom: 16px;
+    
 }
 
 .divCargando{
-    position:fixed;
-    left:0px;
-    top:0px;
-    background-color:#706F6F;
-    opacity: 0.7;
-    -moz-opacity: 0.7;
-    filter: alpha(opacity=70);
-    -khtml-opacity: 0.7;
-    z-index:1236;
-    width: 100%;
-    height: 100%;
+width: 100%;
+position: fixed;
+top: 0px;
+background-color: black;
+z-index: 1300;
+height: 100%;
+opacity:0.8;
+filter:alpha(opacity=80); /* For IE8 and earlier */
+       
+    
+}
+#int_div{
+    width: 900px;
+    margin: auto;
 }
 
 .divCargandoImg {
-position: relative;
-top: -696px;
-width: 882px;
-height: 240px;
-z-index: 1237;
 margin: auto;
+width: 100%;
+z-index: 1301;
+position: absolute;
+top: 0px;
+height: 100%;
+
 }
-#left_but{
+#left_but, #left_but a, #left_but img{
     width: 120px;
     float: left;
+    position: relative;
+    z-index: 1301;
+
 }
 #center_but{
     width: 642px;
     float: left;
     background-color: white;
+}
+#center_but_2{
+    width: 642px;
+    float: left;
+   
+    height: 50px;
 }
 #right_but{
     width: 120px;
@@ -820,11 +835,9 @@ margin-bottom: 0px!important;
 float: left;
 width: 200px;
 }
-#int_div{
-    float: left;
-}
+
 #men_le li{
-    padding: 14px 10px 0px 20px;
+    padding: 14px 10px 0px 30px;
 
 }
 #men_le li a{
@@ -857,6 +870,13 @@ width: 200px;
     padding-bottom: 10px;
     float: left;
     height: auto;
+}
+.imagenexterna img{
+    width: 300px;
+    padding-bottom: 10px;
+    float: left;
+    height: auto;
+    margin-left: -50px;
 }
 .tit_top{
     padding-top: 30px;
@@ -982,6 +1002,7 @@ padding-top: 10px;
 }
 .nitro{
     height: 159px!important;
+    float: left;
 }
 .total th{
     vertical-align: bottom;
@@ -993,4 +1014,54 @@ padding-top: 10px;
 #presentacio .contentnot table p{
     width: 250px;
     
+}
+.pr{
+    float: left;
+}
+#reposicion{
+    position:relative;
+   height: 100%;
+   margin-top: -80px;
+    
+}
+#cont_esta {
+width: 479px;
+float: left;
+background-color: white;
+padding: 50px;
+margin-bottom: 40px;
+padding-top: 30px;
+}
+.item_est {
+    width: 180px;
+    float: left;
+    background-color: white;
+    margin-bottom: 16px;
+    margin-left: 10px;
+}
+#com{
+    width: 380px;
+    float: left;
+}
+.sep{
+    border: 1px solid #d9d9d9;
+}
+.titol_esta{
+    font-size: 21px;
+color: #575756;
+font-weight: bold;
+margin-bottom: 20px;
+}
+#enter_sug{
+    width: 156px;
+height: 159px;
+visibility: visible;
+zoom: 1;
+opacity: 1;
+overflow: hidden;
+
+float: left;
+}
+#suggeriments .titol{
+    margin-top: 10px;
 }

@@ -1,104 +1,124 @@
 {% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
 {% block content %}
-	<script type="text/javascript" src="{{ asset('bundles/acmestore/js/frontendGaleria.js') }}" ></script>
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<script type="text/javascript" src="{{ asset('bundles/acmestore/js/frontendGaleria.js') }}" ></script>
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="contentnota">
+    <div class="tit_fixN">
+            Galeria de fotos
+    </div>
+</div>
+<div class="contentnot">
+    <div id="reposicion">
+        {% if pagination|length >0 %}
+            <div id="men_le" class="menu_years_galeria">
+                <ul>
+            <li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[5]}}')" >{{dates[5]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[6]}}')" >{{dates[6]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[7]}}')" >{{dates[7]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[8]}}')" >{{dates[8]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[9]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[10]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[11]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[12]}}</a></li>
+                </ul>
+            </div>
 
-   <div class="contentnota">
-			<div class="tit_fixN">
-				Galeria de fotos
-			</div>
-		</div>
-		<div class="contentnot">
-    	
-    	
-    	{% if pagination|length >0 %}
-    		<div id="men_le" class="menu_years_galeria">
-			<ul>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
-   			</ul>
-		</div>
-		<div id="con_gal">
-   		<div>
-   			
-				
-    		{% for galeria in pagination %}
-		<script>
-		galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
-		</script>
-		<a href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}})"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="140px" /></a>
-    		{% endfor %}
-    		
-    		</div>
-		</div>
-    		<div class="pagerfanta" >
-    			{{knp_pagination_render(pagination)}}
-    		</div>
-    	{% else %}
-    		<div class="menu_years_galeria">
-    		<ul>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
-   			<li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
-   			</ul>
-   			</div>
-    	 	<p>- There are no things </p>
-    	{% endif %}
-    	</div>
-        {% if app.environment == 'dev' %}
-           DEV
+            <div id="con_gal">
+                <div>
+                    {% for galeria in pagination %}
+                        <script>
+                        galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
+                        </script>
+                        <div style="width: 144px; height: 144px; visibility: visible; zoom: 1; opacity: 1; overflow: hidden; margin-left: 16px; margin-bottom: 16px; float: left">
+                        <a href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}})"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
+                        </div>                    
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="pagerfanta" >
+                {{knp_pagination_render(pagination)}}
+            </div>
+        {% else %}
+          
+        <div class="menu_years_galeria">
+            <ul>
+            <li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[5]}}')" >{{dates[5]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[6]}}')" >{{dates[6]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[7]}}')" >{{dates[7]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[8]}}')" >{{dates[8]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[9]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[10]}}</a></li>
+            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[11]}}</a></li>
+             <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[12]}}</a></li>
+            </ul>
+        </div>
+
+        <p>- There are no things </p>
         {% endif %}
-       <script>
-		    $('li').removeClass('active');
-		    $('#galeriali').addClass('active');
-			function searchFotosYear(year){
-				var path="{{pathlocal}}";
-				window.localStorage.setItem('year',year);
-				window.location.href=path+"/llibreria22/galeria/"+year;
-			}
-			var titolval=window.localStorage.getItem('val_titol');
-			var subtitolval=window.localStorage.getItem('val_subtitol');
-			if(titolval!=null){
-				document.getElementById('titol').value=titolval;
-			}
-			
-			if(subtitolval!=null){
-				document.getElementById('subtitol').value=subtitolval;
-			}
-		
-		</script>
-		<!-- pagina per els dialogs -->
+        </div>
+</div>
+{% if app.environment == 'dev' %}
+   DEV
+{% endif %}
+<script>
+    $('li').removeClass('active');
+    $('#galeriali').addClass('active');
 
-		<div href="#" onclick="inicio()" id="divCargando" class="divCargando">
-		</div>
-		<div id="divCargandoImg" class="divCargandoImg">
-			<div id="int_div">
-		  <div id="left_but">
-	          <a href="#" onclick="galeriaManagerObj.previous()" ><img src="{{ asset('bundles/acmestore/img/left.png') }}" /></a>
-		  </div>
-		  <div id="center_but">
-		  <img width="642px" id ="img_id" src="" />
-		  <div id="text_di">
-		  <label class="tit_not" id="titol_foto" ></label><br>
-		  <label class="sub_tit" id="subtitol_foto" ></label><br>
-		  <label class="desi" id="desc_foto" ></label>
-		  </div>
-		  </div>
-		  <div id="right_but">
-		   <a href="#" onclick="galeriaManagerObj.next()" ><img src="{{ asset('bundles/acmestore/img/right.png') }}" /></a>
-		   </div>
-		</div>
-			</div>
-		 <script>
-			inicio();
-		</script>
+    function searchFotosYear(year){
+        var path="{{pathlocal}}";
+        window.localStorage.setItem('year',year);
+        window.location.href=path+"/llibreria22/galeria/"+year;
+    }
+    var titolval=window.localStorage.getItem('val_titol');
+    var subtitolval=window.localStorage.getItem('val_subtitol');
+    if(titolval!=null){
+        document.getElementById('titol').value=titolval;
+    }
+    if(subtitolval!=null){
+        document.getElementById('subtitol').value=subtitolval;
+    }
+</script>
+<!-- pagina per els dialogs -->
+<div id="divCargando" class="divCargando">
+     </div>
+   
+    <div id="divCargandoImg" class="divCargandoImg">
+        <div id="int_div">
+            <div id="left_but">
+                <a href="#" onclick="galeriaManagerObj.previous()" ><img src="{{ asset('bundles/acmestore/img/left.png') }}" /></a>
+            </div>
+            <div href="#" onclick="inicio()" id="center_but_2">
+              
+            </div>
+            </div>
+            <div id="center_but">
+                <img width="642px" id ="img_id" src="" />
+                <div id="text_di">
+                    <label class="tit_not" id="titol_foto" ></label><br>
+                    <label class="sub_tit" id="subtitol_foto" ></label><br>
+                    <label class="desi" id="desc_foto" ></label>
+                </div>
+            </div>
+            <div id="right_but">
+                <a href="#" onclick="galeriaManagerObj.next()" ><img src="{{ asset('bundles/acmestore/img/right.png') }}" /></a>
+            </div>
+        </div>
+    
+   
+
+<script>
+    inicio();
+</script>
 {% endblock %}

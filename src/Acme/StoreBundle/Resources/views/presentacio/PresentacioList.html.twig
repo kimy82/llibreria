@@ -24,8 +24,11 @@
 			</tr>
     		{% for presentacio in pagination %}
 		<tr>
-			<td>
-			<img width="50px"src="{{path}}{{ presentacio.attachment}}" />	
+			
+                        <td>
+			{% if  presentacio.attachment!='aaa' %}
+                           <img width="50px"src="{{path}}{{ presentacio.attachment}}" />	
+                        {% endif %}
 			</td>
 			<td width=100px;>
 			{{ presentacio.dataEntrada|date('Y-m-d')}}	

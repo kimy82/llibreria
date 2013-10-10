@@ -1,58 +1,54 @@
 {% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-
-		<div class="contentnot">
-			<div class="tit_fixN">
-				{% trans %}f_establiments_title{% endtrans %}
-			</div>
-			{{establiment[0].titol}}
-			{{establiment[0].description}}
-			
-			{% if pagination|length >0 %}
-				{% for foto in pagination %}
-					
-					<div class="not_el item">
-					<div class="not_int">
-						
-					
-						{{foto.description|raw}}
-						{% if  foto.attachment!='aaa' %}
-							<img src='{{pathfoto}}foto/{{ foto.attachment}}' />      
-						{% endif %}
-						
-
-					
-					</div>
-					</div>
-					
-				{% endfor %}
-				
-				
-				
-				
-				
-				
-			</div>
-			
-			<div class="pagerfanta" >
-	    			{{knp_pagination_render(pagination)}}
-	    		</div>
-		</div>
-	    		
-		    	{% else %}
-		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
-		    	{% endif %}
-			
-			
-			
-			
-		    	<script>
-		    		  $('li').removeClass('active');
-		    		  $('#establimentsli').addClass('active');
-		    	</script>
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="contentnot">
+    <div class="tit_fixN">
+            {% trans %}f_establiments_title{% endtrans %}
+    </div>
+    <div id="cont_esta">
+        <div class="titol_esta">
+            {{establiment[0].titol}}
+        </div>
+        <div>	
+            {{establiment[0].description|raw}}
+        </div>
+     </div>
+    <div id="com" class="columns">
+    {% if pagination|length >0 %}
+        {% for foto in pagination %}
+        <div class="item_est masonry-brick">
+                 <div class="">
+                    <div id="establo">
+                       {% if  foto.attachment!='aaa' %}
+                                <img width="180px;" src='{{pathfoto}}foto/{{ foto.attachment}}' />      
+                       {% endif %}
+                   </div>
+                   <div style="padding: 5px; font-size: 12px;">
+                         {{foto.description}}
+                   </div>
+                </div>
+        </div>
+        {% endfor %}  
+        </div>
+    </div>     
+<div class="pagerfanta" >
+    {{knp_pagination_render(pagination)}}
+</div>
+{% else %}
+         <p>{% trans %}f_no_things{% endtrans %}</p>
+{% endif %}
+<script>
+    $('li').removeClass('active');
+    $('#establimentsli').addClass('active');
+</script>
+<script type="text/javascript">
+$(window).load(function() {
+    $('#com').masonry({
+    // options
+    itemSelector : '.item_est'
+    });
+});	
+</script>
 {% endblock %}

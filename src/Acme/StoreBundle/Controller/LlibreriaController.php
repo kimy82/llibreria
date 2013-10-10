@@ -24,69 +24,63 @@ class LlibreriaController extends Controller
     {	
    
     	$year = date("Y");
-		$previousyear = $year;
+	$previousyear = $year;
     	$dates = array($previousyear-4,$previousyear-3,$previousyear-2,$previousyear-1,$previousyear);
- 		
     	$em = $this->getDoctrine()->getManager();
-    	
+        //Presentacio
     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'));
-    	$counter = count($query->getResult());
-		
+    	$counter = count($query->getResult());	
     	if($counter>=7){
-			$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(20);		
+			$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(7);		
 			$paginator= $this->get('knp_paginator');
 			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}else{
-    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ');		
-			$paginator= $this->get('knp_paginator');
-			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
+    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ')->setMaxResults(7);;		
+		$paginator= $this->get('knp_paginator');
+		$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}
-		
-		$rsm = new ResultSetMapping;				
-		$rsm->addEntityResult('Acme\StoreBundle\Entity\Agenda', 'a');
-		$rsm->addFieldResult('a', 'id', 'id'); // ($alias, $columnName, $fieldName)
-		$rsm->addFieldResult('a', 'tablePath', 'tablePath');
-		$rsm->addFieldResult('a', 'description', 'description'); // ($alias, $columnName, $fieldName)  
-		
-		$queryw = $em->createNativeQuery('SELECT id, tablePath, description FROM agenda WHERE portada != ? ', $rsm);
-		$queryw->setParameter(1, 'no');
-		
-		
-		$agenda = $queryw->getResult();
-		
-		
-		$rsmn = new ResultSetMapping; 
-		$rsmn->addEntityResult('Acme\StoreBundle\Entity\Noticia', 'n');
-		$rsmn->addFieldResult('n', 'id', 'id'); // ($alias, $columnName, $fieldName)
-		$rsmn->addFieldResult('n', 'tablePath', 'tablePath');
-		$rsmn->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName
-		$rsmn->addFieldResult('n', 'subtitol', 'subtitol'); // // ($alias, $columnName, $fieldName)
-		$rsmn->addFieldResult('n', 'description', 'description'); // // ($alias, $columnName, $fieldName)
-		$rsmn->addFieldResult('n', 'attachment', 'attachment');
-		
-		
-		$queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, description, attachment FROM noticia WHERE portada != ? ', $rsmn);
-		$queryn->setParameter(1, 'no');
-		
-		
-		$noticia = $queryn->getResult();
-		
-		
-		$path= $this->get('kernel')->getImagesPathAlone();
-		$pathSlider = $this->get('kernel')->getImagesPathAlone();
-		$pathServer= $this->get('kernel')->getServerPath();
-		
+	//Agenda	
+        $rsm = new ResultSetMapping;				
+        $rsm->addEntityResult('Acme\StoreBundle\Entity\Agenda', 'a');
+        $rsm->addFieldResult('a', 'id', 'id'); // ($alias, $columnName, $fieldName)
+        $rsm->addFieldResult('a', 'tablePath', 'tablePath');
+        $rsm->addFieldResult('a', 'titol', 'titol'); // ($alias, $columnName, $fieldName)
+        $rsm->addFieldResult('a', 'subtitol', 'subtitol'); // ($alias, $columnName, $fieldName)  
+        $rsm->addFieldResult('a', 'description', 'description'); // ($alias, $columnName, $fieldName)
+        $rsm->addFieldResult('a', 'attachment', 'attachment'); // ($alias, $columnName, $fieldName)  
+        $queryw = $em->createNativeQuery('SELECT id, tablePath, description, titol, subtitol, attachment FROM agenda WHERE portada != ? ', $rsm);
+        $queryw->setParameter(1, 'no');
+        $agenda = $queryw->getResult();
 
-		$slider = $this->getSlider();
+        //Noticia
+        $rsmn = new ResultSetMapping; 
+        $rsmn->addEntityResult('Acme\StoreBundle\Entity\Noticia', 'n');
+        $rsmn->addFieldResult('n', 'id', 'id'); // ($alias, $columnName, $fieldName)
+        $rsmn->addFieldResult('n', 'tablePath', 'tablePath');
+        $rsmn->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName
+        $rsmn->addFieldResult('n', 'subtitol', 'subtitol'); // // ($alias, $columnName, $fieldName)
+        $rsmn->addFieldResult('n', 'description', 'description'); // // ($alias, $columnName, $fieldName)
+        $rsmn->addFieldResult('n', 'attachment', 'attachment');
+        $queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, description, attachment FROM noticia WHERE portada != ? ', $rsmn);
+        $queryn->setParameter(1, 'no');
+        $noticia = $queryn->getResult();
+
+        //slider
+        $path= $this->get('kernel')->getImagesPathAlone();
+        $pathSlider = $this->get('kernel')->getImagesPathAlone();
+        $pathServer= $this->get('kernel')->getServerPath();
+        $slider = $this->getSlider();
 		
     	
         return $this->render('AcmeStoreBundle:llibreria:LlibreriaMain.html.twig', array('pathSlider'=>$pathSlider,'slider'=>$slider,'dates'=>$dates, 'paginationPresentacio' => $paginationPresentacio,'path' =>  $path,'pathlocal'=>$pathServer,'agenda'=>$agenda,'noticia'=>$noticia,'body'=>'index'));
     }
     
+    
  	public function galeriaAction($year)
     {
     	$previousyear = date("Y");		
-    	$dates = array($previousyear-4,$previousyear-3,$previousyear-2,$previousyear-1,$previousyear);
+    	$dates = array($previousyear-12,$previousyear-11,$previousyear-10,$previousyear-9,$previousyear-8,$previousyear-7,$previousyear-6,$previousyear-5,$previousyear-4,$previousyear-3,$previousyear-2,$previousyear-1,$previousyear);
+        
      	$em = $this->getDoctrine()->getManager();
      	
      	$year2=$year.'-12-30';
@@ -104,6 +98,7 @@ class LlibreriaController extends Controller
 		
 		$slider = $this->getSlider();
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
+               
 			
 		return $this->render('AcmeStoreBundle:llibreria:Galeria.html.twig', array(
             'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'dates'=>$dates,'body'=>'galeria',
@@ -146,28 +141,16 @@ class LlibreriaController extends Controller
     {
     	
      	$em = $this->getDoctrine()->getManager();
-     	
-                
- 
-                
-              
-
-               // echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-//Salida: Viernes 24 de Febrero del 2012
- 
-
-        
-		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
-		
-		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),12);
-		$path= $this->get('kernel')->getImagesPath('noticia');
-		$pathServer= $this->get('kernel')->getServerPath();
-		
-		$slider = $this->getSlider();
-		$pathSlider = $this->get('kernel')->getImagesPathAlone();
-		return $this->render('AcmeStoreBundle:llibreria:Noticia.html.twig', array(
+     	// echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+        //Salida: Viernes 24 de Febrero del 2012	
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
+        $paginator= $this->get('knp_paginator');
+        $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),12);
+        $path= $this->get('kernel')->getImagesPath('noticia');
+        $pathServer= $this->get('kernel')->getServerPath();
+        $slider = $this->getSlider();
+        $pathSlider = $this->get('kernel')->getImagesPathAlone();
+        return $this->render('AcmeStoreBundle:llibreria:Noticia.html.twig', array(
            'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path, 'pathlocal'=>$pathServer,'body'=>'noticies'
         ));
     }
@@ -180,7 +163,6 @@ class LlibreriaController extends Controller
      	
 		
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:agenda n order by n.id DESC');
-		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
 		$path= $this->get('kernel')->getImagesPath('agenda');
@@ -193,13 +175,7 @@ class LlibreriaController extends Controller
         ));
     }
     
-   
-    
-    
-    
-    
-    
-	public function buscaLlibreAction($name)
+   public function buscaLlibreAction($name)
     {
     	
     	$em = $this->getDoctrine()->getManager();
@@ -460,24 +436,23 @@ class LlibreriaController extends Controller
 		}
 		
 		//Busqueda de Agenda
-        $query = $em->createQueryBuilder();
+                $query = $em->createQueryBuilder();
 		$query = $query->select('n')->from('AcmeStoreBundle:Agenda', 'n')
-  			->where( $query->expr()->like('n.titol', $query->expr()->literal('%' . $search . '%')) )
-  			->orwhere( $query->expr()->like('n.subtitol', $query->expr()->literal('%' . $search . '%')) )
-			
-  			->getQuery();  
+                ->where( $query->expr()->like('n.titol', $query->expr()->literal('%' . $search . '%')) )
+                ->orwhere( $query->expr()->like('n.subtitol', $query->expr()->literal('%' . $search . '%')) )
+                ->getQuery();  
   					     		    	     	
 		$resultatsAgenda=$query->getResult();    
 		$pathagenda= $this->get('kernel')->getImagesPath('agenda');
 		
-    	for($i = 0; $i < count($resultatsAgenda); ++$i) {
-    	  $searched = new Search();
-    	  $agenda = $resultatsAgenda[$i];
-  		  $searched->setTitol($agenda->getTitol());
-  		  $searched->setDescription($agenda->getSubtitol().', '.$agenda->getDescription());
-  		  $searched->setCategory('agenda');
-  		  $searched->setPath($pathagenda);
-  		  $searched->setAttachment($agenda->getAttachment());
+                for($i = 0; $i < count($resultatsAgenda); ++$i) {
+                $searched = new Search();
+                $agenda = $resultatsAgenda[$i];
+                $searched->setTitol($agenda->getTitol());
+                $searched->setDescription($agenda->getSubtitol().', '.$agenda->getDescription());
+                $searched->setCategory('agenda');
+                $searched->setPath($pathagenda);
+                $searched->setAttachment($agenda->getAttachment());
     	  
   		  
   		  array_push($searchList, $searched);
