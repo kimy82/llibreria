@@ -38,8 +38,15 @@ class Noticia
 	protected $subtitol;
 
 	/**
+	 * @ORM\Column(type="string", length=500)
+	 */
+        
+        protected $video;
+
+	/**
 	 * @ORM\Column(type="text")
 	 */
+        
 	protected $description;
 
 	/**
@@ -103,6 +110,29 @@ class Noticia
      * Set subtitol
      *
      * @param string $subtitol
+     * @return Noticia
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+    
+        return $this;
+    }
+
+    /**
+     * Get subtitol
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
      * @return Noticia
      */
     public function setSubtitol($subtitol)

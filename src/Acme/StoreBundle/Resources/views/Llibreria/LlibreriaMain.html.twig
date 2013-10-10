@@ -15,12 +15,16 @@
         {% if agenda|length >0 %}
 	    	{% for agn in agenda %}
                     <div class="elem_main">
+	    	        <span class="tit_not">
                          {{ agn.titol|raw}}
-                         {{ agn.subtitol}}
-			 {{ agn.description|raw}}
+                        </span><br>
+                       <span class="sub_tit">
+			{{ agn.subtitol}}
+			</span><br>
                          {% if  agn.attachment!='aaa' %}
                             <img src="{{path}}{{agn.tablePath}}/{{ agn.attachment}}" />   
                          {% endif %}
+                            {{ agn.description|raw}}
                     </div>
 	    		{% endfor %}
 	    		
@@ -40,10 +44,10 @@
 			{{ noti.subtitol}}
 			</span><br>
 			{% if  noti.attachment!='aaa' %}
-							<img src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" />   
+                            <img src="{{path}}{{ noti.tablePath}}/{{ noti.attachment}}" />   
 			{% endif %}
 			
-			{{ noti.description}}
+			{{ noti.description|raw}}
 			
 			
 			

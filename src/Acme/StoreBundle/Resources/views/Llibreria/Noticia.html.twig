@@ -29,6 +29,9 @@
                     <div id="ies" class="comon imagenexterna">	
                     {{noticia.description|raw}}
                     </div>
+                    <div id="ies_img">
+                    {{ noticia.video|raw}}
+                    </div>
                     <div id="ies" class="bol">
                        
                         {% set day  = noticia.dataEntrada|date('j') %}

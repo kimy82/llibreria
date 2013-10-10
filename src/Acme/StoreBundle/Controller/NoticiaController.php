@@ -27,6 +27,7 @@ class NoticiaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text', array('label' => 'form.titol','required' => false))
             ->add('subtitol', 'text')
+            ->add('video', 'text', array('label' => 'form.video','required' => false))
             ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
@@ -47,6 +48,7 @@ class NoticiaController extends Controller
 	    $noticia->setDataEntrada($form['date_entrada']->getData());
 	    $noticia->setTitol($form['titol']->getData());
 	    $noticia->setSubtitol($form['subtitol']->getData());
+            $noticia->setVideo($form['video']->getData());
 	    $noticia->setDescription($form['description']->getData());
 	    $noticia->setNovetat($form['novetat']->getData());
 	    $noticia->setPortada($form['portada']->getData());
@@ -79,6 +81,7 @@ class NoticiaController extends Controller
 	    $noticiaform->setDateEntrada(new \DateTime('tomorrow'));
 	    $noticiaform->setTitol("");
 	    $noticiaform->setSubtitol("Sub Titol");
+            $noticiaform->setVideo("URL del video");
 	    $noticiaform->setDescription("descripcio");
 	    $noticiaform->setNovetat(true);
 	    $noticiaform->setPortada("no");
@@ -90,6 +93,7 @@ class NoticiaController extends Controller
 	    ->add('date_entrada', 'date')
 	    ->add('titol', 'text', array('label' => 'form.titol','required' => false))
 	    ->add('subtitol', 'text')
+            ->add('video', 'text', array('label' => 'form.video','required' => false))
 	    ->add('description', 'textarea')
 	    ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
 	    ->add('portada',  'choice', array(
@@ -135,6 +139,7 @@ class NoticiaController extends Controller
 	    $noticiaform->setDateEntrada($noticia->getDataEntrada());
 	    $noticiaform->setTitol($noticia->getTitol());
 	    $noticiaform->setSubtitol($noticia->getSubtitol());
+            $noticiaform->setVideo($noticia->getVideo());
 	    $noticiaform->setDescription($noticia->getDescription());
 	    $noticiaform->setNovetat($noticia->getNovetat());
 	    $noticiaform->setPortada($noticia->getPortada());
@@ -155,6 +160,7 @@ class NoticiaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
+            ->add('video', 'text', array('label' => 'form.video','required' => false))
             ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
@@ -180,6 +186,7 @@ class NoticiaController extends Controller
                 ->add('date_entrada', 'date')
                 ->add('titol', 'text')
                 ->add('subtitol', 'text')
+                ->add('video', 'text', array('label' => 'form.video','required' => false))
                 ->add('description', 'textarea')
                 ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
                 ->add('portada',  'choice', array(
@@ -203,6 +210,7 @@ class NoticiaController extends Controller
 	      	$noticia->setDataEntrada($form['date_entrada']->getData());
 	        $noticia->setTitol($form['titol']->getData());
 	        $noticia->setSubtitol($form['subtitol']->getData());
+                $noticia->setVideo($form['video']->getData());
 	        $noticia->setDescription($form['description']->getData());
 	        $noticia->setNovetat($form['novetat']->getData());
 	        $noticia->setPortada($form['portada']->getData());

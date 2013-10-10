@@ -11,6 +11,9 @@ class NoticiaForm
 
 	
 	protected $subtitol;
+        
+        
+        protected $video;
 
 
 	protected $description;
@@ -69,7 +72,19 @@ class NoticiaForm
     {
         return $this->subtitol;
     }
+    
+    public function setVideo($video)
+    {
+        $this->video = $video;
+    
+        return $this;
+    }
 
+
+    public function getVideo()
+    {
+        return $this->video;
+    }
    
     public function setDescription($description)
     {

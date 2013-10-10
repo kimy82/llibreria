@@ -266,7 +266,7 @@ color:#999;
 	font-style: italic;
 	margin-bottom: 16px;
 	float: left;
-	width: 200px;
+	width: 250px;
 }
 .not_int p{
 	margin-top: 30px;
@@ -674,15 +674,17 @@ width: 120px;
 }
 .leftdiv{
    float: left;
-   width: 308px;
- margin-right: 16px;
+width: 308px;
+margin-right: 16px;
+font-size: 12px;
+color: #706F6F;
 
 }
 .leftdiv img{
    margin-left: -16px;
    width: 308px;
    height: auto;
-
+padding-bottom: 14px;
 }
 
 .elem_main{
@@ -694,6 +696,7 @@ width: 120px;
    margin-left: -16px;
    width: 308px;
    height: auto;
+   padding-bottom: 14px;
 
 }
 .rightdiv img{
