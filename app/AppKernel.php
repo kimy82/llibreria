@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Acme\StoreBundle\AcmeStoreBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Gregwar\ImageBundle\GregwarImageBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -42,17 +43,17 @@ class AppKernel extends Kernel
     
   	public function getImagesPath($place)
     {
-        return 'http://localhost/repo22/downloads/'.$place.'/';
+        return 'http://localhost/llibreria.git/downloads/'.$place.'/';
     }
     
 	public function getImagesPathAlone()
     {
-        return 'http://localhost/repo22/downloads/';
+        return 'http://localhost/llibreria.git/downloads/';
     }
     
 	public function getServerPath()
     {
-        return 'http://localhost/repo22/web/app_dev.php';
+        return 'http://localhost/llibreria.git/web/app_dev.php';
     }
     
     

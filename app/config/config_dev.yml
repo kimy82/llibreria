@@ -26,6 +26,7 @@ monolog:
 
 assetic:
     use_controller: true
-
+gregwar_image:
+    throw_exception: true
 #swiftmailer:
 #    delivery_address: me@example.com

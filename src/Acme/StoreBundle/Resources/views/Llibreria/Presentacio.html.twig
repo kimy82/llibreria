@@ -31,8 +31,17 @@
 					</div>
 					<div id="ies_img">
 					 {% if  presentacio.attachment!='aaa' %}
+                                                 {% set  pp= path~presentacio.attachment%}
+                                                
+                                                 {% if image(pp).width > image(pp).height %}
+                                                   vertical
+                                                 {% else%}
+                                                   horitzontal
+                                                 {% endif%}
                          <img  width="310px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />      
+                         
                        {% endif %}	
+                                        
 					
 					</div>
 					<div id="ies" class="comon">	
