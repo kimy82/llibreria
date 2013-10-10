@@ -195,18 +195,22 @@ class EstablimentsController extends Controller
 	       
 	        $dades =$form->getData();
                 $fotoToUpdate->setDescription($form['description']->getData());
+                
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($fotoToUpdate);
                 $em->flush();                
 		$path= $this->get('kernel')->getImagesRootDir();
+           
 	         if ($form['attachment']->getData()!=null){
+                     
 			  $file = $form['attachment']->getData()->move($path.'/downloads/foto/','gal_'.$fotoToUpdate->getId().'.jpg');
-                          $em = $this->getDoctrine()->getManager();
+                          $fotoToUpdate->setAttachment('gal_'. $fotoToUpdate->getId().'.jpg');
                           $em->persist($fotoToUpdate);
                           $em->flush();
                          
 	         }
 	        
+                 
 			 
 	    
 	        return $this->redirect($this->generateUrl('acme_pre_store_establiments'));
