@@ -13,6 +13,13 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class UploadController extends Controller
 {
+    public function utf8_fopen_read($fileName) { 
+        $fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName)); 
+        $handle=fopen("php://memory", "rw"); 
+        fwrite($handle, $fc); 
+        fseek($handle, 0); 
+        return $handle; 
+    } 
     public function indexAction()
     {
     	$uploadform = new UploadForm();			
@@ -66,7 +73,11 @@ class UploadController extends Controller
 	       	$pathRel= rand(1, 99999).'lastUpload.txt';
 	      	$form['attachment']->getData()->move($path.'/downloads/uploads/',$pathRel);
 	      	ini_set('auto_detect_line_endings', TRUE); 
-	      	$handle = fopen($path.'/downloads/uploads/'.$pathRel, "r");
+               
+	      	// fopen($path.'/downloads/uploads/'.$pathRel, "r");
+                $handle = $this->utf8_fopen_read($path.'/downloads/uploads/'.$pathRel);
+               
+     
 			
 	  		if ($handle) {
 	  			$numTotal=0;
