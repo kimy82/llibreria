@@ -22,6 +22,13 @@ class LlibreriaController extends Controller
 {
     public function indexAction()
     {	
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('send@example.com')
+        ->setTo('joaquim.orra@gmail.com')
+        ->setBody('SSSSSSSS');
+
+        $this->get('mailer')->send($message);  
    
     	$year = date("Y");
 	$previousyear = $year;
