@@ -22,13 +22,7 @@ class LlibreriaController extends Controller
 {
     public function indexAction()
     {	
-        $message = \Swift_Message::newInstance()
-        ->setSubject('Hello Email')
-        ->setFrom('send@example.com')
-        ->setTo('joaquim.orra@gmail.com')
-        ->setBody('SSSSSSSS');
-
-        $this->get('mailer')->send($message);  
+        
    
     	$year = date("Y");
 	$previousyear = $year;
@@ -229,7 +223,7 @@ class LlibreriaController extends Controller
 	    ));
     }
     
-	public function demanaLlibreAction($id)
+	public function demanaLlibreAction($id,$nom)
     {
     	
     	$em = $this->getDoctrine()->getManager();
@@ -238,8 +232,8 @@ class LlibreriaController extends Controller
 	$pathServer= $this->get('kernel')->getServerPath();	
     	$query = $em->createQueryBuilder();
 	$resultats = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
-  					   ->where( 'n.id='.$id )
-  					   ->getQuery()->getResult();
+  					->where( 'n.name=\''.$nom.'\'' )
+  					->getQuery()->getResult();
 
   		$formDemana = new DemanaForm();
 		
@@ -265,17 +259,17 @@ class LlibreriaController extends Controller
   		
   		 
 		$form = $this->createFormBuilder($formDemana)
-       	 	->setAction($this->generateUrl('acme_save_demana'))
-       	 	->setMethod('POST')
-            ->add('name', 'text')
-            ->add('poblacio', 'text') 
-            ->add('adreca', 'text')
-            ->add('codi', 'text')
-            ->add('email', 'text')
-            ->add('tel', 'text')
-            ->add('llibre', 'text')
-            ->add('save', 'submit')
-            ->getForm();
+                        ->setAction($this->generateUrl('acme_save_demana'))
+                        ->setMethod('POST')
+                        ->add('name', 'text')
+                        ->add('poblacio', 'text') 
+                        ->add('adreca', 'text')
+                        ->add('codi', 'text')
+                        ->add('email', 'text')
+                        ->add('tel', 'text')
+                        ->add('llibre', 'text')
+                        ->add('save', 'submit')
+                        ->getForm();
 		$slider = $this->getSlider();	
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();					
 		return $this->render('AcmeStoreBundle:llibreria:DemanaLlibre.html.twig', array(
@@ -292,17 +286,17 @@ class LlibreriaController extends Controller
   		
   		
 		$form = $this->createFormBuilder($formDemana)
-       	 	->setAction($this->generateUrl('acme_save_demana'))
-       	 	->setMethod('POST')
-            ->add('name', 'text')
-            ->add('poblacio', 'text')
-            ->add('adreca', 'text')
-            ->add('codi', 'text')
-            ->add('email', 'text')
-            ->add('tel', 'text')
-            ->add('llibre', 'text')
-            ->add('save', 'submit')
-            ->getForm();
+                        ->setAction($this->generateUrl('acme_save_demana'))
+                        ->setMethod('POST')
+                        ->add('name', 'text')
+                        ->add('poblacio', 'text')
+                        ->add('adreca', 'text')
+                        ->add('codi', 'text')
+                        ->add('email', 'text')
+                        ->add('tel', 'text')
+                        ->add('llibre', 'text')
+                        ->add('save', 'submit')
+                        ->getForm();
     	        
 		$form->handleRequest($request);
 	
@@ -318,6 +312,21 @@ class LlibreriaController extends Controller
 	        $encarrec->setTel($form['tel']->getData());
 	        $encarrec->setEnviat(0);
 	        
+                //SENDING EMAIL ENCARREC
+                $message = \Swift_Message::newInstance()
+                            ->setSubject('Nova comanda')
+                            ->setFrom('comanda@llibre.com')
+                            ->setTo('joaquim.orra@gmail.com')
+                            ->setBody($this->renderView('AcmeStoreBundle:llibreria:DemanaEmail.html.twig', array('name' => $encarrec->getName(),
+                                                                                                                 'poble'=>$encarrec->getPoblacio(),
+                                                                                                                 'adreca'=>$encarrec->getAdreca(),
+                                                                                                                 'codi'=>$encarrec->getCodi(),
+                                                                                                                 'llibre'=>$encarrec->getLlibre(),
+                                                                                                                 'email'=>$encarrec->getEmail())), 'text/html');
+                $this->get('mailer')->send($message); 
+                
+               //END SENDING EMAIL ENCARREC
+                
 	        $query = $em->createQueryBuilder();
 			$llibre = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
   					   ->where( 'n.id='.$form['llibre']->getData() )

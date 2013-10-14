@@ -1,0 +1,17 @@
+{% extends 'AcmeStoreBundle::layoutEmail.html.twig' %}
+
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+		<div class="contentnot">
+			{{name}}<br>
+                        {{poble}}<br>
+                        {{adreca}}<br>
+                        {{email}}<br>
+                        {{llibre}}<br>
+                        {{codi}}
+		</div>	
+			
+    			
+{% endblock %}
