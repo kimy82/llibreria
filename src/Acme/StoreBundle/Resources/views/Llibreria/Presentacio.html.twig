@@ -34,11 +34,11 @@
                                                  {% set  pp= path~presentacio.attachment%}
                                                 
                                                  {% if image(pp).width > image(pp).height %}
-                                                   vertical
+                                                  <img  width="110px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />
                                                  {% else%}
-                                                   horitzontal
+                                                  <img  width="310px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />
                                                  {% endif%}
-                         <img  width="310px" height="auto" id="img_{{ presentacio.id}}" src="{{path}}{{ presentacio.attachment}}" />      
+                               
                          
                        {% endif %}	
                                         

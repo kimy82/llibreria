@@ -692,11 +692,12 @@ padding-bottom: 14px;
     margin-bottom: 16px;
     padding: 16px;
 }
-.centerdiv img{
+.centerdiv img, .centerdiv iframe{
    margin-left: -16px;
    width: 308px;
    height: auto;
    padding-bottom: 14px;
+   padding-top: 14px;
 
 }
 .rightdiv img{

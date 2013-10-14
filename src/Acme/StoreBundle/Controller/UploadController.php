@@ -18,7 +18,7 @@ class UploadController extends Controller
     	$uploadform = new UploadForm();			
 	
 	    
-	    $uploadform->setSeparator('|||');
+	    $uploadform->setSeparator('Â¦Â¦Â¦');
               
        	  
        	 $formToRender = $this->createFormBuilder($uploadform)
@@ -77,7 +77,7 @@ class UploadController extends Controller
 			      try{
 			      	
 			      	$numTotal=$numTotal+1;
-			      	list($name, $autor, $editorial, $category, $desc, $price) = explode("¦¦¦", $line);
+			      	list($name, $autor, $editorial, $category, $desc, $price) = explode("Â¦Â¦Â¦", $line);
 			       
 			      	$llibre = new Llibre();
 			     
@@ -98,7 +98,7 @@ class UploadController extends Controller
 			    	$numFets=$numFets+1;
 			    	
 			      }catch(Exception $e){
-			      	echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+			      	echo 'Excepciï¿½n capturada: ',  $e->getMessage(), "\n";
 			      }
 			    }
 			    if (!feof($handle)) {

@@ -24,7 +24,8 @@
                          {% if  agn.attachment!='aaa' %}
                             <img src="{{path}}{{agn.tablePath}}/{{ agn.attachment}}" />   
                          {% endif %}
-                            {{ agn.description|raw}}
+                         {{ agn.description|raw}}
+                         
                     </div>
 	    		{% endfor %}
 	    		
@@ -48,7 +49,7 @@
 			{% endif %}
 			
 			{{ noti.description|raw}}
-			
+			{{ noti.video|raw}}
 			
 			
 			
@@ -73,7 +74,7 @@
 			<div class="ender">
 			
 			<div class="farl wit">
-			{{ presentacio.dataEntrada|date('Y-m-d')}}
+			{{ presentacio.dataFi|date('Y-m-d')}}
 			</div>
 			<div class="farl">
 			{{ presentacio.lloc}}

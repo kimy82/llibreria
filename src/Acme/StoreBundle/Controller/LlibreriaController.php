@@ -29,13 +29,16 @@ class LlibreriaController extends Controller
     	$em = $this->getDoctrine()->getManager();
         //Presentacio
     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'));
-    	$counter = count($query->getResult());	
+    	$counter = count($query->getResult());
+       
     	if($counter>=7){
 			$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(7);		
 			$paginator= $this->get('knp_paginator');
 			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}else{
-    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ')->setMaxResults(7);;		
+                $query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('last week'))->setMaxResults(7);		
+
+    		//$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ')->setMaxResults(3);		
 		$paginator= $this->get('knp_paginator');
 		$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}
@@ -45,7 +48,7 @@ class LlibreriaController extends Controller
         $rsm->addFieldResult('a', 'id', 'id'); // ($alias, $columnName, $fieldName)
         $rsm->addFieldResult('a', 'tablePath', 'tablePath');
         $rsm->addFieldResult('a', 'titol', 'titol'); // ($alias, $columnName, $fieldName)
-        $rsm->addFieldResult('a', 'subtitol', 'subtitol'); // ($alias, $columnName, $fieldName)  
+        $rsm->addFieldResult('a', 'subtitol', 'subtitol'); // ($alias, $columnName, $fieldName)
         $rsm->addFieldResult('a', 'description', 'description'); // ($alias, $columnName, $fieldName)
         $rsm->addFieldResult('a', 'attachment', 'attachment'); // ($alias, $columnName, $fieldName)  
         $queryw = $em->createNativeQuery('SELECT id, tablePath, description, titol, subtitol, attachment FROM agenda WHERE portada != ? ', $rsm);
@@ -58,10 +61,11 @@ class LlibreriaController extends Controller
         $rsmn->addFieldResult('n', 'id', 'id'); // ($alias, $columnName, $fieldName)
         $rsmn->addFieldResult('n', 'tablePath', 'tablePath');
         $rsmn->addFieldResult('n', 'titol', 'titol'); // // ($alias, $columnName, $fieldName
-        $rsmn->addFieldResult('n', 'subtitol', 'subtitol'); // // ($alias, $columnName, $fieldName)
+        $rsmn->addFieldResult('n', 'subtitol', 'subtitol'); // // ($alias, $columnName, $fieldName
+        $rsmn->addFieldResult('n', 'video', 'video'); // // ($alias, $columnName, $fieldName)
         $rsmn->addFieldResult('n', 'description', 'description'); // // ($alias, $columnName, $fieldName)
         $rsmn->addFieldResult('n', 'attachment', 'attachment');
-        $queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, description, attachment FROM noticia WHERE portada != ? ', $rsmn);
+        $queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, video, description, attachment FROM noticia WHERE portada != ? ', $rsmn);
         $queryn->setParameter(1, 'no');
         $noticia = $queryn->getResult();
 
@@ -387,6 +391,7 @@ class LlibreriaController extends Controller
 		$queryPresentacio = $queryPresentacio->select('n')->from('AcmeStoreBundle:Presentacio', 'n')
   			->where( $queryPresentacio->expr()->like('n.titol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
   			->orwhere( $queryPresentacio->expr()->like('n.subtitol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                        ->orwhere( $queryPresentacio->expr()->like('n.description', $queryPresentacio->expr()->literal('%' . $search . '%')) )
                         ->orwhere( $queryPresentacio->expr()->like('n.dataEntrada', $queryPresentacio->expr()->literal('%' . $search . '%')) )
                         
   			->getQuery();  
