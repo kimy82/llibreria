@@ -79,9 +79,9 @@ class NoticiaController extends Controller
 	
 	    $noticiaform = new NoticiaForm();			
 	    $noticiaform->setDateEntrada(new \DateTime('tomorrow'));
-	    $noticiaform->setTitol("");
+	    $noticiaform->setTitol("Noticia");
 	    $noticiaform->setSubtitol("Sub Titol");
-            $noticiaform->setVideo("URL del video");
+            $noticiaform->setVideo("");
 	    $noticiaform->setDescription("descripcio");
 	    $noticiaform->setNovetat(true);
 	    $noticiaform->setPortada("no");
@@ -115,10 +115,13 @@ class NoticiaController extends Controller
 	    $em = $this->getDoctrine()->getManager();
 	    $orderBy = str_replace("..", "'%", $orderBy);
 	    $orderBy = str_replace(".,", "%'", $orderBy);
-	    $query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n where '.$orderBy);
-	    
+	    //$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n where '.$orderBy);
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
+	   
+            
+            
 	    $paginator= $this->get('knp_paginator');
-	    $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+	    $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),40);
 	    $path= $this->get('kernel')->getImagesPath('noticia');
 	    $pathServer= $this->get('kernel')->getServerPath();
 		

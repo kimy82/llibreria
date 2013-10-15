@@ -352,3 +352,6 @@ color: #999;
 tr.enviat {
     background-color: #0F0!important;
 }
+#foradelloc{
+    display: none;
+}

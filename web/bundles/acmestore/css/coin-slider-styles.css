@@ -33,33 +33,21 @@
 .cs-title {
      
      color: #FFFFFF;
-     padding: 10px;
      width: 1000px;
-     bottom: 40px!important;
+     bottom: -20px!important;
 }
 #sli{
-     background-color: #FCEA10;
-     margin-bottom: 20px;
-     width:200px;
-     margin-left: 30px;
-     padding: 10px;
-      font-size: 16px;
-       text-transform: uppercase;
-       font-weight: bold;
-       color: #575756;
-       opacity: 1;
+    background-color: #FCEA10;
+    margin-bottom: 20px;
+    width:639px;
+    padding: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #575756;
+    opacity: 1;
 }
-#sli2{
-     background-color: #FCEA10;
-     width:200px;
-      margin-left: 30px;
-       padding: 10px;
-       font-size: 16px;
-       text-transform: uppercase;
-       font-weight: bold;
-       color: #575756;
-       opacity: 1;
-}
+
 
 .cs-prev, .cs-next {
      background-color: #000000;

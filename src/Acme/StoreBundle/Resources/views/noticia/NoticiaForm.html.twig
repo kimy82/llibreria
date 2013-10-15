@@ -9,6 +9,7 @@
  <script type="text/javascript" src="{{ asset('bundles/acmestore/js/tinymce.min.js') }}" ></script>
 <script type="text/javascript">
 tinymce.init({
+          language : 'ca',
         selector: "textarea",
         plugins: [
                 "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
@@ -66,16 +67,17 @@ tinymce.init({
 	      {{ form_errors(form.subtitol) }} 
 	      {{ form_widget(form.subtitol, {}) }}
 	    </div>
+                 <div>
+	     Video<br>
+	      {{ form_errors(form.video) }} 
+	      {{ form_widget(form.video, {}) }}
+	    </div>
 	    <div>
 	     Descripció<br>
 	      {{ form_errors(form.description) }} 
 	      {{ form_widget(form.description, {}) }}
 	    </div>
-            <div>
-	     Video<br>
-	      {{ form_errors(form.video) }} 
-	      {{ form_widget(form.video, {}) }}
-	    </div>
+           
 	    
 	</div>
 	<div id="rigth_for">
@@ -84,12 +86,12 @@ tinymce.init({
 	    {{ form_errors(form.date_entrada) }} 
 	    {{ form_widget(form.date_entrada, {}) }}
 	    </div>
-	    <div>
+	    <div id="foradelloc">
 	      Data fi<br>
 	    {{ form_errors(form.data_fi) }} 
 	    {{ form_widget(form.data_fi, {}) }}
 	    </div>
-	    <div>
+	    <div id="foradelloc">
 	     Novetat<br>
 	      {{ form_errors(form.novetat) }} 
 	      {{ form_widget(form.novetat, {}) }}

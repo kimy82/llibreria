@@ -34,10 +34,11 @@
                     </div>
                     <div id="ies" class="bol">
                        
+                        {% set daynum  = noticia.dataEntrada|date('l') %}
                         {% set day  = noticia.dataEntrada|date('j') %}
                         {% set month = noticia.dataEntrada|date('F') %}
                         {% set year = noticia.dataEntrada|date('Y') %}
-                        {% trans %}f_publicat_el{% endtrans %} {{ '%s'|format(day) }} {{ '%s %s'|format( month|trans,year) }}
+                        {% trans %}f_publicat_el{% endtrans %} {{ '%s'|format( daynum|trans) }} {{ '%s'|format(day) }} {{ '%s %s'|format( month|trans,year) }}
                      </div>
                 </div>
          </div>

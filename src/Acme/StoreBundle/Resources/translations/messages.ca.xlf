@@ -423,7 +423,35 @@
              <trans-unit id="105">
                 <source>December</source>
                 <target>Desembre</target>
-            </trans-unit>                
+            </trans-unit>
+            <trans-unit id="106">
+                <source>Monday</source>
+                <target>Dilluns</target>
+            </trans-unit>
+             <trans-unit id="107">
+                <source>Tuesday</source>
+                <target>Dimarts</target>
+            </trans-unit>
+             <trans-unit id="108">
+                <source>Wednesday</source>
+                <target>Dimecres</target>
+            </trans-unit>
+             <trans-unit id="109">
+                <source>Thursday</source>
+                <target>Dijous</target>
+            </trans-unit>
+             <trans-unit id="110">
+                <source>Friday</source>
+                <target>Divendres</target>
+            </trans-unit>
+             <trans-unit id="111">
+                <source>Saturday</source>
+                <target>Disabte</target>
+            </trans-unit>
+             <trans-unit id="112">
+                <source>Sunday</source>
+                <target>Diumenge</target>
+            </trans-unit>          
         </body>
     </file>
 </xliff>

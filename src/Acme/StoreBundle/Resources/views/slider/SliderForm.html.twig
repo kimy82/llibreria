@@ -14,8 +14,23 @@
 	</span><br>
     <div id="formol">
 	<div id="left_for">
-    	{{ form(form) }}
-    	
+    		{{ form_start(form) }} 
+    	{{ form_errors(form) }}
+                 <div>
+	      Titol<br>
+	      {{ form_errors(form.description) }} 
+	      {{ form_widget(form.description, {}) }}
+	    </div>
+                 <div id="foradelloc">
+	      Titol<br>
+	      {{ form_errors(form.descriptioner) }} 
+	      {{ form_widget(form.descriptioner, {}) }}
+	    </div>
+                <div>
+	      {{ form_errors(form.attachment) }} 
+	      {{ form_widget(form.attachment, {}) }}
+	    </div>
+    	{{ form_end(form) }}
     	{% if update == 1 %}
     	<script>
     	  document.getElementById("form_attachment").required="";

@@ -94,15 +94,15 @@ class LlibreriaController extends Controller
      	 
      	
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
-		
-		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
-		$path= $this->get('kernel')->getImagesPath('galeria');
-		$pathServer= $this->get('kernel')->getServerPath();
-		
-		$slider = $this->getSlider();
-		$pathSlider = $this->get('kernel')->getImagesPathAlone();
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
+
+        $paginator= $this->get('knp_paginator');
+        $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
+        $path= $this->get('kernel')->getImagesPath('galeria');
+        $pathServer= $this->get('kernel')->getServerPath();
+
+        $slider = $this->getSlider();
+        $pathSlider = $this->get('kernel')->getImagesPathAlone();
                
 			
 		return $this->render('AcmeStoreBundle:llibreria:Galeria.html.twig', array(
@@ -378,15 +378,14 @@ class LlibreriaController extends Controller
      	
      	//Busqueda de llibres
      	$query = $em->createQueryBuilder();
-		$query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
-  			->where( $query->expr()->like('n.name', $query->expr()->literal('%' . $search . '%')) )
-                        
-  			->orwhere( $query->expr()->like('n.autor', $query->expr()->literal('%' . $search . '%')) )
-  			->orwhere( $query->expr()->like('n.editorial', $query->expr()->literal('%' . $search . '%')) )
-  			->getQuery();  
-  					     		    	     	
-		$resultatsLlibre=$query->getResult();    
-		$pathllibre= $this->get('kernel')->getImagesPath('llibre');
+        $query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
+                ->where( $query->expr()->like('n.name', $query->expr()->literal('%' . $search . '%')) )
+                ->orwhere( $query->expr()->like('n.autor', $query->expr()->literal('%' . $search . '%')) )
+                ->orwhere( $query->expr()->like('n.editorial', $query->expr()->literal('%' . $search . '%')) )
+                ->getQuery();  
+
+        $resultatsLlibre=$query->getResult();    
+        $pathllibre= $this->get('kernel')->getImagesPath('llibre');
 		
     	for($i = 0; $i < count($resultatsLlibre); ++$i) {
     	  $searched = new Search();
@@ -404,24 +403,22 @@ class LlibreriaController extends Controller
 		//Buqueda de presentacions
 		
     	$queryPresentacio = $em->createQueryBuilder();
-		$queryPresentacio = $queryPresentacio->select('n')->from('AcmeStoreBundle:Presentacio', 'n')
-  			->where( $queryPresentacio->expr()->like('n.titol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
-  			->orwhere( $queryPresentacio->expr()->like('n.subtitol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
-                        ->orwhere( $queryPresentacio->expr()->like('n.description', $queryPresentacio->expr()->literal('%' . $search . '%')) )
-                        ->orwhere( $queryPresentacio->expr()->like('n.dataEntrada', $queryPresentacio->expr()->literal('%' . $search . '%')) )
-                        
-  			->getQuery();  
+        $queryPresentacio = $queryPresentacio->select('n')->from('AcmeStoreBundle:Presentacio', 'n')
+                ->where( $queryPresentacio->expr()->like('n.dataEntrada', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                ->orwhere( $queryPresentacio->expr()->like('n.titol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                ->orwhere( $queryPresentacio->expr()->like('n.subtitol', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                ->orwhere( $queryPresentacio->expr()->like('n.description', $queryPresentacio->expr()->literal('%' . $search . '%')) )
+                ->getQuery();  
   					     		    	     	
 		$resultatsPresentacio=$queryPresentacio->getResult();    
 		$pathpresentacio= $this->get('kernel')->getImagesPath('presentacio');
 		
     	for($i = 0; $i < count($resultatsPresentacio); ++$i) {
-    	  $searched = new Search();
-    	  $presentacio = $resultatsPresentacio[$i];
-                  $searched->setDataEntrada($presentacio->DataEntrada());
-                 // $searched->setDataEntrada($presentacio['date_entrada']->getData());
+                  $searched = new Search();
+                  $presentacio = $resultatsPresentacio[$i];
+                 // $searched->setDateEntrada($presentacio->GetDataEntrada());
   		  $searched->setTitol($presentacio->getTitol());
-  		  $searched->setDescription($presentacio->getSubtitol().', '.$presentacio->getDescription());
+  		  $searched->setDescription($presentacio->getSubtitol().', '.$presentacio->getDescription().', '.$presentacio->getDataEntrada()->format('Y-m-d') );
   		  $searched->setCategory('presentacio');
   		  $searched->setPath($pathpresentacio);
   		  $searched->setAttachment($presentacio->getAttachment());
@@ -445,8 +442,8 @@ class LlibreriaController extends Controller
     	for($i = 0; $i < count($resultatsNoticia); ++$i) {
     	  $searched = new Search();
     	  $noticia = $resultatsNoticia[$i];
-  		  $searched->setTitol($noticia->getTitol());
-		 
+  		 // $searched->setDataEntrada($noticia->getDataEntrada());
+		  $searched->setTitol($noticia->getTitol());
   		  $searched->setDescription($noticia->getSubtitol().', '.$noticia->getDescription());
   		  $searched->setCategory('noticia');
   		  $searched->setPath($pathnoticia);

@@ -28,7 +28,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')
             ->add('attachment', 'file')
             ->add('description', 'text')
-	    ->add('descriptioner', 'text')
+            ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -69,7 +69,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')           
             ->add('attachment', 'file')
             ->add('description', 'text')
-	    ->add('descriptioner', 'text')
+	    ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -114,7 +114,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')           
             ->add('attachment', 'file')
             ->add('description', 'text')
-	     ->add('descriptioner', 'text')
+	      ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
@@ -131,7 +131,7 @@ class SliderController extends Controller
        	 	->setMethod('POST')           
             ->add('attachment', 'file')
             ->add('description', 'text')
-	     ->add('descriptioner', 'text')
+	      ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
             ->add('save', 'submit')
             ->getForm();
             
