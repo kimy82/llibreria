@@ -54,6 +54,28 @@ delete_slider:
      pattern:  /admin/secured/slider/delete/{id}
      defaults: { _controller: AcmeStoreBundle:Slider:deleteSlider }
 
+acme_addpdf:
+    pattern:  /admin/secured/addpdf
+    defaults: { _controller: AcmeStoreBundle:Addpdf:index }
+acme_pre_store_addpdf:
+    pattern:  /admin/secured/addpdf/addpdf_save
+    defaults: { _controller: AcmeStoreBundle:Addpdf:precreate }
+store_new_addpdf:
+    pattern:  /admin/secured/addpdf/addpdf_new_save
+    defaults: { _controller: AcmeStoreBundle:Addpdf:saveAddpdf }
+llistat_store_addpdf:
+    pattern:  /admin/secured/addpdf/addpdf_llistat/{orderBy}
+    defaults: { _controller: AcmeStoreBundle:Addpdf:list }
+edit_addpdf:
+    pattern:  /admin/secured/addpdf/edit/{id}
+    defaults: { _controller: AcmeStoreBundle:Addpdf:edit }
+update_addpdf:
+     pattern:  /admin/secured/addpdf/update/{id}
+     defaults: { _controller: AcmeStoreBundle:Addpdf:updateAddpdf }
+delete_addpdf:
+     pattern:  /admin/secured/addpdf/delete/{id}
+     defaults: { _controller: AcmeStoreBundle:Addpdf:deleteAddpdf }
+
 acme_llibre:
     pattern:  /admin/secured/llibre
     defaults: { _controller: AcmeStoreBundle:Llibre:index }

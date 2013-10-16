@@ -316,7 +316,7 @@ class LlibreriaController extends Controller
                 $message = \Swift_Message::newInstance()
                             ->setSubject('Nova comanda')
                             ->setFrom('comanda@llibre.com')
-                            ->setTo('joaquim.orra@gmail.com')
+                            ->setTo('adp.alex@gmail.com')
                             ->setBody($this->renderView('AcmeStoreBundle:llibreria:DemanaEmail.html.twig', array('name' => $encarrec->getName(),
                                                                                                                  'poble'=>$encarrec->getPoblacio(),
                                                                                                                  'adreca'=>$encarrec->getAdreca(),

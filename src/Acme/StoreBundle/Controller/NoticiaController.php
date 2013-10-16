@@ -104,9 +104,15 @@ class NoticiaController extends Controller
 	    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
 	    ->add('save', 'submit')
 	    ->getForm();
+            
+            $em = $this->getDoctrine()->getManager();
+            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+	    $paginatorpdf= $this->get('knp_paginator');
+	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),40);
+	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
 		
 	    return $this->render('AcmeStoreBundle:noticia:NoticiaForm.html.twig', array(
-		'form' => $formToRender->createView(),'update' =>false,
+		'form' => $formToRender->createView(),'pathpdf' =>  $pathpdf,'update' =>false,'paginationpdf' => $paginationpdf,
 	    ));	   
 	}
 	
@@ -117,16 +123,19 @@ class NoticiaController extends Controller
 	    $orderBy = str_replace(".,", "%'", $orderBy);
 	    //$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n where '.$orderBy);
             $query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
-	   
-            
-            
 	    $paginator= $this->get('knp_paginator');
 	    $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),40);
 	    $path= $this->get('kernel')->getImagesPath('noticia');
 	    $pathServer= $this->get('kernel')->getServerPath();
+            
+            
+         
+            
+            
+            
 		
 	    return $this->render('AcmeStoreBundle:noticia:NoticiaList.html.twig', array(
-            'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,
+            'pagination' => $pagination,'path' =>  $path ,'pathlocal'=>$pathServer,
         ));
 	}
 	
@@ -175,8 +184,14 @@ class NoticiaController extends Controller
             ->add('save', 'submit')
             ->getForm();
             
+            $em = $this->getDoctrine()->getManager();
+            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+	    $paginatorpdf= $this->get('knp_paginator');
+	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),40);
+	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
+            
         return $this->render('AcmeStoreBundle:noticia:NoticiaForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>true,
+            'form' => $formToRender->createView(),'pathpdf' =>  $pathpdf,'paginationpdf' => $paginationpdf,'update' =>true,
         ));	   
 	}
 	
