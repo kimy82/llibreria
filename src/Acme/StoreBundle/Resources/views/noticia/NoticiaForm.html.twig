@@ -6,6 +6,7 @@
 <script type="text/javascript" src="{{ asset('bundles/acmestore/js/jquery.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('bundles/acmestore/js/ckeditor/ckeditor.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('bundles/acmestore/js/ckeditor/adapters/jquery.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('bundles/acmestore/js/global.js') }}" ></script>
 
 <div class="con_int">
 
@@ -68,11 +69,15 @@
 	      {{ form_widget(form.attachment, {}) }}
 	    </div>
 	    {{ form_end(form) }}
-	    </div>
+             <div>
+                    <a href="#" onclick="wait()" >asd</a>
+                </div>
+                    
                 
-                
+              
+            <div id="divCargandoImg" class="divCargandoImg">
             {% if paginationpdf|length >0 %}
-		<table class="table_admin">
+		<table class="table_admin2">
 			
                          <tr>
                             <th>Foto</th>
@@ -87,9 +92,7 @@
 			<td>
 			<img width="50px" src="{{pathpdf}}{{ addpdf.attachment}}" /> 	
 			</td>
-                        <td>
-			{{pathpdf}}{{ addpdf.attachment}}
-			</td>
+     
                          <td>
                            
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
@@ -139,12 +142,18 @@
     	{% if update == 1 %}
     	
     	{% endif %}
+                    </div>
+	    </div>
+               
 	</div></div></div>
 	
 	<script>
         $(document).ready(function(){
              $( 'textarea#form_description' ).ckeditor();
         });
+        </script>
+        <script>
+            inicio();
         </script>
         {% if app.environment == 'dev' %}
            DEV

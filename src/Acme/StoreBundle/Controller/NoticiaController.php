@@ -108,7 +108,7 @@ class NoticiaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
 	    $paginatorpdf= $this->get('knp_paginator');
-	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),40);
+	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
 	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
 		
 	    return $this->render('AcmeStoreBundle:noticia:NoticiaForm.html.twig', array(
@@ -187,7 +187,7 @@ class NoticiaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
 	    $paginatorpdf= $this->get('knp_paginator');
-	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),40);
+	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
 	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
         return $this->render('AcmeStoreBundle:noticia:NoticiaForm.html.twig', array(

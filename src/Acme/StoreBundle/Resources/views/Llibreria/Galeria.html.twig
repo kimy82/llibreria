@@ -14,19 +14,11 @@
         {% if pagination|length >0 %}
             <div id="men_le" class="menu_years_galeria">
                 <ul>
-            <li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[5]}}')" >{{dates[5]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[6]}}')" >{{dates[6]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[7]}}')" >{{dates[7]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[8]}}')" >{{dates[8]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[9]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[10]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[11]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[12]}}</a></li>
+            
+           
+              {% for i in 0..12 %}                  
+                 <li><a href="#" onclick="searchFotosYear('{{dates-i}}')" >{{dates-i}}</a></li>
+            {% endfor %}
                 </ul>
             </div>
 
@@ -48,23 +40,12 @@
         {% else %}
           
         <div class="menu_years_galeria">
-            <ul>
-            <li><a href="#" onclick="searchFotosYear('{{dates[0]}}')" >{{dates[0]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[1]}}')" >{{dates[1]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[2]}}')" >{{dates[2]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[3]}}')" >{{dates[3]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[4]}}')" >{{dates[4]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[5]}}')" >{{dates[5]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[6]}}')" >{{dates[6]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[7]}}')" >{{dates[7]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[8]}}')" >{{dates[8]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[9]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[10]}}</a></li>
-            <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[11]}}</a></li>
-             <li><a href="#" onclick="searchFotosYear('{{dates[9]}}')" >{{dates[12]}}</a></li>
-            </ul>
+             {% for i in 0..12 %}                  
+                             <li><a href="#" onclick="searchFotosYear('{{dates-i}}')" >{{dates-i}}</a></li>
+            {% endfor %}
+           
         </div>
-
+           
         <p>- There are no things </p>
         {% endif %}
         </div>
