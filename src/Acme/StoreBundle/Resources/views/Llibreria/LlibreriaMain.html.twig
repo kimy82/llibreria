@@ -5,7 +5,7 @@
 {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
  <script type="text/javascript" src="{{ asset('bundles/acmestore/js/far.js') }}" ></script>
 <div class="contentnota">
-    <div class="contentnot">
+    <div class="contentnot">       
 <!--{% for locale in ['en', 'fr', 'es'] %}
             <li {% if locale == app.request.locale %}class="active"{% endif %}>
                 <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale }}</a>
