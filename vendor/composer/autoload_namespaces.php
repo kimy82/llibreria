@@ -28,5 +28,6 @@ return array(
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
     'Gregwar' => array($vendorDir . '/gregwar/image-bundle'),
     'Gregwar\\Image' => array($vendorDir . '/gregwar/image-bundle'),
+    'Mapado' => array($vendorDir . '/mapado/mysql-doctrine-functions'),
     '' => array($baseDir . '/src'),
 );
