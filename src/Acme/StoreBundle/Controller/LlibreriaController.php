@@ -84,7 +84,6 @@ class LlibreriaController extends Controller
  	public function galeriaAction($year)
     {
             
-            
     	//$previousyear = date("Y");		
     	//$dates = array($previousyear,$previousyear-1,$previousyear-2,$previousyear-3,$previousyear-4,$previousyear-5,$previousyear-6,$previousyear-7,$previousyear-8,$previousyear-9,$previousyear-10,$previousyear-11,$previousyear-12);
          $dates = date("Y");	
@@ -95,19 +94,20 @@ class LlibreriaController extends Controller
      	$year=$year.'-01-01';
      	
         $query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
-        
-        
+       
         $paginator= $this->get('knp_paginator');
         $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
+        
+       // $arraydata = array_unique($queryData, $this->get('request')->query->get('page',1),20);
+       
         $path= $this->get('kernel')->getImagesPath('galeria');
         $pathServer= $this->get('kernel')->getServerPath();
 
         $slider = $this->getSlider();
         $pathSlider = $this->get('kernel')->getImagesPathAlone();
-               
-			
+        	
 		return $this->render('AcmeStoreBundle:llibreria:Galeria.html.twig', array(
-           'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'dates'=>$dates,'body'=>'galeria',
+       'pathSlider'=>$pathSlider,'slider'=>$slider,'pagination' => $pagination,'path' =>  $path,'pathlocal'=>$pathServer,'dates'=>$dates,'body'=>'galeria',
         ));
     }
     

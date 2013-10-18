@@ -14,9 +14,10 @@
         {% if pagination|length >0 %}
             <div id="men_le" class="menu_years_galeria">
                 <ul>
-            
            
-              {% for i in 0..12 %}                  
+                        
+              {% set daynum  = 12 %}
+              {% for i in 0..daynum %}                  
                  <li><a href="#" onclick="searchFotosYear('{{dates-i}}')" >{{dates-i}}</a></li>
             {% endfor %}
                 </ul>
@@ -40,7 +41,8 @@
         {% else %}
           
         <div class="menu_years_galeria">
-             {% for i in 0..12 %}                  
+              {% set daynum  = 12 %}
+              {% for i in 0..daynum %}                 
                              <li><a href="#" onclick="searchFotosYear('{{dates-i}}')" >{{dates-i}}</a></li>
             {% endfor %}
            
