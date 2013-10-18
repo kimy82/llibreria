@@ -20,7 +20,8 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "gregwar/image-bundle": "dev-master"
+        "gregwar/image-bundle": "dev-master",
+        "mapado/mysql-doctrine-functions": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
