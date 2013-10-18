@@ -15,11 +15,10 @@
             <div id="men_le" class="menu_years_galeria">
                 <ul>
            
-                        
-              {% set daynum  = 12 %}
-              {% for i in 0..daynum %}                  
-                 <li><a href="#" onclick="searchFotosYear('{{dates-i}}')" >{{dates-i}}</a></li>
-            {% endfor %}
+                    {% for dt in dates %}
+                        <li><a href="#" onclick="searchFotosYear('{{dt['1']}}')" >{{dt['1']}}</a></li>
+                    {% endfor %}          
+              
                 </ul>
             </div>
 
