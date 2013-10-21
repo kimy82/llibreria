@@ -59,7 +59,7 @@ class EstablimentsController extends Controller
                ->setMethod('POST')
                ->add('titol', 'text')
                ->add('description', 'textarea')
-               ->add('save', 'submit')
+               ->add('Guardar Establiments', 'submit')
                ->getForm();
         //foto
         $formfotoToRender = $this->createFormBuilder($fotoform)
@@ -127,7 +127,7 @@ class EstablimentsController extends Controller
                 ->setMethod('POST')
                 ->add('description', 'textarea')
                 ->add('titol', 'text')
-                ->add('save', 'submit')
+                ->add('Guardar Establiments', 'submit')
                 ->getForm();
   
 	    return $this->render('AcmeStoreBundle:establiments:EstablimentsForm.html.twig', array(
@@ -144,7 +144,7 @@ class EstablimentsController extends Controller
        	 	->setMethod('POST')
 		->add('titol', 'text')
 		->add('description', 'textarea')
-		->add('save', 'submit')
+		->add('Guardar Establiments', 'submit')
 		->getForm();
             
 		$form->handleRequest($request);

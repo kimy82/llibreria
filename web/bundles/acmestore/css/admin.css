@@ -357,14 +357,15 @@ tr.enviat {
 }
 
 .divCargandoImg {
-width: 240px;
+width: 219px;
 z-index: 1301;
 position: relative;
 top: 0px;
-height: 200px;
+height: 220px;
 background: white;
 overflow-y: scroll;
 border: 1px solid #b3b3b3;
+padding: 10px;
 }
 .table_admin2 {
     border-collapse: collapse;
@@ -376,4 +377,9 @@ border: 1px solid #b3b3b3;
     padding: 10px;
     vertical-align: middle;
     position: relative;
+}
+
+.mailto:hover{
+    color: #0779D3;
+    text-decoration: underline;
 }

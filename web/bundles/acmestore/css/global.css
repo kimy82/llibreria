@@ -105,16 +105,24 @@ margin-top: 36px;
 	height: 966px;
 	padding-top: 12px;
 }
-.contentnot{
+.contentnotpor{
 	margin: auto;
 	width: 960px;
-	
+	float: left;
+    
 	padding-top: 12px;
 }
 .contentnota{
 	margin: auto;
 	width: 960px;
 	height: 60px;
+	padding-top: 12px;
+}
+.contentnot{
+	margin: auto;
+	width: 960px;
+	
+    
 	padding-top: 12px;
 }
 #footer{
@@ -464,7 +472,7 @@ margin-top: 10px;
 .tabs .opts {
 	position: absolute;
 	z-index: 1000;
-	width: 88px;
+	width: 78px;
 	height: 40px;
 	left: 0px;
 	top: 0px;
@@ -479,10 +487,19 @@ margin-top: 10px;
 }
 .tabs input#tab-3{
 	left: 191px;
+        width: 140px;
 }
 .tabs input#tab-4 {
-left: 285px;
-width: 120px;
+left: 338px;
+width: 80px;
+}
+.tabs input#tab-5 {
+left: 423px;
+width: 83px;
+}
+.tabs input#tab-6 {
+left: 513px;
+width: 93px;
 }
 
 .tabs .labe {
@@ -516,19 +533,25 @@ width: 120px;
 }
 
 .tabs label:first-of-type {
-    z-index: 4;
+    z-index: 6;
     
 }
 
 .tab-label-2 {
-    z-index: 3;
+    z-index: 5;
 }
 
 .tab-label-3 {
-    z-index: 2;
+    z-index: 4;
 }
 
 .tab-label-4 {
+    z-index: 3;
+}
+.tab-label-5 {
+    z-index: 2;
+}
+.tab-label-6 {
     z-index: 1;
 }
 
@@ -554,7 +577,7 @@ width: 120px;
     margin-bottom: 20px;
 }
 
-.contente .contente-1, .contente .contente-2, .contente .contente-3, .contente .contente-4 {
+.contente .contente-1, .contente .contente-2, .contente .contente-3, .contente .contente-4, .contente .contente-5, .contente .contente-6 {
     position: absolute;
 	top: 0;
 	left: 0;
@@ -572,7 +595,10 @@ width: 120px;
 .tabs input.tab-selector-1:checked ~ .contente .contente-1,
 .tabs input.tab-selector-2:checked ~ .contente .contente-2,
 .tabs input.tab-selector-3:checked ~ .contente .contente-3,
-.tabs input.tab-selector-4:checked ~ .contente .contente-4 {
+.tabs input.tab-selector-4:checked ~ .contente .contente-4,
+.tabs input.tab-selector-5:checked ~ .contente .contente-5,
+.tabs input.tab-selector-6:checked ~ .contente .contente-6
+{
 	z-index: 100;
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
@@ -600,7 +626,7 @@ width: 120px;
     font-size: 12px;
     word-break:keep-all;
     width: 150px;
-    color: #333333;
+    color: #777;
 }
 
 .titol {
@@ -692,7 +718,7 @@ padding-bottom: 14px;
     margin-bottom: 16px;
     padding: 16px;
 }
-.centerdiv img, .centerdiv iframe{
+.imgportada img{
    margin-left: -16px;
    width: 308px;
    height: auto;
@@ -700,12 +726,17 @@ padding-bottom: 14px;
    padding-top: 14px;
 
 }
-.rightdiv img{
-   margin-left: -16px;
+.centerdiv p img {
+   padding-bottom: 14px;
+   padding-top: 14px;
+
+}
+
+.rightdiv p img{
+   
    width: 308px;
    height: auto;
    margin-bottom: 16px;
-
 }
 .centerdiv{
     float: left;
@@ -717,24 +748,26 @@ padding-bottom: 14px;
 .rightdiv{
     float: right;
     background-color: #575756;
-    height: 500px;
+    height: 100%;
     width: 310px;
-   
+    margin-bottom:100px;
 }
 .ender{
     padding: 16px;
 }
 .farl{
-    width: 300px;
+    width: 250px;
     color: #FCEA10;
     font-size: 12px;
 }
 .wit{
     font-size: 20px!important;
 }
-.titolmain{
-    text-transform: uppercase;
-    margin-top: 16px;
+.titolmain {
+text-transform: uppercase;
+margin-top: 16px;
+font-weight: bold;
+font-size: 15px;
 }
 .des{
     color: #ffffff!important;
@@ -813,11 +846,16 @@ height: 100%;
     float: left;
     background-color: white;
 }
-#center_but_2{
-    width: 642px;
-    float: left;
-   
-    height: 50px;
+#center_but_2 {
+width: 642px;
+float: left;
+height: 30px;
+line-height: 2;
+margin-top: 30px;
+font-weight: bold;
+color: white;
+cursor: pointer;
+text-align: right;
 }
 #right_but{
     width: 120px;
@@ -830,6 +868,7 @@ height: 100%;
 	font-size: 12px;
 	color: #706F6F;
 	float: left;
+        padding-bottom: 20px;
 }
 #galeria .sub_tit {
 font-size: 14px;
@@ -867,7 +906,9 @@ width: 200px;
     padding-left:  50px;
     float: left;
     height: auto;
-    
+}
+#ies p{
+   color:#777;
 }
 #ies_img{
     width: 300px;
@@ -876,11 +917,10 @@ width: 200px;
     height: auto;
 }
 .imagenexterna img{
-    width: 300px;
+     padding-top: 10px;
     padding-bottom: 10px;
     float: left;
-    height: auto;
-    margin-left: -50px;
+  
 }
 .tit_top{
     padding-top: 30px;
@@ -1068,4 +1108,26 @@ float: left;
 }
 #suggeriments .titol{
     margin-top: 10px;
+}
+.tablesuger{
+    height: 186px;
+}
+#leftPetana {
+background-color: #277CBE;
+color: white;
+padding: 20px;
+width: 90px;
+}
+#centerPetana {
+background-color: #DA662F;
+color: white;
+padding: 20px;
+width: 90px;
+}
+#prePetana {
+background-color: #333;
+color: white;
+padding: 20px;
+width: 90px;
+float: left;
 }

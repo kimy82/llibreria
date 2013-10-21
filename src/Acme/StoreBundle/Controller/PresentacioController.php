@@ -105,9 +105,15 @@ class PresentacioController extends Controller
          ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
         ->add('save', 'submit')
         ->getForm();
+        
+        $em = $this->getDoctrine()->getManager();
+        $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+        $paginatorpdf= $this->get('knp_paginator');
+        $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),10);
+        $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
         return $this->render('AcmeStoreBundle:presentacio:PresentacioForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>false,
+            'form' => $formToRender->createView(),'update' =>false, 'paginationpdf' => $paginationpdf,'pathpdf' =>  $pathpdf,
         ));	   
 	}
 	
@@ -167,9 +173,15 @@ class PresentacioController extends Controller
                  ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
                 ->add('save', 'submit')
                 ->getForm();
+                
+                 $em = $this->getDoctrine()->getManager();
+        $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+        $paginatorpdf= $this->get('knp_paginator');
+        $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),10);
+        $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
         return $this->render('AcmeStoreBundle:presentacio:PresentacioForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>true,
+            'form' => $formToRender->createView(),'update' =>true, 'paginationpdf' => $paginationpdf,'pathpdf' =>  $pathpdf,
         ));	   
 	}
 	

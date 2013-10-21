@@ -32,7 +32,7 @@ class LlibreriaController extends Controller
     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'));
     	$counter = count($query->getResult());
        
-    	if($counter>=7){
+    	if($counter>=1){
 			$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(7);		
 			$paginator= $this->get('knp_paginator');
 			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
@@ -355,12 +355,12 @@ public function galeriaAction($year)
      	$em = $this->getDoctrine()->getManager();
      	
 		
-		$queryllibre = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category = :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','suggerencia')->getResult();
+		$queryficcio = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category = :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','ficcio')->getResult();
+		$querynoficcio = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','noFiccio')->getResult();
+		$queryautorscatalans = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','autorsCatalans')->getResult();
+		$querycomic = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','comics')->getResult();
+		$queryinfantil = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','infantil')->getResult();
 		$querybutxaca = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','butxaca')->getResult();
-		$queryinfantil = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','suggerenciaInfaltil')->getResult();
-		$querycomic = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','comic')->getResult();
-		
-		
 		
 		$path= $this->get('kernel')->getImagesPath('suggerencia');
 		$pathServer= $this->get('kernel')->getServerPath();
@@ -368,8 +368,8 @@ public function galeriaAction($year)
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();
 		
 		return $this->render('AcmeStoreBundle:llibreria:Suggeriments.html.twig', array(
-            'pathSlider'=>$pathSlider,'slider'=>$slider,'paginationllibre' => $queryllibre,'paginationbutxaca' => $querybutxaca,
-            'paginationcomic' => $querycomic,'paginationinfantil' => $queryinfantil,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'suggeriments'
+            'pathSlider'=>$pathSlider,'slider'=>$slider,'paginationficcio' => $queryficcio,'paginationnoficcio' => $querynoficcio,
+            'paginationautorscatalans' => $queryautorscatalans,'paginationcomic' => $querycomic,'paginationinfantil' => $queryinfantil,'paginationbutxaca' => $querybutxaca,'path' =>  $path,'pathlocal'=>$pathServer,'body'=>'suggeriments'
         ));
     }
     
@@ -431,8 +431,10 @@ public function galeriaAction($year)
   		  array_push($searchList, $searched);
 		}
 		
+                
+                
 		//Busqueda a noticies
-    	$query = $em->createQueryBuilder();
+    	        $query = $em->createQueryBuilder();
 		$query = $query->select('n')->from('AcmeStoreBundle:Noticia', 'n')
   			->where( $query->expr()->like('n.titol', $query->expr()->literal('%' . $search . '%')) )
   			->orwhere( $query->expr()->like('n.description', $query->expr()->literal('%' . $search . '%')) )

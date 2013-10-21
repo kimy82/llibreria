@@ -1,33 +1,19 @@
 {% extends 'AcmeStoreBundle::layout.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
-
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
- <script type="text/javascript" src="{{ asset('bundles/acmestore/js/tinymce.min.js') }}" ></script>
-
-<script type="text/javascript">
-tinymce.init({
-    selector: "textarea",
-    plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste"
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-});
-</script>
-	
-	<div class="con_int">
-
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<script type="text/javascript" src="{{ asset('bundles/acmestore/js/jquery.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('bundles/acmestore/js/ckeditor/ckeditor.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('bundles/acmestore/js/ckeditor/adapters/jquery.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('bundles/acmestore/js/global.js') }}" ></script>
+<div class="con_int">
     <span class="super">	
-    CREAR NOVA PRESENTACIÓ
-	</span><br>
-    	{{ form_start(form) }} 
-        {{ form_errors(form) }}
-    			<div id="formol">
+         CREAR NOVA PRESENTACIÓ
+    </span><br>
+    {{ form_start(form) }} 
+    {{ form_errors(form) }}
+    <div id="formol">
 	<div id="left_for">
 	    <div>
 	     Titol<br>
@@ -58,21 +44,22 @@ tinymce.init({
 	</div>
 	<div id="rigth_for">
 	  <div>
-	      Data entrada<br>
+	      Data en que es fa la presentació<br>
 	    {{ form_errors(form.date_entrada) }} 
 	    {{ form_widget(form.date_entrada, {}) }}
 	    </div>
 	   <div>
 	     
+               Data fi<br>
 	      {{ form_errors(form.data_fi) }} 
 	      {{ form_widget(form.data_fi, {}) }}
 	    </div>
-	    <div>
+	   <div id="foradelloc">
 	       Portada<br>
 	      {{ form_errors(form.portada) }} 
 	      {{ form_widget(form.portada, {}) }}
 	    </div>
-	    <div>
+	    <div id="foradelloc">
 	      Novetat<br>
 	      {{ form_errors(form.novetat) }} 
 	      {{ form_widget(form.novetat, {}) }}
@@ -82,22 +69,80 @@ tinymce.init({
 	      {{ form_widget(form.attachment, {}) }}
 	    </div>
 	    {{ form_end(form) }}
-	    </div>
+	    <div>
+                    <button type="button">Adjuntar PDF</button>
+             </div>
+             <div id="divCargandoImg" class="divCargandoImg">
+             {% if paginationpdf|length >0 %}
+                    <table class="table_admin2">
+                        
+                    {% for addpdf in paginationpdf %}
+                        <tr>
+                           
+                             <td>
+                           {{ addpdf.name}}
+                            </td>
+                        <td>  
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                            width="110"
+                            height="14"
+                            id="clippy" >
+                            <param name="movie" value="/flash/clippy.swf"/>
+                            <param name="allowScriptAccess" value="always" />
+                            <param name="quality" value="high" />
+                            <param name="scale" value="noscale" />
+                            <param NAME="FlashVars" value="text=#{text}">
+                            <param name="bgcolor" value="#{bgcolor}">
+                            <embed src="{{ asset('bundles/acmestore/js/clippy.swf') }}"
+                            width="110"
+                            height="14"
+                            name="clippy"
+                            quality="high"
+                            allowScriptAccess="always"
+                            type="application/x-shockwave-flash"
+                            pluginspage="http://www.macromedia.com/go/getflashplayer"
+                            FlashVars="text={{pathpdf}}{{ addpdf.attachment}}"
+                            bgcolor="#f5f5f5"
+                            />
+                        </object>
+			</td>
+			</tr>
+                    {% endfor %}
+                        <tr>
+                        <td>
+                        </td>
+                        <td>
+                        
+                    </td>
+                    </tr>
+                    </table>
+                     <div class="pagerfanta" >
+                            {{knp_pagination_render(paginationpdf)}}
+                     </div>
+                    
+		
+		
+    	{% else %}
+    	 <p>- There are no things </p>
+    	{% endif %}    
 	  
 	</div>
-    	
+	
     	{% if update == 1 %}
     	
-        <script>
-    	 
-    	  $(document).ready(function(){
-    	  		
-				 tinymce.init({selector:'textarea'});
-				
-			});
-    	</script>
     	{% endif %}
-    	</div></div></div>
+                    </div>
+	    </div>
+               
+	</div></div></div>
+	
+	<script>
+        
+        $(document).ready(function(){
+             $( 'textarea#form_description' ).ckeditor();
+        });
+        </script>
+        
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}

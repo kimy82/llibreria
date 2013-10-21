@@ -70,31 +70,21 @@
 	    </div>
 	    {{ form_end(form) }}
              <div>
-                    <a href="#" onclick="wait()" >asd</a>
-                </div>
-                    
-                
-              
-            <div id="divCargandoImg" class="divCargandoImg">
-            {% if paginationpdf|length >0 %}
-		<table class="table_admin2">
-			
+                    <button type="button" onclick="wait()">Adjuntar PDF</button>
+             </div>
+             <div id="divCargandoImg" class="divCargandoImg">
+             {% if paginationpdf|length >0 %}
+                    <table class="table_admin2">
                          <tr>
                             <th>Foto</th>
                             <th>link</th>
-                         
                          </tr>
-
-    		{% for addpdf in paginationpdf %}
-    
-		
-		<tr>
-			<td>
-			<img width="50px" src="{{pathpdf}}{{ addpdf.attachment}}" /> 	
-			</td>
-     
-                         <td>
-                           
+                    {% for addpdf in paginationpdf %}
+                        <tr>
+                            <td>
+                            <img width="50px" src="{{pathpdf}}{{ addpdf.attachment}}" /> 	
+                            </td>
+                        <td>  
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
                             width="110"
                             height="14"
@@ -119,18 +109,19 @@
                         </object>
 			</td>
 			</tr>
-		{% endfor %}
-    		<tr>
-    		<td>
-    		
-		</td>
-		<td>
-    		<div class="pagerfanta" >
-    			{{knp_pagination_render(paginationpdf)}}
-    		</div>
-		</td>
-		</tr>
-		</table>
+                    {% endfor %}
+                        <tr>
+                        <td>
+                        </td>
+                        <td>
+                        
+                    </td>
+                    </tr>
+                    </table>
+                     <div class="pagerfanta" >
+                            {{knp_pagination_render(paginationpdf)}}
+                     </div>
+                    
 		
 		
     	{% else %}
@@ -148,13 +139,12 @@
 	</div></div></div>
 	
 	<script>
+        inicio();
         $(document).ready(function(){
              $( 'textarea#form_description' ).ckeditor();
         });
         </script>
-        <script>
-            inicio();
-        </script>
+        
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}

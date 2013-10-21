@@ -31,7 +31,7 @@ class AgendaController extends Controller
             ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
-			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+			    'choices'   => array('C1' => 'Col 1','no' => 'NO'),
 			    'required'  => false,
 			))
             ->add('data_fi','date')
@@ -83,7 +83,7 @@ class AgendaController extends Controller
        	$agendaform->setSubtitol("Sub Titol");
        	$agendaform->setDescription("descripcio");
        	$agendaform->setNovetat(true);
-       	$agendaform->setPortada("no");
+       	$agendaform->setPortada("C1");
        	$agendaform->setDataFi(new \DateTime('tomorrow'));
        	
        	 $formToRender = $this->createFormBuilder($agendaform)
@@ -95,16 +95,22 @@ class AgendaController extends Controller
             ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
-			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+			    'choices'   => array('C1' => 'Col 1','no' => 'NO'),
 			    'required'  => false,
 			))
             ->add('data_fi','date')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('save', 'submit')
             ->getForm();
+         
+           $em = $this->getDoctrine()->getManager();
+           $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+           $paginatorpdf= $this->get('knp_paginator');
+           $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
+           $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
         return $this->render('AcmeStoreBundle:agenda:AgendaForm.html.twig', array(
-            'form' => $formToRender->createView(),'update' =>false,
+            'form' => $formToRender->createView(),'update' =>false, 'paginationpdf' => $paginationpdf,'pathpdf' =>  $pathpdf,
         ));	   
 	}
 	
@@ -158,16 +164,22 @@ public function editAction($id)
                     ->add('description', 'textarea')
                     ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
                     ->add('portada',  'choice', array(
-                                    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+                                   'choices'   => array('C1' => 'Col 1','no' => 'NO'),
                                     'required'  => false,
                                 ))
                     ->add('data_fi','date')
                     ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
                     ->add('save', 'submit')
                     ->getForm();
+                
+                 $em = $this->getDoctrine()->getManager();
+           $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+           $paginatorpdf= $this->get('knp_paginator');
+           $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
+           $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
             return $this->render('AcmeStoreBundle:agenda:AgendaForm.html.twig', array(
-                'form' => $formToRender->createView(),'update' =>true,
+                'form' => $formToRender->createView(),'update' =>true, 'paginationpdf' => $paginationpdf,'pathpdf' =>  $pathpdf,
             ));	   
 	}
 	
@@ -183,7 +195,7 @@ public function editAction($id)
                     ->add('description', 'textarea')
                     ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
                     ->add('portada',  'choice', array(
-                                    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+                                   'choices'   => array('C1' => 'Col 1','no' => 'NO'),
                                     'required'  => false,
                                 ))
                     ->add('data_fi','date')
@@ -228,16 +240,16 @@ public function editAction($id)
 	    
 	}
 	
-	public function deleteAgendaAction(Request $request,$id){
+	        public function deleteAgendaAction(Request $request,$id){
 	
 	
-		$agenda = $this->getDoctrine()->getRepository('AcmeStoreBundle:Agenda')->find($id);
+		 $agenda = $this->getDoctrine()->getRepository('AcmeStoreBundle:Agenda')->find($id);
 		
 	  	 $em = $this->getDoctrine()->getManager();
 	   	 $em->remove($agenda);
 	   	 $em->flush();
 			
-	        return $this->redirect($this->generateUrl('acme_pre_store_agenda'));
+	        return $this->redirect($this->generateUrl('llistat_store_agenda/'));
 	    }
 	    
 	

@@ -6,6 +6,7 @@ class AddpdfForm
 {
 	
 	protected $attachment;
+        protected $name;
 
 	
     public function setAttachment($attachment)
@@ -21,5 +22,17 @@ class AddpdfForm
         return $this->attachment;
     }
 
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+   
+    public function getName()
+    {
+        return $this->name;
+    }
     
 }

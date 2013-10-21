@@ -76,39 +76,32 @@
 			<div class="not_el sugg">
 			{% if paginationafegir|length >0 %}
 				{% for coca in paginationafegir %}
-					<div class="total">
-					{% if  coca.attachment!='aaa' %}
-						<table border="1">
-						<tr>
-						<th><img id="coco" class="buscador" src="{{path}}{{ coca.attachment}}"/></th>
-						</tr>
-						</table>
-					{% endif %}
-						<div>
-						<div class="titol">
-							{{ coca.name}}
-						</div>
-						<div class="texte">
-							<p>{{ coca.description}}</p>
-						</div>											
-						</div>
-					</div>
-					<script type="text/javascript">
-						$( document ).ready(function() {
-					  // Handler for .ready() called.
-					
-					     var imgWidth = $(".buscador").width();
-					     var imgheight = $(".buscador").height();
-					     
-					     
-					     if (imgWidth>imgheight) {
-						$(".buscador").addClass("coco");
-						 
-					     } else{
-						$(".buscador").addClass("nitro");
-					     }
-					});	
-					</script>	
+					 <div class="total">
+                                    {% if  coca.attachment!='aaa' %}
+                                            <table class="tablesuger" border="1">
+                                            <tr>
+                                            <th>
+                                            {% set  pp = path~coca.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <img  width="146px" height="auto" src="{{path}}{{ coca.attachment}}" />
+                                               {% else%}
+                                                <img  width="auto" height="170px" src="{{path}}{{ coca.attachment}}" />
+                                            {% endif%}
+                                           
+
+                                            </th>
+                                            </tr>
+                                            </table>
+                                    {% endif %}
+                                            <div>
+                                            <div class="titol">
+                                                    {{ coca.name}}
+                                            </div>
+                                            <div class="texte">
+                                                    <p>{{ coca.description}}</p>
+                                            </div>											
+                                            </div>
+                                    </div>	
 						
 				{% endfor %}
 				</table>

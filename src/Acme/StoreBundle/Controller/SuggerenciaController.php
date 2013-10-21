@@ -1,7 +1,5 @@
 <?php
-
 namespace Acme\StoreBundle\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\StoreBundle\Entity\Suggerencia;
 use Acme\StoreBundle\Forms\SuggerenciaForm;
@@ -9,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
-
 
 class SuggerenciaController extends Controller
 {
@@ -28,7 +25,7 @@ class SuggerenciaController extends Controller
              ->add('date', 'date')
             ->add('name', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('suggerencia'=> 'Llibres', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'suggerenciaInfaltil' =>'Suggerencia Infantil')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array('0'=> 'NO', '1' =>'SI')))
             ->add('editorial', 'text')
             ->add('descripcio', 'text')
@@ -94,7 +91,7 @@ class SuggerenciaController extends Controller
             ->add('name', 'text')
             ->add('descripcio', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('suggerencia'=> 'Llibres', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'suggerenciaInfaltil' =>'Suggerencia Infantil')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
             ->add('price','money')
@@ -159,7 +156,7 @@ class SuggerenciaController extends Controller
             ->add('name', 'text')
             ->add('descripcio', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('suggerencia'=> 'Llibres', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'suggerenciaInfaltil' =>'Suggerencia Infantil')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
             ->add('price','money')
@@ -182,7 +179,7 @@ class SuggerenciaController extends Controller
             ->add('name', 'text')
             ->add('descripcio', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('suggerencia'=> 'Llibres', 'butxaca' =>'Butxaca', 'comic' =>'Comic', 'suggerenciaInfaltil' =>'Suggerencia Infantil')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFiccio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
             ->add('price','money')

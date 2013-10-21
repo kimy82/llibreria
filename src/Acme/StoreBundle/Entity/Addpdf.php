@@ -21,6 +21,11 @@ class Addpdf
 	 * @ORM\Column(type="string", length=100)
 	 */
 	protected $attachment;
+        
+        /**
+	 * @ORM\Column(type="string", length=100)
+	 */
+	protected $name;
 
 
     /**
@@ -54,6 +59,29 @@ class Addpdf
     public function getAttachment()
     {
         return $this->attachment;
+    }
+    
+      /**
+     * Set attachment
+     *
+     * @param string $attachment
+     * @return Addpdf
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get attachment
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
   

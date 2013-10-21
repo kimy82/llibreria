@@ -25,6 +25,7 @@ class AddpdfController extends Controller
             ->setAction($this->generateUrl('store_new_addpdf'))
             ->setMethod('POST')
             ->add('attachment', 'file')
+            ->add('name', 'text')
             ->add('save', 'submit')
             ->getForm();
             
@@ -35,15 +36,19 @@ class AddpdfController extends Controller
 	        $addpdf = new Addpdf();
 	        $dades = $form->getData();
 	        $addpdf->setAttachment("aaa");
+                $addpdf->setName($form['name']->getData());
 	    	
 	     //  return new Response("TITOL:: ".var_dump($dades)." END".$request->getBasePath());
 	        $em = $this->getDoctrine()->getManager();
 	   	$em->persist($addpdf);
 	    	$em->flush();
 	        $path= $this->get('kernel')->getImagesRootDir();
-		$file = $form['attachment']->getData()->move($path.'/downloads/addpdf/','addpdf_'.$addpdf->getId().'.pdf');
+                
+               
+           
+		$file = $form['attachment']->getData()->move($path.'/downloads/addpdf/','addpdf_'.$addpdf->getId().'.'.$form['attachment']->getData()->getClientOriginalExtension());
 			 
-		$addpdf->setAttachment('addpdf_'.$addpdf->getId().'.pdf');
+		$addpdf->setAttachment('addpdf_'.$addpdf->getId().'.'.$form['attachment']->getData()->getClientOriginalExtension());
                 $em->persist($addpdf);
 	    	$em->flush();
 			
@@ -59,6 +64,7 @@ class AddpdfController extends Controller
                 ->setAction($this->generateUrl('store_new_addpdf'))
                 ->setMethod('POST')
                 ->add('attachment', 'file')
+                ->add('name', 'text')
                 ->add('save', 'submit')
                 ->getForm();
             
@@ -99,6 +105,7 @@ class AddpdfController extends Controller
                     ->setAction($path.'/admin/secured/addpdf/update/'.$id)
                     ->setMethod('POST')
                     ->add('attachment', 'file')
+                    ->add('name', 'text')
                     ->add('save', 'submit')
                     ->getForm();
             
@@ -113,6 +120,7 @@ class AddpdfController extends Controller
        	 	->setAction($this->generateUrl('store_new_addpdf'))
        	 	->setMethod('POST')
                 ->add('attachment', 'file')
+                ->add('name', 'text')
                 ->add('save', 'submit')
                 ->getForm();
             
@@ -128,9 +136,10 @@ class AddpdfController extends Controller
 	         $em = $this->getDoctrine()->getManager();
                  $em->persist($addpdf);
 	    	 $em->flush();
+                 $addpdf->setName($form['name']->getData());
 	         $path= $this->get('kernel')->getImagesRootDir();
-	         $file = $form['attachment']->getData()->move($path.'/downloads/addpdf/','addpdf_'.$addpdf->getId().'.pdf');
-	         $addpdf->setAttachment('pdf_'.$addpdf->getId().'.pdf');
+	         $file = $form['attachment']->getData()->move($path.'/downloads/addpdf/','addpdf_'.$addpdf->getId().'.'.$form['attachment']->getData()->getClientOriginalExtension());
+	         $addpdf->setAttachment('pdf_'.$addpdf->getId().'.'.$form['attachment']->getData()->getClientOriginalExtension());
                  $em->persist($addpdf);
 	    	 $em->flush();
 			

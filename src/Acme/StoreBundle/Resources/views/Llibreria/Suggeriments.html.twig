@@ -1,81 +1,73 @@
 {% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="contentnot">
+    <div class="tit_fixS">
+            {% trans %}f_suggeriment_title{% endtrans %}<br>
+            <span class="sub_sug">{% trans %}f_suggeriment_desc{% endtrans %}	</span>
+    </div>
+    <section class="tabs">
+    <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1 opts" checked="checked" />
+    <label for="tab-1" class="tab-label-1 labe">Ficció</label>		
+    <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2 opts" />
+    <label for="tab-2" class="tab-label-2 labe">No Ficció</label>		
+    <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3 opts" />
+    <label for="tab-3" class="tab-label-3 labe">Autors Catalans</label>
+    <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4 opts" />
+    <label for="tab-4" class="tab-label-4 labe">Cómic</label>
+    <input id="tab-5" type="radio" name="radio-set" class="tab-selector-5 opts" />
+    <label for="tab-5" class="tab-label-5 labe">Infantil</label>
+    <input id="tab-6" type="radio" name="radio-set" class="tab-selector-6 opts" />
+    <label for="tab-6" class="tab-label-6 labe">Butxaca</label>
+       <div class="clear-shadow"></div>				
+            <div class="contente">
+                <div class="contente-1">
+                <div class="not_el sugg">
+                    {% if paginationficcio|length >0 %}
+                            {% for llibre in paginationficcio %}
+                                    <div class="total">
+                                    {% if  llibre.attachment!='aaa' %}
+                                            <table class="tablesuger" border="1">
+                                            <tr>
+                                            <th>
+                                            {% set  pp = path~llibre.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" />
+                                               {% else%}
+                                                <img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" />
+                                            {% endif%}
+                                           
 
-		<div class="contentnot">
-			<div class="tit_fixS">
-				{% trans %}f_suggeriment_title{% endtrans %}<br>
-				<span class="sub_sug">{% trans %}f_suggeriment_desc{% endtrans %}	</span>
-			</div>
-			<section class="tabs">
-	            <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1 opts" checked="checked" />
-		        <label for="tab-1" class="tab-label-1 labe">{% trans %}f_suggeriment_llibre{% endtrans %}</label>		
-	            <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2 opts" />
-		        <label for="tab-2" class="tab-label-2 labe">{% trans %}f_suggeriment_butxaca{% endtrans %}</label>		
-	            <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3 opts" />
-		        <label for="tab-3" class="tab-label-3 labe">{% trans %}f_suggeriment_comic{% endtrans %}</label>
-		         <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4 opts" />
-		        <label for="tab-4" class="tab-label-4 labe">{% trans %}f_suggeriment_infantil{% endtrans %}</label>		
-			    <div class="clear-shadow"></div>				
-		        <div class="contente">
-			         <div class="contente-1">
-						<div class="not_el sugg">
-						
-								{% if paginationllibre|length >0 %}
-									{% for llibre in paginationllibre %}
-										<div class="total">
-										{% if  llibre.attachment!='aaa' %}
-											<table border="1">
-											<tr>
-											<th>
-                                                                                        
-                                                                                        <img id="coco" class="buscador" src="{{path}}{{ llibre.attachment}}"/>
-                                                                                         <script type="text/javascript">
-                                                                                           
-                                                                                            var imgWidth = $(".buscador").width();
-                                                                                            var imgheight = $(".buscador").height();
-                                                                                            
-                                                                                            if (imgheight<imgWidth) {
-                                                                                             $('.buscador').addClass('coco');
-                                                                                             
-                                                                                            } else{
-                                                                                               $('.buscador').addClass('nitro');
-                                                                                            }
-                                                                                       </script>
-                                                                                        </th>
-											</tr>
-											</table>
-									        {% endif %}
-											<div>
-											<div class="titol">
-												{{ llibre.name}}
-											</div>
-											<div class="texte">
-												<p>{{ llibre.description}}</p>
-											</div>											
-											</div>
-										</div>
-                                                                               
-									{% endfor %}
-							
-								{% else %}
-						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
-								{% endif %}
-							
-							
-						</div>
-					</div>
+                                            </th>
+                                            </tr>
+                                            </table>
+                                    {% endif %}
+                                            <div>
+                                            <div class="titol">
+                                                    {{ llibre.name}}
+                                            </div>
+                                            <div class="texte">
+                                                    <p>{{ llibre.description}}</p>
+                                            </div>											
+                                            </div>
+                                    </div>
+
+                            {% endfor %}
+
+                    {% else %}
+                     <p>{% trans %}f_no_things{% endtrans %}</p>
+                    {% endif %}
+                </div>
+                       </div>
 			        <div class="contente-2">
 						<div class="not_el sugg">
-								{% if paginationbutxaca|length >0 %}
-									{% for llibre in paginationbutxaca %}
+								{% if paginationnoficcio|length >0 %}
+									{% for llibre in paginationnoficcio %}
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
-											<table border="1">
+											<table class="tablesuger" border="1">
 											<tr>
 											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
 											</tr>
@@ -89,20 +81,7 @@
 												<p>{{ llibre.description}}</p>
 											</div>											
 											</div>
-										</div>
-											<script type="text/javascript">
-                                                                                            var imgWidth = 0;
-                                                                                             var imgheight = 0;
-                                                                                            var imgWidth = $(".buscador").width();
-                                                                                            var imgheight = $(".buscador").height();
-                                                                                            var caca=prompt(imgWidth,imgheight,"Harry Potter");
-                                                                                            if (imgheight<imgWidth) {
-                                                                                             $('.buscador').addClass('nitro');
-                                                                                             
-                                                                                            } else{
-                                                                                               $('.buscador').addClass('coco');
-                                                                                            }
-                                                                                       </script>																																								
+										</div>																																								
 									{% endfor %}
 							
 						    	{% else %}
@@ -112,11 +91,11 @@
                     </div>
 			        <div class="contente-3">
 						<div class="not_el sugg">
-								{% if paginationcomic|length >0 %}
-									{% for llibre in paginationcomic %}
+								{% if paginationautorscatalans|length >0 %}
+									{% for llibre in paginationautorscatalans %}
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
-											<table border="1">
+											<table class="tablesuger" border="1">
 											<tr>
 											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
 											</tr>
@@ -141,11 +120,11 @@
 					</div>   
 					<div class="contente-4">
 						<div class="not_el sugg">
-								{% if paginationinfantil|length >0 %}
-									{% for llibre in paginationinfantil %}
+								{% if paginationcomic|length >0 %}
+									{% for llibre in paginationcomic %}
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
-											<table border="1">
+											<table class="tablesuger" border="1">
 											<tr>
 											<th><img class="" src="{{path}}{{ llibre.attachment}}"/></th>
 											</tr>
@@ -167,7 +146,63 @@
 						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
 						    	{% endif %}
 						</div>
-					</div>                             
+					</div>
+                                <div class="contente-5">
+						<div class="not_el sugg">
+								{% if paginationinfantil|length >0 %}
+									{% for llibre in paginationinfantil %}
+										<div class="total">
+										{% if  llibre.attachment!='aaa' %}
+											<table class="tablesuger" border="1">
+											<tr>
+											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
+											</tr>
+											</table>
+									        {% endif %}
+											<div>
+											<div class="titol">
+												{{ llibre.name}}
+											</div>
+											<div class="texte">
+												<p>{{ llibre.description}}</p>
+											</div>											
+											</div>
+										</div>																																								
+									{% endfor %}
+							
+						    	{% else %}
+						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+						    	{% endif %}
+						</div>                
+                    </div>
+                            <div class="contente-6">
+						<div class="not_el sugg">
+								{% if paginationbutxaca|length >0 %}
+									{% for llibre in paginationbutxaca %}
+										<div class="total">
+										{% if  llibre.attachment!='aaa' %}
+											<table class="tablesuger" border="1">
+											<tr>
+											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
+											</tr>
+											</table>
+									        {% endif %}
+											<div>
+											<div class="titol">
+												{{ llibre.name}}
+											</div>
+											<div class="texte">
+												<p>{{ llibre.description}}</p>
+											</div>											
+											</div>
+										</div>																																								
+									{% endfor %}
+							
+						    	{% else %}
+						    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+						    	{% endif %}
+						</div>                
+                    </div>
                         </div>
 		        </div>
 </section>
