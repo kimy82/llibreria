@@ -31,10 +31,10 @@ class UploadController extends Controller
        	 $formToRender = $this->createFormBuilder($uploadform)
        	 	->setAction($this->generateUrl('acme_pujar_txt'))
        	 	->setMethod('POST') 
-            ->add('separator', 'text')        
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+                ->add('separator', 'text')        
+                ->add('attachment', 'file')
+                ->add('save', 'submit')
+                ->getForm();
             
         return $this->render('AcmeStoreBundle:upload:Upload.html.twig', array('form' => $formToRender->createView()));
     }
@@ -46,13 +46,13 @@ class UploadController extends Controller
 	
 		 $form = new UploadForm();			
 		    	                  	
-       	 $form = $this->createFormBuilder($form)
-       	 	->setAction($this->generateUrl('acme_pujar_txt'))
-       	 	->setMethod('POST')
-            ->add('separator', 'text')        
-            ->add('attachment', 'file')
-            ->add('save', 'submit')
-            ->getForm();
+                $form = $this->createFormBuilder($form)
+                       ->setAction($this->generateUrl('acme_pujar_txt'))
+                       ->setMethod('POST')
+                       ->add('separator', 'text')        
+                       ->add('attachment', 'file')
+                       ->add('save', 'submit')
+                       ->getForm();
 		
         $form->handleRequest($request);
 	
@@ -82,9 +82,10 @@ class UploadController extends Controller
 	  		if ($handle) {
 	  			$numTotal=0;
 	  			$numFets=0;
+                                $batchSize = 200;
+                                $i=1;
 			    while (($line = fgets($handle, 4096)) !== false) {
-			      //Guarda llibres line by line
-			      //xemple: ZEN. UN CAMINO HACIA TI MISMO  |||SANTOS NALDA, J. |||DICCIONARIOS  |||NOVEL.LA  |||ALAS    |||     9,00    |||
+			      
 			      try{
 			      	
 			      	$numTotal=$numTotal+1;
@@ -98,19 +99,25 @@ class UploadController extends Controller
 			        $llibre->setDateEntrada(new \DateTime('today'));	
 			        $llibre->setCategory($category);
 			        $llibre->setAutor($autor);
-		            $llibre->setEditorial($editorial);           
+                                $llibre->setEditorial($editorial);           
 			        $llibre->setTablePath("llibre");     
 			        $llibre->setAttachment("aaa");
 			        $llibre->setSuggerir(0);
 			    
 			        $em = $this->getDoctrine()->getManager();
-			   		$em->persist($llibre);
-			    	$em->flush();	
+			   	$em->persist($llibre);
+			    		
 			    	$numFets=$numFets+1;
-			    	
+			    	$i=$i+1;
+                                
+                                 if (($i % $batchSize) == 0) {
+                                         $em->flush();
+                                         $em->clear();
+                                 }
+                                 
 			      }catch(Exception $e){
-			      	echo 'Excepci�n capturada: ',  $e->getMessage(), "\n";
-			      }
+			      	echo 'Excepciòn capturada: ',  $e->getMessage(), "\n";
+			      }                            
 			    }
 			    if (!feof($handle)) {
 			        echo "Error: unexpected fgets() fail\n";
