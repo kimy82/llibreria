@@ -118,6 +118,12 @@ margin-top: 36px;
 	height: 60px;
 	padding-top: 12px;
 }
+#searchs .contentnota{
+	margin: auto;
+	width: 960px;
+	height: 0px;
+	padding-top: 12px;
+}
 .contentnot{
 	margin: auto;
 	width: 960px;
@@ -275,6 +281,15 @@ color:#999;
 	margin-bottom: 16px;
 	float: left;
 	width: 250px;
+}
+#searchs .sub_tit{
+	font-size: 14px;
+	color: #EA5B0C;
+	font-style: italic;
+	margin-bottom: 0px;
+	float: left;
+	width: 250px;
+        margin-left: 52px;
 }
 .not_int p{
 	margin-top: 30px;
@@ -640,6 +655,9 @@ width: 93px;
     width: 940px;
 }
 #noticies .contentnot{
+    width: 990px;
+}
+#searchs .contentnot{
     width: 990px;
 }
 #noticies .not_el {

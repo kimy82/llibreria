@@ -12,14 +12,10 @@
     <div id="co" class="columns">		
      {% if pagination|length >0 %}
         {% for search in pagination %}
-            <div id="sea_con">
-                <div class="sea_img">
-                    {% if  search.attachment!='aaa' %}
-                            <img width="200px" src="{{search.path}}{{search.attachment}}" />
-                    {% endif %}
-                </div>
-                    
-                <div class="sea sub_tit tit_top">
+           
+                 <div class="item masonry-brick">
+                 <div class="">
+                      <div class="sea sub_tit tit_top">
                     {% if search.category == 'llibre' %}
                             Llibre
                     {% endif %}
@@ -30,27 +26,36 @@
                             Presentacio
                     {% endif %}
                 </div>
-                    
-                <div class="sea sea_tit tit_not">
-                    {{ search.titol}}
+                    <div id="ies" class="tit_not tit_top">
+                        {{ search.titol}}
+                    </div>
+                   
+                    <div id="ies_img">
+                        {% if  search.attachment!='aaa' %}
+                                <img  width="310px" height="auto" src="{{search.path}}{{ search.attachment}}" />
+                        {% endif %}
+                    </div>
+                    <div id="ies" class="comon imagenexterna">	
+                    {{search.description|raw}}
+                    </div>
+                   
                    
                 </div>
-
-                <div  class="sea comon">
-                    {{ search.description|raw}}
-                </div>
-            </div>
+         </div>
+              
+              
+            
     {% endfor %}
             
     <div class="pagerfanta" >
             {{knp_pagination_render(pagination)}}
     </div>
 </div>	
-</div>
+
 	    	{% else %}
 	    	 <p>- There are no things </p>
 	    	{% endif %}
-    	</div></div>
+    	</div>
         {% if app.environment == 'dev' %}
            DEV
         {% endif %}
@@ -58,4 +63,12 @@
 				document.getElementById("sesuatu").value=window.localStorage.getItem('sesuatu');			
 				
 		</script>
+                <script type="text/javascript">
+$(window).load(function() {
+    $('#co').masonry({
+    // options
+    itemSelector : '.item'
+    });
+});	
+</script>
 {% endblock %}
