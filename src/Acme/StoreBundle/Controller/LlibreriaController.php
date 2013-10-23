@@ -51,8 +51,9 @@ class LlibreriaController extends Controller
         $rsm->addFieldResult('a', 'titol', 'titol'); // ($alias, $columnName, $fieldName)
         $rsm->addFieldResult('a', 'subtitol', 'subtitol'); // ($alias, $columnName, $fieldName)
         $rsm->addFieldResult('a', 'description', 'description'); // ($alias, $columnName, $fieldName)
+        $rsm->addFieldResult('a', 'video', 'video'); // ($alias, $columnName, $fieldName)
         $rsm->addFieldResult('a', 'attachment', 'attachment'); // ($alias, $columnName, $fieldName)  
-        $queryw = $em->createNativeQuery('SELECT id, tablePath, description, titol, subtitol, attachment FROM agenda WHERE portada != ? ', $rsm);
+        $queryw = $em->createNativeQuery('SELECT id, tablePath, description, titol, subtitol, attachment, video FROM agenda WHERE portada != ? ', $rsm);
         $queryw->setParameter(1, 'no');
         $agenda = $queryw->getResult();
 
@@ -66,7 +67,7 @@ class LlibreriaController extends Controller
         $rsmn->addFieldResult('n', 'video', 'video'); // // ($alias, $columnName, $fieldName)
         $rsmn->addFieldResult('n', 'description', 'description'); // // ($alias, $columnName, $fieldName)
         $rsmn->addFieldResult('n', 'attachment', 'attachment');
-        $queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, video, description, attachment FROM noticia WHERE portada != ? ', $rsmn);
+        $queryn = $em->createNativeQuery('SELECT id, tablePath, titol, subtitol, description, attachment, video FROM noticia WHERE portada != ? ', $rsmn);
         $queryn->setParameter(1, 'no');
         $noticia = $queryn->getResult();
 

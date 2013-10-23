@@ -14,6 +14,9 @@ class AgendaForm
 
 
 	protected $description;
+        
+        
+        protected $video;
 
 	
 	protected $novetat;
@@ -68,6 +71,20 @@ class AgendaForm
     public function getSubtitol()
     {
         return $this->subtitol;
+    }
+    
+    
+     public function setVideo($video)
+    {
+        $this->video = $video;
+    
+        return $this;
+    }
+
+
+    public function getVideo()
+    {
+        return $this->video;
     }
 
    

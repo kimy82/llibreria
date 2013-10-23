@@ -36,6 +36,12 @@ class Agenda
 	 * @ORM\Column(type="string", length=100)
 	 */
 	protected $subtitol;
+        
+        /**
+	 * @ORM\Column(type="string", length=500)
+	 */
+        
+        protected $video;
 
 	/**
 	 * @ORM\Column(type="text")
@@ -120,6 +126,23 @@ class Agenda
     public function getSubtitol()
     {
         return $this->subtitol;
+    }
+    
+     public function setVideo($video)
+    {
+        $this->video = $video;
+    
+        return $this;
+    }
+
+    /**
+     * Get subtitol
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
     }
 
     /**

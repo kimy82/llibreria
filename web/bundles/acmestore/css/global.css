@@ -26,7 +26,7 @@ body {
 }
 #logo {
 width: 310px;
-background-color: red;
+background-color: white;
 height: 210px;
 float: left;
 margin-right: 20px;
@@ -38,6 +38,10 @@ height: 210px;
 width: 629px;
 float: left;
 margin-top: 36px;
+
+}
+#sli{
+    padding-left: 30px!important;
 }
 #menu{
 	width: 100%;
@@ -765,7 +769,7 @@ padding-bottom: 14px;
 }
 .rightdiv{
     float: right;
-    background-color: #575756;
+    background-color: #706F6F;
     height: 100%;
     width: 310px;
     margin-bottom:100px;
@@ -1131,21 +1135,42 @@ float: left;
     height: 186px;
 }
 #leftPetana {
-background-color: #277CBE;
+background-color: #067072;
 color: white;
 padding: 20px;
 width: 90px;
+font-weight: bold;
 }
 #centerPetana {
-background-color: #DA662F;
+background-color: #14A589;
 color: white;
 padding: 20px;
 width: 90px;
+font-weight: bold;
 }
 #prePetana {
-background-color: #333;
-color: white;
+background-color: #FCEA10;
+color: #706F6F;
 padding: 20px;
 width: 90px;
 float: left;
+margin-left: 2px;
+font-size: 12px;
+font-weight: bold;
+}
+#index iframe{
+    margin-left: -16px;
+}
+.leftdiv .elem_main{
+    border-left: 1px solid #067072;
+}
+.centerdiv .elem_main{
+    border-left: 1px solid #14A589;
+}
+.logoin {
+padding: 6px;
+padding-left: 30px;
+font-size: 12px;
+color: #b6b6b6;
+line-height: 1.7;
 }

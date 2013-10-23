@@ -28,6 +28,7 @@ class AgendaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
+            ->add('video', 'text', array('label' => 'form.video','required' => false))
             ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
@@ -48,6 +49,7 @@ class AgendaController extends Controller
 	      	$agenda->setDataEntrada($form['date_entrada']->getData());
 	        $agenda->setTitol($form['titol']->getData());
 	        $agenda->setSubtitol($form['subtitol']->getData());
+                $agenda->setVideo($form['video']->getData());
 	        $agenda->setDescription($form['description']->getData());
 	        $agenda->setNovetat($form['novetat']->getData());
 	        $agenda->setPortada($form['portada']->getData());
@@ -81,6 +83,7 @@ class AgendaController extends Controller
 	    $agendaform->setDateEntrada(new \DateTime('tomorrow'));
        	$agendaform->setTitol("Titol");
        	$agendaform->setSubtitol("Sub Titol");
+        $agendaform->setVideo("");
        	$agendaform->setDescription("descripcio");
        	$agendaform->setNovetat(true);
        	$agendaform->setPortada("C1");
@@ -92,6 +95,7 @@ class AgendaController extends Controller
             ->add('date_entrada', 'date')
             ->add('titol', 'text')
             ->add('subtitol', 'text')
+            ->add('video', 'text', array('label' => 'form.video','required' => false))
             ->add('description', 'textarea')
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
@@ -148,6 +152,7 @@ public function editAction($id)
                 $agendaform->setDateEntrada($agenda->getDataEntrada());
                 $agendaform->setTitol($agenda->getTitol());
                 $agendaform->setSubtitol($agenda->getSubtitol());
+                $agendaform->setVideo($agenda->getVideo());
                 $agendaform->setDescription($agenda->getDescription());
                 $agendaform->setNovetat($agenda->getNovetat());
                 $agendaform->setPortada($agenda->getPortada());
@@ -161,6 +166,7 @@ public function editAction($id)
                     ->add('date_entrada', 'date')
                     ->add('titol', 'text')
                     ->add('subtitol', 'text')
+                    ->add('video', 'text', array('label' => 'form.video','required' => false))
                     ->add('description', 'textarea')
                     ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
                     ->add('portada',  'choice', array(
@@ -192,6 +198,7 @@ public function editAction($id)
                     ->add('date_entrada', 'date')
                     ->add('titol', 'text')
                     ->add('subtitol', 'text')
+                    ->add('video', 'text', array('label' => 'form.video','required' => false))
                     ->add('description', 'textarea')
                     ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
                     ->add('portada',  'choice', array(
@@ -215,6 +222,7 @@ public function editAction($id)
                         $agenda->setDataEntrada($form['date_entrada']->getData());
                         $agenda->setTitol($form['titol']->getData());
                         $agenda->setSubtitol($form['subtitol']->getData());
+                        $agenda->setVideo($form['video']->getData());
                         $agenda->setDescription($form['description']->getData());
                         $agenda->setNovetat($form['novetat']->getData());
                         $agenda->setPortada($form['portada']->getData());
