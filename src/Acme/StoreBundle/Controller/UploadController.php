@@ -43,7 +43,7 @@ class UploadController extends Controller
 
 	public function upAction(Request $request){
 		
-			
+		 
 	
 		 $form = new UploadForm();					    	                  	
                  $form = $this->createFormBuilder($form)
@@ -80,8 +80,9 @@ class UploadController extends Controller
 	  		if ($handle) {
 	  			$numTotal=0;
 	  			$numFets=0;
-                                $batchSize = 200;
+                                $batchSize = 400;
                                 $i=1;
+                                $arrayLlibres = array();
                                 while (($line = fgets($handle, 4096)) !== false) {
 			      
                                     try{
@@ -102,15 +103,21 @@ class UploadController extends Controller
                                             $llibre->setAttachment("aaa");
                                             $llibre->setSuggerir(0);
 
+                                            array_push($arrayLlibres,$llibre);
+                                            
                                             $em = $this->getDoctrine()->getManager();
-                                            $em->persist($llibre);
-
+                                            $em->persist($llibre);                                           
                                             $numFets=$numFets+1;
                                             $i=$i+1;
                                 
                                             if (($i % $batchSize) == 0) {
                                                     $em->flush();
                                                     $em->clear();
+                                                    //for ($x=0;$x<count($arrayLlibres); $x++) {
+                                                     
+                                                    //    $em->detach($arrayLlibres[$x]);
+                                                    //}
+                                                      // gc_collect_cycles();
                                                   
                                             }
                                  
@@ -118,21 +125,27 @@ class UploadController extends Controller
                                       echo 'Excepcipn capturada: ';
                                     }                            
                                 }
-                                echo 'SSSSSSSSSSSSSSSSSS\n';
+                             
                                 if (!feof($handle)) {
                                     echo "Error: unexpected fgets() fail\n";
                                 }
                                 if (($i % $batchSize) != 0) {
                                              $em->flush();
                                              $em->clear();
-                                             echo 'flushESPECIAL';
+                                            //for ($x=0;$x<count($arrayLlibres); $x++) {
+                                                     
+                                              //          $em->detach($arrayLlibres[$x]);
+                                               //     }
+                                            
                                 }
-                                fclose($handle);
-                                echo 'AFTER RENDER';
+                                fclose($handle);                                
+                                echo '$'.$numTotal;
+                                echo '$'.$numFets;
+                                
                                 return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal,'numfet'=>$numFets));
 			}	
 	    }
-	    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array());						
+	    //return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array());						
 	}
 	
 }
