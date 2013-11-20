@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -45,25 +45,27 @@ class AppKernel extends Kernel
     
   	public function getImagesPath($place)
     {
+
+        return 'http://localhost/repo22/downloads/'.$place.'/';
+
          
-        return 'http://localhost/llibreria.git/downloads/'.$place.'/';
         
     }
     
 	public function getImagesPathAlone()
     {
-        return 'http://localhost/llibreria.git/downloads/';
+        return 'http://localhost/repo22/downloads/';
     }
     
 	public function getServerPath()
     {
+
          if($this->getEnvironment()=='dev'){  
-             return 'http://localhost/llibreria.git/web/app_dev.php';
+             return 'http://localhost/repo22/web/app_dev.php';
          }else{
-              return 'http://localhost/llibreria.git/web/app.php';
+              return 'http://localhost/repo22/web/app.php';
          }    
         
+    
     }
-    
-    
 }
