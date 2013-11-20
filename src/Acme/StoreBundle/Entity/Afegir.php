@@ -28,6 +28,12 @@ class Afegir
      * @ORM\Column(type="text")
      */
     protected $description;
+    
+    
+     /**
+     * @ORM\Column(type="text")
+     */
+    protected $link;
 
     /**
 	 * @ORM\Column(type="date")
@@ -96,6 +102,29 @@ class Afegir
     public function getDescription()
     {
         return $this->description;
+    }
+    
+     /**
+     * Set description
+     *
+     * @param string $description
+     * @return Llibre
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
     
     /**

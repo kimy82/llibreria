@@ -29,7 +29,7 @@ class SliderController extends Controller
             ->add('attachment', 'file')
             ->add('description', 'text')
             ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);
@@ -70,7 +70,7 @@ class SliderController extends Controller
             ->add('attachment', 'file')
             ->add('description', 'text')
 	    ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
         return $this->render('AcmeStoreBundle:slider:SliderForm.html.twig', array(
@@ -115,7 +115,7 @@ class SliderController extends Controller
             ->add('attachment', 'file')
             ->add('description', 'text')
 	      ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
         return $this->render('AcmeStoreBundle:slider:SliderForm.html.twig', array(
@@ -132,7 +132,7 @@ class SliderController extends Controller
             ->add('attachment', 'file')
             ->add('description', 'text')
 	      ->add('descriptioner', 'text', array('label' => 'form.descriptioner','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);

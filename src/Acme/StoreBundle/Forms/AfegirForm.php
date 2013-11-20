@@ -10,6 +10,8 @@ class AfegirForm
     
     protected $descripcio;
     
+    protected $link;
+    
     protected $attachment;
 
     
@@ -29,6 +31,15 @@ class AfegirForm
     public function setDescripcio($descripcio)
     {
         $this->descripcio = $descripcio;
+    }
+    
+    public function getLink()
+    {
+        return $this->link;
+    }
+    public function setLink($link)
+    {
+        $this->link = $link;
     }
 
     public function getDate()

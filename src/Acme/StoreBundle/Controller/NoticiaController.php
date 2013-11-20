@@ -36,7 +36,7 @@ class NoticiaController extends Controller
 			))
             ->add('data_fi','date')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 	    $form->handleRequest($request);
@@ -102,13 +102,13 @@ class NoticiaController extends Controller
 			))
 	    ->add('data_fi','date')
 	    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-	    ->add('save', 'submit')
+	    ->add('Desa', 'submit')
 	    ->getForm();
             
             $em = $this->getDoctrine()->getManager();
             $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
 	    $paginatorpdf= $this->get('knp_paginator');
-	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
+	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),10);
 	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
 		
 	    return $this->render('AcmeStoreBundle:noticia:NoticiaForm.html.twig', array(
@@ -181,13 +181,13 @@ class NoticiaController extends Controller
 			))
             ->add('data_fi','date')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
             $em = $this->getDoctrine()->getManager();
             $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
 	    $paginatorpdf= $this->get('knp_paginator');
-	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
+	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),10);
 	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
         return $this->render('AcmeStoreBundle:noticia:NoticiaForm.html.twig', array(
@@ -213,7 +213,7 @@ class NoticiaController extends Controller
                             ))
                 ->add('data_fi','date')
                 ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
             
                 $form->handleRequest($request);

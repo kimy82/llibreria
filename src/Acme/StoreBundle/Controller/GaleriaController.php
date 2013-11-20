@@ -30,7 +30,7 @@ class GaleriaController extends Controller
             ->add('subtitol', 'text')
             ->add('description', 'text')
             ->add('attachment', 'file')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);
@@ -83,7 +83,7 @@ class GaleriaController extends Controller
             ->add('subtitol', 'text')
             ->add('description', 'text')
             ->add('attachment', 'file')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
          
@@ -134,7 +134,7 @@ class GaleriaController extends Controller
             ->add('subtitol', 'text')
             ->add('description', 'text')
             ->add('attachment', 'file')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
         return $this->render('AcmeStoreBundle:galeria:GaleriaForm.html.twig', array(
@@ -153,7 +153,7 @@ class GaleriaController extends Controller
             ->add('subtitol', 'text')
             ->add('description', 'text')
             ->add('attachment', 'file')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);

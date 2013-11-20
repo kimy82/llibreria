@@ -16,6 +16,8 @@ class SuggerenciaForm
 
     protected $autor;
     
+    protected $link;
+    
     protected $category;
     
     protected $editorial;
@@ -76,6 +78,17 @@ class SuggerenciaForm
     public function getAutor()
     {
         return $this->autor;
+    }
+    public function setLink($link)
+    {
+        $this->link = $link;
+    
+        return $this;
+    }
+
+    public function getLink()
+    {
+        return $this->link;
     }
 
     public function setCategory($category)

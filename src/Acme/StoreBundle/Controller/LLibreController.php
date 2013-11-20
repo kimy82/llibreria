@@ -34,7 +34,7 @@ class LlibreController extends Controller
                     ->add('descripcio', 'text')
                     ->add('price','money')            
                     ->add('attachment', 'file')
-                    ->add('save', 'submit')
+                    ->add('Desa', 'submit')
                     ->getForm();
             
                     $form->handleRequest($request);
@@ -99,7 +99,7 @@ class LlibreController extends Controller
                     ->add('editorial', 'text')
                     ->add('price','money')
                     ->add('attachment', 'file')
-                    ->add('save', 'submit')
+                    ->add('Desa', 'submit')
                     ->getForm();
                 
                 $pathImg= $this->get('kernel')->getImagesPathAlone();
@@ -164,7 +164,7 @@ class LlibreController extends Controller
                     ->add('editorial', 'text')
                     ->add('price','money')
                     ->add('attachment', 'file')
-                    ->add('save', 'submit')
+                    ->add('Desa', 'submit')
                     ->getForm();
             
             return $this->render('AcmeStoreBundle:llibre:LlibreForm.html.twig', array('pathimg'=>$pathImg,
@@ -187,7 +187,7 @@ class LlibreController extends Controller
             ->add('editorial', 'text')
             ->add('price','money')
             ->add('attachment', 'file')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);

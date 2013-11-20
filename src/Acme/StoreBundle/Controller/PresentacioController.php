@@ -36,7 +36,7 @@ class PresentacioController extends Controller
                             ))
                 ->add('data_fi','date')
                 ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
             
 		$form->handleRequest($request);
@@ -103,7 +103,7 @@ class PresentacioController extends Controller
                     ))
         ->add('data_fi','date')
          ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-        ->add('save', 'submit')
+        ->add('Desa', 'submit')
         ->getForm();
         
         $em = $this->getDoctrine()->getManager();
@@ -171,7 +171,7 @@ class PresentacioController extends Controller
                             ))
                 ->add('data_fi','date')
                  ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
                 
                  $em = $this->getDoctrine()->getManager();
@@ -204,7 +204,7 @@ class PresentacioController extends Controller
 			))
             ->add('data_fi','date')
              ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);

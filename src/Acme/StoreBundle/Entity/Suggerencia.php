@@ -33,6 +33,11 @@ class Suggerencia
     protected $category;
     
      /**
+     * @ORM\Column(type="text")
+     */
+    protected $link;
+    
+     /**
      * @ORM\Column(type="string", length=100)
      */
     protected $editorial;
@@ -121,6 +126,28 @@ class Suggerencia
     public function getPrice()
     {
         return $this->price;
+    }
+     /**
+     * Set price
+     *
+     * @param float $price
+     * @return Llibre
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 
     /**

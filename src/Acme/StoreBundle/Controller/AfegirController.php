@@ -28,8 +28,9 @@ class AfegirController extends Controller
             ->add('date', 'date')
             ->add('name', 'text')
             ->add('descripcio', 'text')
+            ->add('link', 'text')
 	    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
 	    $form->handleRequest($request);
 	
@@ -39,6 +40,7 @@ class AfegirController extends Controller
 	        $dades =$form->getData();
 	      	$afegir->setName($form['name']->getData());
 	        $afegir->setDescription($form['descripcio']->getData());
+                $afegir->setLink($form['link']->getData());
 	        $afegir->setDateEntrada($form['date']->getData());	              
 	        $afegir->setAttachment("aaa");
 	    
@@ -72,14 +74,16 @@ class AfegirController extends Controller
 		$afegirform->setDate(new \DateTime('tomorrow'));
 		$afegirform->setName("Name");
 	    	$afegirform->setDescripcio("descripcio");
+                $afegirform->setLink("Link");
 		$formToRender = $this->createFormBuilder($afegirform)
        	 	->setAction($this->generateUrl('store_new_afegir'))
        	 	->setMethod('POST')
 		->add('date', 'date')
 		->add('name', 'text')
 		->add('descripcio', 'text')
+                ->add('link', 'text')
 		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-		->add('save', 'submit')
+		->add('Desa', 'submit')
 		->getForm();
             
 		return $this->render('AcmeStoreBundle:afegir:AfegirForm.html.twig', array(
@@ -117,6 +121,7 @@ class AfegirController extends Controller
 		$afegirform->setName($afegir->getName());
 		$afegirform->setDate($afegir->getDateEntrada());
 		$afegirform->setDescripcio($afegir->getDescription());
+                $afegirform->setLink($afegir->getLink());
 		$path = $this->get('kernel')->getImagesRootDir();
 		
 		if ( $afegir->getAttachment()!='aaa'){
@@ -135,8 +140,9 @@ class AfegirController extends Controller
 		->add('date', 'date')
 		->add('name', 'text')
 		->add('descripcio', 'text')
+                ->add('link', 'text')
 		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-		->add('save', 'submit')
+		->add('Desa', 'submit')
 		->getForm();
             
 		return $this->render('AcmeStoreBundle:afegir:AfegirForm.html.twig', array(
@@ -153,8 +159,9 @@ class AfegirController extends Controller
 		->add('date', 'date')
 		->add('name', 'text')
 		->add('descripcio', 'text')
+                ->add('link', 'text')
 		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-		->add('save', 'submit')
+		->add('Desa', 'submit')
 		->getForm();
             
 		$form->handleRequest($request);

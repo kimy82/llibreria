@@ -74,18 +74,20 @@
 		    	{% endif %}
 			
 			<div class="not_el sugg">
+                        Suggeriments de la setmana
 			{% if paginationafegir|length >0 %}
 				{% for coca in paginationafegir %}
 					 <div class="total">
                                     {% if  coca.attachment!='aaa' %}
+                                           
                                             <table class="tablesuger" border="1">
                                             <tr>
                                             <th>
                                             {% set  pp = path~coca.attachment%}
                                             {% if image(pp).width > image(pp).height %}
-                                                <img  width="146px" height="auto" src="{{path}}{{ coca.attachment}}" />
+                                               <a href="{{coca.link}}"> <img  width="146px" height="auto" src="{{path}}{{ coca.attachment}}" /></a>
                                                {% else%}
-                                                <img  width="auto" height="170px" src="{{path}}{{ coca.attachment}}" />
+                                             <a href="{{coca.link}}">   <img  width="auto" height="170px" src="{{path}}{{ coca.attachment}}" /></a>
                                             {% endif%}
                                            
 

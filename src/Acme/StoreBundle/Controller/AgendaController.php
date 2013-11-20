@@ -37,7 +37,7 @@ class AgendaController extends Controller
 			))
             ->add('data_fi','date')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);
@@ -104,7 +104,7 @@ class AgendaController extends Controller
 			))
             ->add('data_fi','date')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
          
            $em = $this->getDoctrine()->getManager();
@@ -175,7 +175,7 @@ public function editAction($id)
                                 ))
                     ->add('data_fi','date')
                     ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-                    ->add('save', 'submit')
+                    ->add('Desa', 'submit')
                     ->getForm();
                 
                  $em = $this->getDoctrine()->getManager();
@@ -207,7 +207,7 @@ public function editAction($id)
                                 ))
                     ->add('data_fi','date')
                     ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-                    ->add('save', 'submit')
+                    ->add('Desa', 'submit')
                     ->getForm();
             
                     $form->handleRequest($request);

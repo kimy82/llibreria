@@ -26,7 +26,7 @@ class AddpdfController extends Controller
             ->setMethod('POST')
             ->add('attachment', 'file')
             ->add('name', 'text')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
             $form->handleRequest($request);
@@ -65,7 +65,7 @@ class AddpdfController extends Controller
                 ->setMethod('POST')
                 ->add('attachment', 'file')
                 ->add('name', 'text')
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
             
         return $this->render('AcmeStoreBundle:addpdf:AddpdfForm.html.twig', array(
@@ -106,7 +106,7 @@ class AddpdfController extends Controller
                     ->setMethod('POST')
                     ->add('attachment', 'file')
                     ->add('name', 'text')
-                    ->add('save', 'submit')
+                    ->add('Desa', 'submit')
                     ->getForm();
             
         return $this->render('AcmeStoreBundle:addpdf:AddpdfForm.html.twig', array(
@@ -121,7 +121,7 @@ class AddpdfController extends Controller
        	 	->setMethod('POST')
                 ->add('attachment', 'file')
                 ->add('name', 'text')
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
             
 		$form->handleRequest($request);

@@ -25,7 +25,7 @@ class EstablimentsController extends Controller
         ->setMethod('POST')
         ->add('titol', 'text')
         ->add('description', 'textarea')
-        ->add('save', 'submit')
+        ->add('Desa', 'submit')
         ->getForm();
         $form->handleRequest($request);
         $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
@@ -67,7 +67,7 @@ class EstablimentsController extends Controller
                ->setMethod('POST')
                ->add('description', 'text')
                ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-               ->add('save', 'submit')
+               ->add('Desa', 'submit')
                ->getForm();    
 
     return $this->render('AcmeStoreBundle:establiments:EstablimentsForm.html.twig', array(
@@ -114,7 +114,7 @@ class EstablimentsController extends Controller
                 ->setMethod('POST')
                 ->add('description', 'text')
                 ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
             
             $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
@@ -183,7 +183,7 @@ class EstablimentsController extends Controller
 		    ->setMethod('POST')
 		    ->add('description', 'text')
 		    ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-		    ->add('save', 'submit')
+		    ->add('Desa', 'submit')
 		    ->getForm();
 		
 		$form->handleRequest($request);
@@ -238,7 +238,7 @@ class EstablimentsController extends Controller
        	 	->setMethod('POST')
 		->add('description', 'text')
 		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-		->add('save', 'submit')
+		->add('Desa', 'submit')
 		->getForm();
             
 		$form->handleRequest($request);

@@ -14,7 +14,7 @@
     <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2 opts" />
     <label for="tab-2" class="tab-label-2 labe">No Ficció</label>		
     <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3 opts" />
-    <label for="tab-3" class="tab-label-3 labe">Autors Catalans</label>
+    <label for="tab-3" class="tab-label-3 labe">Autors Gironins</label>
     <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4 opts" />
     <label for="tab-4" class="tab-label-4 labe">Cómic</label>
     <input id="tab-5" type="radio" name="radio-set" class="tab-selector-5 opts" />
@@ -34,9 +34,9 @@
                                             <th>
                                             {% set  pp = path~llibre.attachment%}
                                             {% if image(pp).width > image(pp).height %}
-                                                <img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" />
+                                                <a href="{{llibre.link}}"><img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" /></a>
                                                {% else%}
-                                                <img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" />
+                                                    <a href="{{llibre.link}}"><img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" /></a>
                                             {% endif%}
                                            
 
@@ -68,9 +68,18 @@
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
 											<table class="tablesuger" border="1">
-											<tr>
-											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
-											</tr>
+											  <tr>
+                                            <th>
+                                            {% set  pp = path~llibre.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <a href="{{llibre.link}}"><img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" /></a>
+                                               {% else%}
+                                                    <a href="{{llibre.link}}"><img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" /></a>
+                                            {% endif%}
+                                           
+
+                                            </th>
+                                            </tr>
 											</table>
 									        {% endif %}
 											<div>
@@ -96,9 +105,18 @@
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
 											<table class="tablesuger" border="1">
-											<tr>
-											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
-											</tr>
+											  <tr>
+                                            <th>
+                                            {% set  pp = path~llibre.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <a href="{{llibre.link}}"><img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" /></a>
+                                               {% else%}
+                                                    <a href="{{llibre.link}}"><img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" /></a>
+                                            {% endif%}
+                                           
+
+                                            </th>
+                                            </tr>
 											</table>
 									        {% endif %}
 											<div>
@@ -125,9 +143,18 @@
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
 											<table class="tablesuger" border="1">
-											<tr>
-											<th><img class="" src="{{path}}{{ llibre.attachment}}"/></th>
-											</tr>
+											  <tr>
+                                            <th>
+                                            {% set  pp = path~llibre.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <a href="{{llibre.link}}"><img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" /></a>
+                                               {% else%}
+                                                    <a href="{{llibre.link}}"><img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" /></a>
+                                            {% endif%}
+                                           
+
+                                            </th>
+                                            </tr>
 											</table>
 									        {% endif %}
 											<div>
@@ -154,9 +181,18 @@
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
 											<table class="tablesuger" border="1">
-											<tr>
-											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
-											</tr>
+											  <tr>
+                                            <th>
+                                            {% set  pp = path~llibre.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <a href="{{llibre.link}}"><img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" /></a>
+                                               {% else%}
+                                                    <a href="{{llibre.link}}"><img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" /></a>
+                                            {% endif%}
+                                           
+
+                                            </th>
+                                            </tr>
 											</table>
 									        {% endif %}
 											<div>
@@ -182,9 +218,18 @@
 										<div class="total">
 										{% if  llibre.attachment!='aaa' %}
 											<table class="tablesuger" border="1">
-											<tr>
-											<th><img  class="" src="{{path}}{{ llibre.attachment}}"/></th>
-											</tr>
+											  <tr>
+                                            <th>
+                                            {% set  pp = path~llibre.attachment%}
+                                            {% if image(pp).width > image(pp).height %}
+                                                <a href="{{llibre.link}}"><img  width="146px" height="auto" src="{{path}}{{ llibre.attachment}}" /></a>
+                                               {% else%}
+                                                    <a href="{{llibre.link}}"><img  width="auto" height="170px" src="{{path}}{{ llibre.attachment}}" /></a>
+                                            {% endif%}
+                                           
+
+                                            </th>
+                                            </tr>
 											</table>
 									        {% endif %}
 											<div>

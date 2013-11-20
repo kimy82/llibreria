@@ -72,5 +72,5 @@ doctrine:
 swiftmailer:
 
     transport: gmail
-    username:  joaquim.orra1
-    password:  linda82linda
+    username:  adp.alex@gmail.com
+    password:  macamany

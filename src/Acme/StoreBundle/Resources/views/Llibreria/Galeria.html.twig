@@ -26,7 +26,7 @@
                 <div>
                     {% for galeria in pagination %}
                         <script>
-                        galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
+                        galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description|raw}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
                         </script>
                         <div style="width: 144px; height: 144px; visibility: visible; zoom: 1; opacity: 1; overflow: hidden; margin-left: 16px; margin-bottom: 16px; float: left">
                         <a href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}})"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>

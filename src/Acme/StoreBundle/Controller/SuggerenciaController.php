@@ -25,13 +25,14 @@ class SuggerenciaController extends Controller
              ->add('date', 'date')
             ->add('name', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Gironins', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array('0'=> 'NO', '1' =>'SI')))
             ->add('editorial', 'text')
             ->add('descripcio', 'text')
+            ->add('link', 'text')
             ->add('price','money')            
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);
@@ -43,10 +44,11 @@ class SuggerenciaController extends Controller
 	      	$suggerencia->setName($form['name']->getData());
 	        $suggerencia->setPrice($form['price']->getData());
 	        $suggerencia->setDescription($form['descripcio']->getData());
+                $suggerencia->setLink($form['link']->getData());
 	        $suggerencia->setDateEntrada($form['date']->getData());	
 	        $suggerencia->setCategory($form['category']->getData());
 	        $suggerencia->setAutor($form['autor']->getData());
-            $suggerencia->setEditorial($form['editorial']->getData());           
+                 $suggerencia->setEditorial($form['editorial']->getData());           
 	        $suggerencia->setTablePath("suggerencia");     
 	        $suggerencia->setAttachment("aaa");
 	        $suggerencia->setSuggerir($form['suggerir']->getData());
@@ -80,6 +82,7 @@ class SuggerenciaController extends Controller
 	    $suggerenciaform->setDate(new \DateTime('tomorrow'));
        	$suggerenciaform->setName("Name");
        	$suggerenciaform->setDescripcio("descripcio");
+        $suggerenciaform->setLink("link");
        	$suggerenciaform->setPrice(0.0);
        	$suggerenciaform->setSuggerir(0);
       
@@ -91,12 +94,13 @@ class SuggerenciaController extends Controller
             ->add('name', 'text')
             ->add('descripcio', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Gironins', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
+            ->add('link', 'text')
             ->add('price','money')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
         return $this->render('AcmeStoreBundle:suggerencia:SuggerenciaForm.html.twig', array(
@@ -141,6 +145,7 @@ class SuggerenciaController extends Controller
 	    $suggerenciaform->setDate($suggerencia->getDateEntrada());
        	$suggerenciaform->setName($suggerencia->getName());
        	$suggerenciaform->setDescripcio($suggerencia->getDescription());
+        $suggerenciaform->setLink($suggerencia->getLink());
        	$suggerenciaform->setPrice($suggerencia->getPrice());
        	
        	$suggerenciaform->setAutor($suggerencia->getAutor());
@@ -156,12 +161,13 @@ class SuggerenciaController extends Controller
             ->add('name', 'text')
             ->add('descripcio', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Gironins', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
+                 ->add('link', 'text')
             ->add('price','money')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
         return $this->render('AcmeStoreBundle:suggerencia:SuggerenciaForm.html.twig', array(
@@ -179,12 +185,13 @@ class SuggerenciaController extends Controller
             ->add('name', 'text')
             ->add('descripcio', 'text')
             ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFiccio' =>'No ficció', 'autorsCatalans' =>'Autors Catalans', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
+            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFiccio' =>'No ficció', 'autorsCatalans' =>'Autors Gironins', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
             ->add('suggerir', 'choice', array('choices' => array(0=> 'NO', 1 =>'SI')))
             ->add('editorial', 'text')
+            ->add('link', 'text')
             ->add('price','money')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
             
 		$form->handleRequest($request);
@@ -200,6 +207,7 @@ class SuggerenciaController extends Controller
 	        $suggerencia->setName($form['name']->getData());
 	        $suggerencia->setPrice($form['price']->getData());
 	        $suggerencia->setDescription($form['descripcio']->getData());
+                $suggerencia->setLink($form['link']->getData());
 	        $suggerencia->setAutor($form['autor']->getData());
 	        $suggerencia->setEditorial($form['editorial']->getData());
 	        $suggerencia->setCategory($form['category']->getData());

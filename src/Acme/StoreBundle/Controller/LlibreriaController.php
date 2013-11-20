@@ -102,7 +102,7 @@ public function galeriaAction($year)
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),80);
 		$path= $this->get('kernel')->getImagesPath('galeria');
 		$pathServer= $this->get('kernel')->getServerPath();
 		
@@ -502,7 +502,7 @@ public function galeriaAction($year)
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.dataEntrada DESC');
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),50);
 		$path= $this->get('kernel')->getImagesPath('presentacio');
 		$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();

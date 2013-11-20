@@ -36,7 +36,7 @@ class DefaultController extends Controller
             ->add('descriptio2', 'text')
             ->add('attachment', 'file')
             ->add('price', 'number')
-            ->add('save', 'submit')
+            ->add('Desa', 'submit')
             ->getForm();
 	
 		$form->handleRequest($request);
