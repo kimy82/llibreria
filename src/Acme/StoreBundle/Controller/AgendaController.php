@@ -108,7 +108,7 @@ class AgendaController extends Controller
             ->getForm();
          
            $em = $this->getDoctrine()->getManager();
-           $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+           $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
            $paginatorpdf= $this->get('knp_paginator');
            $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
            $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
@@ -123,7 +123,7 @@ public function listAction(Request $request, $orderBy)
 		$em = $this->getDoctrine()->getManager();
 		$orderBy = str_replace("..", "'%", $orderBy);
 		$orderBy = str_replace(".,", "%'", $orderBy);
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:agenda n where '.$orderBy);
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Agenda n where '.$orderBy);
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
@@ -179,7 +179,7 @@ public function editAction($id)
                     ->getForm();
                 
                  $em = $this->getDoctrine()->getManager();
-           $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+           $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
            $paginatorpdf= $this->get('knp_paginator');
            $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
            $pathpdf= $this->get('kernel')->getImagesPath('addpdf');

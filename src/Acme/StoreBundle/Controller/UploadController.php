@@ -34,7 +34,7 @@ class UploadController extends Controller
        	 	->setMethod('POST') 
                 ->add('separator', 'text')        
                 ->add('attachment', 'file')
-                ->add('save', 'submit')
+                ->add('Desa', 'submit')
                 ->getForm();
             
         return $this->render('AcmeStoreBundle:upload:Upload.html.twig', array('form' => $formToRender->createView()));
@@ -51,7 +51,7 @@ class UploadController extends Controller
                        ->setMethod('POST')
                        ->add('separator', 'text')        
                        ->add('attachment', 'file')
-                       ->add('save', 'submit')
+                       ->add('Desa', 'submit')
                        ->getForm();
 		
                  $form->handleRequest($request);
@@ -80,7 +80,9 @@ class UploadController extends Controller
 	  		if ($handle) {
 	  			$numTotal=0;
 	  			$numFets=0;
+
                                 $batchSize = 400;
+
                                 $i=1;
                                 $arrayLlibres = array();
                                 while (($line = fgets($handle, 4096)) !== false) {

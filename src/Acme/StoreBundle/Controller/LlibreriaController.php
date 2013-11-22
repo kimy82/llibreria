@@ -29,15 +29,15 @@ class LlibreriaController extends Controller
     	$dates = array($previousyear-4,$previousyear-3,$previousyear-2,$previousyear-1,$previousyear);
     	$em = $this->getDoctrine()->getManager();
         //Presentacio
-    	$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'));
+    	$query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'));
     	$counter = count($query->getResult());
        
     	if($counter>=1){
-			$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(7);		
+			$query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('tomorrow'))->setMaxResults(7);		
 			$paginator= $this->get('knp_paginator');
 			$paginationPresentacio= $paginator->paginate($query,$this->get('request')->query->get('page',1),20);
     	}else{
-                $query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('last week'))->setMaxResults(7);		
+                $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat ')->setParameter('dat',new \DateTime('last week'))->setMaxResults(7);		
 
     		//$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ')->setMaxResults(3);		
 		$paginator= $this->get('knp_paginator');
@@ -88,7 +88,7 @@ public function galeriaAction($year)
         
         $em = $this->getDoctrine()->getManager();
         
-        $queryYears = $em->createQuery('SELECT DISTINCT(date_format(n.dataEntrada,\'%Y\')) from AcmeStoreBundle:galeria n where 1=1 order by n.dataEntrada DESC');
+        $queryYears = $em->createQuery('SELECT DISTINCT(date_format(n.dataEntrada,\'%Y\')) from AcmeStoreBundle:Galeria n where 1=1 order by n.dataEntrada DESC');
     	$dates = $queryYears->getResult();
         
      	
@@ -99,7 +99,7 @@ public function galeriaAction($year)
      	 
      	
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),80);
@@ -127,7 +127,7 @@ public function galeriaAction($year)
      	
      	
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
@@ -153,7 +153,7 @@ public function galeriaAction($year)
      	$em = $this->getDoctrine()->getManager();
      	// echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
         //Salida: Viernes 24 de Febrero del 2012	
-        $query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Noticia n order by n.id DESC');
         $paginator= $this->get('knp_paginator');
         $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),12);
         $path= $this->get('kernel')->getImagesPath('noticia');
@@ -191,7 +191,7 @@ public function galeriaAction($year)
     	$em = $this->getDoctrine()->getManager();
     	$cerca=$name;
 	
-        $buscaafegir = $em->createQuery('SELECT n from AcmeStoreBundle:afegir n order by n.id DESC');
+        $buscaafegir = $em->createQuery('SELECT n from AcmeStoreBundle:Afegir n order by n.id DESC');
         $paginatorafegir= $this->get('knp_paginator');
         $pagename2 = 'page2'; 
         $paginationafegir= $paginatorafegir->paginate($buscaafegir,$this->get('request')->query->get($pagename2,1),6, array('pageParameterName' => $pagename2));
@@ -203,7 +203,7 @@ public function galeriaAction($year)
 	
     	if($name=='any'){
     		$cerca="";
-    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:llibre n order by n.dateEntrada DESC ');
+    		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Llibre n order by n.dateEntrada DESC ');
     	}else{    		
     		$query = $em->createQueryBuilder();
 			$query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
@@ -333,7 +333,7 @@ public function galeriaAction($year)
                //END SENDING EMAIL ENCARREC
                 
 	        $query = $em->createQueryBuilder();
-			$llibre = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
+			$llibre = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
   					   ->where( 'n.id='.$form['llibre']->getData() )
   					   ->getQuery()->getSingleResult();
   		 	
@@ -356,12 +356,12 @@ public function galeriaAction($year)
      	$em = $this->getDoctrine()->getManager();
      	
 		
-		$queryficcio = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category = :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','ficcio')->getResult();
-		$querynoficcio = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','noFiccio')->getResult();
-		$queryautorscatalans = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','autorsCatalans')->getResult();
-		$querycomic = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','comics')->getResult();
-		$queryinfantil = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','infantil')->getResult();
-		$querybutxaca = $em->createQuery('SELECT n from AcmeStoreBundle:suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','butxaca')->getResult();
+		$queryficcio = $em->createQuery('SELECT n from AcmeStoreBundle:Suggerencia n where n.suggerir= :sug and n.category = :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','ficcio')->getResult();
+		$querynoficcio = $em->createQuery('SELECT n from AcmeStoreBundle:Suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','noFiccio')->getResult();
+		$queryautorscatalans = $em->createQuery('SELECT n from AcmeStoreBundle:Suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','autorsCatalans')->getResult();
+		$querycomic = $em->createQuery('SELECT n from AcmeStoreBundle:Suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','comics')->getResult();
+		$queryinfantil = $em->createQuery('SELECT n from AcmeStoreBundle:Suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','infantil')->getResult();
+		$querybutxaca = $em->createQuery('SELECT n from AcmeStoreBundle:Suggerencia n where n.suggerir= :sug and n.category= :cat order by n.id DESC')->setParameter('sug',1)->setParameter('cat','butxaca')->getResult();
 		
 		$path= $this->get('kernel')->getImagesPath('suggerencia');
 		$pathServer= $this->get('kernel')->getServerPath();
@@ -383,7 +383,7 @@ public function galeriaAction($year)
      	
      	//Busqueda de llibres
      	$query = $em->createQueryBuilder();
-        $query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
+        $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                 ->where( $query->expr()->like('n.name', $query->expr()->literal('%' . $search . '%')) )
                 ->orwhere( $query->expr()->like('n.autor', $query->expr()->literal('%' . $search . '%')) )
                 ->orwhere( $query->expr()->like('n.editorial', $query->expr()->literal('%' . $search . '%')) )
@@ -499,7 +499,7 @@ public function galeriaAction($year)
      	$em = $this->getDoctrine()->getManager();
      	
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.dataEntrada DESC');
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n order by n.dataEntrada DESC');
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),50);
@@ -515,7 +515,7 @@ public function galeriaAction($year)
 	public function establimentsAction()
     {
     	$em = $this->getDoctrine()->getManager();
-     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:foto n order by n.id DESC');
+     	$query = $em->createQuery('SELECT n from AcmeStoreBundle:Foto n order by n.id DESC');
 
 	
 	$paginator= $this->get('knp_paginator');
@@ -541,7 +541,7 @@ public function galeriaAction($year)
     private function getSlider(){
     	
     	$em = $this->getDoctrine()->getManager();     			
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:slider n ');
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Slider n ');
 		$sliders = $query->getResult();
 		return $sliders;
 		

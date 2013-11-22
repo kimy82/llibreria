@@ -106,7 +106,7 @@ class NoticiaController extends Controller
 	    ->getForm();
             
             $em = $this->getDoctrine()->getManager();
-            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
 	    $paginatorpdf= $this->get('knp_paginator');
 	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),10);
 	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
@@ -122,7 +122,7 @@ class NoticiaController extends Controller
 	    $orderBy = str_replace("..", "'%", $orderBy);
 	    $orderBy = str_replace(".,", "%'", $orderBy);
 	    //$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n where '.$orderBy);
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n order by n.id DESC');
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Noticia n order by n.id DESC');
 	    $paginator= $this->get('knp_paginator');
 	    $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),40);
 	    $path= $this->get('kernel')->getImagesPath('noticia');
@@ -185,7 +185,7 @@ class NoticiaController extends Controller
             ->getForm();
             
             $em = $this->getDoctrine()->getManager();
-            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:addpdf n order by n.id DESC');
+            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
 	    $paginatorpdf= $this->get('knp_paginator');
 	    $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),10);
 	    $pathpdf= $this->get('kernel')->getImagesPath('addpdf');

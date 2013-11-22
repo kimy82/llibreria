@@ -83,7 +83,7 @@ class SliderController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$orderBy = str_replace("..", "'%", $orderBy);
 		$orderBy = str_replace(".,", "%'", $orderBy);
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:slider n where '.$orderBy);
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Slider n where '.$orderBy);
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
