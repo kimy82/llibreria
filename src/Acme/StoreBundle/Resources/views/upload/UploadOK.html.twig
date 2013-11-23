@@ -8,9 +8,16 @@
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
     <h1 class="title">{% trans %}menu_admin_pujada{% endtrans %}</h1>
-    	<div class="inline_menun_interior" ><a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a></div>
-    	
-    	La pujada ha funcionat. Per un total de {{numtotal}} s'ha fet {{numfet}} correctament.
+    	<div class="inline_menun_interior" ></div>
+    	{% if numtotal == 'resent' %}
+            
+            <a href="{{ path('acme_pujar_txt_loop', {}) }}" id="loop" ></a>
+           <script>
+               document.write("PUJANT...  No tancar la pantalla!!!");
+               document.getElementById("loop").click();
+           </script>
+        {% endif %}
+    	La pujada ha acabat. Per un total de {{numtotal}}.
     	
         {% if app.environment == 'dev' %}
            DEV
