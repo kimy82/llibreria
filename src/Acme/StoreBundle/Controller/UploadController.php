@@ -65,10 +65,9 @@ class UploadController extends Controller
 	       
                         $path= $this->get('kernel')->getImagesRootDir();
                         $separator = $form['separator']->getData();
-                        echo $form['attachment']->getData();
+                       
                         $file = $form['attachment']->getData();
-                        //extension = $file->guessExtension();
-                        $pathRel= rand(1, 99999).'lastUpload.txt';
+                        $pathRel= 'lastUpload.txt';
                         $form['attachment']->getData()->move($path.'/downloads/uploads/',$pathRel);
                         ini_set('auto_detect_line_endings', TRUE); 
                
@@ -81,12 +80,16 @@ class UploadController extends Controller
 	  			$numTotal=0;
 	  			$numFets=0;
 
-                                $batchSize = 400;
+                                $batchSize = 300;
 
                                 $i=1;
-                                $arrayLlibres = array();
+                                
                                 while (($line = fgets($handle, 4096)) !== false) {
-			      
+                                    echo $i;
+                                    if($i==3001){
+                                        echo 'break';
+                                        break;
+                                    }
                                     try{
 			      	
                                             $numTotal=$numTotal+1;
@@ -105,7 +108,7 @@ class UploadController extends Controller
                                             $llibre->setAttachment("aaa");
                                             $llibre->setSuggerir(0);
 
-                                            array_push($arrayLlibres,$llibre);
+                                           
                                             
                                             $em = $this->getDoctrine()->getManager();
                                             $em->persist($llibre);                                           
@@ -114,13 +117,8 @@ class UploadController extends Controller
                                 
                                             if (($i % $batchSize) == 0) {
                                                     $em->flush();
-                                                    $em->clear();
-                                                    //for ($x=0;$x<count($arrayLlibres); $x++) {
-                                                     
-                                                    //    $em->detach($arrayLlibres[$x]);
-                                                    //}
-                                                      // gc_collect_cycles();
-                                                  
+                                                    $em->clear();   
+                                                                                                                                                                                                             
                                             }
                                  
                                     }catch(ContextErrorException $e){
@@ -128,26 +126,116 @@ class UploadController extends Controller
                                     }                            
                                 }
                              
-                                if (!feof($handle)) {
-                                    echo "Error: unexpected fgets() fail\n";
-                                }
+                 
                                 if (($i % $batchSize) != 0) {
                                              $em->flush();
-                                             $em->clear();
-                                            //for ($x=0;$x<count($arrayLlibres); $x++) {
-                                                     
-                                              //          $em->detach($arrayLlibres[$x]);
-                                               //     }
-                                            
-                                }
-                                fclose($handle);                                
-                                echo '$'.$numTotal;
-                                echo '$'.$numFets;
+                                             $em->clear();   
+                                             
+                                }                               
                                 
-                                return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal,'numfet'=>$numFets));
+                                if(!feof($handle)){                                  
+                                    fclose($handle); 
+                                    return $this->redirect($this->generateUrl('acme_pujar_txt_loop'));
+                                }else{
+                                    fclose($handle);
+                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
+                                }
+                                
+			}	
+	    }						
+	}
+        
+        public function upLoopAction(){
+		
+                     
+	    	        $em = $this->getDoctrine()->getManager();
+			                      
+                       
+                        ini_set('auto_detect_line_endings', TRUE); 
+                        
+                        $path= $this->get('kernel')->getImagesRootDir();
+                        
+                        $pathRel= 'lastUpload.txt';
+                        
+                        $handle = $this->utf8_fopen_read($path.'/downloads/uploads/'.$pathRel);
+               
+                        
+			
+	  		if ($handle) {
+	  			
+                                $query = $em->createQuery('select count(n) from AcmeStoreBundle:Llibre n');
+                                $counter = $query->getSingleScalarResult();
+                                $numTotal=$counter;
+                                $batchSize = 300;
+                                
+                                $i=1;
+                               
+                               
+                                while (($line = fgets($handle, 4096)) !== false && $i<$counter+3000) {
+			      
+                                    try{
+                                       
+                                            if($i<$counter){ 
+                                               
+                                                $i=$i+1;
+                                                continue;
+                                            }
+                                          
+                                            $numTotal=$numTotal+1;
+                                            list($name, $autor, $editorial, $category, $desc, $price) = explode("¦¦¦", $line);
+
+                                            $llibre = new Llibre();
+
+                                            $llibre->setName($name);
+                                            $llibre->setPrice($price);
+                                            $llibre->setDescription($desc);
+                                            $llibre->setDateEntrada(new \DateTime('today'));	
+                                            $llibre->setCategory($category);
+                                            $llibre->setAutor($autor);
+                                            $llibre->setEditorial($editorial);           
+                                            $llibre->setTablePath("llibre");     
+                                            $llibre->setAttachment("aaa");
+                                            $llibre->setSuggerir(0);
+
+                                            
+                                            
+                                            $em = $this->getDoctrine()->getManager();
+                                           
+                                            $em->persist($llibre);                                           
+                                          
+                                            $i=$i+1;
+                                
+                                            if (($i % $batchSize) == 0) {
+                                               
+                                                     $em->flush();
+                                                     $em->clear();                                                                                
+                                            }
+                                 
+                                    }catch(ContextErrorException $e){
+                                      echo 'Excepcipn capturada: '.$e;
+                                    }                            
+                                }
+                             
+                               
+                                if (($i % $batchSize) != 0) {
+                                             $em->flush();
+                                             $em->clear();                                  
+                                }
+                             
+                                                                                        
+                                
+                                
+                                if(!feof($handle)){
+                                    fclose($handle);
+                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>'resent'));
+                                }else{
+                                    fclose($handle);
+                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
+                                }
+                               
 			}	
 	    }
-	    //return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array());						
-	}
+	    					
+	
 	
 }
