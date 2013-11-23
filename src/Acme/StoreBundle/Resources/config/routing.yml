@@ -9,6 +9,10 @@ acme_pre_puja_txt:
 acme_pujar_txt:
      pattern: /admin/secured/upload
      defaults: {_controller: AcmeStoreBundle:Upload:up}
+
+acme_pujar_txt_loop:
+     pattern: /admin/secured/uploadLoop
+     defaults: {_controller: AcmeStoreBundle:Upload:upLoop}
           
 acme_noticia:
     pattern:  /admin/secured/noticia
