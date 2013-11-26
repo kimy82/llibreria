@@ -79,10 +79,10 @@ class NoticiaController extends Controller
 	
 	    $noticiaform = new NoticiaForm();			
 	    $noticiaform->setDateEntrada(new \DateTime('tomorrow'));
-	    $noticiaform->setTitol("Noticia");
-	    $noticiaform->setSubtitol("Sub Titol");
+	    $noticiaform->setTitol("");
+	    $noticiaform->setSubtitol("");
             $noticiaform->setVideo("");
-	    $noticiaform->setDescription("descripcio");
+	    $noticiaform->setDescription("");
 	    $noticiaform->setNovetat(true);
 	    $noticiaform->setPortada("no");
 	    $noticiaform->setDataFi(new \DateTime('tomorrow'));
@@ -91,7 +91,7 @@ class NoticiaController extends Controller
 	    ->setAction($this->generateUrl('store_new_noticia'))
 	    ->setMethod('POST')
 	    ->add('date_entrada', 'date')
-	    ->add('titol', 'text', array('label' => 'form.titol','required' => false))
+	    ->add('titol', 'text', array('label' => 'form.titol','required' => true))
 	    ->add('subtitol', 'text')
             ->add('video', 'text', array('label' => 'form.video','required' => false))
 	    ->add('description', 'textarea')
@@ -122,7 +122,7 @@ class NoticiaController extends Controller
 	    $orderBy = str_replace("..", "'%", $orderBy);
 	    $orderBy = str_replace(".,", "%'", $orderBy);
 	    //$query = $em->createQuery('SELECT n from AcmeStoreBundle:noticia n where '.$orderBy);
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Noticia n order by n.id DESC');
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Noticia n order by n.dataEntrada DESC');
 	    $paginator= $this->get('knp_paginator');
 	    $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),40);
 	    $path= $this->get('kernel')->getImagesPath('noticia');

@@ -68,9 +68,9 @@ class GaleriaController extends Controller
 	    
 	$galeriaform->setDateEntrada(new \DateTime('tomorrow'));
             //$galeriaform->setDateEntrada(new \'years' => range(1,31);
-       	$galeriaform->setTitol("Titol");
-       	$galeriaform->setSubtitol("Sub Titol");
-       	$galeriaform->setDescription("descripcio");
+       	$galeriaform->setTitol("");
+       	$galeriaform->setSubtitol("");
+       	$galeriaform->setDescription("");
        	
        	 $formToRender = $this->createFormBuilder($galeriaform)
        	 	->setAction($this->generateUrl('store_new_galeria'))
@@ -79,9 +79,12 @@ class GaleriaController extends Controller
                   //->add('date_entrada', 'date' array)
              ->add('date_entrada', 'date', array('years' => range(2001, 2018)))
          
-            ->add('titol', 'text')
-            ->add('subtitol', 'text')
-            ->add('description', 'text')
+    
+            ->add('titol', 'text', array('label' => 'form.titol','required' => false))
+        
+            ->add('subtitol', 'text', array('label' => 'form.subtitol','required' => false))
+            
+                 ->add('description', 'text', array('label' => 'form.description','required' => false))
             ->add('attachment', 'file')
             ->add('Desa', 'submit')
             ->getForm();

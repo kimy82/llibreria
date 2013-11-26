@@ -49,7 +49,7 @@ class EstablimentsController extends Controller
 		 
         $establimentsform = new EstablimentsForm();
         $fotoform = new FotoForm();
-        $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);			
+        $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:establiments')->find(1);			
         $establimentsform->setDescription($establiments->getDescription());
         $establimentsform->setTitol($establiments->getTitol());
         $fotoform->setDescription("descripcio");
@@ -81,7 +81,7 @@ class EstablimentsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $orderBy = str_replace("..", "'%", $orderBy);
             $orderBy = str_replace(".,", "%'", $orderBy);
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:foto n where '.$orderBy);
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Foto n where '.$orderBy);
 
             $paginator= $this->get('knp_paginator');
             $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);

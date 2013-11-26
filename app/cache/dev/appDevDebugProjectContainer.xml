@@ -17,8 +17,9 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AcmeStoreBundle">Acme\StoreBundle\AcmeStoreBundle</parameter>
-      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="GregwarImageBundle">Gregwar\ImageBundle\GregwarImageBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -171,7 +172,7 @@
     <parameter key="data_collector.time.class">Symfony\Component\HttpKernel\DataCollector\TimeDataCollector</parameter>
     <parameter key="data_collector.memory.class">Symfony\Component\HttpKernel\DataCollector\MemoryDataCollector</parameter>
     <parameter key="data_collector.router.class">Symfony\Bundle\FrameworkBundle\DataCollector\RouterDataCollector</parameter>
-    <parameter key="profiler_listener.only_exceptions">false</parameter>
+    <parameter key="profiler_listener.only_exceptions">true</parameter>
     <parameter key="profiler_listener.only_master_requests">false</parameter>
     <parameter key="profiler.storage.dsn">file:C:/wamp/www/repo22/app/cache/dev/profiler</parameter>
     <parameter key="profiler.storage.username"></parameter>
@@ -350,19 +351,15 @@
     <parameter key="swiftmailer.plugin.antiflood.sleep">0</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.transport.smtp.class">Swift_Transport_EsmtpTransport</parameter>
-    <parameter key="swiftmailer.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.password">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.auth_mode">null</parameter>
+    <parameter key="swiftmailer.transport.smtp.encryption">ssl</parameter>
+    <parameter key="swiftmailer.transport.smtp.port">465</parameter>
+    <parameter key="swiftmailer.transport.smtp.host">smtp.gmail.com</parameter>
+    <parameter key="swiftmailer.transport.smtp.username">adp.alex@gmail.com</parameter>
+    <parameter key="swiftmailer.transport.smtp.password">macamany</parameter>
+    <parameter key="swiftmailer.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.transport.smtp.source_ip">null</parameter>
-    <parameter key="swiftmailer.plugin.blackhole.class">Swift_Plugins_BlackholePlugin</parameter>
-    <parameter key="swiftmailer.spool.memory.class">Swift_MemorySpool</parameter>
-    <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
-    <parameter key="swiftmailer.spool.memory.path">C:/wamp/www/repo22/app/cache/dev/swiftmailer/spool</parameter>
-    <parameter key="swiftmailer.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.sender_address">null</parameter>
     <parameter key="swiftmailer.single_address">null</parameter>
     <parameter key="swiftmailer.delivery_whitelist" type="collection"/>
@@ -393,7 +390,7 @@
     <parameter key="assetic.write_to">C:/wamp/www/repo22/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">C:\WINDOWS\system32\java.EXE</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">C:\Program Files\nodejs\\node.EXE</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -476,6 +473,11 @@
     <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
     <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
     <parameter key="knp_paginator.page_range">5</parameter>
+    <parameter key="gregwar_image.cache_dir">cache</parameter>
+    <parameter key="gregwar_image.throw_exception">true</parameter>
+    <parameter key="gregwar_image.fallback_image">null</parameter>
+    <parameter key="image.handling.class">Gregwar\ImageBundle\Services\ImageHandling</parameter>
+    <parameter key="image.handler.class">Gregwar\ImageBundle\ImageHandler</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -634,10 +636,10 @@
         <argument>-255</argument>
       </call>
       <call method="addListenerService">
-        <argument>kernel.request</argument>
+        <argument>kernel.exception</argument>
         <argument type="collection">
-          <argument>knp_paginator.subscriber.sliding_pagination</argument>
-          <argument>onKernelRequest</argument>
+          <argument>kernel.listener.exceptio</argument>
+          <argument>onKernelException</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -646,6 +648,14 @@
         <argument type="collection">
           <argument>acme.demo.listener</argument>
           <argument>onKernelController</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
+          <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -700,10 +710,6 @@
       <call method="addSubscriberService">
         <argument>twig.exception_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ExceptionListener</argument>
-      </call>
-      <call method="addSubscriberService">
-        <argument>swiftmailer.email_sender.listener</argument>
-        <argument>Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</argument>
       </call>
       <call method="addSubscriberService">
         <argument>sensio_framework_extra.controller.listener</argument>
@@ -2191,7 +2197,7 @@
           <service class="Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector" public="false">
             <tag name="data_collector" template="SwiftmailerBundle:Collector:swiftmailer" id="swiftmailer"/>
             <argument type="service" id="service_container"/>
-            <argument>true</argument>
+            <argument>false</argument>
           </service>
         </argument>
       </call>
@@ -2212,7 +2218,7 @@
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="profiler"/>
       <argument>null</argument>
-      <argument>false</argument>
+      <argument>true</argument>
       <argument>false</argument>
     </service>
     <service id="data_collector.request" class="Symfony\Component\HttpKernel\DataCollector\RequestDataCollector">
@@ -2449,7 +2455,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Core\User\User" public="false">
             <argument>admin</argument>
-            <argument>74913f5cd5f61ec0bcfdb775414c2fb3d161b620</argument>
+            <argument>2245a9ff1f8d34653ba2db38c83ead53d05c932e</argument>
             <argument type="collection">
               <argument>ROLE_ADMIN</argument>
             </argument>
@@ -2816,10 +2822,13 @@
         </argument>
       </call>
       <call method="addExtension">
+        <argument type="service" id="twig.extension.acme.demo"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="knp_paginator.twig.extension.pagination"/>
       </call>
       <call method="addExtension">
-        <argument type="service" id="twig.extension.acme.demo"/>
+        <argument type="service" id="twig.extension.image"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -2855,13 +2864,8 @@
       <argument>200</argument>
       <argument>true</argument>
     </service>
-    <service id="swiftmailer.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
     <service id="swiftmailer.plugin.messagelogger" class="Swift_Plugins_MessageLogger">
       <tag name="swiftmailer.plugin"/>
-    </service>
-    <service id="swiftmailer.email_sender.listener" class="Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener">
-      <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="service_container"/>
     </service>
     <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager">
       <argument type="service" id="service_container"/>
@@ -3091,6 +3095,22 @@
               <service class="Doctrine\ORM\Mapping\DefaultNamingStrategy" public="false"/>
             </argument>
           </call>
+          <call method="addCustomNumericFunction">
+            <argument>rand</argument>
+            <argument>Mapado\MysqlDoctrineFunctions\DQL\MysqlRand</argument>
+          </call>
+          <call method="addCustomNumericFunction">
+            <argument>round</argument>
+            <argument>Mapado\MysqlDoctrineFunctions\DQL\MysqlRound</argument>
+          </call>
+          <call method="addCustomDatetimeFunction">
+            <argument>date</argument>
+            <argument>Mapado\MysqlDoctrineFunctions\DQL\MysqlDate</argument>
+          </call>
+          <call method="addCustomDatetimeFunction">
+            <argument>date_format</argument>
+            <argument>Mapado\MysqlDoctrineFunctions\DQL\MysqlDateFormat</argument>
+          </call>
         </service>
       </argument>
       <configurator service="doctrine.orm.default_manager_configurator" method="configure"/>
@@ -3138,6 +3158,19 @@
       <argument>plain_value</argument>
       <argument>ca</argument>
     </service>
+    <service id="kernel.listener.exceptio" class="Acme\DemoBundle\EventListener\ExceptionListener">
+      <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
+      <argument type="service" id="templating"/>
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="twig.loader"/>
+    </service>
+    <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
+      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+      <argument type="service" id="twig.extension.acme.demo"/>
+    </service>
     <service id="knp_paginator" class="Knp\Component\Pager\Paginator">
       <argument type="service" id="event_dispatcher"/>
       <call method="setDefaultPaginatorOptions">
@@ -3183,13 +3216,17 @@
       <tag name="twig.extension"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
-    <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="twig.loader"/>
+    <service id="image.handling" class="Gregwar\ImageBundle\Services\ImageHandling">
+      <argument>cache</argument>
+      <argument>Gregwar\ImageBundle\ImageHandler</argument>
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="kernel"/>
+      <argument>true</argument>
+      <argument>null</argument>
     </service>
-    <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
-      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
-      <argument type="service" id="twig.extension.acme.demo"/>
+    <service id="twig.extension.image" class="Gregwar\ImageBundle\Extensions\ImageTwig">
+      <tag name="twig.extension"/>
+      <argument type="service" id="service_container"/>
     </service>
     <service id="web_profiler.controller.profiler" class="Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController">
       <argument type="service" id="router" on-invalid="null"/>
@@ -3500,6 +3537,10 @@
         <argument>Security</argument>
       </call>
       <call method="addPath">
+        <argument>C:/wamp/www/repo22/app/Resources/TwigBundle/views</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp\www\repo22\vendor\symfony\symfony\src\Symfony\Bundle\TwigBundle/Resources/views</argument>
         <argument>Twig</argument>
       </call>
@@ -3516,12 +3557,12 @@
         <argument>AcmeStore</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp\www\repo22\vendor\knplabs\knp-paginator-bundle\Knp\Bundle\PaginatorBundle/Resources/views</argument>
-        <argument>KnpPaginator</argument>
-      </call>
-      <call method="addPath">
         <argument>C:\wamp\www\repo22\src\Acme\DemoBundle/Resources/views</argument>
         <argument>AcmeDemo</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\repo22\vendor\knplabs\knp-paginator-bundle\Knp\Bundle\PaginatorBundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\repo22\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
@@ -3553,17 +3594,7 @@
         <argument type="service" id="monolog.handler.debug"/>
       </call>
     </service>
-    <service id="swiftmailer.transport" class="Swift_Transport_SpoolTransport">
-      <argument type="service" id="swiftmailer.transport.eventdispatcher"/>
-      <argument type="service" id="swiftmailer.spool"/>
-      <call method="registerPlugin">
-        <argument type="service" id="swiftmailer.plugin.messagelogger"/>
-      </call>
-    </service>
-    <service id="mailer" class="Swift_Mailer">
-      <argument type="service" id="swiftmailer.transport"/>
-    </service>
-    <service id="swiftmailer.transport.real" class="Swift_Transport_EsmtpTransport">
+    <service id="swiftmailer.transport" class="Swift_Transport_EsmtpTransport">
       <argument type="service">
         <service class="Swift_Transport_StreamBuffer" public="false">
           <argument type="service">
@@ -3588,24 +3619,26 @@
           </service>
         </argument>
       </argument>
-      <argument type="service" id="swiftmailer.transport.eventdispatcher"/>
+      <argument type="service">
+        <service class="Swift_Events_SimpleEventDispatcher" public="false"/>
+      </argument>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>smtp.gmail.com</argument>
       </call>
       <call method="setPort">
-        <argument>25</argument>
+        <argument>465</argument>
       </call>
       <call method="setEncryption">
-        <argument>null</argument>
+        <argument>ssl</argument>
       </call>
       <call method="setUsername">
-        <argument>null</argument>
+        <argument>adp.alex@gmail.com</argument>
       </call>
       <call method="setPassword">
-        <argument>null</argument>
+        <argument>macamany</argument>
       </call>
       <call method="setAuthMode">
-        <argument>null</argument>
+        <argument>login</argument>
       </call>
       <call method="setTimeout">
         <argument>30</argument>
@@ -3613,8 +3646,13 @@
       <call method="setSourceIp">
         <argument>null</argument>
       </call>
+      <call method="registerPlugin">
+        <argument type="service" id="swiftmailer.plugin.messagelogger"/>
+      </call>
     </service>
-    <service id="swiftmailer.spool" class="Swift_MemorySpool"/>
+    <service id="mailer" class="Swift_Mailer">
+      <argument type="service" id="swiftmailer.transport"/>
+    </service>
     <service id="session.storage" alias="session.storage.native"/>
     <service id="translator" alias="translator.default"/>
     <service id="debug.templating.engine.twig" alias="templating"/>

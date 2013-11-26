@@ -22,18 +22,18 @@ class SuggerenciaController extends Controller
 		$form = $this->createFormBuilder($form)
        	 	->setAction($this->generateUrl('store_new_suggerencia'))
        	 	->setMethod('POST')
-             ->add('date', 'date')
-            ->add('name', 'text')
-            ->add('autor', 'text')
-            ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Gironins', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
-            ->add('suggerir', 'choice', array('choices' => array('0'=> 'NO', '1' =>'SI')))
-            ->add('editorial', 'text')
-            ->add('descripcio', 'text')
-            ->add('link', 'text')
-            ->add('price','money')            
-            ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
-            ->add('Desa', 'submit')
-            ->getForm();
+                ->add('date', 'date')
+                ->add('name', 'text')
+                ->add('autor', 'text')
+                ->add('category', 'choice', array('choices' => array('ficcio'=> 'Ficció', 'noFixio' =>'No ficció', 'autorsCatalans' =>'Autors Gironins', 'comics' =>'Comics', 'infantil' =>'Infantil', 'butxaca' =>'Butxaca')))
+                ->add('suggerir', 'choice', array('choices' => array('0'=> 'NO', '1' =>'SI')))
+                ->add('editorial', 'text')
+                ->add('descripcio', 'text')
+                ->add('link', 'text')
+                ->add('price','money')            
+                ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
+                ->add('Desa', 'submit')
+                ->getForm();
             
 		$form->handleRequest($request);
 	
@@ -81,8 +81,8 @@ class SuggerenciaController extends Controller
 	    
 	    $suggerenciaform->setDate(new \DateTime('tomorrow'));
        	$suggerenciaform->setName("Name");
-       	$suggerenciaform->setDescripcio("descripcio");
-        $suggerenciaform->setLink("link");
+       	$suggerenciaform->setDescripcio("");
+        $suggerenciaform->setLink("");
        	$suggerenciaform->setPrice(0.0);
        	$suggerenciaform->setSuggerir(0);
       

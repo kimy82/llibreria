@@ -102,7 +102,7 @@ public function galeriaAction($year)
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),80);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),100);
 		$path= $this->get('kernel')->getImagesPath('galeria');
 		$pathServer= $this->get('kernel')->getServerPath();
 		
@@ -153,7 +153,7 @@ public function galeriaAction($year)
      	$em = $this->getDoctrine()->getManager();
      	// echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
         //Salida: Viernes 24 de Febrero del 2012	
-        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Noticia n order by n.id DESC');
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Noticia n order by n.dataEntrada DESC');
         $paginator= $this->get('knp_paginator');
         $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),12);
         $path= $this->get('kernel')->getImagesPath('noticia');
@@ -172,7 +172,7 @@ public function galeriaAction($year)
      	$em = $this->getDoctrine()->getManager();
      	
 		
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:agenda n order by n.id DESC');
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:agenda n order by n.dataEntrada DESC');
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
 		$path= $this->get('kernel')->getImagesPath('agenda');
@@ -202,15 +202,21 @@ public function galeriaAction($year)
 	
 	
     	if($name=='any'){
+            /*
     		$cerca="";
     		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Llibre n order by n.dateEntrada DESC ');
+             */
+            $query = $em->createQueryBuilder();
+                $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
+                ->where( $query->expr()->like('n.name', $query->expr()->literal('%ab%')) )
+                ->getQuery();  
     	}else{    		
-    		$query = $em->createQueryBuilder();
-			$query = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
-  			->where( $query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')) )
-  			->orwhere( $query->expr()->like('n.autor', $query->expr()->literal('%' . $name . '%')) )
-  			->orwhere( $query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')) )
-  			->getQuery();  
+                $query = $em->createQueryBuilder();
+                $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
+                ->where( $query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')) )
+                ->orwhere( $query->expr()->like('n.autor', $query->expr()->literal('%' . $name . '%')) )
+                ->orwhere( $query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')) )
+                ->getQuery();  
   					     		
     	}
      	
@@ -236,12 +242,13 @@ public function galeriaAction($year)
     	$path= $this->get('kernel')->getImagesPath('llibre');
 	$pathServer= $this->get('kernel')->getServerPath();	
     	$query = $em->createQueryBuilder();
-	$resultats = $query->select('n')->from('AcmeStoreBundle:llibre', 'n')
+	$resultats = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
   					->where( 'n.name=\''.$nom.'\'' )
   					->getQuery()->getResult();
 
   		$formDemana = new DemanaForm();
 		
+                /*
   		$name = $this->get('translator')->trans('f_busca_llibre_nom_client');
   		$formDemana->setName($name);
   		
@@ -259,7 +266,7 @@ public function galeriaAction($year)
   		 
   		$tel = $this->get('translator')->trans('f_busca_llibre_tel_client');
   		$formDemana->setTel($tel);
-  		
+  		*/
   		$formDemana->setLlibre($id);
   		
   		 
@@ -273,7 +280,7 @@ public function galeriaAction($year)
                         ->add('email', 'text')
                         ->add('tel', 'text')
                         ->add('llibre', 'text')
-                        ->add('save', 'submit')
+                        ->add('Demanar', 'submit')
                         ->getForm();
 		$slider = $this->getSlider();	
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();					
@@ -502,7 +509,7 @@ public function galeriaAction($year)
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n order by n.dataEntrada DESC');
 		
 		$paginator= $this->get('knp_paginator');
-		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),50);
+		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),12);
 		$path= $this->get('kernel')->getImagesPath('presentacio');
 		$pathServer= $this->get('kernel')->getServerPath();
 		$slider = $this->getSlider();

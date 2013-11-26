@@ -81,10 +81,10 @@ class AgendaController extends Controller
 	
 	    
 	    $agendaform->setDateEntrada(new \DateTime('tomorrow'));
-       	$agendaform->setTitol("Titol");
-       	$agendaform->setSubtitol("Sub Titol");
+       	$agendaform->setTitol("");
+       	$agendaform->setSubtitol("");
         $agendaform->setVideo("");
-       	$agendaform->setDescription("descripcio");
+       	$agendaform->setDescription("");
        	$agendaform->setNovetat(true);
        	$agendaform->setPortada("C1");
        	$agendaform->setDataFi(new \DateTime('tomorrow'));
@@ -121,6 +121,7 @@ class AgendaController extends Controller
 public function listAction(Request $request, $orderBy)
 	{	 
 		$em = $this->getDoctrine()->getManager();
+                
 		$orderBy = str_replace("..", "'%", $orderBy);
 		$orderBy = str_replace(".,", "%'", $orderBy);
 		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Agenda n where '.$orderBy);
@@ -257,7 +258,7 @@ public function editAction($id)
 	   	 $em->remove($agenda);
 	   	 $em->flush();
 			
-	        return $this->redirect($this->generateUrl('llistat_store_agenda/'));
+	        return $this->redirect($this->generateUrl('acme_pre_store_agenda'));
 	    }
 	    
 	

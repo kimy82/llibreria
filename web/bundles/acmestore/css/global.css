@@ -805,6 +805,11 @@ font-size: 15px;
 }
 .pagination a{
     text-decoration: none;
+    color:#A2A2A2;
+}
+.pagination a:hover{
+    text-decoration: none;
+    color:#EA5B0C;
 }
 .pagination span {
 padding: 7px;
@@ -869,6 +874,7 @@ height: 100%;
     float: left;
     position: relative;
     z-index: 1301;
+    margin-top: 20px;
 
 }
 #center_but{
@@ -974,6 +980,7 @@ width: 200px;
     line-height: 1;
     font-size: 12px!important;
     padding-bottom: 30px;
+    word-break:break-all;
 }
 #sea_con{
     background-color:white;

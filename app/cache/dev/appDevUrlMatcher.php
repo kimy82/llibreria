@@ -144,9 +144,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::indexAction',  '_route' => 'acme_pre_puja_txt',);
             }
 
-            // acme_pujar_txt
-            if ($pathinfo === '/admin/secured/upload') {
-                return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::upAction',  '_route' => 'acme_pujar_txt',);
+            if (0 === strpos($pathinfo, '/admin/secured/upload')) {
+                // acme_pujar_txt
+                if ($pathinfo === '/admin/secured/upload') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::upAction',  '_route' => 'acme_pujar_txt',);
+                }
+
+                // acme_pujar_txt_loop
+                if ($pathinfo === '/admin/secured/uploadLoop') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\UploadController::upLoopAction',  '_route' => 'acme_pujar_txt_loop',);
+                }
+
             }
 
             if (0 === strpos($pathinfo, '/admin/secured/noticia')) {
@@ -227,6 +235,47 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 // delete_slider
                 if (0 === strpos($pathinfo, '/admin/secured/slider/delete') && preg_match('#^/admin/secured/slider/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_slider')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\SliderController::deleteSliderAction',));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/secured/addpdf')) {
+                // acme_addpdf
+                if ($pathinfo === '/admin/secured/addpdf') {
+                    return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::indexAction',  '_route' => 'acme_addpdf',);
+                }
+
+                if (0 === strpos($pathinfo, '/admin/secured/addpdf/addpdf_')) {
+                    // acme_pre_store_addpdf
+                    if ($pathinfo === '/admin/secured/addpdf/addpdf_save') {
+                        return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::precreateAction',  '_route' => 'acme_pre_store_addpdf',);
+                    }
+
+                    // store_new_addpdf
+                    if ($pathinfo === '/admin/secured/addpdf/addpdf_new_save') {
+                        return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::saveAddpdfAction',  '_route' => 'store_new_addpdf',);
+                    }
+
+                    // llistat_store_addpdf
+                    if (0 === strpos($pathinfo, '/admin/secured/addpdf/addpdf_llistat') && preg_match('#^/admin/secured/addpdf/addpdf_llistat/(?P<orderBy>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_addpdf')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::listAction',));
+                    }
+
+                }
+
+                // edit_addpdf
+                if (0 === strpos($pathinfo, '/admin/secured/addpdf/edit') && preg_match('#^/admin/secured/addpdf/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_addpdf')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::editAction',));
+                }
+
+                // update_addpdf
+                if (0 === strpos($pathinfo, '/admin/secured/addpdf/update') && preg_match('#^/admin/secured/addpdf/update/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_addpdf')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::updateAddpdfAction',));
+                }
+
+                // delete_addpdf
+                if (0 === strpos($pathinfo, '/admin/secured/addpdf/delete') && preg_match('#^/admin/secured/addpdf/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_addpdf')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\AddpdfController::deleteAddpdfAction',));
                 }
 
             }
@@ -377,7 +426,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
                         // llistat_store_establiments
                         if (0 === strpos($pathinfo, '/admin/secured/establiments/establiments_llistat') && preg_match('#^/admin/secured/establiments/establiments_llistat/(?P<orderBy>[^/]++)$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_establiments')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\establimentsController::listAction',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_establiments')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::listAction',));
                         }
 
                     }
@@ -594,7 +643,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // acme_demana_llibre
-            if (0 === strpos($pathinfo, '/llibreria22/demanaLlibre') && preg_match('#^/llibreria22/demanaLlibre/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/llibreria22/demanaLlibre') && preg_match('#^/llibreria22/demanaLlibre/(?P<id>[^/]++)/(?P<nom>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_demana_llibre')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::demanaLlibreAction',));
             }
 

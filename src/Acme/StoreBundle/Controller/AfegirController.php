@@ -72,15 +72,15 @@ class AfegirController extends Controller
 	{	 
 		$afegirform = new AfegirForm();			
 		$afegirform->setDate(new \DateTime('tomorrow'));
-		$afegirform->setName("Name");
-	    	$afegirform->setDescripcio("descripcio");
-                $afegirform->setLink("Link");
+		$afegirform->setName("");
+	    	$afegirform->setDescripcio("");
+                $afegirform->setLink("");
 		$formToRender = $this->createFormBuilder($afegirform)
        	 	->setAction($this->generateUrl('store_new_afegir'))
        	 	->setMethod('POST')
 		->add('date', 'date')
-		->add('name', 'text')
-		->add('descripcio', 'text')
+                ->add('name', 'text', array('label' => 'form.name','required' => false))
+                ->add('descripcio', 'text', array('label' => 'form.descripcio','required' => false))
                 ->add('link', 'text')
 		->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
 		->add('Desa', 'submit')

@@ -79,13 +79,13 @@ class PresentacioController extends Controller
 	{	 
         $presentacioform = new PresentacioForm();			
 	$presentacioform->setDateEntrada(new \DateTime('tomorrow'));
-       	$presentacioform->setTitol("Titol");
-       	$presentacioform->setSubtitol("Sub Titol");
-       	$presentacioform->setDescription("descripcio");
+       	$presentacioform->setTitol("");
+       	$presentacioform->setSubtitol("");
+       	$presentacioform->setDescription("");
        	$presentacioform->setNovetat(true);
        	$presentacioform->setPortada("no");
-       	$presentacioform->setLloc(" Localitzacio, hora, etz");
-        $presentacioform->setIntervindran(" Qui intervindra");
+       	$presentacioform->setLloc("");
+        $presentacioform->setIntervindran("");
        	$presentacioform->setDataFi(new \DateTime('tomorrow'));
        	$formToRender = $this->createFormBuilder($presentacioform)
         ->setAction($this->generateUrl('store_new_presentacio'))
@@ -122,7 +122,7 @@ class PresentacioController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$orderBy = str_replace("..", "'%", $orderBy);
 		$orderBy = str_replace(".,", "%'", $orderBy);
-		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where '.$orderBy);
+		$query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n order by n.dataEntrada DESC');
 		
 		$paginator= $this->get('knp_paginator');
 		$pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
