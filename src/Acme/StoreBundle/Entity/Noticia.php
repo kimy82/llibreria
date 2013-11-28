@@ -79,9 +79,6 @@ class Noticia
     {
         return $this->id;
     }
-    
-    
-
 
     /**
      * Set titol

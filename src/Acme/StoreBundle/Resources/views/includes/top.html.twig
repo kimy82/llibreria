@@ -1,7 +1,7 @@
 <div id="sup">
 			<div id="consup">
 				<div id="logo">
-				<img src="{{ asset('bundles/acmestore/img/logo.jpg') }}" />
+				<a href="{{ path('acme_portada', {}) }}" ><img src="{{ asset('bundles/acmestore/img/logo.jpg') }}" /></a>
                                 <div class="logoin">
                                 <a class="mailto" href="mailto:llibreria22@llibreria22.net">llibreria22@llibreria22.net</a><br>
                                 C. Hortes, 22 -  972 21 23 95 - 972 22 14 30
@@ -60,7 +60,7 @@
 				var sesuatu = document.getElementById("sesuatu").value;
 				window.localStorage.setItem('sesuatu',sesuatu);
 			
-				window.location.href=path+"/web/llibreria22/semuaSearch/"+sesuatu;
+				window.location.href=path+"/llibreria22/semuaSearch/"+sesuatu;
   				
 			});
                         $("#sesuatu").on("keyup", function(e) {
@@ -69,7 +69,7 @@
 				var sesuatu = document.getElementById("sesuatu").value;
 				window.localStorage.setItem('sesuatu',sesuatu);
 			
-				window.location.href=path+"/web/llibreria22/semuaSearch/"+sesuatu;
+				window.location.href=path+"/llibreria22/semuaSearch/"+sesuatu;
                                return false;
                                 
                                 

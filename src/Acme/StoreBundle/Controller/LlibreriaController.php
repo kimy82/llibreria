@@ -280,7 +280,7 @@ public function galeriaAction($year)
                         ->add('email', 'text')
                         ->add('tel', 'text')
                         ->add('llibre', 'text')
-                        ->add('Demanar', 'submit')
+                        ->add('save', 'submit')
                         ->getForm();
 		$slider = $this->getSlider();	
 		$pathSlider = $this->get('kernel')->getImagesPathAlone();					

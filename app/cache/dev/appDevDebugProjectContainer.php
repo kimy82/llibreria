@@ -35,7 +35,6 @@ class appDevDebugProjectContainer extends Container
         $this->scopeChildren = array('request' => array());
         $this->methodMap = array(
             'acme.demo.listener' => 'getAcme_Demo_ListenerService',
-            'acme_store.listener.request' => 'getAcmeStore_Listener_RequestService',
             'annotation_reader' => 'getAnnotationReaderService',
             'assetic.asset_factory' => 'getAssetic_AssetFactoryService',
             'assetic.asset_manager' => 'getAssetic_AssetManagerService',
@@ -260,19 +259,6 @@ class appDevDebugProjectContainer extends Container
     protected function getAcme_Demo_ListenerService()
     {
         return $this->services['acme.demo.listener'] = new \Acme\DemoBundle\EventListener\ControllerListener($this->get('twig.extension.acme.demo'));
-    }
-
-    /**
-     * Gets the 'acme_store.listener.request' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Acme\StoreBundle\Controller\LocaleListener A Acme\StoreBundle\Controller\LocaleListener instance.
-     */
-    protected function getAcmeStore_Listener_RequestService()
-    {
-        return $this->services['acme_store.listener.request'] = new \Acme\StoreBundle\Controller\LocaleListener($this, 'plain_value', 'ca');
     }
 
     /**
@@ -655,7 +641,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addListenerService('kernel.response', array(0 => 'monolog.handler.firephp', 1 => 'onKernelResponse'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'monolog.handler.chromephp', 1 => 'onKernelResponse'), 0);
         $instance->addListenerService('kernel.request', array(0 => 'assetic.request_listener', 1 => 'onKernelRequest'), 0);
-        $instance->addListenerService('kernel.request', array(0 => 'acme_store.listener.request', 1 => 'onKernelRequest'), -255);
         $instance->addListenerService('kernel.exception', array(0 => 'kernel.listener.exceptio', 1 => 'onKernelException'), 0);
         $instance->addListenerService('kernel.controller', array(0 => 'acme.demo.listener', 1 => 'onKernelController'), 0);
         $instance->addListenerService('kernel.request', array(0 => 'knp_paginator.subscriber.sliding_pagination', 1 => 'onKernelRequest'), 0);

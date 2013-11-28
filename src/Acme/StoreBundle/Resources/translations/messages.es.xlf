@@ -22,23 +22,23 @@
                 <source>menu_admin</source>
                 <target>Menú</target>
             </trans-unit>
-             <trans-unit id="6">
+            <trans-unit id="6">
                 <source>new_book</source>
                 <target>nou Llibre</target>
             </trans-unit>
-             <trans-unit id="7">
+            <trans-unit id="7">
                 <source>list_book</source>
                 <target>Llistat</target>
             </trans-unit>
-           <trans-unit id="8">
+            <trans-unit id="8">
                 <source>edit_book</source>
                 <target>Edita llibre</target>
             </trans-unit>
-             <trans-unit id="9">
+            <trans-unit id="9">
                 <source>delete_book</source>
                 <target>Borra llibre</target>
             </trans-unit>
-             <trans-unit id="10">
+            <trans-unit id="10">
                 <source>list_book_page_title</source>
                 <target>Llistat de llibres</target>
             </trans-unit>
@@ -90,7 +90,7 @@
                 <source>menu_admin_agenda</source>
                 <target>Menú agenda</target>
             </trans-unit>          
-      <trans-unit id="23">
+            <trans-unit id="23">
                 <source>presentacio_list_page</source>
                 <target>Llistat de presentació</target>
             </trans-unit>
@@ -142,7 +142,7 @@
                 <source>f_galeria_title</source>
                 <target>Galeria</target>
             </trans-unit> 
-			<trans-unit id="36">
+            <trans-unit id="36">
                 <source>f_galeria_botton_cerrar</source>
                 <target>TANCAR</target>
             </trans-unit>
@@ -152,7 +152,7 @@
             </trans-unit>
             <trans-unit id="38">
                 <source>f_bloq_menu</source>
-                <target>Bloq</target>
+                <target>Blog</target>
             </trans-unit> 
             <trans-unit id="39">
                 <source>f_portada_menu</source>
@@ -166,11 +166,11 @@
                 <source>f_no_things</source>
                 <target>No hi ha entrades</target>
             </trans-unit>
-           	<trans-unit id="42">
+            <trans-unit id="42">
                 <source>f_publicat_el</source>
-                <target>Publicat el </target>
+                <target>Publicat el</target>
             </trans-unit>    
-             <trans-unit id="43">
+            <trans-unit id="43">
                 <source>f_noticia_menu</source>
                 <target>Notícies</target>
             </trans-unit>
@@ -186,7 +186,7 @@
                 <source>f_busca_llibre_desc</source>
                 <target>Aquests són els llibres que actualment disposem en estoc a la nostra llibreria. Si el vostre llibre no apareix, consulti'ns la disponibilitat, gràcies</target>
             </trans-unit>
-             <trans-unit id="47">
+            <trans-unit id="47">
                 <source>f_mots_acerca</source>
                 <target>Mots a cercar</target>
             </trans-unit>
@@ -198,15 +198,15 @@
                 <source>f_busca_llibre_clic</source>
                 <target>Fent clic al botó Demana’l podràs demanar que et portin el llibre a casa teva pagant-lo contra reemborsament.</target>
             </trans-unit>
-             <trans-unit id="50">
+            <trans-unit id="50">
                 <source>f_busca_llibre_resultats</source>
-                <target>Resultats per la cerca </target>
+                <target>Resultats per la cerca</target>
             </trans-unit>
             <trans-unit id="51">
                 <source>f_busca_llibre_resultats_2</source>
                 <target>, amb un total de</target>
             </trans-unit>
-             <trans-unit id="52">
+            <trans-unit id="52">
                 <source>f_busca_llibre_resultats_3</source>
                 <target>resultats</target>
             </trans-unit>
@@ -222,13 +222,13 @@
                 <source>f_busca_llibre_editorial</source>
                 <target>Editorial</target>
             </trans-unit>
-             <trans-unit id="56">
+            <trans-unit id="56">
                 <source>f_busca_llibre_preu</source>
                 <target>Preu</target>
             </trans-unit>    
             <trans-unit id="57">
                 <source>f_busca_llibre_demana</source>
-                <target>Demane'l</target>
+                <target>Demana'l</target>
             </trans-unit>
             <trans-unit id="58">
                 <source>f_demana_llibre_title</source>
@@ -247,9 +247,9 @@
                 <source>f_busca_llibre_nom_client</source>
                 <target>Nom</target>
             </trans-unit>       
-              <trans-unit id="62">
+            <trans-unit id="62">
                 <source>f_busca_llibre_poble_client</source>
-                <target>Poblacio</target>
+                <target>Població</target>
             </trans-unit>   
             <trans-unit id="63">
                 <source>f_busca_llibre_adreca_client</source>
@@ -259,7 +259,7 @@
                 <source>f_busca_llibre_codipostal_client</source>
                 <target>Codi postal</target>
             </trans-unit>  
-              <trans-unit id="65">
+            <trans-unit id="65">
                 <source>f_busca_llibre_email_client</source>
                 <target>Email</target>
             </trans-unit>  
@@ -269,11 +269,11 @@
             </trans-unit>                   
             <trans-unit id="67">
                 <source>f_suggeriment_title</source>
-                <target>Suggerèncias</target>
+                <target>Suggerències</target>
             </trans-unit> 
             <trans-unit id="68">
                 <source>f_suggeriment_desc</source>
-                <target>Aquí pots veure la selecció de llibres que la 22 ha triat per tu</target>
+                <target>Aquí pots veure la selecció de llibres que la 22 ha triat per tu.</target>
             </trans-unit>  
             <trans-unit id="69">
                 <source>f_suggeriment_llibre</source>
@@ -307,7 +307,7 @@
                 <source>f_establiments_menu</source>
                 <target>Establiments</target>
             </trans-unit>
-             <trans-unit id="77">
+            <trans-unit id="77">
                 <source>f_suggeriments_menu</source>
                 <target>Suggeriments</target>
             </trans-unit>
@@ -315,7 +315,7 @@
                 <source>f_establiments_title</source>
                 <target>Establiments</target>
             </trans-unit>
-             <trans-unit id="79">
+            <trans-unit id="79">
                 <source>slider_list_page</source>
                 <target>Llistat de slider</target>
             </trans-unit>
@@ -331,7 +331,7 @@
                 <source>edit_slider</source>
                 <target>Edita slider</target>
             </trans-unit>
-              <trans-unit id="83">
+            <trans-unit id="83">
                 <source>form_slider</source>
                 <target>Entra/Modifica noticies</target>
             </trans-unit>
@@ -340,23 +340,23 @@
                 <target>Menú Slider</target>
             </trans-unit>
 			
-			 <trans-unit id="85">
+            <trans-unit id="85">
                 <source>new_sugg</source>
-                <target>Nove suggerència</target>
+                <target>Nova suggerència</target>
             </trans-unit>
-			 <trans-unit id="86">
+            <trans-unit id="86">
                 <source>list_sugg</source>
                 <target>Llistat</target>
             </trans-unit>
-           <trans-unit id="87">
+            <trans-unit id="87">
                 <source>edit_sugg</source>
                 <target>Edita Suggerència</target>
             </trans-unit>
-             <trans-unit id="88">
+            <trans-unit id="88">
                 <source>delete_sugg</source>
                 <target>Borra Suggerència</target>
             </trans-unit>
-             <trans-unit id="89">
+            <trans-unit id="89">
                 <source>list_sugg_page_title</source>
                 <target>Llistat de Suggerències</target>
             </trans-unit>
@@ -380,50 +380,78 @@
                 <source>January</source>
                 <target>Gener</target>
             </trans-unit>
-             <trans-unit id="95">
+            <trans-unit id="95">
                 <source>February</source>
                 <target>Febrer</target>
             </trans-unit>
-             <trans-unit id="96">
+            <trans-unit id="96">
                 <source>March</source>
-                <target>Març</target>
+                <target>Marc</target>
             </trans-unit>
-             <trans-unit id="97">
+            <trans-unit id="97">
                 <source>April</source>
                 <target>Abril</target>
             </trans-unit>
-             <trans-unit id="98">
+            <trans-unit id="98">
                 <source>May</source>
                 <target>Maig</target>
             </trans-unit>
-             <trans-unit id="99">
+            <trans-unit id="99">
                 <source>June</source>
                 <target>Juny</target>
             </trans-unit>
-             <trans-unit id="100">
+            <trans-unit id="100">
                 <source>July</source>
                 <target>Juliol</target>
             </trans-unit>
-             <trans-unit id="101">
+            <trans-unit id="101">
                 <source>August</source>
                 <target>Agost</target>
             </trans-unit>
-             <trans-unit id="102">
+            <trans-unit id="102">
                 <source>September</source>
                 <target>Setembre</target>
             </trans-unit>
-             <trans-unit id="103">
-                <source>sd</source>
+            <trans-unit id="103">
+                <source>October</source>
                 <target>Octubre</target>
             </trans-unit>
-             <trans-unit id="104">
+            <trans-unit id="104">
                 <source>November</source>
                 <target>Novembre</target>
             </trans-unit>
-             <trans-unit id="105">
+            <trans-unit id="105">
                 <source>December</source>
                 <target>Desembre</target>
-            </trans-unit>                 
+            </trans-unit>
+            <trans-unit id="106">
+                <source>Monday</source>
+                <target>Dilluns</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>Tuesday</source>
+                <target>Dimarts</target>
+            </trans-unit>
+            <trans-unit id="108">
+                <source>Wednesday</source>
+                <target>Dimecres</target>
+            </trans-unit>
+            <trans-unit id="109">
+                <source>Thursday</source>
+                <target>Dijous</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>Friday</source>
+                <target>Divendres</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>Saturday</source>
+                <target>Disabte</target>
+            </trans-unit>
+            <trans-unit id="112">
+                <source>Sunday</source>
+                <target>Diumenge</target>
+            </trans-unit>          
         </body>
     </file>
 </xliff>

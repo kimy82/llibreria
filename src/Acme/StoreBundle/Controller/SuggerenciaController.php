@@ -48,7 +48,7 @@ class SuggerenciaController extends Controller
 	        $suggerencia->setDateEntrada($form['date']->getData());	
 	        $suggerencia->setCategory($form['category']->getData());
 	        $suggerencia->setAutor($form['autor']->getData());
-                 $suggerencia->setEditorial($form['editorial']->getData());           
+                $suggerencia->setEditorial($form['editorial']->getData());           
 	        $suggerencia->setTablePath("suggerencia");     
 	        $suggerencia->setAttachment("aaa");
 	        $suggerencia->setSuggerir($form['suggerir']->getData());

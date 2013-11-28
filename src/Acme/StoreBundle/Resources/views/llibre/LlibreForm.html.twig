@@ -29,10 +29,7 @@ tinymce.init({
 
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    ació
-    	<a href="{{ path('acme_store_homepage', {}) }}" >{% trans %}menu_admin{% endtrans %}</a>
-    	<a href="{{ path('acme_pre_store_llibre', {}) }}" >{% trans %}new_book{% endtrans %}</a>
-    	<a href="{{ path('llistat_store_llibre', {orderBy:'1=1 order by n.id asc'}) }}" >{% trans %}list_book{% endtrans %}</a>
+   
     
     	{{ form_start(form) }} 
     		{{ form_errors(form) }}

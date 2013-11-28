@@ -31,11 +31,18 @@ class NoticiaForm
 	protected $attachment;
 
 	
-	
+/*	
   public function setDateEntrada($dateEntrada)
     {
         $this->date_entrada = $dateEntrada;
     
+        return $this;
+    }
+    */
+     public function setDateEntrada($dateEntrada)
+    {
+         $this->date_entrada = new \DateTime();
+
         return $this;
     }
 

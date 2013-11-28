@@ -628,14 +628,6 @@
         <argument>0</argument>
       </call>
       <call method="addListenerService">
-        <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument>acme_store.listener.request</argument>
-          <argument>onKernelRequest</argument>
-        </argument>
-        <argument>-255</argument>
-      </call>
-      <call method="addListenerService">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument>kernel.listener.exceptio</argument>
@@ -3151,12 +3143,6 @@
     </service>
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener">
       <tag name="kernel.event_subscriber"/>
-    </service>
-    <service id="acme_store.listener.request" class="Acme\StoreBundle\Controller\LocaleListener">
-      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="-255"/>
-      <argument type="service" id="service_container"/>
-      <argument>plain_value</argument>
-      <argument>ca</argument>
     </service>
     <service id="kernel.listener.exceptio" class="Acme\DemoBundle\EventListener\ExceptionListener">
       <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>

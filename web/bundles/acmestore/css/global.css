@@ -9,6 +9,13 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     background-color: #EDEDED;
 }
+a{
+    text-decoration: none;
+    color: #999;
+}
+a:hover{
+    color: #333;
+}
 #container{
 	width: 100%;
 	margin: auto;
@@ -742,6 +749,9 @@ color: #706F6F;
    height: auto;
 padding-bottom: 14px;
 }
+.leftdiv p img{
+    margin-left: 0px;
+}
 
 .elem_main{
     background-color: #ffffff;
@@ -955,7 +965,7 @@ width: 200px;
 .imagenexterna img{
      padding-top: 10px;
     padding-bottom: 10px;
-    float: left;
+    
   
 }
 .tit_top{
