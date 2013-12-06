@@ -128,12 +128,6 @@ class NoticiaController extends Controller
 	    $path= $this->get('kernel')->getImagesPath('noticia');
 	    $pathServer= $this->get('kernel')->getServerPath();
             
-            
-         
-            
-            
-            
-		
 	    return $this->render('AcmeStoreBundle:noticia:NoticiaList.html.twig', array(
             'pagination' => $pagination,'path' =>  $path ,'pathlocal'=>$pathServer,
         ));
@@ -162,7 +156,8 @@ class NoticiaController extends Controller
 		    $file = new File($path.'downloads/noticia/'.$noticia->getAttachment(), true);
 		    $noticiaform->setAttachment($file);
 		}
-       	
+            
+             
 	    
 	
 	    $path = $this->get('kernel')->getServerPath();

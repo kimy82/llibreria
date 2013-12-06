@@ -80,7 +80,9 @@ class SuggerenciaController extends Controller
 	
 	    
 	    $suggerenciaform->setDate(new \DateTime('tomorrow'));
-       	$suggerenciaform->setName("Name");
+       	$suggerenciaform->setName("");
+        	$suggerenciaform->setEditorial("ed");
+                	$suggerenciaform->setAutor("au");
        	$suggerenciaform->setDescripcio("");
         $suggerenciaform->setLink("");
        	$suggerenciaform->setPrice(0.0);

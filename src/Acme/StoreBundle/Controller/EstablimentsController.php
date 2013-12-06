@@ -2,7 +2,7 @@
 namespace Acme\StoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\StoreBundle\Entity\establiments;
-use Acme\StoreBundle\Entity\foto;
+use Acme\StoreBundle\Entity\Foto;
 use Acme\StoreBundle\Forms\EstablimentsForm;
 use Acme\StoreBundle\Forms\FotoForm;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +28,7 @@ class EstablimentsController extends Controller
         ->add('Desa', 'submit')
         ->getForm();
         $form->handleRequest($request);
-        $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
+        $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:establiments')->find(1);
         
     if ($form->isValid()) {
         // perform some action, such as saving the task to the database
@@ -117,7 +117,7 @@ class EstablimentsController extends Controller
                 ->add('Desa', 'submit')
                 ->getForm();
             
-            $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
+            $establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:establiments')->find(1);
             $establimentsform = new EstablimentsForm();			
             $establimentsform->setDescription($establiments->getDescription());
             $establimentsform->setTitol($establiments->getTitol());
@@ -149,7 +149,7 @@ class EstablimentsController extends Controller
             
 		$form->handleRequest($request);
 	
-		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:Establiments')->find(1);
+		$establiments = $this->getDoctrine()->getRepository('AcmeStoreBundle:establiments')->find(1);
 		
 	    if ($form->isValid()) {
 	        // perform some action, such as saving the task to the database

@@ -127,7 +127,16 @@
 		    	function demanaLlibre(id,nom){
 		    		window.location.href=path+"/llibreria22/demanaLlibre/"+id+"/"+nom;
 		    	}
-		    	function search(){
+                        
+                        $("#cercainput").on("keyup", function(e) {
+                            if (e.which == 13) {
+                                
+				var val= document.getElementById("cercainput").value;
+				window.localStorage.setItem('cercar',val);
+				window.location.href=path+"/llibreria22/buscaLlibre/"+val;
+                           }
+                        });
+                       function search(){
 		    		
 		    		var val= document.getElementById("cercainput").value;
 					window.localStorage.setItem('cercar',val);
