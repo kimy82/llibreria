@@ -32,13 +32,13 @@
                             <table border="1">
                                 <tr>
                                     <th>
-				<div onclick="searchAutor()">{% trans %}f_busca_llibre_titol{% endtrans %}</div>
+				<div id="name" class="cerca_tot activitat" onclick="searchTitol()">{% trans %}f_busca_llibre_titol{% endtrans %}</div>
                                         </th>
                                         <th>
-				{% trans %}f_busca_llibre_autor{% endtrans %}
+				<div id="autor" class="cerca_tot" onclick="searchAutor()">{% trans %}f_busca_llibre_autor{% endtrans %}</div>
                                             </th>
                                             <th>
-				{% trans %}f_busca_llibre_editorial{% endtrans %}
+				<div id="editorial" class="cerca_tot" onclick="searchEditorial()">{% trans %}f_busca_llibre_editorial{% endtrans %}</div>
                                                 </th>
                                                 <th>
 				{% trans %}f_busca_llibre_preu{% endtrans %}
@@ -149,6 +149,8 @@
                                                         <script>
                                                         $('li').removeClass('active');
                                                         $('#buscallibreli').addClass('active');
+                                                        $('.cerca_tot').removeClass('activitat');
+                                                        $('#{{tipus}}').addClass('activitat');
                                                         var path = "{{pathlocal}}";
                                                         function demanaLlibre(id, nom) {
                                                             window.location.href = path + "/llibreria22/demanaLlibre/" + id + "/" + nom;
@@ -170,7 +172,18 @@
                                                         }
                                                         
                                                         function searchAutor() {
-                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "2" + localStorage["cercar"];
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "2)" + localStorage["cercar"];
+                                                            
+                                                        }
+                                                        
+                                                        function searchTitol() {
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "1)" + localStorage["cercar"];
+                                                           
+                                                        }
+                                                        
+                                                        function searchEditorial() {
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "3)" + localStorage["cercar"];
+                                                           
                                                         }
                                                             </script>
 {% endblock %}

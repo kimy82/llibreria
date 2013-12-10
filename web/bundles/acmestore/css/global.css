@@ -26,6 +26,17 @@ a:hover{
 	width: 100%;
 	height: 100%;
 }
+.cerca_tot{
+       cursor: pointer;
+}
+.activitat{
+       
+       color:#EA5B0C;
+}
+.cerca_tot:hover{
+       cursor: pointer;
+       color:#EA5B0C;
+}
 #sup{
 	margin: auto;
 	width: 960px;

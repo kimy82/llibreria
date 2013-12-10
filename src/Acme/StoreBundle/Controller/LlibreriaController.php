@@ -180,8 +180,6 @@ class LlibreriaController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $cerca = $name;
-        
-        
         $buscaafegir = $em->createQuery('SELECT n from AcmeStoreBundle:Afegir n order by n.id DESC');
         $paginatorafegir = $this->get('knp_paginator');
         $pagename2 = 'page2';
@@ -189,10 +187,6 @@ class LlibreriaController extends Controller {
         $path = $this->get('kernel')->getImagesPath('afegir');
         $pathServer = $this->get('kernel')->getServerPath();
         
-        
-    
-         
-
         if ($name == 'any') {
             /*
               $cerca="";
@@ -202,37 +196,42 @@ class LlibreriaController extends Controller {
             $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                     ->where($query->expr()->like('n.name', $query->expr()->literal('%ab%')))
                     ->getQuery();
+             $resultats[0] = count($query->getResult());
+             $resultats[1] = $tipus;
         } else {
             
             $query = $em->createQueryBuilder();
             $autornou = explode(' ', $name, 3);
-            $str = $autornou[0];
-            $llancadora = $str[0];
             
-            $autornou[0] =  substr($name,1);
+            $str = $autornou[0];
+            
+            $llancadora =substr($str,0,2);
+            //echo $llancadora;
             
           function trobador ($tipus, $autornou, $query, $name){
-                    
+              
                     $conta = 0;
                     for ($i=0;$i<2;$i++){
                        if (!empty($autornou[$i]) ){
                            $conta++;
+                           
                        }
                     }
+                    
                     if($conta=1){
-                        
-                        print_r($autornou[0]);
-                           $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
+                         
+                          $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                            ->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
                            ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' .  $autornou[0] . '%')))
                            ->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
-                           ->orderBy('n.' . $tipus )
+                          ->orderBy('n.' . $tipus )
                            ->getQuery();
-                           $resultats = count($query->getResult());
+                            $resultats[0] = count($query->getResult());
+                           $resultats[1] = $tipus;
                            return $resultats;
                        
                      }else if($conta=2){
-                          
+                        
                         $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                            ->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
                            ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' .  $autornou[0] . '%')))
@@ -240,9 +239,11 @@ class LlibreriaController extends Controller {
                            ->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
                           ->orderBy('n.' . $tipus )
                            ->getQuery();
-                           $resultats = count($query->getResult());
+                            $resultats[0] = count($query->getResult());
+                           $resultats[1] = $tipus;
                            return $resultats;
                      }else if($conta=3){
+                         
                         $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                            ->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
                            ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' .  $autornou[0] . '%')))
@@ -251,33 +252,36 @@ class LlibreriaController extends Controller {
                            ->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
                            ->orderBy('n.' . $tipus )
                            ->getQuery();
-                           $resultats = count($query->getResult());
+                           $resultats[0] = count($query->getResult());
+                           $resultats[1] = $tipus;
                            return $resultats;
                      }
             }
             
-           
-            
             switch ($llancadora) {
-                case 1: //titol
-                  $resultats =  trobador ("name", $autornou, $query, $name);
-                case 2: //autor
-                  $resultats =  trobador ("autor", $autornou, $query, $name);
+                case "1)": //titol
+                 $sera = substr($name,2);
+                 $autornou[0] =  substr($name,2);
+                 $resultats =  trobador ("name", $autornou, $query, $sera);
+                break;                 
+                case "2)": //autor
+                   $sera = substr($name,2);
+                  $autornou[0] =  substr($name,2);
+                  $resultats =  trobador ("autor", $autornou, $query, $sera);
                     break;
-                case 3: //editorial
-                  $resultats =  trobador ("editorial", $autornou, $query, $name);
+                case "3)": //editorial
+                  $sera = substr($name,2);
+                  $autornou[0] =  substr($name,2);
+                  $resultats =  trobador ("editorial", $autornou, $query, $sera);
                     break;
                 default:
-                    $resultats =  trobador ("editorial", $name, $query, $name);
+                    $sera = substr($name,2);
+                    $resultats =  trobador ("id", $autornou, $query,  $sera);
                 break;
                     
                     
             }
             
-            
-            
-            
-           
         }
         
 
@@ -291,7 +295,7 @@ class LlibreriaController extends Controller {
         $slider = $this->getSlider();
         $pathSlider = $this->get('kernel')->getImagesPathAlone();
         return $this->render('AcmeStoreBundle:llibreria:BuscaLlibre.html.twig', array(
-                    'pathSlider' => $pathSlider, 'slider' => $slider, 'paginationafegir' => $paginationafegir, 'pagination' => $pagination, 'path' => $path, 'pathlocal' => $pathServer, 'body' => 'busca', 'cerca' => $cerca, 'numresultats' => $resultats
+                    'pathSlider' => $pathSlider, 'slider' => $slider, 'paginationafegir' => $paginationafegir, 'pagination' => $pagination, 'path' => $path, 'pathlocal' => $pathServer, 'body' => 'busca', 'cerca' => $sera, 'numresultats' => $resultats[0], 'tipus' => $resultats[1]
         ));
     }
 
