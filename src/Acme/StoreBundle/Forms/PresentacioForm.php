@@ -30,6 +30,21 @@ class PresentacioForm
 	protected $intervindran;
 
 	protected $lloc;
+        
+        protected $eliminador;
+        
+   public function setEliminador($eliminador)
+    {
+        $this->eliminador = $eliminador;
+    
+        return $this;
+    }
+
+ 
+    public function getEliminador()
+    {
+        return $this->eliminador;
+    }
 	
 	
   public function setDateEntrada($dateEntrada)

@@ -150,11 +150,13 @@ class NoticiaController extends Controller
 	    $noticiaform->setNovetat($noticia->getNovetat());
 	    $noticiaform->setPortada($noticia->getPortada());
 	    $noticiaform->setDataFi($noticia->getDataFi());
+            
 	    
 	    if ( $noticia->getAttachment()!='aaa'){
-                echo $path.'downloads/noticia/'.$noticiaform->getAttachment();
+                    echo $path.'downloads/noticia/'.$noticiaform->getAttachment();
 		    $file = new File($path.'downloads/noticia/'.$noticia->getAttachment(), true);
 		    $noticiaform->setAttachment($file);
+                    
 		}
             
              
@@ -174,10 +176,16 @@ class NoticiaController extends Controller
 			    'choices'   => array('no' => 'NO','C2' => 'Si'),
 			    'required'  => false,
 			))
+            ->add('eliminador',  'choice', array(
+			    'choices'   => array('no' => 'NO','si' => 'Si'),
+			    'required'  => false,
+			))
             ->add('data_fi','date')
             ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
             ->add('Desa', 'submit')
             ->getForm();
+            
+           
             
             $em = $this->getDoctrine()->getManager();
             $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
@@ -206,10 +214,15 @@ class NoticiaController extends Controller
                                 'choices'   => array('no' => 'NO','C2' => 'Si'),
                                 'required'  => false,
                             ))
+                 ->add('eliminador',  'choice', array(
+			    'choices'   => array('no' => 'NO','si' => 'Si'),
+			    'required'  => false,
+			))
                 ->add('data_fi','date')
                 ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
                 ->add('Desa', 'submit')
                 ->getForm();
+            
             
                 $form->handleRequest($request);
 	
@@ -241,6 +254,11 @@ class NoticiaController extends Controller
                     $em->persist($noticia);
                     $em->flush();
 	        }
+                 if ($form['eliminador']->getData()=="si"){
+                        $noticia->setAttachment("aaa");
+                        $em->persist($noticia);
+                        $em->flush();
+                 }
 			 
 		
 			

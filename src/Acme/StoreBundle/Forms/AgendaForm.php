@@ -29,6 +29,22 @@ class AgendaForm
 	
 	
 	protected $attachment;
+        
+        
+         protected $eliminador;
+        
+   public function setEliminador($eliminador)
+    {
+        $this->eliminador = $eliminador;
+    
+        return $this;
+    }
+
+ 
+    public function getEliminador()
+    {
+        return $this->eliminador;
+    }
 
 	
 	

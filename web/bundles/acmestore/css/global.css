@@ -1001,7 +1001,7 @@ width: 200px;
     line-height: 1;
     font-size: 12px!important;
     padding-bottom: 30px;
-    word-break:break-all;
+    word-wrap: break-word;
 }
 #sea_con{
     background-color:white;
@@ -1210,11 +1210,18 @@ font-size: 12px;
 color: #b6b6b6;
 line-height: 1.7;
 }
-#suggeriments .titol{
-    
+#busca .titol, #suggeriments .titol{
+    width: 140px;
     margin-bottom: 4px;
 }
 .destacat_aparador {color: #067072; font-weight: bold; font-family: Helvetica,Arial,sans-serif;}
 .destacat_noticies {color: #14A589; font-weight: bold; font-family: Helvetica,Arial,sans-serif;}
 .destacat_presentacions {color: #FCEA10; font-weight: bold; font-family: Helvetica,Arial,sans-serif;}
 .destacat_taronja_general {color: #EA5B0C;font-weight: bold; font-family: Helvetica,Arial,sans-serif;}
+
+.sugbus{
+    float: left;
+width: 100%;
+padding-left: 30px;
+font-size: 14px;
+}

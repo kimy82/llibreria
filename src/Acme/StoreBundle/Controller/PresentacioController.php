@@ -169,6 +169,10 @@ class PresentacioController extends Controller
                                 'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
                                 'required'  => false,
                             ))
+                ->add('eliminador',  'choice', array(
+			    'choices'   => array('no' => 'NO','si' => 'Si'),
+			    'required'  => false,
+			))
                 ->add('data_fi','date')
                  ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
                 ->add('Desa', 'submit')
@@ -200,6 +204,10 @@ class PresentacioController extends Controller
             ->add('novetat', 'choice', array('choices' => array('false'=> 'NO', 'true' =>'SI')))
             ->add('portada',  'choice', array(
 			    'choices'   => array('no' => 'NO', 'C1' => 'Col 1', 'C2' => 'Col 2','C3' => 'Col 3'),
+			    'required'  => false,
+			))
+            ->add('eliminador',  'choice', array(
+			    'choices'   => array('no' => 'NO','si' => 'Si'),
 			    'required'  => false,
 			))
             ->add('data_fi','date')
@@ -237,6 +245,11 @@ class PresentacioController extends Controller
 			  $em->persist($presentacio);
 	    	  $em->flush();
 	         }
+                  if ($form['eliminador']->getData()=="si"){
+                        $presentacio->setAttachment("aaa");
+                        $em->persist($presentacio);
+                        $em->flush();
+                 }
 			 
 			  
 			

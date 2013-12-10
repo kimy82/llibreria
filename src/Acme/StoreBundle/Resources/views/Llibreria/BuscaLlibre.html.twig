@@ -1,146 +1,176 @@
 {% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
-
 {% block title %}Llibreria 22@{% endblock %}
-
 {% block content_header '' %}
 {% block content %}
-    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-		<div class="contentnot">
-			<div class="tit_fixN">
-				{% trans %}f_busca_llibre_title{% endtrans %}
-			</div>
-			
-			<div class="res_el">
-				<div class="recer_int">
-				{% trans %}f_busca_llibre_desc{% endtrans %}
-				</div>
-			</div>
-			<div class="pres_el_res">
-				<div class="recer_int">
-				{% trans %}f_mots_acerca{% endtrans %}<br>
-				<div id="search_bar">
-					<input class="inputs_cer" id="cercainput" type="text">
-				</div>
-					<div id="b_search" onclick="search()">
-						
-						<img src="{{ asset('bundles/acmestore/img/search2.png') }}" />
-				</div>
-				<p>{% trans %}f_busca_llibre_desc_2{% endtrans %}</p>
-				<span class="ce">{% trans %}f_busca_llibre_clic{% endtrans %}</span>
-				</div>
-			</div>
-			
-			<div class="not_el">
-			<div id="int_res">
+<div class="contentnot">
+    <div class="tit_fixN">
+        {% trans %}f_busca_llibre_title{% endtrans %}
+    </div>
+    <div class="res_el">
+    <div class="recer_int">
+        {% trans %}f_busca_llibre_desc{% endtrans %}
+    </div>
+    </div>
+    <div class="pres_el_res">
+        <div class="recer_int">
+                {% trans %}f_mots_acerca{% endtrans %}<br>
+                <div id="search_bar">
+                    <input class="inputs_cer" id="cercainput" type="text">
+                </div>
+                <div id="b_search" onclick="search()">
+                    <img src="{{ asset('bundles/acmestore/img/search2.png') }}" />
+                </div>
+                <p>{% trans %}f_busca_llibre_desc_2{% endtrans %}</p>
+                <span class="ce">{% trans %}f_busca_llibre_clic{% endtrans %}</span>
+        </div>
+    </div>
+    <div class="not_el">
+                    <div id="int_res">
 				{% trans %}f_busca_llibre_resultats{% endtrans %} {{cerca}}{% trans %}f_busca_llibre_resultats_2{% endtrans %} {{numresultats}} {% trans %}f_busca_llibre_resultats_3{% endtrans %}
-				<table border="1">
-				<tr>
-				<th>
-				{% trans %}f_busca_llibre_titol{% endtrans %}
-				</th>
-				<th>
+                            <table border="1">
+                                <tr>
+                                    <th>
+				<div onclick="searchAutor()">{% trans %}f_busca_llibre_titol{% endtrans %}</div>
+                                        </th>
+                                        <th>
 				{% trans %}f_busca_llibre_autor{% endtrans %}
-				</th>
-				<th>
+                                            </th>
+                                            <th>
 				{% trans %}f_busca_llibre_editorial{% endtrans %}
-				</th>
-				<th>
+                                                </th>
+                                                <th>
 				{% trans %}f_busca_llibre_preu{% endtrans %}
-				</th>
-				
-				</tr>
+                                                    </th>
+
+                                                </tr>
 				{% if pagination|length >0 %}
 				{% for llibre in pagination %}
-					<tr class="text">
-						<td class="sug_cell_rescerca c1">{{ llibre.name}}</td>
-						<td class="sug_cell_rescerca c2">{{ llibre.autor}}</td>
-						<td class="sug_cell_rescerca c3">{{ llibre.editorial}}</td>
-						<td class="sug_cell_rescerca c4">{{ llibre.price}} &euro;</td>
-						<td class="sug_cell_rescerca c5" onclick="demanaLlibre({{llibre.id}},'{{llibre.name}}')">{% trans %}f_busca_llibre_demana{% endtrans %}</td>
-					</tr>								
+                                                <tr class="text">
+                                                    <td class="sug_cell_rescerca c1">{{ llibre.name}}</td>
+                                                    <td class="sug_cell_rescerca c2">{{ llibre.autor}}</td>
+                                                    <td class="sug_cell_rescerca c3">{{ llibre.editorial}}</td>
+                                                    <td class="sug_cell_rescerca c4">{{ llibre.price}} &euro;</td>
+                                                    <td class="sug_cell_rescerca c5" onclick="demanaLlibre({{llibre.id}}, '{{llibre.name}}')">{% trans %}f_busca_llibre_demana{% endtrans %}</td>
+                                                </tr>								
 				{% endfor %}
-				</table>
-				
-				
-			
-	    		<div class="pagerfanta" >
+                            </table>
+
+
+
+                                            <div class="pagerfanta" >
 	    			{{knp_pagination_render(pagination)}}
-	    		</div>
-	    		</div>
-				</div>
+                                                </div>
+                                            </div>
+                                        
 		    	{% else %}
-		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
-		    	{% endif %}
-			
-			<div class="not_el sugg">
-                        Suggeriments de la setmana
+        
+                                <table border="1">
+                                <tr>
+                                    <th>
+				{% trans %}f_busca_llibre_titol{% endtrans %}
+                                        </th>
+                                        <th>
+				{% trans %}f_busca_llibre_autor{% endtrans %}
+                                            </th>
+                                            <th>
+				{% trans %}f_busca_llibre_editorial{% endtrans %}
+                                                </th>
+                                                <th>
+				{% trans %}f_busca_llibre_preu{% endtrans %}
+                                                    </th>
+
+                                                </tr>
+                                                <tr class="text">
+                                                    <td class="sug_cell_rescerca c1">....</td>
+                                                    <td class="sug_cell_rescerca c2">....</td>
+                                                    <td class="sug_cell_rescerca c3">....</td>
+                                                    <td class="sug_cell_rescerca c4">.....</td>
+                                                </tr>								
+                                </table>
+  </div>
+        
+        
+        
+        
+        
+        
+        
+		    	{% endif %}</div>
+
+                                        <div class="not_el sugg">
+                                            Suggeriments de la setmana
 			{% if paginationafegir|length >0 %}
 				{% for coca in paginationafegir %}
-					 <div class="total">
+                                            <div class="total">
                                     {% if  coca.attachment!='aaa' %}
-                                           
-                                            <table class="tablesuger" border="1">
-                                            <tr>
-                                            <th>
+
+                                                    <table class="tablesuger" border="1">
+                                                        <tr>
+                                                            <th>
                                             {% set  pp = path~coca.attachment%}
                                             {% if image(pp).width > image(pp).height %}
-                                               <a href="{{coca.link}}"> <img  width="146px" height="auto" src="{{path}}{{ coca.attachment}}" /></a>
+                                                                    <a href="{{coca.link}}"> <img  width="146px" height="auto" src="{{path}}{{ coca.attachment}}" /></a>
                                                {% else%}
-                                             <a href="{{coca.link}}">   <img  width="auto" height="170px" src="{{path}}{{ coca.attachment}}" /></a>
+                                                                        <a href="{{coca.link}}">   <img  width="auto" height="170px" src="{{path}}{{ coca.attachment}}" /></a>
                                             {% endif%}
-                                           
 
-                                            </th>
-                                            </tr>
-                                            </table>
+
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
                                     {% endif %}
-                                            <div>
-                                            <div class="titol">
+                                                                <div>
+                                                                    <div class="titol">
                                                     {{ coca.name}}
-                                            </div>
-                                            <div class="texte">
-                                                    <p>{{ coca.description}}</p>
-                                            </div>											
-                                            </div>
-                                    </div>	
-						
+                                                                        </div>
+                                                                        <div class="texte">
+                                                                            <p>{{ coca.description}}</p>
+                                                                        </div>											
+                                                                    </div>
+                                                                </div>	
+
 				{% endfor %}
-				</table>
-				
-				
-			
-	    		<div class="pagerfanta" >
+                                                                </table>
+
+
+
+                                                                <div class="pagerfanta" >
 	    			{{knp_pagination_render(paginationafegir)}}
-	    		</div>
-	    		</div>
-				</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 		    	{% else %}
-		    		 <p>{% trans %}f_no_things{% endtrans %}</p>
+                                                            <p>{% trans %}f_no_things{% endtrans %}</p>
 		    	{% endif %}
-			</div>
-			
-		    	<script>
-		    	$('li').removeClass('active');
-		    	$('#buscallibreli').addClass('active');
-		    	var path="{{pathlocal}}";
-		    	function demanaLlibre(id,nom){
-		    		window.location.href=path+"/llibreria22/demanaLlibre/"+id+"/"+nom;
-		    	}
-                        
-                        $("#cercainput").on("keyup", function(e) {
-                            if (e.which == 13) {
-                                
-				var val= document.getElementById("cercainput").value;
-				window.localStorage.setItem('cercar',val);
-				window.location.href=path+"/llibreria22/buscaLlibre/"+val;
-                           }
-                        });
-                       function search(){
-		    		
-		    		var val= document.getElementById("cercainput").value;
-					window.localStorage.setItem('cercar',val);
-					window.location.href=path+"/llibreria22/buscaLlibre/"+val;
-		    	}		    			
-		    	</script>
+                                                        </div>
+
+                                                        <script>
+                                                        $('li').removeClass('active');
+                                                        $('#buscallibreli').addClass('active');
+                                                        var path = "{{pathlocal}}";
+                                                        function demanaLlibre(id, nom) {
+                                                            window.location.href = path + "/llibreria22/demanaLlibre/" + id + "/" + nom;
+                                                        }
+
+                                                        $("#cercainput").on("keyup", function(e) {
+                                                            if (e.which == 13) {
+
+                                                                var val = document.getElementById("cercainput").value;
+                                                                window.localStorage.setItem('cercar', val);
+                                                                window.location.href = path + "/llibreria22/buscaLlibre/" + val;
+                                                            }
+                                                        });
+                                                        function search() {
+
+                                                            var val = document.getElementById("cercainput").value;
+                                                            window.localStorage.setItem('cercar', val);
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + val;
+                                                        }
+                                                        
+                                                        function searchAutor() {
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "2" + localStorage["cercar"];
+                                                        }
+                                                            </script>
 {% endblock %}

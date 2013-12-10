@@ -174,6 +174,10 @@ public function editAction($id)
                                    'choices'   => array('C1' => 'Col 1','no' => 'NO'),
                                     'required'  => false,
                                 ))
+                    ->add('eliminador',  'choice', array(
+			    'choices'   => array('no' => 'NO','si' => 'Si'),
+			    'required'  => false,
+			))
                     ->add('data_fi','date')
                     ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
                     ->add('Desa', 'submit')
@@ -206,6 +210,10 @@ public function editAction($id)
                                    'choices'   => array('C1' => 'Col 1','no' => 'NO'),
                                     'required'  => false,
                                 ))
+                    ->add('eliminador',  'choice', array(
+			    'choices'   => array('no' => 'NO','si' => 'Si'),
+			    'required'  => false,
+			))
                     ->add('data_fi','date')
                     ->add('attachment', 'file', array('label' => 'form.atachment','required' => false))
                     ->add('Desa', 'submit')
@@ -240,6 +248,11 @@ public function editAction($id)
                                   $agenda->setAttachment('age_'.$agenda->getId().'.jpg');
                                   $em->persist($agenda);
                                   $em->flush();
+                         }
+                         if ($form['eliminador']->getData()=="si"){
+                        $agenda->setAttachment("aaa");
+                        $em->persist($agenda);
+                        $em->flush();
                          }
 
                                   
