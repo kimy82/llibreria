@@ -22,14 +22,15 @@
                 <div id="b_search" onclick="search()">
                     <img src="{{ asset('bundles/acmestore/img/search2.png') }}" />
                 </div>
-                <p>{% trans %}f_busca_llibre_desc_2{% endtrans %}</p>
+                <p>Intrudueix un(s) mot(s) significatiu(s) al quadret de recerca (per exemple el nom d'un autor o d'un llibre) i clica "Cercar".</p>
                 <span class="ce">{% trans %}f_busca_llibre_clic{% endtrans %}</span>
         </div>
     </div>
     <div class="not_el">
                     <div id="int_res">
-				{% trans %}f_busca_llibre_resultats{% endtrans %} {{cerca}}{% trans %}f_busca_llibre_resultats_2{% endtrans %} {{numresultats}} {% trans %}f_busca_llibre_resultats_3{% endtrans %}
-                            <table border="1">
+				{% trans %}f_busca_llibre_resultats{% endtrans %} {{cerca}}{% trans %}f_busca_llibre_resultats_2{% endtrans %} {{numresultats}} {% trans %}f_busca_llibre_resultats_3{% endtrans %}<br>
+                                Ordena els resultats per títol, autor o editorial clicant sobre la capçalera del camp.
+                                <table border="1">
                                 <tr>
                                     <th>
 				<div id="name" class="cerca_tot activitat" onclick="searchTitol()">{% trans %}f_busca_llibre_titol{% endtrans %}</div>
@@ -100,7 +101,7 @@
 		    	{% endif %}</div>
 
                                         <div class="not_el sugg">
-                                            Suggeriments de la setmana
+                                            <div>Suggeriments de la setmana</div>
 			{% if paginationafegir|length >0 %}
 				{% for coca in paginationafegir %}
                                             <div class="total">

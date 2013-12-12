@@ -197,7 +197,9 @@ class LlibreriaController extends Controller {
                     ->where($query->expr()->like('n.name', $query->expr()->literal('%ab%')))
                     ->getQuery();
              $resultats[0] = count($query->getResult());
+             $tipus = "titol";
              $resultats[1] = $tipus;
+             $sera = "cerca aleatoria";
         } else {
             
             $query = $em->createQueryBuilder();
@@ -228,6 +230,7 @@ class LlibreriaController extends Controller {
                            ->getQuery();
                             $resultats[0] = count($query->getResult());
                            $resultats[1] = $tipus;
+                           $sera = "cerca aleatoria";
                            return $resultats;
                        
                      }else if($conta=2){
@@ -275,7 +278,7 @@ class LlibreriaController extends Controller {
                   $resultats =  trobador ("editorial", $autornou, $query, $sera);
                     break;
                 default:
-                    $sera = substr($name,2);
+                    $sera =$name;
                     $resultats =  trobador ("id", $autornou, $query,  $sera);
                 break;
                     
@@ -302,7 +305,6 @@ class LlibreriaController extends Controller {
     public function demanaLlibreAction($id, $nom) {
 
         $em = $this->getDoctrine()->getManager();
-
         $path = $this->get('kernel')->getImagesPath('llibre');
         $pathServer = $this->get('kernel')->getServerPath();
         $query = $em->createQueryBuilder();
@@ -609,5 +611,35 @@ class LlibreriaController extends Controller {
         $sliders = $query->getResult();
         return $sliders;
     }
+    
+    
+     public function historicAction($categoria) {
 
+        if ($categoria == 'presentacio') {
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Historic n order by n.id DESC');
+            $resaltat = "pres_his";
+            $categories = "presentacio";
+            
+        } else if($categoria == 'noticia') {
+            
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Historicn n order by n.id DESC');
+            $resaltat = "noti_his";
+            $categories = "noticia";
+            
+            
+        }
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1), 12);
+        $pathServer = $this->get('kernel')->getServerPath();
+        $slider = $this->getSlider();
+        $pathSlider = $this->get('kernel')->getImagesPathAlone();
+        return $this->render('AcmeStoreBundle:llibreria:Historic.html.twig', array(
+                    'pathSlider' => $pathSlider, 'slider' => $slider,'pagination' => $pagination, 'pathlocal' => $pathServer, 'body' => 'busca', 'resaltat' =>$resaltat, 'categoria' =>$categories
+        ));
+    }
+
+   
 }

@@ -271,6 +271,9 @@ acme_portada:
 acme_noticias:
     pattern:  /llibreria22/noticia
     defaults: { _controller: AcmeStoreBundle:Llibreria:noticia }
+acme_historic:
+    pattern:  /llibreria22/historic/{categoria}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:historic }
 acme_busca_llibre:
     pattern:  /llibreria22/buscaLlibre/{name}
     defaults: { _controller: AcmeStoreBundle:Llibreria:buscaLlibre }
