@@ -14,6 +14,12 @@
         <div onclick="searchPresentacio()" id="pres_his" class="historic_presen">
                    Presentacions
         </div>
+            <div id="search_bar">
+						<input class="inputs2" id="sesuatu2" type="text">
+					</div>
+					<div id="b_search2">
+						<img src="{{ asset('bundles/acmestore/img/search.png') }}" />
+					</div>
     </div>
     {% if pagination|length >0 %}
         {% for noticia in pagination %}
@@ -62,6 +68,28 @@
     <p>{% trans %}f_no_things{% endtrans %}</p>
     {% endif %}
 <script>
+  $( "#b_search2" ).click(function() {
+				var path="{{pathlocal}}";
+				var sesuatu2 = document.getElementById("sesuatu2").value;
+				window.localStorage.setItem('sesuatu2',sesuatu2);
+			
+				window.location.href=path+"/llibreria22/searchHistoric/"+sesuatu2;
+  				
+			});
+$("#sesuatu2").on("keyup", function(e) {
+    if (e.which == 13) {
+        var path="{{pathlocal}}";
+        var sesuatu = document.getElementById("sesuatu2").value;
+        window.localStorage.setItem('sesuatu2',sesuatu);
+
+        window.location.href=path+"/llibreria22/searchHistoric/"+sesuatu2;
+       return false;
+
+
+
+    }
+});  
+    
   $('li').removeClass('active');
   $('#historicli').addClass('active');
   $('#{{resaltat}}').removeClass('historic_presen_active');

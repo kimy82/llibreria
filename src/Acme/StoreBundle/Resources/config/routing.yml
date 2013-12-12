@@ -288,7 +288,10 @@ acme_suggeriments:
     defaults: { _controller: AcmeStoreBundle:Llibreria:suggeriments }
 acme_semua_search:
     pattern:  /llibreria22/semuaSearch/{search}
-    defaults: { _controller: AcmeStoreBundle:Llibreria:semuaSearch }	
+    defaults: { _controller: AcmeStoreBundle:Llibreria:semuaSearch }
+acme_search_historic:
+    pattern:  /llibreria22/searchHistoric/{search}
+    defaults: { _controller: AcmeStoreBundle:Llibreria:searchHistoric }
 acme_presentacions:
     pattern:  /llibreria22/presentacio
     defaults: { _controller: AcmeStoreBundle:Llibreria:presentacio }

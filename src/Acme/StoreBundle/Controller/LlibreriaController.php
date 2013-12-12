@@ -443,6 +443,72 @@ class LlibreriaController extends Controller {
                     'paginationautorscatalans' => $queryautorscatalans, 'paginationcomic' => $querycomic, 'paginationinfantil' => $queryinfantil, 'paginationbutxaca' => $querybutxaca, 'path' => $path, 'pathlocal' => $pathServer, 'body' => 'suggeriments'
         ));
     }
+    
+     public function searchHistoricAction($search) {
+        $em = $this->getDoctrine()->getManager();
+        $searchList = array();
+        
+        //Buqueda de presentacions
+        $queryPresentacio = $em->createQueryBuilder();
+        $queryPresentacio = $queryPresentacio->select('n')->from('AcmeStoreBundle:Historic', 'n')
+                ->where($queryPresentacio->expr()->like('n.dataEntrada', $queryPresentacio->expr()->literal('%' . $search . '%')))
+                ->orwhere($queryPresentacio->expr()->like('n.titol', $queryPresentacio->expr()->literal('%' . $search . '%')))
+                ->orwhere($queryPresentacio->expr()->like('n.subtitol', $queryPresentacio->expr()->literal('%' . $search . '%')))
+                ->orwhere($queryPresentacio->expr()->like('n.description', $queryPresentacio->expr()->literal('%' . $search . '%')))
+                ->getQuery();
+
+        $resultatsPresentacio = $queryPresentacio->getResult();
+        $pathpresentacio = $this->get('kernel')->getImagesPath('presentacio');
+        for ($i = 0; $i < count($resultatsPresentacio); ++$i) {
+            $searched = new Search();
+            $presentacio = $resultatsPresentacio[$i];
+            // $searched->setDateEntrada($presentacio->GetDataEntrada());
+            $searched->setTitol($presentacio->getTitol());
+            $searched->setDescription($presentacio->getSubtitol() . ', ' . $presentacio->getDescription() . ', ' . $presentacio->getDataEntrada()->format('Y-m-d'));
+            $searched->setCategory('presentacio');
+            $searched->setPath($pathpresentacio);
+
+
+            array_push($searchList, $searched);
+        }
+        
+        //Busqueda a noticies
+        $query = $em->createQueryBuilder();
+        $query = $query->select('n')->from('AcmeStoreBundle:Historicn', 'n')
+                ->where($query->expr()->like('n.titol', $query->expr()->literal('%' . $search . '%')))
+                ->orwhere($query->expr()->like('n.description', $query->expr()->literal('%' . $search . '%')))
+                ->orwhere($query->expr()->like('n.subtitol', $query->expr()->literal('%' . $search . '%')))
+                ->orwhere($query->expr()->like('n.dataEntrada', $query->expr()->literal('%' . $search . '%')))
+                ->getQuery();
+
+        $resultatsNoticia = $query->getResult();
+        $pathnoticia = $this->get('kernel')->getImagesPath('noticia');
+
+        for ($i = 0; $i < count($resultatsNoticia); ++$i) {
+            $searched = new Search();
+            $noticia = $resultatsNoticia[$i];
+            // $searched->setDataEntrada($noticia->getDataEntrada());
+            $searched->setTitol($noticia->getTitol());
+            $searched->setDescription($noticia->getSubtitol() . ', ' . $noticia->getDescription());
+            $searched->setCategory('noticia');
+            $searched->setPath($pathnoticia);
+            
+
+            array_push($searchList, $searched);
+        }
+        
+        
+
+    $pathServer = $this->get('kernel')->getServerPath();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($searchList, $this->get('request')->query->get('page', 1), 10);
+        $slider = $this->getSlider();
+        $pathSlider = $this->get('kernel')->getImagesPathAlone();
+        return $this->render('AcmeStoreBundle:llibreria:SearchsHistoric.html.twig', array('pathSlider' => $pathSlider, 'slider' => $slider, 'pagination' => $pagination,
+                    'pathlocal' => $pathServer, 'body' => 'historic'
+        ));
+    }
 
     public function semuaSearchAction($search) {
 
@@ -617,14 +683,14 @@ class LlibreriaController extends Controller {
 
         if ($categoria == 'presentacio') {
             $em = $this->getDoctrine()->getManager();
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Historic n order by n.id DESC');
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Historic n order by n.dataEntrada DESC');
             $resaltat = "pres_his";
             $categories = "presentacio";
             
         } else if($categoria == 'noticia') {
             
             $em = $this->getDoctrine()->getManager();
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Historicn n order by n.id DESC');
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Historicn n order by n.dataEntrada DESC');
             $resaltat = "noti_his";
             $categories = "noticia";
             
@@ -637,7 +703,7 @@ class LlibreriaController extends Controller {
         $slider = $this->getSlider();
         $pathSlider = $this->get('kernel')->getImagesPathAlone();
         return $this->render('AcmeStoreBundle:llibreria:Historic.html.twig', array(
-                    'pathSlider' => $pathSlider, 'slider' => $slider,'pagination' => $pagination, 'pathlocal' => $pathServer, 'body' => 'busca', 'resaltat' =>$resaltat, 'categoria' =>$categories
+                    'pathSlider' => $pathSlider, 'slider' => $slider,'pagination' => $pagination, 'pathlocal' => $pathServer, 'body' => 'historic', 'resaltat' =>$resaltat, 'categoria' =>$categories
         ));
     }
 

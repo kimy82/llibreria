@@ -1,0 +1,88 @@
+{% extends 'AcmeStoreBundle::layoutFrontend.html.twig' %}
+{% block title %}Llibreria 22@{% endblock %}
+{% block content_header '' %}
+{% block content %}
+{% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+<div class="contentnot">			
+    <div id="co" class="columns">
+         <div class="container_historic">
+        
+            <div id="search_bar">
+						<input class="inputs2" id="sesuatu2" type="text">
+					</div>
+					<div id="b_search2">
+						<img src="{{ asset('bundles/acmestore/img/search.png') }}" />
+					</div>
+    </div>
+        
+     {% if pagination|length >0 %}
+        {% for search in pagination %}
+           
+                  <div class="historics">
+                 <div class="">
+                    <div class="seas sub_tit">
+                    {% if search.category == 'noticia' %}
+                            Noticia
+                    {% endif %}
+                    {% if search.category == 'presentacio' %}
+                            Presentacio
+                    {% endif %}
+                </div>
+                     <div class="historic_titol">
+                        {{ search.titol|raw}}
+                    </div>
+                   
+                  
+                    <div>	
+                    {{search.description|raw}}
+                    </div>
+                   
+                   
+                </div>
+         </div>
+              
+              
+            
+    {% endfor %}
+            
+    <div class="pagerfanta" >
+            {{knp_pagination_render(pagination)}}
+    </div>
+</div>	
+
+	    	{% else %}
+        <div class="search_none">
+	    	 <p>No hem trobat el que volies</p>
+                 </div>
+	    	{% endif %}
+    	</div>
+        {% if app.environment == 'dev' %}
+           DEV
+        {% endif %}
+
+<script>
+  $('li').removeClass('active');
+  $('#historicli').addClass('active');
+  $( "#b_search2" ).click(function() {
+				var path="{{pathlocal}}";
+				var sesuatu2 = document.getElementById("sesuatu2").value;
+				window.localStorage.setItem('sesuatu2',sesuatu2);
+			
+				window.location.href=path+"/llibreria22/searchHistoric/"+sesuatu2;
+  				
+			});
+$("#sesuatu2").on("keyup", function(e) {
+    if (e.which == 13) {
+        var path="{{pathlocal}}";
+        var sesuatu = document.getElementById("sesuatu2").value;
+        window.localStorage.setItem('sesuatu2',sesuatu);
+
+        window.location.href=path+"/llibreria22/searchHistoric/"+sesuatu2;
+       return false;
+
+
+
+    }
+});  
+</script>
+{% endblock %}
