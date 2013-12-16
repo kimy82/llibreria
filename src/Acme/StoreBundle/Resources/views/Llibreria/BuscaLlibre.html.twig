@@ -22,24 +22,30 @@
                 <div id="b_search" onclick="search()">
                     <img src="{{ asset('bundles/acmestore/img/search2.png') }}" />
                 </div>
-                <p>Intrudueix un(s) mot(s) significatiu(s) al quadret de recerca (per exemple el nom d'un autor o d'un llibre) i clica "Cercar".</p>
+                <select id="seleccionables">
+                    <option value="1)">Generica</option>
+                    <option value="2)">Titol</option>
+                    <option value="3)">Autor</option>
+                    <option value="4)">Editorial</option>
+                  </select>
+                <p>Intrudueix un(s) mot(s) significatiu(s) al quadret de recerca (per exemple el nom d'un autor o d'un llibre) tria si vols fer una cerca per titol, autor o editorial i clica "Cercar".</p>
                 <span class="ce">{% trans %}f_busca_llibre_clic{% endtrans %}</span>
         </div>
     </div>
     <div class="not_el">
                     <div id="int_res">
 				{% trans %}f_busca_llibre_resultats{% endtrans %} {{cerca}}{% trans %}f_busca_llibre_resultats_2{% endtrans %} {{numresultats}} {% trans %}f_busca_llibre_resultats_3{% endtrans %}<br>
-                                Ordena els resultats per títol, autor o editorial clicant sobre la capçalera del camp.
+                                
                                 <table border="1">
                                 <tr>
                                     <th>
-				<div id="name" class="cerca_tot activitat" onclick="searchTitol()">{% trans %}f_busca_llibre_titol{% endtrans %}</div>
+				<div id="name" class="cerca_tot activitat ">{% trans %}f_busca_llibre_titol{% endtrans %}</div>
                                         </th>
                                         <th>
-				<div id="autor" class="cerca_tot" onclick="searchAutor()">{% trans %}f_busca_llibre_autor{% endtrans %}</div>
+				<div id="autor" class="cerca_tot ">{% trans %}f_busca_llibre_autor{% endtrans %}</div>
                                             </th>
                                             <th>
-				<div id="editorial" class="cerca_tot" onclick="searchEditorial()">{% trans %}f_busca_llibre_editorial{% endtrans %}</div>
+				<div id="editorial" class="cerca_tot">{% trans %}f_busca_llibre_editorial{% endtrans %}</div>
                                                 </th>
                                                 <th>
 				{% trans %}f_busca_llibre_preu{% endtrans %}
@@ -162,29 +168,25 @@
 
                                                                 var val = document.getElementById("cercainput").value;
                                                                 window.localStorage.setItem('cercar', val);
-                                                                window.location.href = path + "/llibreria22/buscaLlibre/" + val;
+                                                               var seleccio=document.getElementById("seleccionables").value;
+                                                            
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + seleccio + val;
                                                             }
                                                         });
                                                         function search() {
 
                                                             var val = document.getElementById("cercainput").value;
                                                             window.localStorage.setItem('cercar', val);
-                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + val;
-                                                        }
-                                                        
-                                                        function searchAutor() {
-                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "2)" + localStorage["cercar"];
+                                                            var seleccio=document.getElementById("seleccionables").value;
+                                                            
+                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + seleccio + val;
+                                                            
+                                                            
                                                             
                                                         }
                                                         
-                                                        function searchTitol() {
-                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "1)" + localStorage["cercar"];
-                                                           
-                                                        }
+                                                      
                                                         
-                                                        function searchEditorial() {
-                                                            window.location.href = path + "/llibreria22/buscaLlibre/" + "3)" + localStorage["cercar"];
-                                                           
-                                                        }
+                                                        
                                                             </script>
 {% endblock %}

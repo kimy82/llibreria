@@ -192,6 +192,8 @@ class LlibreriaController extends Controller {
               $cerca="";
               $query = $em->createQuery('SELECT n from AcmeStoreBundle:Llibre n order by n.dateEntrada DESC ');
              */
+       
+           
             $query = $em->createQueryBuilder();
             $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                     ->where($query->expr()->like('n.name', $query->expr()->literal('%ab%')))
@@ -203,15 +205,16 @@ class LlibreriaController extends Controller {
         } else {
             
             $query = $em->createQueryBuilder();
-            $autornou = explode(' ', $name, 7);
+           // $autornou = explode(' ', $name, 7);
             //$autornou = $name;
-            $str = $autornou[0];
+            $str = $name;
             
-            $llancadora =substr($str,0,3);
+            $llancadora =substr($str,0,2);
             //echo $llancadora;
             
           function trobador ($tipus, $autornou, $query, $name){
-              
+                    
+                    $autornou = explode(' ',$name, 2);
                     $conta = 0;
                     for ($i=0;$i<3;$i++){
                        if (!empty($autornou[$i]) ){
@@ -219,55 +222,83 @@ class LlibreriaController extends Controller {
                        }
                     }
                     
-                    if($conta==1){
-                         //print_r($autornou);
-                echo $autornou[0];
-                echo "primer";
-                
-        
-                          $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
+                    if($tipus=="id"){
+                        if (empty($autornou[1]) ){
+                           $autornou[1] = " ";
+                       }
+                           $coma = ", ";
+                        $prova = $autornou[0] . $coma . $autornou[1];
+                        $prova2 = $autornou[1] . $coma . $autornou[0];
+                       
+                        $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                            ->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
-                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' .  $autornou[0] . '%')))
+                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova . '%')))
+                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova2 . '%')))
+                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $name . '%')))
                            ->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
-                          ->orderBy('n.' . $tipus )
+                          // ->orderBy('n.' . $tipus )
                            ->getQuery();
                             $resultats[0] = count($query->getResult());
                            $resultats[1] = $tipus;
                            $sera = "cerca aleatoria";
                            return $resultats;
                        
-                     }else if($conta==2){
+                     }else if($tipus=="name"){
                         
-                        echo "segon";
-                       
+                         if (empty($autornou[1]) ){
+                           $autornou[1] = " ";
+                       }
+                         
+                      
                         $coma = ", ";
                         $prova = $autornou[0] . $coma . $autornou[1];
                         $prova2 = $autornou[1] . $coma . $autornou[0];
-                        echo $prova;
+                      
                         $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
                            ->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
-                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova . '%')))
-                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova2 . '%')))
-                           ->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
-                           ->orderBy('n.' . $tipus )
+                           //->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova . '%')))
+                           //->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova2 . '%')))
+                           //->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
+                           //->orderBy('n.' . $tipus )
                            ->getQuery();
                             $resultats[0] = count($query->getResult());
                            $resultats[1] = $tipus;
                            return $resultats;
-                     }else if($conta==3){
-                         $coma = ", ";
+                     }else if($tipus=="autor"){
+                         if (empty($autornou[1]) ){
+                           $autornou[1] = " ";
+                       }
+                        $coma = ", ";
                         $prova = $autornou[0] . $coma . $autornou[1];
                         $prova2 = $autornou[1] . $coma . $autornou[0];
-                         echo "tercer";
-                         print_r($autornou);
+                       
+                       
                         $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
-                            ->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
-                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova . '%')))
+                           //->where($query->expr()->like('n.name', $query->expr()->literal('%' . $name . '%')))
+                           ->where($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova . '%')))
                            ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $prova2 . '%')))
-                           ->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
-                           ->orderBy('n.' . $tipus )
+                           ->orwhere($query->expr()->like('n.autor', $query->expr()->literal('%' . $name . '%')))
+                           //->orwhere($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
+                           //->orderBy('n.' . $tipus )
                            ->getQuery();
-                           $resultats[0] = count($query->getResult());
+                            $resultats[0] = count($query->getResult());
+                           $resultats[1] = $tipus;
+                           return $resultats;
+                           
+                        }else if($tipus=="editorial"){
+                            
+                            if (empty($autornou[1]) ){
+                           $autornou[1] = " ";
+                       }
+                                 $coma = ", ";
+                        $prova = $autornou[0] . $coma . $autornou[1];
+                        $prova2 = $autornou[1] . $coma . $autornou[0];
+                      
+                        $query = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
+                           ->where($query->expr()->like('n.editorial', $query->expr()->literal('%' . $name . '%')))
+                           //->orderBy('n.' . $tipus )
+                           ->getQuery();
+                            $resultats[0] = count($query->getResult());
                            $resultats[1] = $tipus;
                            return $resultats;
                      }
@@ -276,21 +307,31 @@ class LlibreriaController extends Controller {
             switch ($llancadora) {
                 case "1)": //titol
                  $sera = substr($name,2);
+                 
                  $autornou[0] =  substr($name,2);
-                 $resultats =  trobador ("name", $ll, $query, $sera);
+                 $resultats =  trobador ("id", $autornou, $query, $sera);
                 break;                 
                 case "2)": //autor
                    $sera = substr($name,2);
+                     
                   $autornou[0] =  substr($name,2);
-                  $resultats =  trobador ("autor", $autornou, $query, $sera);
+                  $resultats =  trobador ("name", $autornou, $query, $sera);
                     break;
                 case "3)": //editorial
                   $sera = substr($name,2);
+                    
+                  $autornou[0] =  substr($name,2);
+                  $resultats =  trobador ("autor", $autornou, $query, $sera);
+                    break;
+                case "4)": //editorial
+                  $sera = substr($name,2);
+                    
                   $autornou[0] =  substr($name,2);
                   $resultats =  trobador ("editorial", $autornou, $query, $sera);
                     break;
                 default:
                     $sera =$name;
+                    $autornou[0] =  substr($name,2);
                     $resultats =  trobador ("id", $autornou, $query,  $sera);
                 break;
                     
@@ -302,6 +343,7 @@ class LlibreriaController extends Controller {
 
         
 
+        
         $paginator = $this->get('knp_paginator');
         $pagename1 = 'page1';
         $pagination = $paginator->paginate($query, $this->get('request')->query->get($pagename1, 1), 30, array('pageParameterName' => $pagename1));

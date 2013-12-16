@@ -19,7 +19,7 @@ class UploadController extends Controller
         $handle=fopen("php://memory", "rw"); 
         fwrite($handle, $fc); 
         fseek($handle, 0); 
-        return $handle; 
+        return $handle;
     } 
     public function indexAction()
     {
@@ -138,6 +138,15 @@ class UploadController extends Controller
                                     return $this->redirect($this->generateUrl('acme_pujar_txt_loop'));
                                 }else{
                                     fclose($handle);
+                                    //SENDING EMAIL ENCARREC
+                                    $message = \Swift_Message::newInstance()
+                                            ->setSubject("S'han fet" . $numTotal . "registres.")
+                                            ->setFrom('comanda@llibre.com')
+                                            ->setTo('adp.alex@gmail.com');
+                                            
+                                    $this->get('mailer')->send($message);
+
+                                     //END SENDING EMAIL ENCARREC
                                     return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
                                 }
                                 
@@ -230,7 +239,9 @@ class UploadController extends Controller
                                     return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>'resent'));
                                 }else{
                                     fclose($handle);
+                                      
                                     return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
+                                    
                                 }
                                
 			}	

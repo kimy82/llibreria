@@ -16,6 +16,12 @@ a{
 a:hover{
     color: #333;
 }
+#seleccionables{
+    height: 30px;
+margin-top: 10px;
+margin-left: 10px;
+width: 110px;
+}
 #container{
 	width: 100%;
 	margin: auto;
@@ -33,10 +39,7 @@ a:hover{
        
        color:#EA5B0C;
 }
-.cerca_tot:hover{
-       cursor: pointer;
-       color:#EA5B0C;
-}
+
 #sup{
 	margin: auto;
 	width: 960px;
