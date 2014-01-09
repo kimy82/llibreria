@@ -76,12 +76,11 @@ class EstablimentsController extends Controller
     ));	   
 }
     //establiments
-    public function listAction(Request $request, $orderBy){
+    public function listAction(Request $request){
 
             $em = $this->getDoctrine()->getManager();
-            $orderBy = str_replace("..", "'%", $orderBy);
-            $orderBy = str_replace(".,", "%'", $orderBy);
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Foto n where '.$orderBy);
+           
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Foto n order by n.id DESC ');
 
             $paginator= $this->get('knp_paginator');
             $pagination= $paginator->paginate($query,$this->get('request')->query->get('page',1),10);
@@ -169,7 +168,7 @@ class EstablimentsController extends Controller
 		 $em->persist($establiments);
 	    	 $em->flush();
 			
-	        return $this->redirect($this->generateUrl('acme_pre_store_establiments'));
+	        return $this->redirect($this->generateUrl('llistat_store_establiments'));
 	    }
 	    
 	}

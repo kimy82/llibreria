@@ -425,8 +425,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         }
 
                         // llistat_store_establiments
-                        if (0 === strpos($pathinfo, '/admin/secured/establiments/establiments_llistat') && preg_match('#^/admin/secured/establiments/establiments_llistat/(?P<orderBy>[^/]++)$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'llistat_store_establiments')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::listAction',));
+                        if ($pathinfo === '/admin/secured/establiments/establiments_llistat}') {
+                            return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\EstablimentsController::listAction',  '_route' => 'llistat_store_establiments',);
                         }
 
                     }

@@ -157,7 +157,7 @@ store_new_establiments:
     pattern:  /admin/secured/establiments/establiments_new_save
     defaults: { _controller: AcmeStoreBundle:Establiments:saveEstabliments }
 llistat_store_establiments:
-    pattern:  /admin/secured/establiments/establiments_llistat/{orderBy}
+    pattern:  /admin/secured/establiments/establiments_llistat}
     defaults: { _controller: AcmeStoreBundle:Establiments:list }
 edit_establiments:
     pattern:  /admin/secured/establiments/edit/{id}
