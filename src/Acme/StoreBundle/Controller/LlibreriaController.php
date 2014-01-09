@@ -31,11 +31,11 @@ class LlibreriaController extends Controller {
         $counter = count($query->getResult());
 
         if ($counter >= 1) {
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat ')->setParameter('dat', new \DateTime('tomorrow'))->setMaxResults(7);
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat order by n.dataEntrada ASC ')->setParameter('dat', new \DateTime('tomorrow'))->setMaxResults(7);
             $paginator = $this->get('knp_paginator');
             $paginationPresentacio = $paginator->paginate($query, $this->get('request')->query->get('page', 1), 20);
         } else {
-            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat ')->setParameter('dat', new \DateTime('last week'))->setMaxResults(7);
+            $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n where n.dataFi >= :dat order by n.dataEntrada ASC')->setParameter('dat', new \DateTime('last week'))->setMaxResults(7);
 
             //$query = $em->createQuery('SELECT n from AcmeStoreBundle:presentacio n order by n.id DESC ')->setMaxResults(3);		
             $paginator = $this->get('knp_paginator');
@@ -503,6 +503,7 @@ class LlibreriaController extends Controller {
         $searchList = array();
         
         //Buqueda de presentacions
+        
         $queryPresentacio = $em->createQueryBuilder();
         $queryPresentacio = $queryPresentacio->select('n')->from('AcmeStoreBundle:Historic', 'n')
                 ->where($queryPresentacio->expr()->like('n.dataEntrada', $queryPresentacio->expr()->literal('%' . $search . '%')))
@@ -516,7 +517,7 @@ class LlibreriaController extends Controller {
         for ($i = 0; $i < count($resultatsPresentacio); ++$i) {
             $searched = new Search();
             $presentacio = $resultatsPresentacio[$i];
-            // $searched->setDateEntrada($presentacio->GetDataEntrada());
+            //$searched->setDateEntrada($presentacio->GetDataEntrada());
             $searched->setTitol($presentacio->getTitol());
             $searched->setDescription($presentacio->getSubtitol() . ', ' . $presentacio->getDescription() . ', ' . $presentacio->getDataEntrada()->format('Y-m-d'));
             $searched->setCategory('presentacio');
@@ -541,7 +542,7 @@ class LlibreriaController extends Controller {
         for ($i = 0; $i < count($resultatsNoticia); ++$i) {
             $searched = new Search();
             $noticia = $resultatsNoticia[$i];
-            // $searched->setDataEntrada($noticia->getDataEntrada());
+           // $searched->setDataEntrada($noticia->getDataEntrada());
             $searched->setTitol($noticia->getTitol());
             $searched->setDescription($noticia->getSubtitol() . ', ' . $noticia->getDescription());
             $searched->setCategory('noticia');
@@ -687,7 +688,7 @@ class LlibreriaController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
 
-        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n order by n.dataEntrada DESC');
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Presentacio n order by n.id DESC');
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1), 12);

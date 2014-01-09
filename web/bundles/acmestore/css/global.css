@@ -73,7 +73,7 @@ margin-right: 20px;
 margin-top: 36px;
 }
 #slider {
-background-color: red;
+
 height: 210px;
 width: 629px;
 float: left;
@@ -221,7 +221,7 @@ color:white;
 }
 .footers3{
     width: 209px;
-background-color: #6cc2ba;
+background-color: #4545db;
 margin-left: -20px;
 padding: 15px;
 color:white;
@@ -1366,4 +1366,16 @@ background-color: #333;
 border: 0px;
 cursor:pointer;
 color:white;
+}
+.fone{
+    color:#ffc153;
+    
+}
+.ftwo{
+    color:#46b29d;
+    
+}
+.ftres{
+    color:#4545db;
+    
 }

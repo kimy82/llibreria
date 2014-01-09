@@ -532,7 +532,7 @@ class appDevDebugProjectContainer extends Container
         $b = new \Doctrine\DBAL\Configuration();
         $b->setSQLLogger($a);
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'symfony', 'host' => '127.0.0.1', 'port' => 3306, 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), $b, new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'symfony', 'host' => '127.0.0.1', 'port' => 3306, 'user' => 'root', 'password' => 'root', 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), $b, new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
     }
 
     /**
@@ -2292,8 +2292,8 @@ class appDevDebugProjectContainer extends Container
         $instance->setHost('smtp.gmail.com');
         $instance->setPort(465);
         $instance->setEncryption('ssl');
-        $instance->setUsername('adp.alex@gmail.com');
-        $instance->setPassword('macamany');
+        $instance->setUsername('llibreria22sender@gmail.com');
+        $instance->setPassword('senderlovemetender');
         $instance->setAuthMode('login');
         $instance->setTimeout(30);
         $instance->setSourceIp(NULL);
@@ -3393,7 +3393,7 @@ class appDevDebugProjectContainer extends Container
         $this->services['security.user.provider.concrete.in_memory'] = $instance = new \Symfony\Component\Security\Core\User\InMemoryUserProvider();
 
         $instance->createUser(new \Symfony\Component\Security\Core\User\User('userllib', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620', array(0 => 'ROLE_USER')));
-        $instance->createUser(new \Symfony\Component\Security\Core\User\User('admin', '2245a9ff1f8d34653ba2db38c83ead53d05c932e', array(0 => 'ROLE_ADMIN')));
+        $instance->createUser(new \Symfony\Component\Security\Core\User\User('admin', '2116a90ed95a2388b22a1037d4d9e92a99b99604', array(0 => 'ROLE_ADMIN')));
 
         return $instance;
     }
@@ -3530,7 +3530,7 @@ class appDevDebugProjectContainer extends Container
             'database_port' => 3306,
             'database_name' => 'symfony',
             'database_user' => 'root',
-            'database_password' => NULL,
+            'database_password' => 'root',
             'mailer_transport' => 'smtp',
             'mailer_host' => '127.0.0.1',
             'mailer_user' => NULL,
@@ -3859,8 +3859,8 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.transport.smtp.encryption' => 'ssl',
             'swiftmailer.transport.smtp.port' => 465,
             'swiftmailer.transport.smtp.host' => 'smtp.gmail.com',
-            'swiftmailer.transport.smtp.username' => 'adp.alex@gmail.com',
-            'swiftmailer.transport.smtp.password' => 'macamany',
+            'swiftmailer.transport.smtp.username' => 'llibreria22sender@gmail.com',
+            'swiftmailer.transport.smtp.password' => 'senderlovemetender',
             'swiftmailer.transport.smtp.auth_mode' => 'login',
             'swiftmailer.transport.smtp.timeout' => 30,
             'swiftmailer.transport.smtp.source_ip' => NULL,

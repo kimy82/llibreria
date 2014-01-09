@@ -14,7 +14,7 @@ security:
             memory:
                 users:
                     userllib:  { password: 74913f5cd5f61ec0bcfdb775414c2fb3d161b620, roles: [ 'ROLE_USER' ] }
-                    admin: { password: 2245a9ff1f8d34653ba2db38c83ead53d05c932e, roles: [ 'ROLE_ADMIN' ] }
+                    admin: { password: 2116a90ed95a2388b22a1037d4d9e92a99b99604, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
         dev:

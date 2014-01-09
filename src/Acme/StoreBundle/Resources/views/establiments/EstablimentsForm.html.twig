@@ -45,24 +45,7 @@
 	</div>
 	
 	
-	<img width="50px" src="{{attachment}}" /> 
-	{{ form_start(formater) }} 
-    	{{ form_errors(formater) }}
 	
-	<div id="formol">
-	<div id="left_for">
-	   Nova foto establiments<br><br><br>
-	    <div>
-	     Descripció<br>
-	      {{ form_errors(formater.description) }} 
-	      {{ form_widget(formater.description, {}) }}
-	    </div>
-	    
-	</div>
-	<div id="rigth_for">
-	  
-	   
-	    {{ form_end(formater) }}
 	
     	{% if update == 1 %}
     	<script>

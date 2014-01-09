@@ -637,6 +637,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::noticiaAction',  '_route' => 'acme_noticias',);
             }
 
+            // acme_historic
+            if (0 === strpos($pathinfo, '/llibreria22/historic') && preg_match('#^/llibreria22/historic/(?P<categoria>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_historic')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::historicAction',));
+            }
+
             // acme_busca_llibre
             if (0 === strpos($pathinfo, '/llibreria22/buscaLlibre') && preg_match('#^/llibreria22/buscaLlibre/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_busca_llibre')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::buscaLlibreAction',));
@@ -658,9 +663,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::suggerimentsAction',  '_route' => 'acme_suggeriments',);
                 }
 
-                // acme_semua_search
-                if (0 === strpos($pathinfo, '/llibreria22/semuaSearch') && preg_match('#^/llibreria22/semuaSearch/(?P<search>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_semua_search')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::semuaSearchAction',));
+                if (0 === strpos($pathinfo, '/llibreria22/se')) {
+                    // acme_semua_search
+                    if (0 === strpos($pathinfo, '/llibreria22/semuaSearch') && preg_match('#^/llibreria22/semuaSearch/(?P<search>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_semua_search')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::semuaSearchAction',));
+                    }
+
+                    // acme_search_historic
+                    if (0 === strpos($pathinfo, '/llibreria22/searchHistoric') && preg_match('#^/llibreria22/searchHistoric/(?P<search>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_search_historic')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\LlibreriaController::searchHistoricAction',));
+                    }
+
                 }
 
             }

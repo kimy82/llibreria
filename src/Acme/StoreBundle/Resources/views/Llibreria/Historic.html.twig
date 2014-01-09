@@ -79,8 +79,8 @@
 $("#sesuatu2").on("keyup", function(e) {
     if (e.which == 13) {
         var path="{{pathlocal}}";
-        var sesuatu = document.getElementById("sesuatu2").value;
-        window.localStorage.setItem('sesuatu2',sesuatu);
+        var sesuatu2 = document.getElementById("sesuatu2").value;
+        window.localStorage.setItem('sesuatu2',sesuatu2);
 
         window.location.href=path+"/llibreria22/searchHistoric/"+sesuatu2;
        return false;

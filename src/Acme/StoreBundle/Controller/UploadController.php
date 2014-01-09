@@ -138,14 +138,15 @@ class UploadController extends Controller
                                     return $this->redirect($this->generateUrl('acme_pujar_txt_loop'));
                                 }else{
                                     fclose($handle);
-                                    //SENDING EMAIL ENCARREC
+                                    //SENDING EMAIL ENCARREC/*
+                                    /*
                                     $message = \Swift_Message::newInstance()
                                             ->setSubject("S'han fet" . $numTotal . "registres.")
                                             ->setFrom('comanda@llibre.com')
-                                            ->setTo('adp.alex@gmail.com');
+                                            ->setTo('guillem@llibreria22.net');
                                             
                                     $this->get('mailer')->send($message);
-
+                                    */
                                      //END SENDING EMAIL ENCARREC
                                     return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
                                 }
@@ -236,10 +237,19 @@ class UploadController extends Controller
                                 
                                 if(!feof($handle)){
                                     fclose($handle);
+                                     
                                     return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>'resent'));
                                 }else{
                                     fclose($handle);
-                                      
+                                      //SENDING EMAIL ENCARREC
+                                    $message = \Swift_Message::newInstance()
+                                            ->setSubject("S'han fet" . $numTotal . "registres.")
+                                            ->setFrom('comanda@llibre.com')
+                                            ->setTo('guillem@llibreria22.net');
+                                            
+                                    $this->get('mailer')->send($message);
+
+                                     //END SENDING EMAIL ENCARREC
                                     return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
                                     
                                 }
