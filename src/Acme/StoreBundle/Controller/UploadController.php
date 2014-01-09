@@ -85,6 +85,7 @@ class UploadController extends Controller
                                 $i=1;
                                 
                                 while (($line = fgets($handle, 4096)) !== false) {
+                                    if($line==null || $line=='') continue;
                                     echo $i;
                                     if($i==3001){
                                         echo 'break';
