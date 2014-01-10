@@ -77,16 +77,14 @@ class UploadController extends Controller
                                    
                                     try{
 			      	
-                                            $numTotal=$numTotal+1;
+                                            $tomorrow = mktime(0,0,0,date("m"),date("d"),date("Y"));
                                             list($name, $autor, $editorial, $category, $desc, $price) = explode("¦¦¦", $line);
-                                            mysql_query("Insert into llibre (id,name,autor,category,tablePath,price) values (".$i.",\"".addslashes($name)."\",\"".addslashes($autor)."\",\"".addslashes($category)."\",'llibre','".$price."')",$conn) or die (mysql_error());
-		
-                                                                                     
-                                            $numFets=$numFets+1;
-                                            $i=$i+1;                                                                       
-                                 
+                                            mysql_query("Insert into llibre (dateEntrada,attachment,suggerir,name,autor,editorial,category,tablePath,price,description) values ('".date("Y/m/d", $tomorrow)."','aaa',0,\"".addslashes($name)."\",\"".addslashes($autor)."\",\"".addslashes($editorial)."\",\"".addslashes($category)."\",'llibre','".$price."','".addslashes($desc)."')",$conn) or die (mysql_error());
+		                                                                                     
+                                            $numFets=$numFets+1;        
+                                            
                                     }catch(ContextErrorException $e){
-                                      echo 'Excepcipn capturada: ';
+                                      echo 'Excepcipn capturada: '.$e;
                                     }                            
                                 }
                              
@@ -97,7 +95,7 @@ class UploadController extends Controller
                                     fclose($handle);
                                     
                                      //END SENDING EMAIL ENCARREC
-                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
+                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numFets));
                                 
                                 
 			}	
