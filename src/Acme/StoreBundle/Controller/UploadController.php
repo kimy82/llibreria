@@ -32,8 +32,7 @@ class UploadController extends Controller
        	 $formToRender = $this->createFormBuilder($uploadform)
        	 	->setAction($this->generateUrl('acme_pujar_txt'))
        	 	->setMethod('POST') 
-                ->add('separator', 'text')        
-                ->add('attachment', 'file')
+                ->add('separator', 'text')                      
                 ->add('Desa', 'submit')
                 ->getForm();
             
@@ -45,219 +44,63 @@ class UploadController extends Controller
 		
 		 
 	
-		 $form = new UploadForm();					    	                  	
-                 $form = $this->createFormBuilder($form)
-                       ->setAction($this->generateUrl('acme_pujar_txt'))
-                       ->setMethod('POST')
-                       ->add('separator', 'text')        
-                       ->add('attachment', 'file')
-                       ->add('Desa', 'submit')
-                       ->getForm();
-		
-                 $form->handleRequest($request);
-	
-	         if ($form->isValid()) {
 	    	
 	    	        $em = $this->getDoctrine()->getManager();
 			$query = $em->createQuery('DELETE from AcmeStoreBundle:Llibre n where 1=1 ');
 			$query->execute();
 		
-	       
-                        $path= $this->get('kernel')->getImagesRootDir();
-                        $separator = $form['separator']->getData();
-                       
-                        $file = $form['attachment']->getData();
-                        $pathRel= 'lastUpload.txt';
-                        $form['attachment']->getData()->move($path.'/downloads/uploads/',$pathRel);
+	                              
                         ini_set('auto_detect_line_endings', TRUE); 
                
 	      
-                        $handle = $this->utf8_fopen_read($path.'/downloads/uploads/'.$pathRel);
+                        $handle = $this->utf8_fopen_read('../../dades/web.txt');
                
      
 			
 	  		if ($handle) {
 	  			$numTotal=0;
 	  			$numFets=0;
-
-                                $batchSize = 300;
+                             
 
                                 $i=1;
                                 
+                                $conn = mysql_connect('localhost:3306', 'root', 'root');
+                                
+                                if (!mysql_select_db('symfony', $conn)) {
+                                    echo 'No pudo seleccionar la base de datos';
+                                    exit;
+                                }
+                                mysql_query("BEGIN",$conn);
                                 while (($line = fgets($handle, 4096)) !== false) {
                                     if($line==null || $line=='') continue;
-                                    echo $i;
-                                    if($i==3001){
-                                        echo 'break';
-                                        break;
-                                    }
+                                    
+                                   
                                     try{
 			      	
                                             $numTotal=$numTotal+1;
                                             list($name, $autor, $editorial, $category, $desc, $price) = explode("¦¦¦", $line);
-
-                                            $llibre = new Llibre();
-
-                                            $llibre->setName($name);
-                                            $llibre->setPrice($price);
-                                            $llibre->setDescription($desc);
-                                            $llibre->setDateEntrada(new \DateTime('today'));	
-                                            $llibre->setCategory($category);
-                                            $llibre->setAutor($autor);
-                                            $llibre->setEditorial($editorial);           
-                                            $llibre->setTablePath("llibre");     
-                                            $llibre->setAttachment("aaa");
-                                            $llibre->setSuggerir(0);
-
-                                           
-                                            
-                                            $em = $this->getDoctrine()->getManager();
-                                            $em->persist($llibre);                                           
+                                            mysql_query("Insert into llibre (id,name,autor,category,tablePath,price) values (".$i.",\"".addslashes($name)."\",\"".addslashes($autor)."\",\"".addslashes($category)."\",'llibre','".$price."')",$conn) or die (mysql_error());
+		
+                                                                                     
                                             $numFets=$numFets+1;
-                                            $i=$i+1;
-                                
-                                            if (($i % $batchSize) == 0) {
-                                                    $em->flush();
-                                                    $em->clear();   
-                                                                                                                                                                                                             
-                                            }
+                                            $i=$i+1;                                                                       
                                  
                                     }catch(ContextErrorException $e){
                                       echo 'Excepcipn capturada: ';
                                     }                            
                                 }
                              
-                 
-                                if (($i % $batchSize) != 0) {
-                                             $em->flush();
-                                             $em->clear();   
-                                             
-                                }                               
+                                mysql_query("COMMIT",$conn);
+                                                           
                                 
-                                if(!feof($handle)){                                  
-                                    fclose($handle); 
-                                    return $this->redirect($this->generateUrl('acme_pujar_txt_loop'));
-                                }else{
-                                    fclose($handle);
-                                    //SENDING EMAIL ENCARREC/*
-                                    /*
-                                    $message = \Swift_Message::newInstance()
-                                            ->setSubject("S'han fet" . $numTotal . "registres.")
-                                            ->setFrom('comanda@llibre.com')
-                                            ->setTo('guillem@llibreria22.net');
-                                            
-                                    $this->get('mailer')->send($message);
-                                    */
-                                     //END SENDING EMAIL ENCARREC
-                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
-                                }
-                                
-			}	
-	    }						
-	}
-        
-        public function upLoopAction(){
-		
-                     
-	    	        $em = $this->getDoctrine()->getManager();
-			                      
-                       
-                        ini_set('auto_detect_line_endings', TRUE); 
-                        
-                        $path= $this->get('kernel')->getImagesRootDir();
-                        
-                        $pathRel= 'lastUpload.txt';
-                        
-                        $handle = $this->utf8_fopen_read($path.'/downloads/uploads/'.$pathRel);
-               
-                        
-			
-	  		if ($handle) {
-	  			
-                                $query = $em->createQuery('select count(n) from AcmeStoreBundle:Llibre n');
-                                $counter = $query->getSingleScalarResult();
-                                $numTotal=$counter;
-                                $batchSize = 300;
-                                
-                                $i=1;
                                
-                               
-                                while (($line = fgets($handle, 4096)) !== false && $i<$counter+3000) {
-			      
-                                    try{
-                                       
-                                            if($i<$counter){ 
-                                               
-                                                $i=$i+1;
-                                                continue;
-                                            }
-                                          
-                                            $numTotal=$numTotal+1;
-                                            list($name, $autor, $editorial, $category, $desc, $price) = explode("¦¦¦", $line);
-
-                                            $llibre = new Llibre();
-
-                                            $llibre->setName($name);
-                                            $llibre->setPrice($price);
-                                            $llibre->setDescription($desc);
-                                            $llibre->setDateEntrada(new \DateTime('today'));	
-                                            $llibre->setCategory($category);
-                                            $llibre->setAutor($autor);
-                                            $llibre->setEditorial($editorial);           
-                                            $llibre->setTablePath("llibre");     
-                                            $llibre->setAttachment("aaa");
-                                            $llibre->setSuggerir(0);
-
-                                            
-                                            
-                                            $em = $this->getDoctrine()->getManager();
-                                           
-                                            $em->persist($llibre);                                           
-                                          
-                                            $i=$i+1;
-                                
-                                            if (($i % $batchSize) == 0) {
-                                               
-                                                     $em->flush();
-                                                     $em->clear();                                                                                
-                                            }
-                                 
-                                    }catch(ContextErrorException $e){
-                                      echo 'Excepcipn capturada: '.$e;
-                                    }                            
-                                }
-                             
-                               
-                                if (($i % $batchSize) != 0) {
-                                             $em->flush();
-                                             $em->clear();                                  
-                                }
-                             
-                                                                                        
-                                
-                                
-                                if(!feof($handle)){
                                     fclose($handle);
-                                     
-                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>'resent'));
-                                }else{
-                                    fclose($handle);
-                                      //SENDING EMAIL ENCARREC
-                                    $message = \Swift_Message::newInstance()
-                                            ->setSubject("S'han fet" . $numTotal . "registres.")
-                                            ->setFrom('comanda@llibre.com')
-                                            ->setTo('guillem@llibreria22.net');
-                                            
-                                    $this->get('mailer')->send($message);
-
-                                     //END SENDING EMAIL ENCARREC
-                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
                                     
-                                }
-                               
+                                     //END SENDING EMAIL ENCARREC
+                                    return $this->render('AcmeStoreBundle:upload:UploadOK.html.twig', array('numtotal'=>$numTotal));
+                                
+                                
 			}	
-	    }
 	    					
-	
-	
-}
+	}
+                                    }
