@@ -72,9 +72,9 @@ class UploadController extends Controller
                                 }
                                 mysql_query("BEGIN",$conn);
                                 while (($line = fgets($handle, 4096)) !== false) {
-                                    if($line==null || $line=='') continue;
-                                    
-                                   
+                                     if (trim($line) == '') {
+				  continue;
+				}    
                                     try{
 			      	
                                             $tomorrow = mktime(0,0,0,date("m"),date("d"),date("Y"));
