@@ -13,7 +13,7 @@
 			<tr>
 				<th>Filtrar per: </th>
 				<th><input class="filter" placeholder="Titol" type="text" value="" id="titol" onblur="search(this.id,this.value)" /></th>
-				<th><input class="filter" placeholder="Subtitol" type="text" id="subtitol" value="" onblur="search(this.id,this.value)" /></th>
+				<th><input class="filter" placeholder="Subtitol" type="text" id="description" value="" onblur="search(this.id,this.value)" /></th>
 				
 			</tr>
                          <tr>
@@ -82,13 +82,13 @@ function search(col,val){
 	window.location.href=path+"/admin/secured/galeria/galeria_llistat/n."+col+" like .."+val+".,";
 }
 var titolval=window.localStorage.getItem('val_titol');
-var subtitolval=window.localStorage.getItem('val_subtitol');
+var subtitolval=window.localStorage.getItem('val_description');
 if(titolval!=null){
 	document.getElementById('titol').value=titolval;
 }
 
 if(subtitolval!=null){
-	document.getElementById('subtitol').value=subtitolval;
+	document.getElementById('description').value=descriptionval;
 }
 </script>
 {% endblock %}

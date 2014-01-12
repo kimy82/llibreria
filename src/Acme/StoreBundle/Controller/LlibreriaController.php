@@ -703,7 +703,7 @@ class LlibreriaController extends Controller {
 
     public function establimentsAction() {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Foto n order by n.id DESC');
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Foto n order by n.id ASC');
 
 
         $paginator = $this->get('knp_paginator');

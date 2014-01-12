@@ -40,6 +40,66 @@
 	  
 	   
 	    {{ form_end(form) }}
+             <div>
+                    <button type="button" onclick="wait()">Adjuntar PDF</button>
+             </div>
+             <div id="divCargandoImg" class="divCargandoImg">
+             {% if paginationpdf|length >0 %}
+                    <table class="table_admin2">
+                         <tr>
+                            <th>Foto</th>
+                            <th>link</th>
+                         </tr>
+                    {% for addpdf in paginationpdf %}
+                        <tr>
+                            <td>
+                             {{ addpdf.name}}	
+                            </td>
+                        <td>  
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                            width="110"
+                            height="14"
+                            id="clippy" >
+                            <param name="movie" value="/flash/clippy.swf"/>
+                            <param name="allowScriptAccess" value="always" />
+                            <param name="quality" value="high" />
+                            <param name="scale" value="noscale" />
+                            <param NAME="FlashVars" value="text=#{text}">
+                            <param name="bgcolor" value="#{bgcolor}">
+                            <embed src="{{ asset('bundles/acmestore/js/clippy.swf') }}"
+                            width="110"
+                            height="14"
+                            name="clippy"
+                            quality="high"
+                            allowScriptAccess="always"
+                            type="application/x-shockwave-flash"
+                            pluginspage="http://www.macromedia.com/go/getflashplayer"
+                            FlashVars="text={{pathpdf}}{{ addpdf.attachment}}"
+                            bgcolor="#f5f5f5"
+                            />
+                        </object>
+			</td>
+			</tr>
+                    {% endfor %}
+                        <tr>
+                        <td>
+                        </td>
+                        <td>
+                        
+                    </td>
+                    </tr>
+                    </table>
+                     <div class="pagerfanta" >
+                            {{knp_pagination_render(paginationpdf)}}
+                     </div>
+                    
+		
+		
+    	{% else %}
+    	 <p>- There are no things </p>
+    	{% endif %}    
+	  
+	</div>
 	    </div>
 	  
 	</div>

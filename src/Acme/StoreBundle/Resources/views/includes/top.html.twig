@@ -11,7 +11,7 @@
 					<div id="coin-slider" style="height: 100px;">
 						{% if slider|length >0 %}
 							{% for sld in slider %}
-								<a href="#" target="_blank">
+								
 									
 							        	<img src='{{pathSlider}}slider/{{ sld.attachment}}' />
 							        		
@@ -22,7 +22,7 @@
 										
 							       		</span>
 									
-							    </a>							    							  
+							   							    							  
 							{% endfor %}
 						{% endif %}					
 				    </div>				  
@@ -34,7 +34,7 @@
 			<div id="conmenu">
 				<div id="menu_left">
 					<ul class="me">
-					<li id="bloqli" ><a href="http://llibreria22.blogspot.com" >{% trans %}f_bloq_menu{% endtrans %}</a></li> | 
+					<li id="bloqli" ><a target="_blank" href="http://llibreria22.blogspot.com" >{% trans %}f_bloq_menu{% endtrans %}</a></li> | 
 					<li id="portadali" class="active"><a href="{{ path('acme_portada', {}) }}" >{% trans %}f_portada_menu{% endtrans %}</a></li> | 
 					<li id="noticiali" ><a href="{{ path('acme_noticias', {}) }}" >{% trans %}f_noticia_menu{% endtrans %}</a></li> | 
 					<li id="presentacioli" ><a href="{{ path('acme_presentacions', {}) }}">{% trans %}f_presentacio_menu{% endtrans %}</a></li> | 

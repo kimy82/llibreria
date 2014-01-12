@@ -32,18 +32,18 @@
 	   </li>
 	   
 	   
-	   <li class='has-sub'><a href="{{ path('llistat_store_establiments', {orderBy:'1=1 order by n.id asc'}) }}" >establiments</a>
-	   <ul>
-		<li class='last'><a href="{{ path('acme_pre_store_establiments', {}) }}" >Afegir Establiment</a></li>
-	   </ul>
-	   
+	   <li class='has-sub'><a href="{{ path('edit_establiments') }}" >establiments</a></li>
+           <li class='has-sub'><a href="{{ path('llistat_store_foto', {orderBy:'1=1 order by n.id asc'}) }}" >Foto Establiments</a>
+            <ul>
+                 <li class='last'><a href="{{ path('acme_pre_store_foto', {}) }}" >Nova Foto a Establiments</a></li>
+            </ul>
 	   </li>
+           
 	   
 	   <li class='has-sub'><a href="{{ path('llistat_store_afegir', {orderBy:'1=1 order by n.id asc'}) }}" >Sub Books</a>
-	   <ul>
-		<li class='last'><a href="{{ path('acme_pre_store_afegir', {}) }}" >Afegir Sub Books</a></li>
-	   </ul>
-	   
+                <ul>
+                     <li class='last'><a href="{{ path('acme_pre_store_afegir', {}) }}" >Afegir Sub Books</a></li>
+                </ul>
 	   </li>
 	   
 	   
