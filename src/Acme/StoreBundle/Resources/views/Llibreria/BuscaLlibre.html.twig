@@ -59,7 +59,7 @@
                                                     <td class="sug_cell_rescerca c2">{{ llibre.autor}}</td>
                                                     <td class="sug_cell_rescerca c3">{{ llibre.editorial}}</td>
                                                     <td class="sug_cell_rescerca c4">{{ llibre.price}} &euro;</td>
-                                                    <td class="sug_cell_rescerca c5" onclick="demanaLlibre({{llibre.id}}, '{{llibre.name}}')">{% trans %}f_busca_llibre_demana{% endtrans %}</td>
+                                                    <td class="sug_cell_rescerca c5" onclick="demanaLlibre({{llibre.id}}, '{{llibre.name}}','{{llibre.autor}}')">{% trans %}f_busca_llibre_demana{% endtrans %}</td>
                                                 </tr>								
 				{% endfor %}
                             </table>
@@ -159,8 +159,8 @@
                                                         $('.cerca_tot').removeClass('activitat');
                                                         $('#{{tipus}}').addClass('activitat');
                                                         var path = "{{pathlocal}}";
-                                                        function demanaLlibre(id, nom) {
-                                                            window.location.href = path + "/llibreria22/demanaLlibre/" + id + "/" + nom;
+                                                        function demanaLlibre(id, nom,autor) {
+                                                            window.location.href = path + "/llibreria22/demanaLlibre/" + id + "/" + nom +"/"+autor;
                                                         }
 
                                                         $("#cercainput").on("keyup", function(e) {

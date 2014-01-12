@@ -287,7 +287,7 @@ acme_busca_llibre:
     pattern:  /llibreria22/buscaLlibre/{name}
     defaults: { _controller: AcmeStoreBundle:Llibreria:buscaLlibre }
 acme_demana_llibre:
-    pattern:  /llibreria22/demanaLlibre/{id}/{nom}
+    pattern:  /llibreria22/demanaLlibre/{id}/{nom}/{autor}
     defaults: { _controller: AcmeStoreBundle:Llibreria:demanaLlibre }
 acme_save_demana:
     pattern:  /llibreria22/savedemana

@@ -356,14 +356,15 @@ class LlibreriaController extends Controller {
         ));
     }
 
-    public function demanaLlibreAction($id, $nom) {
+    public function demanaLlibreAction($id, $nom, $autor) {
 
         $em = $this->getDoctrine()->getManager();
         $path = $this->get('kernel')->getImagesPath('llibre');
         $pathServer = $this->get('kernel')->getServerPath();
         $query = $em->createQueryBuilder();
         $resultats = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
-                        ->where('n.name=\'' . $nom . '\'')
+                        ->where('n.name=\'' . $nom . '\'')                
+                        ->andWhere('n.autor=\'' . $autor . '\'')
                         ->getQuery()->getResult();
 
         $formDemana = new DemanaForm();
