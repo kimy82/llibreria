@@ -53,7 +53,7 @@ class UploadController extends Controller
                         ini_set('auto_detect_line_endings', TRUE); 
                
 	      
-                        $handle = $this->utf8_fopen_read('../../dades/web.txt');
+                        $handle = $this->utf8_fopen_read('../web/dades/web.txt');
                
      
 			
@@ -64,9 +64,9 @@ class UploadController extends Controller
 
                                 $i=1;
                                 
-                                $conn = mysql_connect('localhost:3306', 'root', 'root');
+                                $conn = mysql_connect('localhost:3306', 'mylli607', 'FXD9Z3l0');
                                 
-                                if (!mysql_select_db('symfony', $conn)) {
+                                if (!mysql_select_db('symphondog', $conn)) {
                                     echo 'No pudo seleccionar la base de datos';
                                     exit;
                                 }
