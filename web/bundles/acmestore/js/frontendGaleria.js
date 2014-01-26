@@ -15,9 +15,12 @@ galeriaManagerObj ={
 		document.getElementById("subtitol_foto").innerHTML= window.localStorage.getItem("foto_subtitol_"+id);
 		document.getElementById("desc_foto").innerHTML=  window.localStorage.getItem("foto_desc_"+id);
 		document.getElementById('img_id').src =document.getElementById('img_'+id).src;
+               
+                
 	},
-	next: function(){
-		galeriaManagerObj._position = galeriaManagerObj._position+1;
+	next: function(contador){
+               
+		galeriaManagerObj._position = contador+1;
 		if(galeriaManagerObj._position >= galeriaManagerObj._ids.length-1 ){
 			galeriaManagerObj._position=0;
 		}
@@ -36,12 +39,13 @@ galeriaManagerObj ={
 		document.getElementById("desc_foto").innerHTML=  window.localStorage.getItem("foto_desc_"+galeriaManagerObj._ids[galeriaManagerObj._position]);
 		document.getElementById('img_id').src =document.getElementById('img_'+galeriaManagerObj._ids[galeriaManagerObj._position]).src;
 	},
-	saveInfo: function(id,titol,subtitol,descripcio,data){
+	saveInfo: function(id,titol,subtitol,descripcio,data,contador){
 		galeriaManagerObj._ids.push(id);
 		window.localStorage.setItem("foto_titol_"+id,titol);
 		window.localStorage.setItem("foto_subtitol_"+id,subtitol);
 		window.localStorage.setItem("foto_desc_"+id,descripcio);
 		window.localStorage.setItem("foto_data_"+id,data);
+                window.localStorage.setItem("foto_cont"+id,contador);
 	},
 }
 //inizialize objects

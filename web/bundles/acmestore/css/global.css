@@ -732,7 +732,7 @@ width: 93px;
 .total{
     width: 156px;
     float: left;
-    height: 247px;
+    height: 277px;
     margin-bottom: 30px;
 }
 .texte {
@@ -750,7 +750,7 @@ width: 93px;
     color: #333333;
     font-size: 14px;
     font-weight: bold;
-    text-transform: uppercase;
+    
 }
 .sugg{
     padding: 20px 0px 20px 20px;

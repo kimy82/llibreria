@@ -66,6 +66,17 @@ class Llibre
 	 * @ORM\Column(type="integer")
 	 */
 	protected $suggerir;
+        
+          /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $isbn;
+    
+     /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $ean;
+    
     /**
      * Get id
      *
@@ -75,7 +86,7 @@ class Llibre
     {
         return $this->id;
     }
-
+    
     /**
      * Set name
      *
@@ -98,7 +109,51 @@ class Llibre
     {
         return $this->name;
     }
+     /**
+     * Set isbn
+     *
+     * @param string $isbn
+     * @return Llibre
+     */
+     public function setIsbn($isbn)
+    {
+        $this->name = $isbn;
+    
+        return $this;
+    }
 
+    /**
+     * Get isbn
+     *
+     * @return string 
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+    
+     /**
+     * Set isbn
+     *
+     * @param string $isbn
+     * @return Llibre
+     */
+     public function setEan($ean)
+    {
+        $this->name = $ean;
+    
+        return $this;
+    }
+
+    /**
+     * Get ean
+     *
+     * @return string 
+     */
+    public function getEan()
+    {
+        return $this->ean;
+    }
     /**
      * Set price
      *

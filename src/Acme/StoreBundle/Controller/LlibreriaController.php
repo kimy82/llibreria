@@ -97,7 +97,7 @@ class LlibreriaController extends Controller {
 
 
 
-        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.dataEntrada DESC')->setParameter('dt', $year)->setParameter('dt2', $year2);
+        $query = $em->createQuery('SELECT n from AcmeStoreBundle:Galeria n where n.dataEntrada BETWEEN :dt and :dt2 order by n.id ASC')->setParameter('dt', $year)->setParameter('dt2', $year2);
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1), 100);
@@ -356,15 +356,15 @@ class LlibreriaController extends Controller {
         ));
     }
 
-    public function demanaLlibreAction($id, $nom, $autor) {
+    public function demanaLlibreAction($id, $ean) {
 
         $em = $this->getDoctrine()->getManager();
         $path = $this->get('kernel')->getImagesPath('llibre');
         $pathServer = $this->get('kernel')->getServerPath();
         $query = $em->createQueryBuilder();
         $resultats = $query->select('n')->from('AcmeStoreBundle:Llibre', 'n')
-                        ->where('n.name=\'' . $nom . '\'')                
-                        ->andWhere('n.autor=\'' . $autor . '\'')
+                        ->where('n.ean=\'' . $ean . '\'')                
+                        
                         ->getQuery()->getResult();
 
         $formDemana = new DemanaForm();
@@ -446,7 +446,7 @@ class LlibreriaController extends Controller {
             $message = \Swift_Message::newInstance()
                     ->setSubject('Nova comanda')
                     ->setFrom('comanda@llibre.com')
-                    ->setTo('adp.alex@gmail.com')
+                    ->setTo('guillem@llibreria22.net')
                     ->setBody($this->renderView('AcmeStoreBundle:llibreria:DemanaEmail.html.twig', array('name' => $encarrec->getName(),
                         'poble' => $encarrec->getPoblacio(),
                         'adreca' => $encarrec->getAdreca(),

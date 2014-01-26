@@ -176,6 +176,9 @@ class AfegirController extends Controller
 	      	$afegir->setDateEntrada($form['date']->getData());
 	        $afegir->setName($form['name']->getData());
 	        $afegir->setDescription($form['descripcio']->getData());
+                
+                $afegir->setLink($form['link']->getData());
+	        $afegir->setDateEntrada($form['date']->getData());	
 	        
 	       
 	       

@@ -59,7 +59,7 @@
                                                     <td class="sug_cell_rescerca c2">{{ llibre.autor}}</td>
                                                     <td class="sug_cell_rescerca c3">{{ llibre.editorial}}</td>
                                                     <td class="sug_cell_rescerca c4">{{ llibre.price}} &euro;</td>
-                                                    <td class="sug_cell_rescerca c5" onclick="demanaLlibre({{llibre.id}}, '{{llibre.name}}','{{llibre.autor}}')">{% trans %}f_busca_llibre_demana{% endtrans %}</td>
+                                                    <td class="sug_cell_rescerca c5" onclick="demanaLlibre({{llibre.id}}, '{{llibre.ean}}')">{% trans %}f_busca_llibre_demana{% endtrans %}</td>
                                                 </tr>								
 				{% endfor %}
                             </table>
@@ -107,7 +107,7 @@
 		    	{% endif %}</div>
 
                                         <div class="not_el sugg">
-                                            <div>Suggeriments de la setmana<br>Clicka sobre la imatge del llibre per accedir a la fitxa i comprar contra reemborsament</div>
+                                            <div>Suggeriments de la setmana<br>Clicka sobre la imatge del llibre per accedir a la fitxa i comprar contra reemborsament / transferència bancaria</div>
 			{% if paginationafegir|length >0 %}
 				{% for coca in paginationafegir %}
                                             <div class="total">
@@ -159,8 +159,8 @@
                                                         $('.cerca_tot').removeClass('activitat');
                                                         $('#{{tipus}}').addClass('activitat');
                                                         var path = "{{pathlocal}}";
-                                                        function demanaLlibre(id, nom,autor) {
-                                                            window.location.href = path + "/llibreria22/demanaLlibre/" + id + "/" + nom +"/"+autor;
+                                                        function demanaLlibre(id, ean) {
+                                                            window.location.href = path + "/llibreria22/demanaLlibre/" + id + "/" + ean;
                                                         }
 
                                                         $("#cercainput").on("keyup", function(e) {

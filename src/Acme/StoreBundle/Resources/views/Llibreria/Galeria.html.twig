@@ -24,12 +24,23 @@
 
             <div id="con_gal">
                 <div>
+                    
                     {% for galeria in pagination %}
+                        
+                       
+
+                        
+                    
+
+                        
                         <script>
-                        galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description|raw}}","{{ galeria.dataEntrada|date('Y-m-d')}}");    				
+                           
+                          
+                        galeriaManagerObj.saveInfo({{ galeria.id}},"{{ galeria.titol}}","{{ galeria.subtitol}}","{{ galeria.description|replace({'"': "\""}) }} ","{{ galeria.dataEntrada|date('Y-m-d')}}","{{loop.index }}");    				
                         </script>
+                        
                         <div style="width: 144px; height: 144px; visibility: visible; zoom: 1; opacity: 1; overflow: hidden; margin-left: 16px; margin-bottom: 16px; float: left">
-                        <a href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}})"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
+                        <a  href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}});"> <img id="img_{{ galeria.id}}" title="{{ loop.index }}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
                         </div>                    
                     {% endfor %}
                 </div>
@@ -63,6 +74,8 @@
         window.localStorage.setItem('year',year);
         window.location.href=path+"/llibreria22/galeria/"+year;
     }
+    
+    
     var titolval=window.localStorage.getItem('val_titol');
     var subtitolval=window.localStorage.getItem('val_subtitol');
     if(titolval!=null){
@@ -90,9 +103,11 @@
                 <div id="text_di">
                     <label class="tit_not" id="titol_foto" ></label><br>
                     <label class="sub_tit" id="subtitol_foto" ></label><br>
-                    <label class="desi" id="desc_foto" ></label>
+                    <label class="desi" id="desc_foto" ></label
+                    <label id="foto_cont"></label>
                 </div>
             </div>
+            
             <div id="right_but">
                 <a href="#" onclick="galeriaManagerObj.next()" ><img src="{{ asset('bundles/acmestore/img/right.png') }}" /></a>
             </div>

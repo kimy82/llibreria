@@ -110,7 +110,7 @@ class AgendaController extends Controller
            $em = $this->getDoctrine()->getManager();
            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
            $paginatorpdf= $this->get('knp_paginator');
-           $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
+           $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),30);
            $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
         return $this->render('AcmeStoreBundle:agenda:AgendaForm.html.twig', array(
@@ -186,7 +186,7 @@ public function editAction($id)
                  $em = $this->getDoctrine()->getManager();
            $querypdf = $em->createQuery('SELECT n from AcmeStoreBundle:Addpdf n order by n.id DESC');
            $paginatorpdf= $this->get('knp_paginator');
-           $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),3);
+           $paginationpdf= $paginatorpdf->paginate($querypdf,$this->get('request')->query->get('page',1),30);
            $pathpdf= $this->get('kernel')->getImagesPath('addpdf');
             
             return $this->render('AcmeStoreBundle:agenda:AgendaForm.html.twig', array(
