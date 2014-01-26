@@ -40,7 +40,7 @@
                         </script>
                         
                         <div style="width: 144px; height: 144px; visibility: visible; zoom: 1; opacity: 1; overflow: hidden; margin-left: 16px; margin-bottom: 16px; float: left">
-                        <a  href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}});"> <img id="img_{{ galeria.id}}" title="{{ loop.index }}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
+                        <a  href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}},{{loop.index}});"> <img id="img_{{ galeria.id}}" title="{{ loop.index }}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
                         </div>                    
                     {% endfor %}
                 </div>

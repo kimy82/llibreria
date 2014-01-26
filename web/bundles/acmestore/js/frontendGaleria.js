@@ -9,21 +9,20 @@ galeriaManagerObj ={
 		this._ids = [];
 		this._position=0;
 	},	
-	showFotoDesc: function(id){
+	showFotoDesc: function(id,cont){
 		wait();
+                galeriaManagerObj._position=cont-1;
 		document.getElementById("titol_foto").innerHTML= window.localStorage.getItem("foto_titol_"+id);
 		document.getElementById("subtitol_foto").innerHTML= window.localStorage.getItem("foto_subtitol_"+id);
 		document.getElementById("desc_foto").innerHTML=  window.localStorage.getItem("foto_desc_"+id);
-		document.getElementById('img_id').src =document.getElementById('img_'+id).src;
-               
-                
+		document.getElementById('img_id').src =document.getElementById('img_'+id).src;                               
 	},
-	next: function(contador){
+	next: function(){
                
-		galeriaManagerObj._position = contador+1;
-		if(galeriaManagerObj._position >= galeriaManagerObj._ids.length-1 ){
+		galeriaManagerObj._position++;
+		if(galeriaManagerObj._position > galeriaManagerObj._ids.length-1 ){
 			galeriaManagerObj._position=0;
-		}
+		}               
 		document.getElementById("titol_foto").innerHTML= window.localStorage.getItem("foto_titol_"+galeriaManagerObj._ids[galeriaManagerObj._position]);
 		document.getElementById("subtitol_foto").innerHTML= window.localStorage.getItem("foto_subtitol_"+galeriaManagerObj._ids[galeriaManagerObj._position]);
 		document.getElementById("desc_foto").innerHTML=  window.localStorage.getItem("foto_desc_"+galeriaManagerObj._ids[galeriaManagerObj._position]);
