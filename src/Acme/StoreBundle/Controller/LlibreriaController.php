@@ -708,7 +708,7 @@ class LlibreriaController extends Controller {
 
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1), 10);
+        $pagination = $paginator->paginate($query, $this->get('request')->query->get('page', 1), 100);
         $path = $this->get('kernel')->getImagesPath('foto');
 
         $result = $em->createQuery('SELECT n from AcmeStoreBundle:establiments n ')->setMaxResults(1)->getResult();

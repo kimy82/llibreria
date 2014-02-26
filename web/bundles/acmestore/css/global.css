@@ -83,6 +83,10 @@ margin-top: 36px;
 #sli{
     padding-left: 30px!important;
 }
+#no_jumpp{
+	float:left;
+	width:960px;
+}
 #menu{
 	width: 100%;
 	margin: auto;
@@ -91,15 +95,17 @@ margin-top: 36px;
 	color: #EDEDED;
 }
 #menu_left{
-	width:720px;
-	float:left;
+	width:724px;
+	
+	z-index:4000;
 }
 #menu_right{
 	float:right;
-	margin-top: -5px;
+	margin-top: -38px;
 }
+
 #conmenu li, #conmenu li a{
-	display: inline;
+	display: inline-block;
 	text-decoration: none;
 	color: #EDEDED;
 }
@@ -115,7 +121,7 @@ margin-top: 36px;
 	width: 960px;
 	margin: auto;
 	padding-top: 17px;
-	font-size: 15px;
+	font-size: 14px;
 }
 .tit_fix{
 	width: 298px;
@@ -198,8 +204,8 @@ margin-top: 36px;
         border-right: 1px solid white;
 }
 #fleft2{
-	width: 199px;
-	padding: 0px 20px 20px 20px;
+	width: 219px;
+	padding: 0px 0px 20px 20px;
 	float: left;
 	color:white;
 	height: 340px;
@@ -949,7 +955,7 @@ filter:alpha(opacity=80); /* For IE8 and earlier */
     
 }
 #int_div{
-    width: 900px;
+    width: 659px;
     margin: auto;
 }
 
@@ -971,12 +977,12 @@ height: 100%;
 
 }
 #center_but{
-    width: 642px;
+    width: 442px;
     float: left;
     background-color: white;
 }
 #center_but_2 {
-width: 642px;
+width: 457px;
 float: left;
 height: 30px;
 line-height: 2;

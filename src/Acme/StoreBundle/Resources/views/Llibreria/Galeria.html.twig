@@ -16,7 +16,7 @@
                 <ul>
            
                     {% for dt in dates %}
-                        <li><a href="#" onclick="searchFotosYear('{{dt['1']}}')" >{{dt['1']}}</a></li>
+                        <li><a class="stileyear" href="#" onclick="searchFotosYear('{{dt['1']}}'), colorized()" >{{dt['1']}}</a></li>
                     {% endfor %}          
               
                 </ul>
@@ -40,7 +40,7 @@
                         </script>
                         
                         <div style="width: 144px; height: 144px; visibility: visible; zoom: 1; opacity: 1; overflow: hidden; margin-left: 16px; margin-bottom: 16px; float: left">
-                        <a  href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}},{{loop.index}});"> <img id="img_{{ galeria.id}}" title="{{ loop.index }}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
+                        <a  href="#" onclick="galeriaManagerObj.showFotoDesc({{ galeria.id}},{{loop.index}});"> <img id="img_{{ galeria.id}}" src="{{path}}{{ galeria.attachment}}" width="340px" /></a>
                         </div>                    
                     {% endfor %}
                 </div>
@@ -53,7 +53,7 @@
         <div class="menu_years_galeria">
               {% set daynum  = 12 %}
               {% for i in 0..daynum %}                 
-                             <li><a href="#" onclick="searchFotosYear('{{dates-i}}')" >{{dates-i}}</a></li>
+                             <li class="stileyear"><a  href="#" onclick="searchFotosYear('{{dates-i}}'), colorized()" >{{dates-i}}</a></li>
             {% endfor %}
            
         </div>
@@ -68,7 +68,11 @@
 <script>
     $('li').removeClass('active');
     $('#galeriali').addClass('active');
-
+    
+    function colorized(){
+    $('.stileyear').removeClass('activador');
+    $('.stileyear').addClass('activador');
+    }
     function searchFotosYear(year){
         var path="{{pathlocal}}";
         window.localStorage.setItem('year',year);
@@ -90,6 +94,7 @@
      </div>
    
     <div id="divCargandoImg" class="divCargandoImg">
+        <div id="global_int" style="width: 900px; margin:auto">
         <div id="int_div">
             <div id="left_but">
                 <a href="#" onclick="galeriaManagerObj.previous()" ><img src="{{ asset('bundles/acmestore/img/left.png') }}" /></a>
@@ -99,7 +104,7 @@
             </div>
             </div>
             <div id="center_but">
-                <img width="642px" id ="img_id" src="" />
+                <img width="442px" id ="img_id" src="" />
                 <div id="text_di">
                     <label class="tit_not" id="titol_foto" ></label><br>
                     <label class="sub_tit" id="subtitol_foto" ></label><br>
@@ -111,6 +116,7 @@
             <div id="right_but">
                 <a href="#" onclick="galeriaManagerObj.next()" ><img src="{{ asset('bundles/acmestore/img/right.png') }}" /></a>
             </div>
+                </div>
         </div>
     
    
